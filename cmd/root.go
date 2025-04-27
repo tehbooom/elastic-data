@@ -15,8 +15,6 @@ import (
 )
 
 var (
-	cfgFile string
-
 	rootCmd = &cobra.Command{
 		Use:     "elastic-data",
 		Short:   "",
@@ -31,7 +29,7 @@ func Execute() {
 	}
 }
 
-func createModel(path string, debug bool) (ui.Model, *os.File) {
+func createModel(debug bool) (ui.Model, *os.File) {
 	var loggerFile *os.File
 
 	if debug {
@@ -52,27 +50,10 @@ func createModel(path string, debug bool) (ui.Model, *os.File) {
 		log.SetLevel(log.FatalLevel)
 	}
 
-	return ui.NewModel(path), loggerFile
+	return ui.NewModel(), loggerFile
 }
 
 func init() {
-	rootCmd.PersistentFlags().StringVarP(
-		&cfgFile,
-		"config",
-		"c",
-		"",
-		`use this configuration file
-(default lookup:
-  1. a .elastic-data.yml file
-  2. $ES_DATA_CONFIG env var
-  3. $XDG_CONFIG_HOME/elastic-data/config.yml
-)`,
-	)
-
-	err := rootCmd.MarkPersistentFlagFilename("config", "yaml", "yml")
-	if err != nil {
-		log.Fatal("Cannot mark config flag as filename", err)
-	}
 
 	rootCmd.Flags().Bool(
 		"debug",
@@ -97,7 +78,7 @@ func init() {
 		// see https://github.com/charmbracelet/lipgloss/issues/73
 		lipgloss.SetHasDarkBackground(termenv.HasDarkBackground())
 
-		model, logger := createModel(cfgFile, debug)
+		model, logger := createModel(debug)
 		if logger != nil {
 			defer logger.Close()
 		}
