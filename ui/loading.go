@@ -12,6 +12,8 @@ import (
 	"github.com/go-git/go-git/v5"
 )
 
+const ElasticIntegrationsRepoURL string = "https://github.com/elastic/integrations"
+
 type loadingCompleteMsg struct {
 	result string
 }
@@ -73,6 +75,7 @@ func getConfigDir() (string, error) {
 	return configDir, nil
 }
 
+// checkRepository checks if elastic/integrations exists in the direcotry and calls syncRepository
 func checkRepository() tea.Cmd {
 	return func() tea.Msg {
 		configDir, err := getConfigDir()
@@ -95,11 +98,9 @@ func checkRepository() tea.Cmd {
 }
 
 func syncRepository(repoPath string, exists bool) (string, error) {
-	repoURL := "https://github.com/elastic/integrations"
-
 	if !exists {
 		_, err := git.PlainClone(repoPath, false, &git.CloneOptions{
-			URL: repoURL,
+			URL: ElasticIntegrationsRepoURL,
 		})
 		if err != nil {
 			return "", fmt.Errorf("Failed to clone repository: %v", err)

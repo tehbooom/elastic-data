@@ -48,7 +48,6 @@ func NewModel() Model {
 	tabs := []TabModel{integrationsTab}
 	return Model{
 		help:    h,
-		keys:    defaultKeyMap(),
 		state:   state,
 		screen:  LoadingScreen,
 		loading: NewLoadingModel(),
@@ -57,13 +56,25 @@ func NewModel() Model {
 }
 
 func (m Model) Init() tea.Cmd {
-	cfg, err := config.LoadConfig()
+	cfg, cfgPath, err := config.LoadConfig()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error loading config: %v\n", err)
 	}
 
 	if cfg != nil {
-		// Update maps and slices for integrations TODO:
+		m.state.configDir = cfgPath
+		m.state.config = cfg
+		if len(cfg.Integrations) > 0 {
+			for _, integration := range cfg.Integrations {
+				if integration.Enabled {
+					m.state.selectedIntegrations[integration.Name] = true
+				}
+				integrationDatasets := m.state.datasetConfigs[integration.Name]
+				for _, dataset := range integrationDatasets {
+					dataset.Name
+				}
+			}
+		}
 	}
 
 	return m.loading.Init()
@@ -145,13 +156,4 @@ func (m Model) View() string {
 
 type keyMap struct {
 	Quit key.Binding
-}
-
-func defaultKeyMap() keyMap {
-	return keyMap{
-		Quit: key.NewBinding(
-			key.WithKeys("q", "ctrl+c"),
-			key.WithHelp("q/ctrl+c", "quit"),
-		),
-	}
 }

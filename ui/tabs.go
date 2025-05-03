@@ -33,6 +33,20 @@ func (m *TabsModel) SetSize(width, height int) {
 func (m TabsModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
+		// Check if the current tab is in a configuration state
+		if integrationsTab, ok := m.tabs[m.activeTab].(*IntegrationsTabModel); ok {
+			if integrationsTab.state == stateConfiguringDataset {
+				// When in configuration mode, let the tab handle the keys first
+				var cmd tea.Cmd
+				tab, cmd := m.tabs[m.activeTab].Update(msg)
+				if t, ok := tab.(TabModel); ok {
+					m.tabs[m.activeTab] = t
+				}
+				return m, cmd
+			}
+		}
+
+		// Handle tab switching keys if not in configuration state
 		switch msg.String() {
 		case "tab", "right":
 			// Move to next tab
@@ -58,18 +72,15 @@ func (m TabsModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m TabsModel) View() string {
-	// Render tabs header
 	var header strings.Builder
 	for i, tab := range m.tabs {
 		if i == m.activeTab {
-			// Active tab style
 			header.WriteString(lipgloss.NewStyle().
 				Bold(true).
 				Foreground(lipgloss.Color("205")).
 				Padding(0, 1).
 				Render("[ " + tab.TabTitle() + " ]"))
 		} else {
-			// Inactive tab style
 			header.WriteString(lipgloss.NewStyle().
 				Padding(0, 1).
 				Render("  " + tab.TabTitle() + "  "))
