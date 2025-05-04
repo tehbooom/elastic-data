@@ -11,6 +11,7 @@ import (
 	"github.com/charmbracelet/lipgloss"
 	"github.com/tehbooom/elastic-data/internal/config"
 	"github.com/tehbooom/elastic-data/internal/integrations"
+	"github.com/tehbooom/elastic-data/ui/state"
 )
 
 // Screen represents the different screens in the application
@@ -22,14 +23,15 @@ const (
 )
 
 type Model struct {
-	width   int
-	height  int
-	help    help.Model
-	keys    keyMap
-	state   *AppState
-	screen  Screen
-	loading LoadingModel
-	tabs    TabsModel
+	width          int
+	height         int
+	help           help.Model
+	keys           keyMap
+	state          *state.AppState
+	screen         Screen
+	loading        LoadingModel
+	tabs           TabsModel
+	saveController *state.SaveController
 }
 
 type TabModel interface {
@@ -39,19 +41,21 @@ type TabModel interface {
 }
 
 func NewModel() Model {
-	state := NewAppState()
+	appState := state.NewAppState()
+	saveController := state.NewSaveController(appState)
 	h := help.New()
 	h.ShowAll = false
 
-	integrationsTab := NewIntegrationsTabModel(state)
+	integrationsTab := NewIntegrationsTabModel(appState, saveController)
 
 	tabs := []TabModel{integrationsTab}
 	return Model{
-		help:    h,
-		state:   state,
-		screen:  LoadingScreen,
-		loading: NewLoadingModel(),
-		tabs:    NewTabsModel(tabs),
+		help:           h,
+		state:          appState,
+		saveController: saveController,
+		screen:         LoadingScreen,
+		loading:        NewLoadingModel(),
+		tabs:           NewTabsModel(tabs),
 	}
 }
 
@@ -72,12 +76,12 @@ func (m Model) Init() tea.Cmd {
 
 				datasetMap, exists := m.state.DatasetConfigs[integration]
 				if !exists {
-					datasetMap = make(map[string]DatasetConfig)
+					datasetMap = make(map[string]state.DatasetConfig)
 					m.state.DatasetConfigs[integration] = datasetMap
 				}
 
 				for datasetName, configDataset := range integrationData.Datasets {
-					datasetConfig := DatasetConfig{
+					datasetConfig := state.DatasetConfig{
 						Name:      datasetName,
 						Selected:  configDataset.Enabled,
 						Unit:      configDataset.Unit,
@@ -112,7 +116,9 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return m, nil
 
 	case tea.KeyMsg:
-		if key.Matches(msg, m.keys.Quit) {
+		switch msg.String() {
+		case "ctrl+c", "q":
+			m.saveController.SaveNow()
 			return m, tea.Quit
 		}
 	}

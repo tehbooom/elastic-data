@@ -1,8 +1,6 @@
-// ui/save_controller.go
-package ui
+package state
 
 import (
-	"log"
 	"time"
 )
 
@@ -10,14 +8,14 @@ import (
 type SaveController struct {
 	appState       *AppState
 	debounceTimer  *time.Timer
-	debounceperiod time.Duration
+	debouncePeriod time.Duration
 }
 
 // NewSaveController creates a new save controller
 func NewSaveController(state *AppState) *SaveController {
 	return &SaveController{
 		appState:       state,
-		debounceperiod: 2 * time.Second,
+		debouncePeriod: 2 * time.Second,
 	}
 }
 
@@ -31,11 +29,9 @@ func (s *SaveController) MarkDirty() {
 	}
 
 	// Schedule a new save
-	s.debounceTimer = time.AfterFunc(s.debounceperiod, func() {
+	s.debounceTimer = time.AfterFunc(s.debouncePeriod, func() {
 		if s.appState.Dirty {
-			if err := s.appState.SaveToConfig(); err != nil {
-				log.Printf("Error saving config: %v", err)
-			}
+			s.appState.SaveIntegrations()
 		}
 	})
 }
@@ -48,8 +44,6 @@ func (s *SaveController) SaveNow() {
 	}
 
 	if s.appState.Dirty {
-		if err := s.appState.SaveToConfig(); err != nil {
-			log.Printf("Error saving config: %v", err)
-		}
+		s.appState.SaveIntegrations()
 	}
 }

@@ -35,12 +35,13 @@ func (m TabsModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.KeyMsg:
 		// Check if the current tab is in a configuration state
 		if integrationsTab, ok := m.tabs[m.activeTab].(*IntegrationsTabModel); ok {
-			if integrationsTab.state == stateConfiguringDataset {
+			if integrationsTab.IsInConfigurationState() {
 				// When in configuration mode, let the tab handle the keys first
-				var cmd tea.Cmd
-				tab, cmd := m.tabs[m.activeTab].Update(msg)
-				if t, ok := tab.(TabModel); ok {
-					m.tabs[m.activeTab] = t
+				tabModel, cmd := integrationsTab.Update(msg)
+
+				// Update the tab in the slice if it implements TabModel
+				if updatedTab, ok := tabModel.(TabModel); ok {
+					m.tabs[m.activeTab] = updatedTab
 				}
 				return m, cmd
 			}
@@ -60,10 +61,12 @@ func (m TabsModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	}
 
 	if m.activeTab < len(m.tabs) {
-		var cmd tea.Cmd
-		tab, cmd := m.tabs[m.activeTab].Update(msg)
-		if t, ok := tab.(TabModel); ok {
-			m.tabs[m.activeTab] = t
+		// Process the update for the active tab
+		tabModel, cmd := m.tabs[m.activeTab].Update(msg)
+
+		// Update the tab in the slice if it implements TabModel
+		if updatedTab, ok := tabModel.(TabModel); ok {
+			m.tabs[m.activeTab] = updatedTab
 		}
 		return m, cmd
 	}
