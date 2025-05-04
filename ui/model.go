@@ -62,16 +62,28 @@ func (m Model) Init() tea.Cmd {
 	}
 
 	if cfg != nil {
-		m.state.configDir = cfgPath
-		m.state.config = cfg
+		m.state.ConfigPath = cfgPath
+		m.state.Config = cfg
 		if len(cfg.Integrations) > 0 {
-			for _, integration := range cfg.Integrations {
-				if integration.Enabled {
-					m.state.selectedIntegrations[integration.Name] = true
+			for integration, integrationData := range cfg.Integrations {
+				if integrationData.Enabled {
+					m.state.SelectedIntegrations[integration] = true
 				}
-				integrationDatasets := m.state.datasetConfigs[integration.Name]
-				for _, dataset := range integrationDatasets {
-					dataset.Name
+
+				datasetMap, exists := m.state.DatasetConfigs[integration]
+				if !exists {
+					datasetMap = make(map[string]DatasetConfig)
+					m.state.DatasetConfigs[integration] = datasetMap
+				}
+
+				for datasetName, configDataset := range integrationData.Datasets {
+					datasetConfig := DatasetConfig{
+						Name:      datasetName,
+						Selected:  configDataset.Enabled,
+						Unit:      configDataset.Unit,
+						Threshold: configDataset.Threshold,
+					}
+					datasetMap[datasetName] = datasetConfig
 				}
 			}
 		}
@@ -114,8 +126,8 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			configDir, _ := getConfigDir()
 			repoDir := filepath.Join(configDir, "integrations")
 			integrations, _ := integrations.GetIntegrations(repoDir)
-			if m.state.selectedIntegrations == nil {
-				m.state.selectedIntegrations = make(map[string]bool)
+			if m.state.SelectedIntegrations == nil {
+				m.state.SelectedIntegrations = make(map[string]bool)
 			}
 
 			for _, tab := range m.tabs.tabs {

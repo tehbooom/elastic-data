@@ -26,10 +26,9 @@ type Integration struct {
 
 type Dataset struct {
 	Enabled   bool
-	Threshold struct {
-		EPS   *int64 `yaml:"eps,omitempty"`
-		Bytes *int64 `yaml:"bytes,omitempty"`
-	}
+	Threshold int
+	// EPS or bytes
+	Unit string
 }
 
 func LoadConfig() (*Config, string, error) {
@@ -99,7 +98,14 @@ func LoadConfig() (*Config, string, error) {
 
 // Helper function to check if the config is empty
 func isConfigEmpty(config *Config) bool {
-	return config.Connection.Endpoints[0] == "" && config.Connection.Username == "" || config.Connection.Username == ""
+	// Check if Endpoints slice is empty or if first endpoint is empty
+	endpointsEmpty := len(config.Connection.Endpoints) == 0 ||
+		(len(config.Connection.Endpoints) > 0 && config.Connection.Endpoints[0] == "")
+
+	// Check if username is empty
+	usernameEmpty := config.Connection.Username == ""
+
+	return endpointsEmpty && usernameEmpty
 }
 
 // SaveConfig saves the current configuration to a file
@@ -108,7 +114,9 @@ func SaveConfig(config *Config, configPath string) error {
 	viper.Set("connection.username", config.Connection.Username)
 	viper.Set("connection.password", config.Connection.Password)
 
-	viper.Set("integrations", config.Integrations)
+	if config.Integrations != nil && len(config.Integrations) > 0 {
+		viper.Set("integrations", config.Integrations)
+	}
 
 	if configPath != "" {
 		viper.SetConfigFile(configPath)

@@ -93,6 +93,7 @@ type IntegrationsTabModel struct {
 	unitInput          textinput.Model
 	currentIntegration string
 	viewport           viewport.Model
+	saveController     *SaveController
 }
 
 // CompactDelegate is a custom delegate with reduced spacing
@@ -133,7 +134,7 @@ func NewCompactDelegate() CompactDelegate {
 	return d
 }
 
-func NewIntegrationsTabModel(state *AppState) *IntegrationsTabModel {
+func NewIntegrationsTabModel(state *AppState, saveSaveController *SaveController) *IntegrationsTabModel {
 	thInput := textinput.New()
 	thInput.Placeholder = "Enter threshold value"
 	thInput.CharLimit = 10
@@ -167,6 +168,7 @@ func NewIntegrationsTabModel(state *AppState) *IntegrationsTabModel {
 		datasetsList:    datasetsList,
 		thresholdInput:  thInput,
 		unitInput:       uInput,
+		saveController:  saveSaveController,
 	}
 }
 
@@ -186,20 +188,21 @@ func (m IntegrationsTabModel) TabTitle() string {
 
 func (m *IntegrationsTabModel) SetIntegrations(integrations []string) {
 	m.integrationList.SetItems([]list.Item{})
-
 	var items []list.Item
 	for _, integration := range integrations {
+		isSelected := false
+		if m.appState != nil && m.appState.SelectedIntegrations != nil {
+			if selected, exists := m.appState.SelectedIntegrations[integration]; exists {
+				isSelected = selected
+			}
+		}
+
 		item := &IntegrationItem{
 			title:    integration,
-			selected: false,
+			selected: isSelected,
 		}
 		items = append(items, item)
-
-		if m.appState != nil && m.appState.selectedIntegrations != nil {
-			m.appState.selectedIntegrations[integration] = false
-		}
 	}
-
 	m.integrationList.SetItems(items)
 }
 
@@ -260,7 +263,14 @@ func (m *IntegrationsTabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					return m, nil
 				}
 				item.selected = !item.selected
-				m.appState.selectedIntegrations[item.title] = item.selected
+
+				// Use the app state method to update and mark dirty
+				m.appState.SetIntegrationSelected(item.title, item.selected)
+
+				// Schedule a save
+				m.saveController.MarkDirty()
+
+				// Update list UI
 				items := m.integrationList.Items()
 				items[m.integrationList.Index()] = item
 				m.integrationList.SetItems(items)
@@ -273,6 +283,7 @@ func (m *IntegrationsTabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.currentIntegration = item.title
 				m.loadDatasetsForIntegration(item.title)
 				m.state = stateSelectingDatasets
+				m.appState.SaveIntegrations()
 				return m, nil
 			case "esc", "q":
 				return m, tea.Quit
@@ -429,8 +440,10 @@ func (m IntegrationsTabModel) View() string {
 func (m *IntegrationsTabModel) loadDatasetsForIntegration(integration string) {
 	var datasetItems []list.Item
 
-	configs, exists := m.appState.datasetConfigs[integration]
+	datasetMap, exists := m.appState.DatasetConfigs[integration]
 	if !exists {
+		datasetMap = make(map[string]DatasetConfig)
+
 		configDir, _ := getConfigDir()
 		repoDir := filepath.Join(configDir, "integrations")
 		dataSets, err := integrations.GetDatasets(repoDir, integration)
@@ -438,21 +451,19 @@ func (m *IntegrationsTabModel) loadDatasetsForIntegration(integration string) {
 			log.Fatal(err)
 		}
 
-		configs = []DatasetConfig{}
 		for _, ds := range dataSets {
-			configs = append(configs, DatasetConfig{
+			datasetMap[ds] = DatasetConfig{
 				Name:      ds,
 				Selected:  false,
 				Threshold: 0,
 				Unit:      "eps",
-			})
+			}
 		}
 
-		m.appState.datasetConfigs[integration] = configs
+		m.appState.DatasetConfigs[integration] = datasetMap
 	}
 
-	// Convert configs to list items
-	for _, config := range configs {
+	for _, config := range datasetMap {
 		datasetItems = append(datasetItems, DatasetItem{
 			name:      config.Name,
 			selected:  config.Selected,
@@ -461,14 +472,23 @@ func (m *IntegrationsTabModel) loadDatasetsForIntegration(integration string) {
 		})
 	}
 
-	// Update the datasets list
 	m.datasetsList.SetItems(datasetItems)
 	m.datasetsList.Title = fmt.Sprintf("%s Datasets", strings.ToUpper(integration))
 }
 
 // updateDatasetConfigs updates the app state with the current dataset configurations
 func (m *IntegrationsTabModel) updateDatasetConfigs() {
-	var configs []DatasetConfig
+	if m.appState == nil || m.currentIntegration == "" {
+		fmt.Printf("ERROR: Cannot update app state - appState: %v, currentIntegration: %s\n",
+			m.appState != nil, m.currentIntegration)
+		return
+	}
+
+	datasetMap, exists := m.appState.DatasetConfigs[m.currentIntegration]
+	if !exists {
+		datasetMap = make(map[string]DatasetConfig)
+		m.appState.DatasetConfigs[m.currentIntegration] = datasetMap
+	}
 
 	for _, item := range m.datasetsList.Items() {
 		datasetItem, ok := item.(DatasetItem)
@@ -482,18 +502,11 @@ func (m *IntegrationsTabModel) updateDatasetConfigs() {
 			Threshold: datasetItem.threshold,
 			Unit:      datasetItem.unit,
 		}
-		configs = append(configs, config)
-	}
 
-	for i, c := range configs {
-		fmt.Printf("  Config %d: %s (selected: %v, threshold: %d, unit: %s)\n",
-			i, c.Name, c.Selected, c.Threshold, c.Unit)
-	}
+		datasetMap[datasetItem.name] = config
 
-	if m.appState != nil && m.currentIntegration != "" {
-		m.appState.datasetConfigs[m.currentIntegration] = configs
-	} else {
-		fmt.Printf("ERROR: Cannot update app state - appState: %v, currentIntegration: %s\n",
-			m.appState != nil, m.currentIntegration)
+		fmt.Printf("  Updated config: %s.%s (selected: %v, threshold: %d, unit: %s)\n",
+			m.currentIntegration, datasetItem.name, config.Selected, config.Threshold, config.Unit)
 	}
+	m.appState.SaveIntegrations()
 }
