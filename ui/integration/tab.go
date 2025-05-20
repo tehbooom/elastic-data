@@ -2,6 +2,8 @@ package integration
 
 import (
 	"errors"
+	"fmt"
+	"strconv"
 	"strings"
 
 	"github.com/charmbracelet/bubbles/list"
@@ -44,6 +46,15 @@ func ValidateUnit(input string) error {
 	return errors.New("Unit must be 'eps' or 'bytes'")
 }
 
+func ValidateThreshold(input string) error {
+	_, err := strconv.Atoi(input)
+	if err != nil {
+		return fmt.Errorf("Threshold value is not a number")
+	}
+
+	return nil
+}
+
 // NewTabModel creates a new integrations tab model
 func NewTabModel(state *state.AppState, saveController *state.SaveController) *TabModel {
 	thInput := textinput.New()
@@ -54,6 +65,8 @@ func NewTabModel(state *state.AppState, saveController *state.SaveController) *T
 
 	uInput := textinput.New()
 	uInput.Placeholder = "Unit (eps or bytes)"
+	uInput.SetSuggestions([]string{"eps", "bytes"})
+	uInput.ShowSuggestions = true
 	uInput.CharLimit = 5
 	uInput.Validate = ValidateUnit
 

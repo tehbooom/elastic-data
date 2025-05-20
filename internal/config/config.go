@@ -10,13 +10,20 @@ import (
 )
 
 type Config struct {
-	Connection struct {
-		Endpoints []string
-		APIKey    string
-		Username  string
-		Password  string
-	}
+	Connection   ConfigConnection
 	Integrations map[string]Integration
+}
+
+type ConfigConnection struct {
+	KibanaEndpoints        []string
+	ElasticsearchEndpoints []string
+	APIKey                 string
+	Username               string
+	Password               string
+	Unsafe                 bool
+	CACert                 string
+	Cert                   string
+	Key                    string
 }
 
 type Integration struct {
@@ -99,9 +106,17 @@ func LoadConfig() (*Config, string, error) {
 // Helper function to check if the config is empty
 func isConfigEmpty(config *Config) bool {
 	// Check if Endpoints slice is empty or if first endpoint is empty
-	endpointsEmpty := len(config.Connection.Endpoints) == 0 ||
-		(len(config.Connection.Endpoints) > 0 && config.Connection.Endpoints[0] == "")
+	kibanaEndpointsEmpty := len(config.Connection.KibanaEndpoints) == 0 ||
+		(len(config.Connection.KibanaEndpoints) > 0 && config.Connection.KibanaEndpoints[0] == "")
 
+	esEndpointsEmpty := len(config.Connection.ElasticsearchEndpoints) == 0 ||
+		(len(config.Connection.ElasticsearchEndpoints) > 0 && config.Connection.ElasticsearchEndpoints[0] == "")
+
+	endpointsEmpty := true
+
+	if !kibanaEndpointsEmpty && !esEndpointsEmpty {
+		endpointsEmpty = false
+	}
 	// Check if username is empty
 	usernameEmpty := config.Connection.Username == ""
 
@@ -110,7 +125,8 @@ func isConfigEmpty(config *Config) bool {
 
 // SaveConfig saves the current configuration to a file
 func SaveConfig(config *Config, configPath string) error {
-	viper.Set("connection.endpoints", config.Connection.Endpoints)
+	viper.Set("connection.kibana_endpoints", config.Connection.KibanaEndpoints)
+	viper.Set("connection.elasticsearch_endpoints", config.Connection.ElasticsearchEndpoints)
 	viper.Set("connection.username", config.Connection.Username)
 	viper.Set("connection.password", config.Connection.Password)
 
@@ -151,13 +167,14 @@ func setDefaults() {
 }
 
 // GetConnectionDetails returns the current connection details
-func (c *Config) GetConnectionDetails() ([]string, string, string) {
-	return c.Connection.Endpoints, c.Connection.Username, c.Connection.Password
+func (c *Config) GetConnectionDetails() ([]string, []string, string, string) {
+	return c.Connection.KibanaEndpoints, c.Connection.ElasticsearchEndpoints, c.Connection.Username, c.Connection.Password
 }
 
 // SetConnectionDetails sets the connection details
-func (c *Config) SetConnectionDetails(endpoints []string, username, password string) {
-	c.Connection.Endpoints = endpoints
+func (c *Config) SetConnectionDetails(esEndpoints, kibanaEndpoints []string, username, password string) {
+	c.Connection.ElasticsearchEndpoints = esEndpoints
+	c.Connection.KibanaEndpoints = kibanaEndpoints
 	c.Connection.Username = username
 	c.Connection.Password = password
 }

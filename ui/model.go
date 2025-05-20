@@ -47,8 +47,9 @@ func NewModel() Model {
 	h.ShowAll = false
 
 	integrationsTab := NewIntegrationsTabModel(appState, saveController)
+	runTab := NewRunTabModel(appState, saveController)
 
-	tabs := []TabModel{integrationsTab}
+	tabs := []TabModel{integrationsTab, runTab}
 	return Model{
 		help:           h,
 		state:          appState,
@@ -117,7 +118,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 	case tea.KeyMsg:
 		switch msg.String() {
-		case "ctrl+c", "q":
+		case "ctrl+c":
 			m.saveController.SaveNow()
 			return m, tea.Quit
 		}

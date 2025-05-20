@@ -1,8 +1,10 @@
 package integration
 
 import (
-	tea "github.com/charmbracelet/bubbletea"
 	"strconv"
+
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/tehbooom/elastic-data/ui/state"
 )
 
 // Update handles user input and updates the model
@@ -87,7 +89,7 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 			return m, nil
 
 		case "esc", "q":
-			return m, tea.Quit
+			return m, nil
 		}
 	}
 
@@ -161,19 +163,47 @@ func (m *TabModel) updateDatasetConfiguration(msg tea.Msg) (tea.Model, tea.Cmd) 
 			return m, nil
 
 		case "enter":
-			threshold, _ := strconv.Atoi(m.thresholdInput.Value())
+			// Get current dataset item from the list
 			idx := m.datasetsList.Index()
 			items := m.datasetsList.Items()
-			item := items[idx].(DatasetItem)
+			item, ok := items[idx].(DatasetItem)
+			if !ok {
+				return m, nil
+			}
+
+			// Parse and update values
+			threshold, _ := strconv.Atoi(m.thresholdInput.Value())
+			unit := m.unitInput.Value()
+
+			// Update list item
 			item.Threshold = threshold
-			item.Unit = m.unitInput.Value()
+			item.Unit = unit
 			items[idx] = item
 			m.datasetsList.SetItems(items)
-			m.updateDatasetConfigs()
+
+			// IMPORTANT: Update the app state directly
+			datasetMap, exists := m.appState.DatasetConfigs[m.currentIntegration]
+			if !exists {
+				datasetMap = make(map[string]state.DatasetConfig)
+				m.appState.DatasetConfigs[m.currentIntegration] = datasetMap
+			}
+
+			// Update the dataset in the app state
+			datasetMap[item.Name] = state.DatasetConfig{
+				Name:      item.Name,
+				Selected:  item.Selected,
+				Threshold: threshold,
+				Unit:      unit,
+			}
+
+			// Mark as dirty to trigger a save
+			m.saveController.MarkDirty()
+
+			// Return to dataset selection
 			m.state = StateSelectingDatasets
 			return m, nil
 
-		case "esc", "":
+		case "esc", "q":
 			m.state = StateSelectingDatasets
 			return m, nil
 		}

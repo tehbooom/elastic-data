@@ -32,6 +32,16 @@ func NewAppState() *AppState {
 	}
 }
 
+func (a *AppState) GetEnabledIntegrations() []string {
+	var integrations []string
+	for integration, enabled := range a.SelectedIntegrations {
+		if enabled {
+			integrations = append(integrations, integration)
+		}
+	}
+	return integrations
+}
+
 // SetIntegrationSelected updates an integration's selection state
 func (a *AppState) SetIntegrationSelected(integration string, selected bool) {
 	a.SelectedIntegrations[integration] = selected

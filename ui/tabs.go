@@ -52,10 +52,16 @@ func (m TabsModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "tab", "right":
 			// Move to next tab
 			m.activeTab = (m.activeTab + 1) % len(m.tabs)
+			if runTab, ok := m.tabs[m.activeTab].(*RunTabModel); ok {
+				runTab.tabModel.RefreshIntegrations()
+			}
 			return m, nil
 		case "shift+tab", "left":
 			// Move to previous tab
 			m.activeTab = (m.activeTab - 1 + len(m.tabs)) % len(m.tabs)
+			if runTab, ok := m.tabs[m.activeTab].(*RunTabModel); ok {
+				runTab.tabModel.RefreshIntegrations()
+			}
 			return m, nil
 		}
 	}
@@ -91,7 +97,7 @@ func (m TabsModel) View() string {
 	}
 
 	content := m.tabs[m.activeTab].View()
-	helpText := "← → Navigate tabs • j/k Up/Down • q Quit"
+	helpText := "tab/shft+tab Navigate tabs • j/k Up/Down • ctrl+c Quit"
 	help := lipgloss.NewStyle().
 		Foreground(lipgloss.Color("240")).
 		Render(helpText)
