@@ -12,11 +12,6 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tickMsg:
 
-		for name, stat := range m.integrations {
-			randomFactor := 0.9 + (0.2 * float64(time.Now().UnixNano()%100) / 100.0)
-			newValue := stat.Current * randomFactor
-			m.UpdateStats(name, newValue, stat.Unit)
-		}
 		return m, tea.Tick(time.Second, func(time.Time) tea.Msg {
 			return tickMsg{}
 		})
@@ -33,8 +28,26 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			if !m.running {
 				m.running = true
 				m.status = "Running"
+				// Initiate connection to cluster
+				err := m.appState.ESClient.TestConnection()
+				if err != nil {
+					return m, tea.Batch(
+						func() tea.Msg {
+							return TabError{Message: "Failed to connect to cluster", Err: err}
+						},
+					)
+				}
+
+				err = m.appState.KBClient.TestConnection()
+				if err != nil {
+					return m, tea.Batch(
+						func() tea.Msg {
+							return TabError{Message: "Failed to connect to cluster", Err: err}
+						},
+					)
+				}
 			}
-			// Initiate connection to cluster
+
 			// for each package do
 			// install package
 			// get psuedo data
@@ -42,6 +55,12 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 			return m, nil
 		}
+	case error:
+		m.error = msg
+		return m, tea.Quit
+	case TabError:
+		m.error = msg
+		return m, tea.Quit
 	}
 
 	return m, nil

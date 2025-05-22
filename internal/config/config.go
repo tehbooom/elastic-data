@@ -64,7 +64,6 @@ func LoadConfig() (*Config, string, error) {
 	viper.AddConfigPath(appConfigDir)
 	viper.SetConfigType("yaml")
 	viper.SetConfigName("config")
-	configFilePath := filepath.Join(appConfigDir, "config.yaml")
 
 	// First try to read existing config
 	configExists := false
@@ -100,7 +99,7 @@ func LoadConfig() (*Config, string, error) {
 		SaveConfig(config, "")
 	}
 
-	return config, configFilePath, nil
+	return config, appConfigDir, nil
 }
 
 // Helper function to check if the config is empty

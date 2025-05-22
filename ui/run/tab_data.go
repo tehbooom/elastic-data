@@ -2,9 +2,11 @@ package run
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
 	"strings"
 
-	"github.com/tehbooom/elastic-data/internal/elasticsearch"
+	"gopkg.in/yaml.v3"
 )
 
 func getTrendIndicator(trend string) string {
@@ -110,12 +112,48 @@ func (m *TabModel) RefreshIntegrations() {
 	}
 }
 
-func (m *TabModel) TestConnection() error {
+func (m *TabModel) InstallPackage() {
+	for i := range m.integrations {
+		integrationName := strings.Split(i, ":")
+		integrationVersion, err := m.GetLatestPkgVersion(integrationName[0])
+		if err != nil {
 
-	err := elasticsearch.TestConnection(m.appState.Config.Connection)
-	if err != nil {
-		return err
+		}
+		err = m.appState.KBClient.InstallPackage(integrationName[0], integrationVersion)
+		if err != nil {
+
+		}
+	}
+}
+
+func (m *TabModel) GetLatestPkgVersion(pkgName string) (string, error) {
+	type Change struct {
+		Description string `yaml:"description" json:"description"`
+		Type        string `yaml:"type" json:"type"`
+		Link        string `yaml:"link" json:"link"`
 	}
 
-	return nil
+	type Version struct {
+		Version string   `yaml:"version" json:"version"`
+		Changes []Change `yaml:"changes" json:"changes"`
+	}
+
+	type Changelog []Version
+
+	var version string
+	integrationPath := filepath.Join(m.appState.ConfigPath, "integrations", "packages", pkgName, "changelog.yml")
+
+	file, err := os.ReadFile(integrationPath)
+	if err != nil {
+		return version, err
+	}
+
+	var changelog Changelog
+
+	err = yaml.Unmarshal(file, &changelog)
+	if err != nil {
+		return version, err
+	}
+
+	return version, nil
 }

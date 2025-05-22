@@ -1,6 +1,7 @@
 package run
 
 import (
+	"fmt"
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -18,6 +19,7 @@ type TabModel struct {
 	table          *table.Table
 	status         string
 	running        bool
+	error          error
 	//esClient
 }
 
@@ -27,6 +29,24 @@ type IntegrationStats struct {
 	Unit      string
 	LastValue float64
 	Trend     string
+}
+
+type TabError struct {
+	Message string
+	Err     error
+}
+
+func errorCmd(err error) tea.Cmd {
+	return func() tea.Msg {
+		return err
+	}
+}
+
+func (e TabError) Error() string {
+	if e.Err != nil {
+		return fmt.Sprintf("%s: %v", e.Message, e.Err)
+	}
+	return e.Message
 }
 
 // NewTabModel creates a new run tab model

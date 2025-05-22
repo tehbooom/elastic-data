@@ -1,6 +1,7 @@
 package ui
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -10,7 +11,9 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/tehbooom/elastic-data/internal/config"
+	"github.com/tehbooom/elastic-data/internal/elasticsearch"
 	"github.com/tehbooom/elastic-data/internal/integrations"
+	"github.com/tehbooom/elastic-data/internal/kibana"
 	"github.com/tehbooom/elastic-data/ui/state"
 )
 
@@ -91,6 +94,26 @@ func (m Model) Init() tea.Cmd {
 					datasetMap[datasetName] = datasetConfig
 				}
 			}
+		}
+
+		esClient, err := elasticsearch.SetClient(cfg.Connection)
+		if err != nil {
+			fmt.Println(err)
+		}
+		m.state.ESClient = &elasticsearch.Config{
+			Client:    esClient,
+			Ctx:       context.Background(),
+			Connected: false,
+		}
+
+		kbClient, err := kibana.SetClient(cfg.Connection)
+		if err != nil {
+			fmt.Println(err)
+		}
+		m.state.KBClient = &kibana.Config{
+			Client:    kbClient,
+			Ctx:       context.Background(),
+			Connected: false,
 		}
 	}
 

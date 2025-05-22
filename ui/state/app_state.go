@@ -2,8 +2,11 @@ package state
 
 import (
 	"log"
+	"path/filepath"
 
 	"github.com/tehbooom/elastic-data/internal/config"
+	"github.com/tehbooom/elastic-data/internal/elasticsearch"
+	"github.com/tehbooom/elastic-data/internal/kibana"
 )
 
 // AppState holds the shared state between tabs
@@ -13,6 +16,8 @@ type AppState struct {
 	SelectedIntegrations map[string]bool
 	DatasetConfigs       map[string]map[string]DatasetConfig
 	Dirty                bool
+	ESClient             *elasticsearch.Config
+	KBClient             *kibana.Config
 }
 
 // DatasetConfig represents configuration for a dataset
@@ -103,7 +108,7 @@ func (a *AppState) SaveIntegrations() {
 // LoadFromConfig loads the application state from the config
 func (a *AppState) LoadFromConfig(cfg *config.Config, path string) {
 	a.Config = cfg
-	a.ConfigPath = path
+	a.ConfigPath = filepath.Join(path, "config.yaml")
 
 	// Initialize from config
 	if cfg.Integrations != nil {
