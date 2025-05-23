@@ -7,15 +7,15 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/charmbracelet/log"
 	"github.com/elastic/go-elasticsearch/v9"
-	"github.com/elastic/go-elasticsearch/v9/typedapi/types"
 	"github.com/tehbooom/elastic-data/internal/config"
 )
 
 type Config struct {
 	Client    *elasticsearch.TypedClient
 	Ctx       context.Context
-	Version   types.ElasticsearchVersionInfo
+	Version   string
 	Connected bool
 }
 
@@ -29,7 +29,8 @@ func (c *Config) TestConnection() error {
 		return fmt.Errorf("error connecting to cluster: %w", err)
 	}
 
-	c.Version = resp.Version
+	log.Debug(resp.ClusterName)
+	c.Version = resp.Version.Int
 	c.Connected = true
 
 	return nil
@@ -62,6 +63,12 @@ func SetClient(cfg config.ConfigConnection) (*elasticsearch.TypedClient, error) 
 	if err != nil {
 		return nil, fmt.Errorf("error creating ES client: %w", err)
 	}
+
+	esadd := fmt.Sprintf("ESAddress: %s", esConfig.Addresses)
+	esconfig := fmt.Sprintf("ES CONFIG ENDPOINTS: %s", cfg.ElasticsearchEndpoints)
+
+	log.Debug(esadd)
+	log.Debug(esconfig)
 
 	return es, nil
 }

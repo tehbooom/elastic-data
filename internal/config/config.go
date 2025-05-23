@@ -10,32 +10,32 @@ import (
 )
 
 type Config struct {
-	Connection   ConfigConnection
-	Integrations map[string]Integration
+	Connection   ConfigConnection       `mapstructure:"connection"`
+	Integrations map[string]Integration `mapstructure:"integrations"`
 }
 
 type ConfigConnection struct {
-	KibanaEndpoints        []string
-	ElasticsearchEndpoints []string
-	APIKey                 string
-	Username               string
-	Password               string
-	Unsafe                 bool
-	CACert                 string
-	Cert                   string
-	Key                    string
+	KibanaEndpoints        []string `mapstructure:"kibana_endpoints"`
+	ElasticsearchEndpoints []string `mapstructure:"elasticsearch_endpoints"`
+	APIKey                 string   `mapstructure:"api_key"`
+	Username               string   `mapstructure:"username"`
+	Password               string   `mapstructure:"password"`
+	Unsafe                 bool     `mapstructure:"unsafe"`
+	CACert                 string   `mapstructure:"ca_cert"`
+	Cert                   string   `mapstructure:"cert"`
+	Key                    string   `mapstructure:"key"`
 }
 
 type Integration struct {
-	Enabled  bool
+	Enabled  bool `mapstructure:"enabled"`
 	Datasets map[string]Dataset
 }
 
 type Dataset struct {
-	Enabled   bool
-	Threshold int
+	Enabled   bool `mapstructure:"enabled"`
+	Threshold int  `mapstructure:"threshold"`
 	// EPS or bytes
-	Unit string
+	Unit string `mapstructure:"unit"`
 }
 
 func LoadConfig() (*Config, string, error) {
@@ -160,7 +160,8 @@ func SaveConfig(config *Config, configPath string) error {
 }
 
 func setDefaults() {
-	viper.SetDefault("connection.endpoints", []string{"http://localhost:9200"})
+	viper.SetDefault("connection.kibana_endpoints", []string{"http://localhost:5601"})
+	viper.SetDefault("connection.elasticsearch_endpoints", []string{"http://localhost:9200"})
 	viper.SetDefault("connection.password", "changeme")
 	viper.SetDefault("connection.username", "elastic")
 }

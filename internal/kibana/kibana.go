@@ -76,3 +76,18 @@ func (c *Config) InstallPackage(pkgName, pkgVersion string) error {
 
 	return nil
 }
+
+func (c *Config) GetInstalledPackages() ([]string, error) {
+	resp, err := c.Client.EPM.GetPackagesInstalled(c.Ctx, &kbapi.FleetEPMGetInstalledPackagesRequest{})
+	if err != nil {
+		return nil, fmt.Errorf("error getting install packages: %w", err)
+	}
+
+	var integrations []string
+
+	for _, integration := range resp.Body.Items {
+		integrations = append(integrations, integration.Name)
+	}
+
+	return integrations, nil
+}

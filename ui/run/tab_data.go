@@ -1,13 +1,102 @@
 package run
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
+	"sync"
+	"time"
 
+	"github.com/charmbracelet/log"
+	"github.com/tehbooom/elastic-data/internal/elasticsearch"
+	"github.com/tehbooom/elastic-data/ui/state"
 	"gopkg.in/yaml.v3"
 )
+
+type DataGenerator struct {
+	config state.DatasetConfig
+	ctx    context.Context
+	cancel context.CancelFunc
+	stats  *IntegrationStats
+	wg     *sync.WaitGroup
+	mu     sync.RWMutex
+	data   string
+	client *elasticsearch.Config
+}
+
+func (m *TabModel) StartGeneration() error {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	for fullName, stats := range m.integrations {
+		fullNameSplit := strings.Split(fullName, ":")
+		integrationName := fullNameSplit[0]
+		datasetName := fullNameSplit[1]
+
+		m.InstallPackage(integrationName)
+		integration := m.appState.DatasetConfigs[integrationName]
+		dataset := integration[datasetName]
+
+		ctx, cancel := context.WithCancel(m.mainCtx)
+
+		generator := &DataGenerator{
+			config: dataset,
+			ctx:    ctx,
+			cancel: cancel,
+			stats:  &stats,
+			wg:     &m.wg,
+		}
+
+		m.generators[fullName] = generator
+		m.wg.Add(1)
+		go generator.Start()
+	}
+	// for each m.intergations
+	// get enabled datasets and their configs
+	// for each dataset create psuedo data
+	// start sending the psuedo data based on the config (threshold and unit)
+	// if m.Running{
+	// stop the running integrations from before
+	// }
+	return nil
+}
+
+func (dg *DataGenerator) Start() {
+	defer dg.wg.Done()
+
+	ticker := time.NewTicker(time.Duration(10 * time.Second))
+
+	for {
+		select {
+		case <-dg.ctx.Done():
+			log.Printf("Stopping data generation for %s", dg.config.Name)
+			return
+		case <-ticker.C:
+			if err := dg.generateAndSendData(); err != nil {
+				log.Printf("Error generating data for %s: %v", dg.config.Name, err)
+			}
+		}
+	}
+}
+
+func (dg *DataGenerator) generateAndSendData() error {
+	dg.mu.Lock()
+	defer dg.mu.Unlock()
+	data := dg.generateFakeData()
+	return dg.index(data)
+}
+
+func (dg *DataGenerator) generateFakeData() map[string]interface{} {
+	return make(map[string]interface{})
+}
+
+func (dg *DataGenerator) index(data any) error {
+	dg.client.Client.Bulk().Index("")
+
+	return nil
+}
 
 func getTrendIndicator(trend string) string {
 	switch trend {
@@ -112,18 +201,24 @@ func (m *TabModel) RefreshIntegrations() {
 	}
 }
 
-func (m *TabModel) InstallPackage() {
-	for i := range m.integrations {
-		integrationName := strings.Split(i, ":")
-		integrationVersion, err := m.GetLatestPkgVersion(integrationName[0])
-		if err != nil {
-
-		}
-		err = m.appState.KBClient.InstallPackage(integrationName[0], integrationVersion)
-		if err != nil {
-
-		}
+func (m *TabModel) InstallPackage(integrationName string) error {
+	integrationVersion, err := m.GetLatestPkgVersion(integrationName)
+	if err != nil {
+		return err
 	}
+
+	if slices.Contains(m.installedIntegrations, integrationName) {
+		return nil
+	}
+
+	err = m.appState.KBClient.InstallPackage(integrationName, integrationVersion)
+	if err != nil {
+		return err
+	}
+
+	m.installedIntegrations = append(m.installedIntegrations, integrationName)
+
+	return nil
 }
 
 func (m *TabModel) GetLatestPkgVersion(pkgName string) (string, error) {
@@ -154,6 +249,8 @@ func (m *TabModel) GetLatestPkgVersion(pkgName string) (string, error) {
 	if err != nil {
 		return version, err
 	}
+
+	version = changelog[0].Version
 
 	return version, nil
 }

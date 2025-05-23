@@ -1,7 +1,9 @@
 package run
 
 import (
+	"context"
 	"fmt"
+	"sync"
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -15,12 +17,18 @@ type TabModel struct {
 	height         int
 	appState       *state.AppState
 	saveController *state.SaveController
-	integrations   map[string]IntegrationStats
-	table          *table.Table
-	status         string
-	running        bool
-	error          error
-	//esClient
+	// the key is integrationName:datasetName
+	integrations          map[string]IntegrationStats
+	table                 *table.Table
+	status                string
+	running               bool
+	error                 error
+	installedIntegrations []string
+	generators            map[string]*DataGenerator
+	mu                    sync.RWMutex
+	mainCtx               context.Context
+	mainCancel            context.CancelFunc
+	wg                    sync.WaitGroup
 }
 
 type IntegrationStats struct {
@@ -51,12 +59,17 @@ func (e TabError) Error() string {
 
 // NewTabModel creates a new run tab model
 func NewTabModel(state *state.AppState, saveController *state.SaveController) *TabModel {
+	ctx, cancel := context.WithCancel(context.Background())
 	model := &TabModel{
-		appState:       state,
-		saveController: saveController,
-		integrations:   make(map[string]IntegrationStats),
-		status:         "Waiting to start",
-		running:        false,
+		appState:              state,
+		saveController:        saveController,
+		integrations:          make(map[string]IntegrationStats),
+		status:                "Waiting to start",
+		installedIntegrations: []string{},
+		mainCtx:               ctx,
+		mainCancel:            cancel,
+		generators:            make(map[string]*DataGenerator),
+		running:               false,
 	}
 	model.RefreshIntegrations()
 
@@ -64,12 +77,12 @@ func NewTabModel(state *state.AppState, saveController *state.SaveController) *T
 }
 
 // TabTitle returns the title of the tab
-func (m TabModel) TabTitle() string {
+func (m *TabModel) TabTitle() string {
 	return "Run"
 }
 
 // Init initializes the tab
-func (m TabModel) Init() tea.Cmd {
+func (m *TabModel) Init() tea.Cmd {
 	m.RefreshIntegrations()
 	return tea.Tick(time.Second, func(time.Time) tea.Msg {
 		return tickMsg{}

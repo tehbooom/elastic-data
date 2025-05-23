@@ -100,9 +100,10 @@ func (m Model) Init() tea.Cmd {
 		if err != nil {
 			fmt.Println(err)
 		}
+		ctx := context.Background()
 		m.state.ESClient = &elasticsearch.Config{
 			Client:    esClient,
-			Ctx:       context.Background(),
+			Ctx:       ctx,
 			Connected: false,
 		}
 

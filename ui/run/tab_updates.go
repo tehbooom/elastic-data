@@ -4,6 +4,7 @@ import (
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/log"
 )
 
 type tickMsg struct{}
@@ -31,6 +32,7 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				// Initiate connection to cluster
 				err := m.appState.ESClient.TestConnection()
 				if err != nil {
+					log.Debug(err)
 					return m, tea.Batch(
 						func() tea.Msg {
 							return TabError{Message: "Failed to connect to cluster", Err: err}
@@ -40,6 +42,7 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 				err = m.appState.KBClient.TestConnection()
 				if err != nil {
+					log.Debug(err)
 					return m, tea.Batch(
 						func() tea.Msg {
 							return TabError{Message: "Failed to connect to cluster", Err: err}
@@ -48,10 +51,14 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				}
 			}
 
-			// for each package do
+			// for each m.intergations
 			// install package
-			// get psuedo data
-			// send request for data
+			// get enabled datasets and their configs
+			// for each dataset create psuedo data
+			// start sending the psuedo data based on the config (threshold and unit)
+			// if m.Running{
+			// stop the running integrations from before
+			// }
 
 			return m, nil
 		}

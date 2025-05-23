@@ -13,6 +13,7 @@ require (
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/viper v1.20.1
 	github.com/tehbooom/go-kibana v0.0.0-20250521190924-8f59a7b2b59b
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
@@ -74,5 +75,4 @@ require (
 	golang.org/x/sys v0.32.0 // indirect
 	golang.org/x/text v0.24.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
