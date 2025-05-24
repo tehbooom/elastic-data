@@ -20,7 +20,7 @@ var (
 				Foreground(lipgloss.Color("249"))
 )
 
-func (m TabModel) RunTable() *table.Table {
+func (m *TabModel) RunTable() *table.Table {
 	headers := []string{"Integration", "Dataset", "Current", "Peak", "Trend"}
 
 	var rows [][]string
@@ -80,7 +80,7 @@ func (m TabModel) RunTable() *table.Table {
 }
 
 // View renders the tab
-func (m TabModel) View() string {
+func (m *TabModel) View() string {
 	if m.width == 0 {
 		return "Loading..."
 	}

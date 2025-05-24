@@ -28,7 +28,7 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "enter":
 			if !m.running {
 				m.running = true
-				m.status = "Running"
+				m.status = StartedMsg
 				// Initiate connection to cluster
 				err := m.appState.ESClient.TestConnection()
 				if err != nil {
@@ -49,6 +49,11 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 						},
 					)
 				}
+			} else {
+				m.running = false
+				m.status = "Stopping..."
+				m.stopGeneration()
+				m.status = "Waiting to start"
 			}
 
 			// for each m.intergations

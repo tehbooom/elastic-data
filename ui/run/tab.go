@@ -11,6 +11,11 @@ import (
 	"github.com/tehbooom/elastic-data/ui/state"
 )
 
+const (
+	StopedMsg  string = "Waiting to start"
+	StartedMsg string = "Running"
+)
+
 // TabModel represents the integrations tab
 type TabModel struct {
 	width          int
@@ -64,7 +69,7 @@ func NewTabModel(state *state.AppState, saveController *state.SaveController) *T
 		appState:              state,
 		saveController:        saveController,
 		integrations:          make(map[string]IntegrationStats),
-		status:                "Waiting to start",
+		status:                StopedMsg,
 		installedIntegrations: []string{},
 		mainCtx:               ctx,
 		mainCancel:            cancel,
