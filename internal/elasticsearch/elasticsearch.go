@@ -9,6 +9,7 @@ import (
 
 	"github.com/charmbracelet/log"
 	"github.com/elastic/go-elasticsearch/v9"
+	"github.com/elastic/go-elasticsearch/v9/typedapi/types"
 	"github.com/tehbooom/elastic-data/internal/config"
 )
 
@@ -71,4 +72,32 @@ func SetClient(cfg config.ConfigConnection) (*elasticsearch.TypedClient, error) 
 	log.Debug(esconfig)
 
 	return es, nil
+}
+
+func (c *Config) BulkRequest(index string, events []map[string]interface{}) error {
+	bulk := c.Client.Bulk().Index(index)
+	for _, event := range events {
+		err := bulk.CreateOp(*&types.CreateOperation{}, event)
+		if err != nil {
+			return err
+		}
+	}
+
+	resp, err := bulk.Do(c.Ctx)
+	if err != nil {
+		return err
+	}
+
+	if resp.Errors {
+		for _, item := range resp.Items {
+			for opType, respItem := range item {
+				if respItem.Error != nil {
+					log.Printf("Error in %s operation for document %s: %s",
+						opType, *respItem.Id_, respItem.Error.Reason)
+				}
+			}
+		}
+	}
+
+	return nil
 }

@@ -30,7 +30,7 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.running = true
 				m.status = StartedMsg
 				// Initiate connection to cluster
-				err := m.appState.ESClient.TestConnection()
+				err := m.programContext.ESClient.TestConnection()
 				if err != nil {
 					log.Debug(err)
 					return m, tea.Batch(
@@ -40,7 +40,7 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					)
 				}
 
-				err = m.appState.KBClient.TestConnection()
+				err = m.programContext.KBClient.TestConnection()
 				if err != nil {
 					log.Debug(err)
 					return m, tea.Batch(

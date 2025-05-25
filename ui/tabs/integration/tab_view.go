@@ -6,7 +6,6 @@ import (
 	"strings"
 )
 
-// Styles for the integration UI
 var (
 	TitleStyle        = lipgloss.NewStyle().MarginLeft(2).Bold(true)
 	ItemStyle         = lipgloss.NewStyle().PaddingLeft(4)
@@ -19,7 +18,6 @@ var (
 	HelpStyle         = lipgloss.NewStyle().Foreground(lipgloss.Color("241"))
 )
 
-// View renders the tab
 func (m TabModel) View() string {
 	if m.width == 0 {
 		return "Loading..."
@@ -27,11 +25,9 @@ func (m TabModel) View() string {
 
 	var content strings.Builder
 
-	// Render breadcrumb navigation
 	breadcrumbs := m.renderBreadcrumbs()
 	content.WriteString(breadcrumbs + "\n\n")
 
-	// Render the current view based on state
 	switch m.state {
 	case StateSelectingIntegration:
 		content.WriteString(m.integrationList.View())
@@ -52,7 +48,6 @@ func (m TabModel) View() string {
 	return content.String()
 }
 
-// Render breadcrumb navigation
 func (m TabModel) renderBreadcrumbs() string {
 	if m.state == StateSelectingIntegration {
 		return ""
@@ -73,7 +68,6 @@ func (m TabModel) renderBreadcrumbs() string {
 	return breadcrumbs
 }
 
-// Render configuration form
 func (m TabModel) renderConfigForm() string {
 	item := m.datasetsList.SelectedItem().(DatasetItem)
 	form := strings.Builder{}

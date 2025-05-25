@@ -2,24 +2,28 @@ package generator
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"io/fs"
+	"math/rand"
 	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
-	"sync"
 	"text/template"
+	"time"
 
 	"github.com/charmbracelet/log"
 )
 
 type LogTemplate struct {
-	Original string
-	Template *template.Template
-	IsJSON   bool
-	Patterns []PatternRule
-	Data     map[string]string
+	Original  string
+	Template  *template.Template
+	IsJSON    bool
+	Patterns  []PatternRule
+	Size      int
+	Data      map[string]string
+	DataPools map[string][]string
 }
 
 type PatternRule struct {
@@ -29,57 +33,42 @@ type PatternRule struct {
 }
 
 type DataPools struct {
-	IPs         []string
-	Domains     []string
-	Usernames   []string
-	Hostnames   []string
-	UserAgents  []string
-	StatusCodes []string
-	Methods     []string
-	Paths       []string
-	mu          sync.RWMutex
+	IPs     []string
+	Domains []string
+	// Usernames  []string
+	// Hostnames  []string
+	Email []string
 }
 
-func initializeDataPools() *DataPools {
-	return &DataPools{
-		IPs: []string{
-			"192.168.1.100", "10.0.0.1", "172.16.0.1", "203.0.113.1",
-			"198.51.100.1", "127.0.0.1", "192.168.0.1", "10.1.1.1",
-		},
-		Domains: []string{
-			"example.com", "test.org", "mycompany.net", "service.io",
-			"app.local", "api.service.com", "web.example.org",
-		},
-		Usernames: []string{
-			"alice", "bob", "charlie", "diana", "admin", "user", "guest",
-			"service", "system", "root",
-		},
-		Hostnames: []string{
-			"web-01", "api-gateway", "db-primary", "cache-01", "worker-01",
-			"load-balancer", "monitor-srv", "backup-system",
-		},
-		UserAgents: []string{
-			"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-			"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-			"curl/7.68.0", "PostmanRuntime/7.28.4",
-		},
-		StatusCodes: []string{"200", "201", "400", "401", "403", "404", "500", "502"},
-		Methods:     []string{"GET", "POST", "PUT", "DELETE", "PATCH"},
-		Paths: []string{
-			"/api/users", "/login", "/dashboard", "/health", "/search",
-			"/api/orders", "/profile", "/admin", "/logout",
-		},
+func initializeDataPools() map[string][]string {
+	dataPools := make(map[string][]string)
+	dataPools["IPs"] = []string{
+		"192.168.1.100", "10.0.0.1", "172.16.0.1", "203.0.113.1",
+		"198.51.100.1", "127.0.0.1", "192.168.0.1", "10.1.1.1",
 	}
+
+	dataPools["Domains"] = []string{
+		"example.com", "test.org", "mycompany.net", "service.io",
+		"app.local", "api.service.com", "web.example.org",
+	}
+	dataPools["Emails"] = []string{
+		"admin@example.com",
+		"user@hello.world.com",
+		"alice@test.org",
+		"root@service.io",
+	}
+	return dataPools
 }
 
 func (l *LogTemplate) AddCommonPatterns() {
 	commonPatterns := map[string]*regexp.Regexp{
-		"ip":        regexp.MustCompile(`\b(?:\d{1,3}\.){3}\d{1,3}\b`),
-		"timestamp": regexp.MustCompile(`\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2}`),
-		"email":     regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
-		"url":       regexp.MustCompile(`https?://[^\s"]+`),
-		"domain":    regexp.MustCompile(`[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
-		"UUID":      regexp.MustCompile(`[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}`),
+		"IPs":              regexp.MustCompile(`\b(?:\d{1,3}\.){3}\d{1,3}\b`),
+		"timestamp_iso":    regexp.MustCompile(`\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z?`),
+		"timestamp_common": regexp.MustCompile(`\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}`),
+		"timestamp_clf":    regexp.MustCompile(`\[\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}[^\]]*\]`),
+		"timestamp_syslog": regexp.MustCompile(`[A-Za-z]{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}`),
+		"Emails":           regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
+		"Domains":          regexp.MustCompile(`[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
 	}
 
 	for name, pattern := range commonPatterns {
@@ -111,12 +100,17 @@ func ParseLogFile(filePath, integration, dataset string) ([]LogTemplate, error) 
 		if line == "" {
 			continue
 		}
+		lineBytes := []byte(line)
 
 		template := LogTemplate{
 			Original: line,
-			Template: nil,
 			IsJSON:   false,
+			Size:     len(lineBytes),
 		}
+
+		template.AddCommonPatterns()
+		template.ParseLogLine()
+
 		templates = append(templates, template)
 	}
 
@@ -132,6 +126,7 @@ func (l *LogTemplate) ParseLogLine() error {
 		}
 
 		templateStr = pattern.Regex.ReplaceAllString(templateStr, pattern.Replace)
+		log.Debug(templateStr)
 	}
 
 	tmpl, err := template.New("logline").Parse(templateStr)
@@ -142,6 +137,55 @@ func (l *LogTemplate) ParseLogLine() error {
 	l.Template = tmpl
 
 	return nil
+}
+
+func (l *LogTemplate) UpdateValues() {
+	for key := range l.Data {
+		for _, pattern := range l.Patterns {
+			matches := pattern.Regex.FindAllString(l.Original, -1)
+			if len(matches) > 0 {
+				var value string
+				switch pattern.Name {
+				case "IPs":
+					array := l.DataPools["IPs"]
+					value = array[rand.Intn(len(l.DataPools["IPs"]))]
+				case "Domains":
+					array := l.DataPools["Domains"]
+					value = array[rand.Intn(len(l.DataPools["Domains"]))]
+				case "Emails":
+					array := l.DataPools["Emails"]
+					value = array[rand.Intn(len(l.DataPools["Emails"]))]
+				case "timestamp_iso":
+					now := time.Now()
+					value = now.UTC().Format("2006-01-02T15:04:05.000Z")
+				case "timestamp_common":
+					now := time.Now()
+					value = now.Format("02/Jan/2006:15:04:05")
+				case "timestamp_clf":
+					now := time.Now()
+					value = now.Format("[02/Jan/2006:15:04:05 -0700]")
+				case "timestamp_syslog":
+					now := time.Now()
+					value = now.Format("Jan _2 15:04:05")
+				}
+				l.Data[key] = value
+			}
+		}
+	}
+}
+
+func (l *LogTemplate) ExecuteTemplate() (string, error) {
+	if l.Template == nil {
+		return "", fmt.Errorf("template not parsed yet, call Parse() first")
+	}
+
+	var buf bytes.Buffer
+	err := l.Template.Execute(&buf, l.Data)
+	if err != nil {
+		return "", fmt.Errorf("failed to execute template: %v", err)
+	}
+
+	return buf.String(), nil
 }
 
 func LoadTemplatesForDataset(integration, dataset string) ([]LogTemplate, error) {

@@ -4,10 +4,9 @@ import (
 	"strconv"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/tehbooom/elastic-data/ui/state"
+	"github.com/tehbooom/elastic-data/ui/context"
 )
 
-// Update handles user input and updates the model
 func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	cmd := m.handleGlobalKeys(msg)
 	if cmd != nil {
@@ -26,7 +25,6 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, nil
 }
 
-// Handle global navigation keys
 func (m *TabModel) handleGlobalKeys(msg tea.Msg) tea.Cmd {
 	if keyMsg, ok := msg.(tea.KeyMsg); ok {
 		switch keyMsg.String() {
@@ -50,19 +48,18 @@ func (m *TabModel) handleGlobalKeys(msg tea.Msg) tea.Cmd {
 	return nil
 }
 
-// Update for integration selection state
 func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.String() {
-		case " ": // Toggle selection
+		case " ":
 			item, ok := m.integrationList.SelectedItem().(*IntegrationItem)
 			if !ok {
 				return m, nil
 			}
 			item.Selected = !item.Selected
 
-			m.appState.SetIntegrationSelected(item.Name, item.Selected)
+			m.context.SetIntegrationSelected(item.Name, item.Selected)
 			m.saveController.MarkDirty()
 
 			items := m.integrationList.Items()
@@ -77,7 +74,7 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 			}
 			item.Selected = !item.Selected
 
-			m.appState.SetIntegrationSelected(item.Name, item.Selected)
+			m.context.SetIntegrationSelected(item.Name, item.Selected)
 			m.saveController.MarkDirty()
 			items := m.integrationList.Items()
 			items[m.integrationList.Index()] = item
@@ -93,18 +90,16 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 		}
 	}
 
-	// Pass other messages to integration list
 	var cmd tea.Cmd
 	m.integrationList, cmd = m.integrationList.Update(msg)
 	return m, cmd
 }
 
-// Update for dataset selection state
 func (m *TabModel) updateDatasetSelection(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.String() {
-		case " ": // Toggle selection
+		case " ":
 			item, ok := m.datasetsList.SelectedItem().(DatasetItem)
 			if !ok {
 				return m, nil
@@ -141,13 +136,11 @@ func (m *TabModel) updateDatasetSelection(msg tea.Msg) (tea.Model, tea.Cmd) {
 		}
 	}
 
-	// Pass other messages to datasets list
 	var cmd tea.Cmd
 	m.datasetsList, cmd = m.datasetsList.Update(msg)
 	return m, cmd
 }
 
-// Update for dataset configuration state
 func (m *TabModel) updateDatasetConfiguration(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
@@ -163,7 +156,6 @@ func (m *TabModel) updateDatasetConfiguration(msg tea.Msg) (tea.Model, tea.Cmd) 
 			return m, nil
 
 		case "enter":
-			// Get current dataset item from the list
 			idx := m.datasetsList.Index()
 			items := m.datasetsList.Items()
 			item, ok := items[idx].(DatasetItem)
@@ -171,35 +163,29 @@ func (m *TabModel) updateDatasetConfiguration(msg tea.Msg) (tea.Model, tea.Cmd) 
 				return m, nil
 			}
 
-			// Parse and update values
 			threshold, _ := strconv.Atoi(m.thresholdInput.Value())
 			unit := m.unitInput.Value()
 
-			// Update list item
 			item.Threshold = threshold
 			item.Unit = unit
 			items[idx] = item
 			m.datasetsList.SetItems(items)
 
-			// IMPORTANT: Update the app state directly
-			datasetMap, exists := m.appState.DatasetConfigs[m.currentIntegration]
+			datasetMap, exists := m.context.DatasetConfigs[m.currentIntegration]
 			if !exists {
-				datasetMap = make(map[string]state.DatasetConfig)
-				m.appState.DatasetConfigs[m.currentIntegration] = datasetMap
+				datasetMap = make(map[string]context.DatasetConfig)
+				m.context.DatasetConfigs[m.currentIntegration] = datasetMap
 			}
 
-			// Update the dataset in the app state
-			datasetMap[item.Name] = state.DatasetConfig{
+			datasetMap[item.Name] = context.DatasetConfig{
 				Name:      item.Name,
 				Selected:  item.Selected,
 				Threshold: threshold,
 				Unit:      unit,
 			}
 
-			// Mark as dirty to trigger a save
 			m.saveController.MarkDirty()
 
-			// Return to dataset selection
 			m.state = StateSelectingDatasets
 			return m, nil
 

@@ -134,7 +134,7 @@ func SaveConfig(config *Config, configPath string) error {
 	}
 
 	if configPath != "" {
-		viper.SetConfigFile(configPath)
+		viper.SetConfigFile(filepath.Join(configPath, "config.yaml"))
 	} else {
 		home, err := os.UserHomeDir()
 		if err != nil {

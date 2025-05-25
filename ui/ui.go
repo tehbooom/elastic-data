@@ -14,10 +14,12 @@ import (
 	"github.com/tehbooom/elastic-data/internal/elasticsearch"
 	"github.com/tehbooom/elastic-data/internal/integrations"
 	"github.com/tehbooom/elastic-data/internal/kibana"
-	"github.com/tehbooom/elastic-data/ui/state"
+	ProgramContext "github.com/tehbooom/elastic-data/ui/context"
+	"github.com/tehbooom/elastic-data/ui/tabs"
+	"github.com/tehbooom/elastic-data/ui/tabs/integration"
+	"github.com/tehbooom/elastic-data/ui/tabs/run"
 )
 
-// Screen represents the different screens in the application
 type Screen int
 
 const (
@@ -30,36 +32,30 @@ type Model struct {
 	height         int
 	help           help.Model
 	keys           keyMap
-	state          *state.AppState
+	programContext *ProgramContext.ProgramContext
 	screen         Screen
 	loading        LoadingModel
-	tabs           TabsModel
-	saveController *state.SaveController
-}
-
-type TabModel interface {
-	tea.Model
-	SetSize(width, height int)
-	TabTitle() string
+	tabs           tabs.TabsModel
+	saveController *ProgramContext.SaveController
 }
 
 func NewModel() Model {
-	appState := state.NewAppState()
-	saveController := state.NewSaveController(appState)
+	programContext := ProgramContext.NewProgramContext()
+	saveController := ProgramContext.NewSaveController(programContext)
 	h := help.New()
 	h.ShowAll = false
 
-	integrationsTab := NewIntegrationsTabModel(appState, saveController)
-	runTab := NewRunTabModel(appState, saveController)
+	integrationsTab := integration.NewIntegrationsTabModel(programContext, saveController)
+	runTab := run.NewRunTabModel(programContext, saveController)
 
-	tabs := []TabModel{integrationsTab, runTab}
+	initTabs := []tabs.TabModel{integrationsTab, runTab}
 	return Model{
 		help:           h,
-		state:          appState,
+		programContext: programContext,
 		saveController: saveController,
 		screen:         LoadingScreen,
 		loading:        NewLoadingModel(),
-		tabs:           NewTabsModel(tabs),
+		tabs:           tabs.NewTabsModel(initTabs),
 	}
 }
 
@@ -70,22 +66,22 @@ func (m Model) Init() tea.Cmd {
 	}
 
 	if cfg != nil {
-		m.state.ConfigPath = cfgPath
-		m.state.Config = cfg
+		m.programContext.ConfigPath = cfgPath
+		m.programContext.Config = cfg
 		if len(cfg.Integrations) > 0 {
 			for integration, integrationData := range cfg.Integrations {
 				if integrationData.Enabled {
-					m.state.SelectedIntegrations[integration] = true
+					m.programContext.SelectedIntegrations[integration] = true
 				}
 
-				datasetMap, exists := m.state.DatasetConfigs[integration]
+				datasetMap, exists := m.programContext.DatasetConfigs[integration]
 				if !exists {
-					datasetMap = make(map[string]state.DatasetConfig)
-					m.state.DatasetConfigs[integration] = datasetMap
+					datasetMap = make(map[string]ProgramContext.DatasetConfig)
+					m.programContext.DatasetConfigs[integration] = datasetMap
 				}
 
 				for datasetName, configDataset := range integrationData.Datasets {
-					datasetConfig := state.DatasetConfig{
+					datasetConfig := ProgramContext.DatasetConfig{
 						Name:      datasetName,
 						Selected:  configDataset.Enabled,
 						Unit:      configDataset.Unit,
@@ -101,7 +97,7 @@ func (m Model) Init() tea.Cmd {
 			fmt.Println(err)
 		}
 		ctx := context.Background()
-		m.state.ESClient = &elasticsearch.Config{
+		m.programContext.ESClient = &elasticsearch.Config{
 			Client:    esClient,
 			Ctx:       ctx,
 			Connected: false,
@@ -111,7 +107,7 @@ func (m Model) Init() tea.Cmd {
 		if err != nil {
 			fmt.Println(err)
 		}
-		m.state.KBClient = &kibana.Config{
+		m.programContext.KBClient = &kibana.Config{
 			Client:    kbClient,
 			Ctx:       context.Background(),
 			Connected: false,
@@ -130,14 +126,10 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.height = msg.Height
 		m.help.Width = msg.Width
 
-		// Set loading size
 		m.loading.SetSize(msg.Width, msg.Height)
 
-		// Always set tabs size regardless of current screen
-		// This ensures the tabs are properly sized when we switch to them
 		m.tabs.SetSize(msg.Width, m.height)
 
-		// Return this update immediately to ensure size changes are applied
 		return m, nil
 
 	case tea.KeyMsg:
@@ -157,12 +149,12 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			configDir, _ := getConfigDir()
 			repoDir := filepath.Join(configDir, "integrations")
 			integrations, _ := integrations.GetIntegrations(repoDir)
-			if m.state.SelectedIntegrations == nil {
-				m.state.SelectedIntegrations = make(map[string]bool)
+			if m.programContext.SelectedIntegrations == nil {
+				m.programContext.SelectedIntegrations = make(map[string]bool)
 			}
 
-			for _, tab := range m.tabs.tabs {
-				if intTab, ok := tab.(*IntegrationsTabModel); ok {
+			for _, tab := range m.tabs.Tabs {
+				if intTab, ok := tab.(*integration.IntegrationsTabModel); ok {
 					intTab.SetIntegrations(integrations)
 					break
 				}
@@ -173,14 +165,13 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		cmds = append(cmds, cmd)
 	case TabsScreen:
 		tabsModel, cmd := m.tabs.Update(msg)
-		m.tabs = tabsModel.(TabsModel)
+		m.tabs = tabsModel.(tabs.TabsModel)
 		cmds = append(cmds, cmd)
 	}
 
 	return m, tea.Batch(cmds...)
 }
 
-// View renders the current UI
 func (m Model) View() string {
 	var content string
 

@@ -11,8 +11,7 @@ import (
 	"github.com/charmbracelet/bubbles/viewport"
 	tea "github.com/charmbracelet/bubbletea"
 
-	// "github.com/tehbooom/elastic-data/internal/integrations"
-	"github.com/tehbooom/elastic-data/ui/state"
+	"github.com/tehbooom/elastic-data/ui/context"
 )
 
 const (
@@ -21,19 +20,18 @@ const (
 	StateConfiguringDataset
 )
 
-// TabModel represents the integrations tab
 type TabModel struct {
 	width              int
 	height             int
 	integrationList    list.Model
-	appState           *state.AppState
+	context            *context.ProgramContext
 	state              int
 	datasetsList       list.Model
 	thresholdInput     textinput.Model
 	unitInput          textinput.Model
 	currentIntegration string
 	viewport           viewport.Model
-	saveController     *state.SaveController
+	saveController     *context.SaveController
 }
 
 func ValidateUnit(input string) error {
@@ -56,7 +54,7 @@ func ValidateThreshold(input string) error {
 }
 
 // NewTabModel creates a new integrations tab model
-func NewTabModel(state *state.AppState, saveController *state.SaveController) *TabModel {
+func NewTabModel(context *context.ProgramContext, saveController *context.SaveController) *TabModel {
 	thInput := textinput.New()
 	thInput.Placeholder = "Enter threshold value"
 	thInput.CharLimit = 10
@@ -89,7 +87,7 @@ func NewTabModel(state *state.AppState, saveController *state.SaveController) *T
 
 	return &TabModel{
 		integrationList: l,
-		appState:        state,
+		context:         context,
 		viewport:        vp,
 		datasetsList:    datasetsList,
 		thresholdInput:  thInput,
@@ -99,17 +97,14 @@ func NewTabModel(state *state.AppState, saveController *state.SaveController) *T
 	}
 }
 
-// TabTitle returns the title of the tab
 func (m TabModel) TabTitle() string {
 	return "Integrations"
 }
 
-// Init initializes the tab
 func (m TabModel) Init() tea.Cmd {
 	return nil
 }
 
-// SetSize sets the size of the tab
 func (m *TabModel) SetSize(width, height int) {
 	m.width = width
 	m.height = height
@@ -117,7 +112,6 @@ func (m *TabModel) SetSize(width, height int) {
 	m.datasetsList.SetSize(width, height)
 }
 
-// IsInConfigurationState returns true if the tab is in configuration state
 func (m *TabModel) IsInConfigurationState() bool {
 	return m.state == StateConfiguringDataset
 }

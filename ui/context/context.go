@@ -1,4 +1,4 @@
-package state
+package context
 
 import (
 	"log"
@@ -9,8 +9,7 @@ import (
 	"github.com/tehbooom/elastic-data/internal/kibana"
 )
 
-// AppState holds the shared state between tabs
-type AppState struct {
+type ProgramContext struct {
 	Config               *config.Config
 	ConfigPath           string
 	SelectedIntegrations map[string]bool
@@ -18,9 +17,9 @@ type AppState struct {
 	Dirty                bool
 	ESClient             *elasticsearch.Config
 	KBClient             *kibana.Config
+	Error                error
 }
 
-// DatasetConfig represents configuration for a dataset
 type DatasetConfig struct {
 	Name      string
 	Selected  bool
@@ -28,16 +27,15 @@ type DatasetConfig struct {
 	Unit      string
 }
 
-// NewAppState creates a new application state
-func NewAppState() *AppState {
-	return &AppState{
+func NewProgramContext() *ProgramContext {
+	return &ProgramContext{
 		SelectedIntegrations: make(map[string]bool),
 		DatasetConfigs:       make(map[string]map[string]DatasetConfig),
 		Dirty:                false,
 	}
 }
 
-func (a *AppState) GetEnabledIntegrations() []string {
+func (a *ProgramContext) GetEnabledIntegrations() []string {
 	var integrations []string
 	for integration, enabled := range a.SelectedIntegrations {
 		if enabled {
@@ -47,14 +45,12 @@ func (a *AppState) GetEnabledIntegrations() []string {
 	return integrations
 }
 
-// SetIntegrationSelected updates an integration's selection state
-func (a *AppState) SetIntegrationSelected(integration string, selected bool) {
+func (a *ProgramContext) SetIntegrationSelected(integration string, selected bool) {
 	a.SelectedIntegrations[integration] = selected
 	a.Dirty = true
 }
 
-// SaveIntegrations saves the current state to the config
-func (a *AppState) SaveIntegrations() {
+func (a *ProgramContext) SaveIntegrations() {
 	if a.Config == nil {
 		log.Println("Cannot save: no config loaded")
 		return
@@ -106,7 +102,7 @@ func (a *AppState) SaveIntegrations() {
 }
 
 // LoadFromConfig loads the application state from the config
-func (a *AppState) LoadFromConfig(cfg *config.Config, path string) {
+func (a *ProgramContext) LoadFromConfig(cfg *config.Config, path string) {
 	a.Config = cfg
 	a.ConfigPath = filepath.Join(path, "config.yaml")
 

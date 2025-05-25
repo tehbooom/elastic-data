@@ -56,7 +56,7 @@ func (m *TabModel) UpdateStats(name string, value float64, unit string) {
 	}
 
 	if len(integrationName) > 1 {
-		if configs, ok := m.appState.DatasetConfigs[integrationName[0]]; ok {
+		if configs, ok := m.programContext.DatasetConfigs[integrationName[0]]; ok {
 			if datasetConfig, ok := configs[integrationName[1]]; ok {
 				stat.Unit = datasetConfig.Unit
 			}
@@ -78,12 +78,12 @@ func (m *TabModel) RefreshIntegrations() {
 
 	m.integrations = make(map[string]IntegrationStats)
 
-	for integrationName, isSelected := range m.appState.SelectedIntegrations {
+	for integrationName, isSelected := range m.programContext.SelectedIntegrations {
 		if !isSelected {
 			continue
 		}
 
-		datasetConfigs, exists := m.appState.DatasetConfigs[integrationName]
+		datasetConfigs, exists := m.programContext.DatasetConfigs[integrationName]
 		if !exists {
 			continue
 		}
@@ -123,7 +123,7 @@ func (m *TabModel) InstallPackage(integrationName string) error {
 		return err
 	}
 
-	err = m.appState.KBClient.InstallPackage(integrationName, integrationVersion)
+	err = m.programContext.KBClient.InstallPackage(integrationName, integrationVersion)
 	if err != nil {
 		return err
 	}
@@ -148,7 +148,7 @@ func (m *TabModel) GetLatestPkgVersion(pkgName string) (string, error) {
 	type Changelog []Version
 
 	var version string
-	integrationPath := filepath.Join(m.appState.ConfigPath, "integrations", "packages", pkgName, "changelog.yml")
+	integrationPath := filepath.Join(m.programContext.ConfigPath, "integrations", "packages", pkgName, "changelog.yml")
 
 	file, err := os.ReadFile(integrationPath)
 	if err != nil {

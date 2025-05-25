@@ -8,7 +8,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss/table"
-	"github.com/tehbooom/elastic-data/ui/state"
+	ProgramContext "github.com/tehbooom/elastic-data/ui/context"
 )
 
 const (
@@ -20,8 +20,8 @@ const (
 type TabModel struct {
 	width          int
 	height         int
-	appState       *state.AppState
-	saveController *state.SaveController
+	programContext *ProgramContext.ProgramContext
+	saveController *ProgramContext.SaveController
 	// the key is integrationName:datasetName
 	integrations          map[string]IntegrationStats
 	table                 *table.Table
@@ -63,10 +63,10 @@ func (e TabError) Error() string {
 }
 
 // NewTabModel creates a new run tab model
-func NewTabModel(state *state.AppState, saveController *state.SaveController) *TabModel {
+func NewTabModel(programContext *ProgramContext.ProgramContext, saveController *ProgramContext.SaveController) *TabModel {
 	ctx, cancel := context.WithCancel(context.Background())
 	model := &TabModel{
-		appState:              state,
+		programContext:        programContext,
 		saveController:        saveController,
 		integrations:          make(map[string]IntegrationStats),
 		status:                StopedMsg,

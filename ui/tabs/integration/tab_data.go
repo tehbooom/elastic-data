@@ -9,7 +9,7 @@ import (
 
 	"github.com/charmbracelet/bubbles/list"
 	"github.com/tehbooom/elastic-data/internal/integrations"
-	"github.com/tehbooom/elastic-data/ui/state"
+	"github.com/tehbooom/elastic-data/ui/context"
 )
 
 // SetIntegrations populates the integration list
@@ -19,8 +19,8 @@ func (m *TabModel) SetIntegrations(integrations []string) {
 
 	for _, integration := range integrations {
 		isSelected := false
-		if m.appState != nil && m.appState.SelectedIntegrations != nil {
-			if selected, exists := m.appState.SelectedIntegrations[integration]; exists {
+		if m.context != nil && m.context.SelectedIntegrations != nil {
+			if selected, exists := m.context.SelectedIntegrations[integration]; exists {
 				isSelected = selected
 			}
 		}
@@ -48,11 +48,11 @@ func (m *TabModel) loadDatasetsForIntegration(integration string) {
 	var datasetItems []list.Item
 
 	// Check if we already have dataset configs for this integration
-	datasetMap, exists := m.appState.DatasetConfigs[integration]
+	datasetMap, exists := m.context.DatasetConfigs[integration]
 	if !exists {
 		// If not, create a new map for this integration
-		datasetMap = make(map[string]state.DatasetConfig)
-		m.appState.DatasetConfigs[integration] = datasetMap
+		datasetMap = make(map[string]context.DatasetConfig)
+		m.context.DatasetConfigs[integration] = datasetMap
 	}
 
 	// Always get the datasets from the repo to ensure we have the complete list
@@ -69,7 +69,7 @@ func (m *TabModel) loadDatasetsForIntegration(integration string) {
 		existingConfig, configExists := datasetMap[ds]
 		if !configExists {
 			// If not, create a default config
-			datasetMap[ds] = state.DatasetConfig{
+			datasetMap[ds] = context.DatasetConfig{
 				Name:      ds,
 				Selected:  false,
 				Threshold: 0,
@@ -98,16 +98,16 @@ func (m *TabModel) loadDatasetsForIntegration(integration string) {
 
 // updateDatasetConfigs updates the app state with the current dataset configurations
 func (m *TabModel) updateDatasetConfigs() {
-	if m.appState == nil || m.currentIntegration == "" {
-		fmt.Printf("ERROR: Cannot update app state - appState: %v, currentIntegration: %s\n",
-			m.appState != nil, m.currentIntegration)
+	if m.context == nil || m.currentIntegration == "" {
+		fmt.Printf("ERROR: Cannot update app state - context: %v, currentIntegration: %s\n",
+			m.context != nil, m.currentIntegration)
 		return
 	}
 
-	datasetMap, exists := m.appState.DatasetConfigs[m.currentIntegration]
+	datasetMap, exists := m.context.DatasetConfigs[m.currentIntegration]
 	if !exists {
-		datasetMap = make(map[string]state.DatasetConfig)
-		m.appState.DatasetConfigs[m.currentIntegration] = datasetMap
+		datasetMap = make(map[string]context.DatasetConfig)
+		m.context.DatasetConfigs[m.currentIntegration] = datasetMap
 	}
 
 	for _, item := range m.datasetsList.Items() {
@@ -116,7 +116,7 @@ func (m *TabModel) updateDatasetConfigs() {
 			continue
 		}
 
-		config := state.DatasetConfig{
+		config := context.DatasetConfig{
 			Name:      datasetItem.Name,
 			Selected:  datasetItem.Selected,
 			Threshold: datasetItem.Threshold,

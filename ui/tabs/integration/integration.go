@@ -1,25 +1,20 @@
-// ui/integrations.go
-package ui
+package integration
 
 import (
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/tehbooom/elastic-data/ui/integration"
-	"github.com/tehbooom/elastic-data/ui/state"
+	"github.com/tehbooom/elastic-data/ui/context"
 )
 
-// IntegrationsTabModel is the model for the integrations tab
 type IntegrationsTabModel struct {
-	tabModel *integration.TabModel
+	tabModel *TabModel
 }
 
-// NewIntegrationsTabModel creates a new integrations tab model
-func NewIntegrationsTabModel(state *state.AppState, saveController *state.SaveController) *IntegrationsTabModel {
+func NewIntegrationsTabModel(state *context.ProgramContext, saveController *context.SaveController) *IntegrationsTabModel {
 	return &IntegrationsTabModel{
-		tabModel: integration.NewTabModel(state, saveController),
+		tabModel: NewTabModel(state, saveController),
 	}
 }
 
-// Implement TabModel interface
 func (m *IntegrationsTabModel) TabTitle() string {
 	return m.tabModel.TabTitle()
 }
@@ -31,13 +26,11 @@ func (m *IntegrationsTabModel) SetSize(width, height int) {
 func (m *IntegrationsTabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	model, cmd := m.tabModel.Update(msg)
 
-	// If the update returns a TabModel, update our inner model
-	if updatedModel, ok := model.(*integration.TabModel); ok {
+	if updatedModel, ok := model.(*TabModel); ok {
 		m.tabModel = updatedModel
 		return m, cmd
 	}
 
-	// Fallback
 	return m, cmd
 }
 
@@ -49,7 +42,6 @@ func (m IntegrationsTabModel) Init() tea.Cmd {
 	return m.tabModel.Init()
 }
 
-// IsInConfigurationState returns true if the tab is in configuration state
 func (m *IntegrationsTabModel) IsInConfigurationState() bool {
 	return m.tabModel.IsInConfigurationState()
 }
