@@ -49,21 +49,13 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 						},
 					)
 				}
+				m.StartGeneration()
 			} else {
 				m.running = false
 				m.status = "Stopping..."
 				m.stopGeneration()
 				m.status = "Waiting to start"
 			}
-
-			// for each m.intergations
-			// install package
-			// get enabled datasets and their configs
-			// for each dataset create psuedo data
-			// start sending the psuedo data based on the config (threshold and unit)
-			// if m.Running{
-			// stop the running integrations from before
-			// }
 
 			return m, nil
 		}

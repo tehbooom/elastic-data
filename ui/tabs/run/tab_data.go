@@ -7,6 +7,7 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/charmbracelet/log"
 	"gopkg.in/yaml.v3"
 )
 
@@ -24,14 +25,14 @@ func getTrendIndicator(trend string) string {
 // UpdateStats updates the statistics for the given integration
 func (m *TabModel) UpdateStats(name string, value float64, unit string) {
 	if m.integrations == nil {
-		m.integrations = make(map[string]IntegrationStats)
+		m.integrations = make(map[string]*IntegrationStats)
 	}
 
 	integrationName := strings.Split(name, ":")
 
 	stat, exists := m.integrations[name]
 	if !exists {
-		stat = IntegrationStats{
+		stat = &IntegrationStats{
 			Current:   value,
 			Peak:      value,
 			LastValue: value,
@@ -73,10 +74,10 @@ func (m *TabModel) UpdateStats(name string, value float64, unit string) {
 // RefreshIntegrations initializes or refreshes the integrations data from AppState
 func (m *TabModel) RefreshIntegrations() {
 	if m.integrations == nil {
-		m.integrations = make(map[string]IntegrationStats)
+		m.integrations = make(map[string]*IntegrationStats)
 	}
 
-	m.integrations = make(map[string]IntegrationStats)
+	m.integrations = make(map[string]*IntegrationStats)
 
 	for integrationName, isSelected := range m.programContext.SelectedIntegrations {
 		if !isSelected {
@@ -97,7 +98,7 @@ func (m *TabModel) RefreshIntegrations() {
 
 			stats, exists := m.integrations[fullName]
 			if !exists {
-				stats = IntegrationStats{
+				stats = &IntegrationStats{
 					Current:   0,
 					Peak:      0,
 					LastValue: 0,
@@ -123,6 +124,7 @@ func (m *TabModel) InstallPackage(integrationName string) error {
 		return err
 	}
 
+	log.Debug("Installing Package %s", integrationName)
 	err = m.programContext.KBClient.InstallPackage(integrationName, integrationVersion)
 	if err != nil {
 		return err
@@ -134,6 +136,7 @@ func (m *TabModel) InstallPackage(integrationName string) error {
 }
 
 func (m *TabModel) GetLatestPkgVersion(pkgName string) (string, error) {
+	log.Debug("Getting latest version for %s", pkgName)
 	type Change struct {
 		Description string `yaml:"description" json:"description"`
 		Type        string `yaml:"type" json:"type"`
@@ -152,6 +155,7 @@ func (m *TabModel) GetLatestPkgVersion(pkgName string) (string, error) {
 
 	file, err := os.ReadFile(integrationPath)
 	if err != nil {
+		log.Debug(err)
 		return version, err
 	}
 

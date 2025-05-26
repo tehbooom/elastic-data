@@ -23,7 +23,7 @@ type TabModel struct {
 	programContext *ProgramContext.ProgramContext
 	saveController *ProgramContext.SaveController
 	// the key is integrationName:datasetName
-	integrations          map[string]IntegrationStats
+	integrations          map[string]*IntegrationStats
 	table                 *table.Table
 	status                string
 	running               bool
@@ -37,11 +37,20 @@ type TabModel struct {
 }
 
 type IntegrationStats struct {
-	Current   float64
-	Peak      float64
-	Unit      string
-	LastValue float64
-	Trend     string
+	Current       float64
+	Peak          float64
+	Unit          string
+	LastValue     float64
+	Trend         string
+	recentBatches []BatchInfo
+	lastUpdate    time.Time
+	mu            sync.RWMutex
+}
+
+type BatchInfo struct {
+	Timestamp time.Time
+	SizeMB    float64
+	Events    int
 }
 
 type TabError struct {
@@ -68,7 +77,7 @@ func NewTabModel(programContext *ProgramContext.ProgramContext, saveController *
 	model := &TabModel{
 		programContext:        programContext,
 		saveController:        saveController,
-		integrations:          make(map[string]IntegrationStats),
+		integrations:          make(map[string]*IntegrationStats),
 		status:                StopedMsg,
 		installedIntegrations: []string{},
 		mainCtx:               ctx,

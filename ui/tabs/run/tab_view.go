@@ -25,8 +25,8 @@ func (m *TabModel) RunTable() *table.Table {
 
 	var rows [][]string
 	for integration, stat := range m.integrations {
-		currentValue := fmt.Sprintf("%.2f %s", stat.Current, stat.Unit)
-		peakValue := fmt.Sprintf("%.2f %s", stat.Peak, stat.Unit)
+		currentValue := fmt.Sprintf("%.2f MB/s", stat.Current)
+		peakValue := fmt.Sprintf("%.2f MB/s", stat.Peak)
 
 		trendIndicator := getTrendIndicator(stat.Trend)
 
