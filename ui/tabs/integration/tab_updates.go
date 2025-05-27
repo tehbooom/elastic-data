@@ -72,13 +72,15 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 			if !ok {
 				return m, nil
 			}
-			item.Selected = !item.Selected
 
-			m.context.SetIntegrationSelected(item.Name, item.Selected)
-			m.saveController.MarkDirty()
-			items := m.integrationList.Items()
-			items[m.integrationList.Index()] = item
-			m.integrationList.SetItems(items)
+			if !item.Selected {
+				item.Selected = true
+				m.context.SetIntegrationSelected(item.Name, item.Selected)
+				m.saveController.MarkDirty()
+				items := m.integrationList.Items()
+				items[m.integrationList.Index()] = item
+				m.integrationList.SetItems(items)
+			}
 
 			m.currentIntegration = item.Name
 			m.loadDatasetsForIntegration(item.Name)
@@ -116,6 +118,7 @@ func (m *TabModel) updateDatasetSelection(msg tea.Msg) (tea.Model, tea.Cmd) {
 			if !ok {
 				return m, nil
 			}
+
 			if !item.Selected {
 				item.Selected = true
 				items := m.datasetsList.Items()

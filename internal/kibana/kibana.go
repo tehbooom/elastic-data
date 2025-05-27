@@ -65,11 +65,11 @@ func SetClient(cfg config.ConfigConnection) (*kibana.Client, error) {
 	return client, nil
 }
 
-func (c *Config) InstallPackage(pkgName, pkgVersion string) error {
+func (c *Config) InstallPackage(pkgName string) error {
 	_, err := c.Client.Fleet.EPM.InstallPackageRegistry(c.Ctx, &kbapi.FleetEPMInstallPackageRegistryRequest{
-		PackageName:    pkgName,
-		PackageVersion: &pkgVersion,
+		PackageName: pkgName,
 	})
+
 	if err != nil {
 		return fmt.Errorf("failed to install package %s: %w", pkgName, err)
 	}

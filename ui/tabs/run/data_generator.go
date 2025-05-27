@@ -3,6 +3,7 @@ package run
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"math/rand"
 	"regexp"
 	"strings"
@@ -33,57 +34,58 @@ type DataGenerator struct {
 }
 
 func (m *TabModel) StartGeneration() error {
+
 	log.Debug("StartGeneration")
 	m.mu.Lock()
 	defer m.mu.Unlock()
 
 	m.stopAllGenerators()
 
-	//for fullName, stats := range m.integrations {
-	for fullName := range m.integrations {
+	for fullName, stats := range m.integrations {
 		fullNameSplit := strings.Split(fullName, ":")
 		integrationName := fullNameSplit[0]
-		// datasetName := fullNameSplit[1]
+		datasetName := fullNameSplit[1]
 
 		m.InstallPackage(integrationName)
 
-		// integrationDatasets := m.programContext.DatasetConfigs[integrationName]
-		//
-		// if dataset, ok := integrationDatasets[datasetName]; ok {
-		// 	templates, err := generator.LoadTemplatesForDataset(integrationName, datasetName)
-		// 	if err != nil {
-		// 		return err
-		// 	}
-		//
-		// 	var templateSizesTotal int
-		// 	for _, template := range templates {
-		// 		templateSizesTotal += template.Size
-		// 	}
-		//
-		// 	calculateAverageEventSize := templateSizesTotal / len(templates)
-		//
-		// 	ctx, cancel := context.WithCancel(m.mainCtx)
-		//
-		// 	generator := &DataGenerator{
-		// 		config:           dataset,
-		// 		ctx:              ctx,
-		// 		cancel:           cancel,
-		// 		stats:            stats,
-		// 		wg:               &m.wg,
-		// 		templates:        templates,
-		// 		client:           m.programContext.ESClient,
-		// 		averageEventSize: calculateAverageEventSize,
-		// 		integrationName:  integrationName,
-		// 	}
-		//
-		// 	m.generators[fullName] = generator
-		// 	m.wg.Add(1)
-		// 	if generator.config.Unit == "eps" {
-		// 		go generator.startEPS()
-		// 	} else {
-		// 		go generator.startBytes()
-		// 	}
-		// }
+		integrationDatasets := m.programContext.DatasetConfigs[integrationName]
+
+		if dataset, ok := integrationDatasets[datasetName]; ok {
+			templates, err := generator.LoadTemplatesForDataset(m.programContext.ConfigPath, integrationName, datasetName)
+			if err != nil {
+				log.Debug(err)
+				return err
+			}
+
+			var templateSizesTotal int
+			for _, template := range templates {
+				templateSizesTotal += template.Size
+			}
+
+			calculateAverageEventSize := templateSizesTotal / len(templates)
+
+			ctx, cancel := context.WithCancel(m.mainCtx)
+
+			generator := &DataGenerator{
+				config:           dataset,
+				ctx:              ctx,
+				cancel:           cancel,
+				stats:            stats,
+				wg:               &m.wg,
+				templates:        templates,
+				client:           m.programContext.ESClient,
+				averageEventSize: calculateAverageEventSize,
+				integrationName:  integrationName,
+			}
+
+			m.generators[fullName] = generator
+			m.wg.Add(1)
+			if generator.config.Unit == "eps" {
+				go generator.startEPS()
+			} else {
+				go generator.startBytes()
+			}
+		}
 	}
 	return nil
 }
@@ -100,6 +102,7 @@ func (dg *DataGenerator) startBytes() {
 			return
 		case <-ticker.C:
 			if err := dg.sendBytes(); err != nil {
+				log.Debug(err)
 				log.Printf("Error generating data for %s: %v", dg.config.Name, err)
 			}
 			if dg.bytesSent >= dg.config.Threshold {
@@ -134,6 +137,7 @@ func (dg *DataGenerator) startEPS() {
 	batchSize := dg.calculateOptimalBatchSize()
 
 	batchInterval := time.Duration(batchSize) * time.Second / time.Duration(targetEPS)
+	log.Debug(fmt.Sprintf("Batch interval set to %d for %s", batchInterval, dg.config.Name))
 
 	ticker := time.NewTicker(batchInterval)
 	defer ticker.Stop()
@@ -147,6 +151,7 @@ func (dg *DataGenerator) startEPS() {
 			return
 		case <-ticker.C:
 			if err := dg.sendEPS(); err != nil {
+				log.Debug(err)
 				log.Printf("Error sending EPS batch for %s: %v", dg.config.Name, err)
 			}
 		}
@@ -167,11 +172,13 @@ func (dg *DataGenerator) sendEPS() error {
 
 		message, err := template.ExecuteTemplate()
 		if err != nil {
+			log.Debug(err)
 			return err
 		}
 
 		event := map[string]interface{}{
-			"message": message,
+			"message":    message,
+			"@timestamp": time.Now().UTC().Format(time.RFC3339),
 		}
 
 		events = append(events, event)
@@ -186,6 +193,7 @@ func (dg *DataGenerator) sendEPS() error {
 
 	err := dg.sendBulkRequest(events)
 	if err != nil {
+		log.Debug(err)
 		return err
 	}
 
@@ -199,12 +207,14 @@ func (dg *DataGenerator) sendBytes() error {
 	defer dg.mu.Unlock()
 
 	batchSize := dg.calculateOptimalBatchSize()
+	log.Debug(fmt.Sprintf("Batch size is %d for %s", batchSize, dg.config.Name))
 
 	var events []map[string]interface{}
 	var batchBytes int
 
 	for i := 0; i < batchSize; i++ {
 		if dg.config.Unit == "bytes" && dg.bytesSent >= dg.config.Threshold {
+			log.Debug(fmt.Sprintf("Threshold %d met for %s", batchSize, dg.config.Name))
 			break
 		}
 		template := dg.templates[rand.Intn(len(dg.templates))]
@@ -212,17 +222,22 @@ func (dg *DataGenerator) sendBytes() error {
 
 		message, err := template.ExecuteTemplate()
 		if err != nil {
+			log.Debug(err)
 			return err
 		}
+		log.Debug(fmt.Sprintf("event %d for %s: %s", i, dg.config.Name, message))
 
 		event := map[string]interface{}{
-			"message": message,
+			"message":    message,
+			"@timestamp": time.Now().UTC().Format(time.RFC3339),
 		}
 
 		eventBytes := dg.calculateEventSize(event)
-		if dg.config.Unit == "bytes" && (dg.bytesSent+batchBytes+eventBytes) > dg.config.Threshold {
-			break
-		}
+
+		// Leave this commented incase we want to allow a hard stop at the threshold
+		// if dg.config.Unit == "bytes" && (dg.bytesSent+batchBytes+eventBytes) > dg.config.Threshold {
+		// 	break
+		// }
 
 		events = append(events, event)
 		batchBytes += eventBytes
@@ -234,6 +249,7 @@ func (dg *DataGenerator) sendBytes() error {
 
 	err := dg.sendBulkRequest(events)
 	if err != nil {
+		log.Debug(err)
 		return err
 	}
 
@@ -294,29 +310,52 @@ func (dg *DataGenerator) updateStats(eventCount, byteCount int) {
 	dg.stats.mu.Lock()
 	defer dg.stats.mu.Unlock()
 
-	sizeMB := float64(byteCount) / (1024 * 1024)
-	now := time.Now()
-	dg.stats.LastValue = dg.stats.Current
-	dg.stats.Current += sizeMB
-	dg.stats.recentBatches = append(dg.stats.recentBatches, BatchInfo{
-		Timestamp: now,
-		SizeMB:    sizeMB,
-		Events:    eventCount,
-	})
-	cutoff := now.Add(-60 * time.Second)
-	var validBatches []BatchInfo
-	for _, batch := range dg.stats.recentBatches {
-		if batch.Timestamp.After(cutoff) {
-			validBatches = append(validBatches, batch)
+	if dg.stats.Unit == "bytes" {
+		sizeMB := float64(byteCount) / (1024 * 1024)
+		now := time.Now()
+		dg.stats.LastValue = dg.stats.Current
+		dg.stats.Current += sizeMB
+		dg.stats.recentBatches = append(dg.stats.recentBatches, BatchInfo{
+			Timestamp: now,
+			SizeMB:    sizeMB,
+			Events:    eventCount,
+		})
+		cutoff := now.Add(-60 * time.Second)
+		var validBatches []BatchInfo
+		for _, batch := range dg.stats.recentBatches {
+			if batch.Timestamp.After(cutoff) {
+				validBatches = append(validBatches, batch)
+			}
 		}
+		dg.stats.recentBatches = validBatches
+
+		dg.stats.Peak = dg.stats.calculatePeakThroughput()
+
+		dg.stats.Trend = dg.stats.calculateTrend()
+
+		dg.stats.lastUpdate = now
+		log.Debug(fmt.Sprintf("Current is %v for %s", dg.stats.Current, dg.config.Name))
+		log.Debug(fmt.Sprintf("Peak is %v for %s", dg.stats.Peak, dg.config.Name))
+		log.Debug(fmt.Sprintf("Trend is %v for %s", dg.stats.Trend, dg.config.Name))
+	} else {
+		now := time.Now()
+		dg.stats.LastValue = dg.stats.Current
+		dg.stats.recentBatches = append(dg.stats.recentBatches, BatchInfo{
+			Timestamp: now,
+			Events:    eventCount,
+		})
+		cutoff := now.Add(-60 * time.Second)
+		var validBatches []BatchInfo
+		for _, batch := range dg.stats.recentBatches {
+			if batch.Timestamp.After(cutoff) {
+				validBatches = append(validBatches, batch)
+			}
+		}
+		dg.stats.recentBatches = validBatches
+		dg.stats.Current = float64(eventCount)
+		dg.stats.Peak = dg.stats.calculatePeakThroughput()
+		dg.stats.Trend = dg.stats.calculateTrend()
 	}
-	dg.stats.recentBatches = validBatches
-
-	dg.stats.Peak = dg.stats.calculatePeakThroughput()
-
-	dg.stats.Trend = dg.stats.calculateTrend()
-
-	dg.stats.lastUpdate = now
 }
 
 func (stats *IntegrationStats) calculatePeakThroughput() float64 {

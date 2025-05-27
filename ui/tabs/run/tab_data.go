@@ -2,13 +2,10 @@ package run
 
 import (
 	"fmt"
-	"os"
-	"path/filepath"
 	"slices"
 	"strings"
 
 	"github.com/charmbracelet/log"
-	"gopkg.in/yaml.v3"
 )
 
 func getTrendIndicator(trend string) string {
@@ -116,57 +113,18 @@ func (m *TabModel) RefreshIntegrations() {
 
 func (m *TabModel) InstallPackage(integrationName string) error {
 	if slices.Contains(m.installedIntegrations, integrationName) {
+		log.Debug("Package installed")
 		return nil
 	}
 
-	integrationVersion, err := m.GetLatestPkgVersion(integrationName)
+	log.Debug("Installing Package ", integrationName)
+	err := m.programContext.KBClient.InstallPackage(integrationName)
 	if err != nil {
-		return err
-	}
-
-	log.Debug("Installing Package %s", integrationName)
-	err = m.programContext.KBClient.InstallPackage(integrationName, integrationVersion)
-	if err != nil {
+		log.Debug(err)
 		return err
 	}
 
 	m.installedIntegrations = append(m.installedIntegrations, integrationName)
 
 	return nil
-}
-
-func (m *TabModel) GetLatestPkgVersion(pkgName string) (string, error) {
-	log.Debug("Getting latest version for %s", pkgName)
-	type Change struct {
-		Description string `yaml:"description" json:"description"`
-		Type        string `yaml:"type" json:"type"`
-		Link        string `yaml:"link" json:"link"`
-	}
-
-	type Version struct {
-		Version string   `yaml:"version" json:"version"`
-		Changes []Change `yaml:"changes" json:"changes"`
-	}
-
-	type Changelog []Version
-
-	var version string
-	integrationPath := filepath.Join(m.programContext.ConfigPath, "integrations", "packages", pkgName, "changelog.yml")
-
-	file, err := os.ReadFile(integrationPath)
-	if err != nil {
-		log.Debug(err)
-		return version, err
-	}
-
-	var changelog Changelog
-
-	err = yaml.Unmarshal(file, &changelog)
-	if err != nil {
-		return version, err
-	}
-
-	version = changelog[0].Version
-
-	return version, nil
 }

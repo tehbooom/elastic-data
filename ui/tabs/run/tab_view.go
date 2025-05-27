@@ -20,13 +20,51 @@ var (
 				Foreground(lipgloss.Color("249"))
 )
 
+type StatsSnapshot struct {
+	Current float64
+	Peak    float64
+	Trend   string
+	Unit    string
+}
+
+func (m *TabModel) getStatsSnapshot() map[string]StatsSnapshot {
+	m.mu.RLock()
+	defer m.mu.RUnlock()
+
+	snapshot := make(map[string]StatsSnapshot)
+	for integration, stat := range m.integrations {
+		stat.mu.RLock()
+		snapshot[integration] = StatsSnapshot{
+			Current: stat.Current,
+			Peak:    stat.Peak,
+			Trend:   stat.Trend,
+			Unit:    stat.Unit, // or get this from config
+		}
+		stat.mu.RUnlock()
+	}
+	return snapshot
+}
+
 func (m *TabModel) RunTable() *table.Table {
 	headers := []string{"Integration", "Dataset", "Current", "Peak", "Trend"}
 
+	statsSnapshot := m.getStatsSnapshot()
+
 	var rows [][]string
-	for integration, stat := range m.integrations {
-		currentValue := fmt.Sprintf("%.2f MB/s", stat.Current)
-		peakValue := fmt.Sprintf("%.2f MB/s", stat.Peak)
+	for integration, stat := range statsSnapshot {
+		log.Debug(fmt.Sprintf("tabl peak is %f", stat.Peak))
+		var currentValue string
+		var peakValue string
+
+		if stat.Unit == "eps" {
+			unit := "events"
+			currentValue = fmt.Sprintf("%d %s", int(stat.Current), unit)
+			peakValue = fmt.Sprintf("%d %s", int(stat.Peak), unit)
+		} else {
+			unit := "MB/s"
+			currentValue = fmt.Sprintf("%.2f %s", stat.Current, unit)
+			peakValue = fmt.Sprintf("%.2f %s", stat.Peak, unit)
+		}
 
 		trendIndicator := getTrendIndicator(stat.Trend)
 

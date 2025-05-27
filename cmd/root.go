@@ -37,7 +37,7 @@ func createModel(debug bool) (ui.Model, *os.File) {
 		newConfigFile, fileErr := os.OpenFile("debug.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 		if fileErr == nil {
 			log.SetOutput(newConfigFile)
-			log.SetTimeFormat(time.Kitchen)
+			log.SetTimeFormat(time.RFC3339)
 			log.SetReportCaller(true)
 			log.SetLevel(log.DebugLevel)
 			log.Debug("Logging to debug.log")

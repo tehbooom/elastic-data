@@ -93,7 +93,7 @@ func (c *Config) BulkRequest(index string, events []map[string]interface{}) erro
 			for opType, respItem := range item {
 				if respItem.Error != nil {
 					log.Printf("Error in %s operation for document %s: %s",
-						opType, *respItem.Id_, respItem.Error.Reason)
+						opType, *respItem.Id_, *respItem.Error.Reason)
 				}
 			}
 		}
