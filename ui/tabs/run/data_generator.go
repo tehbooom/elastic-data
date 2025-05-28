@@ -127,7 +127,7 @@ func (dg *DataGenerator) sendEPS() error {
 	}
 
 	dg.bytesSent += batchBytes
-	dg.updateStats(len(events), batchBytes, duration)
+	dg.updateStats(len(events), duration)
 	return nil
 }
 
@@ -154,7 +154,7 @@ func (dg *DataGenerator) sendBytes() error {
 			log.Debug(err)
 			return err
 		}
-		log.Debug(fmt.Sprintf("event %d for %s: %s", i, dg.config.Name, message))
+		//log.Debug(fmt.Sprintf("event %d for %s: %s", i, dg.config.Name, message))
 
 		event := map[string]interface{}{
 			"message":    message,
@@ -183,7 +183,7 @@ func (dg *DataGenerator) sendBytes() error {
 	}
 
 	dg.bytesSent += batchBytes
-	dg.updateStats(len(events), batchBytes, duration)
+	dg.updateStats(len(events), duration)
 	return nil
 }
 
@@ -229,71 +229,32 @@ func (dg *DataGenerator) sendBulkRequest(events []map[string]interface{}) (time.
 	index := "logs-" + dg.integrationName + "." + dg.config.Name + "-default"
 	duration, err := dg.client.BulkRequest(index, events)
 	if err != nil {
+		log.Debug(err)
 		return duration, err
 	}
 	return duration, nil
 }
 
-func (dg *DataGenerator) updateStats(eventCount, byteCount int, duration time.Duration) {
+func (dg *DataGenerator) updateStats(eventCount int, duration time.Duration) {
 	if dg.stats == nil {
 		return
 	}
-	//headers := []string{"Integration", "Dataset", "Sent", "Current", "Peak", "Trend"}
-
 	dg.stats.mu.Lock()
 	defer dg.stats.mu.Unlock()
 
+	durationNano := float64(duration.Nanoseconds()) / 1e6
+
+	dg.stats.SentEvents += eventCount
+
 	if dg.stats.Unit == "bytes" {
-		dg.stats.Sent = float64(dg.bytesSent)
-
-		sizeMB := float64(byteCount) / (1024 * 1024)
-		now := time.Now()
-		dg.stats.LastValue = dg.stats.Current
-		dg.stats.Current += sizeMB
-		dg.stats.recentBatches = append(dg.stats.recentBatches, BatchInfo{
-			Timestamp: now,
-			SizeMB:    sizeMB,
-			Events:    eventCount,
-		})
-		cutoff := now.Add(-60 * time.Second)
-		var validBatches []BatchInfo
-		for _, batch := range dg.stats.recentBatches {
-			if batch.Timestamp.After(cutoff) {
-				validBatches = append(validBatches, batch)
-			}
-		}
-		dg.stats.recentBatches = validBatches
-
-		dg.stats.Peak = dg.stats.calculatePeakThroughput()
-
-		dg.stats.Trend = dg.stats.calculateTrend()
-
-		dg.stats.lastUpdate = now
-		log.Debug(fmt.Sprintf("Current is %v for %s", dg.stats.Current, dg.config.Name))
-		log.Debug(fmt.Sprintf("Peak is %v for %s", dg.stats.Peak, dg.config.Name))
-		log.Debug(fmt.Sprintf("Trend is %v for %s", dg.stats.Trend, dg.config.Name))
-	} else {
-		dg.stats.Sent += float64(eventCount)
-
-		now := time.Now()
-		dg.stats.LastValue = dg.stats.Current
-		dg.stats.recentBatches = append(dg.stats.recentBatches, BatchInfo{
-			Timestamp: now,
-			Events:    eventCount,
-		})
-		cutoff := now.Add(-60 * time.Second)
-		var validBatches []BatchInfo
-		for _, batch := range dg.stats.recentBatches {
-			if batch.Timestamp.After(cutoff) {
-				validBatches = append(validBatches, batch)
-			}
-		}
-		dg.stats.recentBatches = validBatches
-		dg.stats.Current = float64(eventCount)
-		dg.stats.Peak = dg.stats.calculatePeakThroughput()
-		dg.stats.Trend = dg.stats.calculateTrend()
-		log.Debug(fmt.Sprintf("Current is %v for %s", dg.stats.Current, dg.config.Name))
-		log.Debug(fmt.Sprintf("Peak is %v for %s", dg.stats.Peak, dg.config.Name))
-		log.Debug(fmt.Sprintf("Trend is %v for %s", dg.stats.Trend, dg.config.Name))
+		dg.stats.SetBytesUnit(dg.bytesSent)
 	}
+
+	dg.stats.CalculateLatency(duration)
+	now := time.Now()
+	dg.stats.EnqueueRecentBatches(BatchInfo{
+		Events:   eventCount,
+		Duration: durationNano,
+	})
+	dg.stats.lastUpdate = now
 }

@@ -8,6 +8,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss/table"
+	"github.com/charmbracelet/log"
 	ProgramContext "github.com/tehbooom/elastic-data/ui/context"
 )
 
@@ -81,6 +82,7 @@ func (m *TabModel) TabTitle() string {
 
 // Init initializes the tab
 func (m *TabModel) Init() tea.Cmd {
+	log.Debug("TabModel.Init() - starting ticker")
 	m.RefreshIntegrations()
 	return tea.Tick(time.Second, func(time.Time) tea.Msg {
 		return tickMsg{}
@@ -112,6 +114,7 @@ func (m *RunTabModel) SetSize(width, height int) {
 }
 
 func (m *RunTabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	log.Debug(fmt.Sprintf("RunTabModel.Update received: %T", msg))
 	model, cmd := m.TabModel.Update(msg)
 
 	if updatedModel, ok := model.(*TabModel); ok {
