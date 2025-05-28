@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"math/rand"
 	"regexp"
-	"strings"
 	"sync"
 	"time"
 
@@ -27,67 +26,11 @@ type DataGenerator struct {
 	client           *elasticsearch.Config
 	templates        []generator.LogTemplate
 	dataPools        *generator.DataPools
-	randGen          *rand.Rand
+	duration         time.Duration
 	bytesSent        int
+	eventsSent       int
 	averageEventSize int
 	fieldPatterns    map[string]*regexp.Regexp
-}
-
-func (m *TabModel) StartGeneration() error {
-
-	log.Debug("StartGeneration")
-	m.mu.Lock()
-	defer m.mu.Unlock()
-
-	m.stopAllGenerators()
-
-	for fullName, stats := range m.integrations {
-		fullNameSplit := strings.Split(fullName, ":")
-		integrationName := fullNameSplit[0]
-		datasetName := fullNameSplit[1]
-
-		m.InstallPackage(integrationName)
-
-		integrationDatasets := m.programContext.DatasetConfigs[integrationName]
-
-		if dataset, ok := integrationDatasets[datasetName]; ok {
-			templates, err := generator.LoadTemplatesForDataset(m.programContext.ConfigPath, integrationName, datasetName)
-			if err != nil {
-				log.Debug(err)
-				return err
-			}
-
-			var templateSizesTotal int
-			for _, template := range templates {
-				templateSizesTotal += template.Size
-			}
-
-			calculateAverageEventSize := templateSizesTotal / len(templates)
-
-			ctx, cancel := context.WithCancel(m.mainCtx)
-
-			generator := &DataGenerator{
-				config:           dataset,
-				ctx:              ctx,
-				cancel:           cancel,
-				stats:            stats,
-				wg:               &m.wg,
-				templates:        templates,
-				client:           m.programContext.ESClient,
-				averageEventSize: calculateAverageEventSize,
-				integrationName:  integrationName,
-			}
-
-			m.generators[fullName] = generator
-			m.wg.Add(1)
-			if generator.config.Unit == "eps" {
-				go generator.startEPS()
-			} else {
-				go generator.startBytes()
-			}
-		}
-	}
-	return nil
 }
 
 func (dg *DataGenerator) startBytes() {
@@ -113,22 +56,8 @@ func (dg *DataGenerator) startBytes() {
 	}
 }
 
-func (m *TabModel) stopGeneration() {
-	m.mu.Lock()
-	defer m.mu.Unlock()
-	m.stopAllGenerators()
-}
-
 func (dg *DataGenerator) stop() {
 	dg.cancel()
-}
-
-func (m *TabModel) stopAllGenerators() {
-	for k, generator := range m.generators {
-		generator.stop()
-		delete(m.generators, k)
-	}
-	m.wg.Wait()
 }
 
 func (dg *DataGenerator) startEPS() {
@@ -191,14 +120,14 @@ func (dg *DataGenerator) sendEPS() error {
 		return nil
 	}
 
-	err := dg.sendBulkRequest(events)
+	duration, err := dg.sendBulkRequest(events)
 	if err != nil {
 		log.Debug(err)
 		return err
 	}
 
 	dg.bytesSent += batchBytes
-	dg.updateStats(len(events), batchBytes)
+	dg.updateStats(len(events), batchBytes, duration)
 	return nil
 }
 
@@ -247,14 +176,14 @@ func (dg *DataGenerator) sendBytes() error {
 		return nil
 	}
 
-	err := dg.sendBulkRequest(events)
+	duration, err := dg.sendBulkRequest(events)
 	if err != nil {
 		log.Debug(err)
 		return err
 	}
 
 	dg.bytesSent += batchBytes
-	dg.updateStats(len(events), batchBytes)
+	dg.updateStats(len(events), batchBytes, duration)
 	return nil
 }
 
@@ -296,21 +225,27 @@ func (dg *DataGenerator) calculateEventSize(event map[string]interface{}) int {
 	return int(len(jsonBytes))
 }
 
-func (dg *DataGenerator) sendBulkRequest(events []map[string]interface{}) error {
+func (dg *DataGenerator) sendBulkRequest(events []map[string]interface{}) (time.Duration, error) {
 	index := "logs-" + dg.integrationName + "." + dg.config.Name + "-default"
-	dg.client.BulkRequest(index, events)
-	return nil
+	duration, err := dg.client.BulkRequest(index, events)
+	if err != nil {
+		return duration, err
+	}
+	return duration, nil
 }
 
-func (dg *DataGenerator) updateStats(eventCount, byteCount int) {
+func (dg *DataGenerator) updateStats(eventCount, byteCount int, duration time.Duration) {
 	if dg.stats == nil {
 		return
 	}
+	//headers := []string{"Integration", "Dataset", "Sent", "Current", "Peak", "Trend"}
 
 	dg.stats.mu.Lock()
 	defer dg.stats.mu.Unlock()
 
 	if dg.stats.Unit == "bytes" {
+		dg.stats.Sent = float64(dg.bytesSent)
+
 		sizeMB := float64(byteCount) / (1024 * 1024)
 		now := time.Now()
 		dg.stats.LastValue = dg.stats.Current
@@ -338,6 +273,8 @@ func (dg *DataGenerator) updateStats(eventCount, byteCount int) {
 		log.Debug(fmt.Sprintf("Peak is %v for %s", dg.stats.Peak, dg.config.Name))
 		log.Debug(fmt.Sprintf("Trend is %v for %s", dg.stats.Trend, dg.config.Name))
 	} else {
+		dg.stats.Sent += float64(eventCount)
+
 		now := time.Now()
 		dg.stats.LastValue = dg.stats.Current
 		dg.stats.recentBatches = append(dg.stats.recentBatches, BatchInfo{
@@ -355,87 +292,8 @@ func (dg *DataGenerator) updateStats(eventCount, byteCount int) {
 		dg.stats.Current = float64(eventCount)
 		dg.stats.Peak = dg.stats.calculatePeakThroughput()
 		dg.stats.Trend = dg.stats.calculateTrend()
+		log.Debug(fmt.Sprintf("Current is %v for %s", dg.stats.Current, dg.config.Name))
+		log.Debug(fmt.Sprintf("Peak is %v for %s", dg.stats.Peak, dg.config.Name))
+		log.Debug(fmt.Sprintf("Trend is %v for %s", dg.stats.Trend, dg.config.Name))
 	}
-}
-
-func (stats *IntegrationStats) calculatePeakThroughput() float64 {
-	if len(stats.recentBatches) < 2 {
-		return 0
-	}
-
-	var maxThroughput float64
-	windowSize := 10 * time.Second
-
-	for i := 0; i < len(stats.recentBatches); i++ {
-		windowStart := stats.recentBatches[i].Timestamp
-		windowEnd := windowStart.Add(windowSize)
-
-		var windowBytes float64
-		for j := i; j < len(stats.recentBatches); j++ {
-			if stats.recentBatches[j].Timestamp.After(windowEnd) {
-				break
-			}
-			windowBytes += stats.recentBatches[j].SizeMB
-		}
-
-		throughput := windowBytes / windowSize.Seconds()
-		if throughput > maxThroughput {
-			maxThroughput = throughput
-		}
-	}
-
-	return maxThroughput
-}
-
-func (stats *IntegrationStats) calculateTrend() string {
-	if len(stats.recentBatches) < 3 {
-		return "neutral"
-	}
-
-	now := time.Now()
-	recent := now.Add(-30 * time.Second)
-	older := now.Add(-60 * time.Second)
-
-	var recentMB, olderMB float64
-
-	for _, batch := range stats.recentBatches {
-		if batch.Timestamp.After(recent) {
-			recentMB += batch.SizeMB
-		} else if batch.Timestamp.After(older) {
-			olderMB += batch.SizeMB
-		}
-	}
-
-	if olderMB == 0 {
-		if recentMB > 0 {
-			return "up"
-		}
-		return "neutral"
-	}
-
-	change := (recentMB - olderMB) / olderMB
-
-	if change > 0.1 {
-		return "up"
-	} else if change < -0.1 {
-		return "down"
-	}
-	return "neutral"
-}
-
-func (stats *IntegrationStats) GetCurrentThroughput() float64 {
-	stats.mu.RLock()
-	defer stats.mu.RUnlock()
-
-	now := time.Now()
-	recent := now.Add(-10 * time.Second)
-
-	var recentMB float64
-	for _, batch := range stats.recentBatches {
-		if batch.Timestamp.After(recent) {
-			recentMB += batch.SizeMB
-		}
-	}
-
-	return recentMB / 10.0
 }

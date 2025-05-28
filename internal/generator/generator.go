@@ -1,19 +1,12 @@
 package generator
 
 import (
-	"bufio"
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"io/fs"
 	"math/rand"
-	"net"
-	"net/mail"
-	"net/url"
-	"os"
 	"path/filepath"
 	"regexp"
-	"strings"
 	"text/template"
 	"time"
 
@@ -86,310 +79,6 @@ func (l *LogTemplate) AddPattern(name string, pattern *regexp.Regexp) {
 		Regex:   pattern,
 		Replace: fmt.Sprintf("{{.%s}}", name),
 	})
-}
-
-func ParseLogFile(filePath, integration, dataset string) ([]LogTemplate, error) {
-	file, err := os.Open(filePath)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-
-	var templates []LogTemplate
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		// TODO: Handle multiline log files
-		line := strings.TrimSpace(scanner.Text())
-		if line == "" {
-			continue
-		}
-		lineBytes := []byte(line)
-
-		template := LogTemplate{
-			Original:  line,
-			IsJSON:    false,
-			Size:      len(lineBytes),
-			Data:      make(map[string]string),
-			DataPools: initializeDataPools(),
-		}
-
-		template.AddCommonPatterns()
-		template.ParseLogLine()
-
-		templates = append(templates, template)
-	}
-
-	return templates, nil
-}
-
-func (l *LogTemplate) ParseLogLine() error {
-	if l.Data == nil {
-		l.Data = make(map[string]string)
-	}
-	if l.DataPools == nil {
-		l.DataPools = initializeDataPools()
-	}
-
-	templateStr := l.Original
-	for _, pattern := range l.Patterns {
-		matches := pattern.Regex.FindAllString(l.Original, -1)
-		if len(matches) > 0 {
-			l.Data[pattern.Name] = matches[0]
-		}
-
-		templateStr = pattern.Regex.ReplaceAllString(templateStr, pattern.Replace)
-		log.Debug(templateStr)
-	}
-
-	tmpl, err := template.New("logline").Parse(templateStr)
-	if err != nil {
-		return fmt.Errorf("failed to create template: %v", err)
-	}
-
-	l.Template = tmpl
-
-	return nil
-}
-
-type JSONTemplateConverter struct {
-	emailRegex  *regexp.Regexp
-	domainRegex *regexp.Regexp
-	timeFormats []string
-}
-
-func newJSONTemplateConverter() *JSONTemplateConverter {
-	return &JSONTemplateConverter{
-		emailRegex:  regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`),
-		domainRegex: regexp.MustCompile(`^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`),
-		timeFormats: []string{
-			time.RFC3339,
-			time.RFC3339Nano,
-			"2006-01-02T15:04:05.000000",
-			"2006-01-02T15:04:05",
-			"2006-01-02 15:04:05",
-			"2006-01-02",
-		},
-	}
-}
-
-func ParseJSONFile(filePath, integration, dataset string) ([]LogTemplate, error) {
-	file, err := os.ReadFile(filePath)
-	if err != nil {
-		log.Debug(err)
-		return nil, err
-	}
-
-	var templates []LogTemplate
-
-	var JSONLog struct {
-		Events []map[string]any
-	}
-
-	err = json.Unmarshal(file, &JSONLog)
-	if err != nil {
-		log.Debug(err)
-		return nil, err
-	}
-
-	for _, event := range JSONLog.Events {
-		original, err := json.Marshal(event)
-		if err != nil {
-			log.Debug(err)
-			return nil, err
-		}
-
-		template := LogTemplate{
-			Original:  string(original),
-			IsJSON:    true,
-			Size:      len(original),
-			Data:      make(map[string]string),
-			DataPools: initializeDataPools(),
-		}
-
-		template.AddCommonPatterns()
-		err = template.ParseJSONEvent()
-		if err != nil {
-			log.Debug(err)
-			return nil, err
-		}
-
-		templates = append(templates, template)
-	}
-
-	return templates, nil
-}
-
-func (l *LogTemplate) ParseJSONEvent() error {
-	if l.Data == nil {
-		l.Data = make(map[string]string)
-	}
-	if l.DataPools == nil {
-		l.DataPools = initializeDataPools()
-	}
-
-	var data map[string]interface{}
-	if err := json.Unmarshal([]byte(l.Original), &data); err != nil {
-		return fmt.Errorf("failed to unmarshal JSON: %w", err)
-	}
-
-	converter := newJSONTemplateConverter()
-
-	converter.processMap(data, l.Data)
-
-	templateJSON, err := json.Marshal(data)
-	if err != nil {
-		return fmt.Errorf("failed to marshal template JSON: %w", err)
-	}
-
-	tmpl, err := template.New("jsonevent").Parse(string(templateJSON))
-	if err != nil {
-		return fmt.Errorf("failed to create template: %v", err)
-	}
-
-	l.Template = tmpl
-	log.Debug(string(templateJSON))
-
-	return nil
-}
-
-func (jc *JSONTemplateConverter) processMap(data map[string]interface{}, extractedData map[string]string) {
-	for key, value := range data {
-		switch v := value.(type) {
-		case string:
-			placeholder := jc.convertStringValue(v, extractedData)
-			data[key] = placeholder
-		case map[string]interface{}:
-			jc.processMap(v, extractedData)
-		case []interface{}:
-			jc.processSlice(v, extractedData)
-		}
-	}
-}
-
-func (jc *JSONTemplateConverter) processSlice(slice []interface{}, extractedData map[string]string) {
-	for i, value := range slice {
-		switch v := value.(type) {
-		case string:
-			placeholder := jc.convertStringValue(v, extractedData)
-			slice[i] = placeholder
-		case map[string]interface{}:
-			jc.processMap(v, extractedData)
-		case []interface{}:
-			jc.processSlice(v, extractedData)
-		}
-	}
-}
-
-func (jc *JSONTemplateConverter) convertStringValue(value string, extractedData map[string]string) string {
-	value = strings.TrimSpace(value)
-
-	if jc.isEmail(value) {
-		extractedData["Emails"] = value
-		return "{{.Emails}}"
-	}
-
-	if jc.isURL(value) {
-		extractedData["Domains"] = value
-		return "{{.Domains}}"
-	}
-
-	if jc.isDomain(value) {
-		extractedData["Domains"] = value
-		return "{{.Domains}}"
-	}
-
-	if jc.isIP(value) {
-		extractedData["IPs"] = value
-		return "{{.IPs}}"
-	}
-
-	if jc.isTimestampISO(value) {
-		extractedData["timestamp_iso"] = value
-		return "{{.timestamp_iso}}"
-	}
-
-	if jc.isTimestampCommon(value) {
-		extractedData["timestamp_common"] = value
-		return "{{.timestamp_common}}"
-	}
-
-	if jc.isTimestampCLF(value) {
-		extractedData["timestamp_clf"] = value
-		return "{{.timestamp_clf}}"
-	}
-
-	if jc.isTimestampSyslog(value) {
-		extractedData["timestamp_syslog"] = value
-		return "{{.timestamp_syslog}}"
-	}
-
-	return value
-}
-
-func (jc *JSONTemplateConverter) isEmail(s string) bool {
-	_, err := mail.ParseAddress(s)
-	return err == nil && jc.emailRegex.MatchString(s)
-}
-
-func (jc *JSONTemplateConverter) isURL(s string) bool {
-	u, err := url.Parse(s)
-	return err == nil && u.Scheme != "" && u.Host != ""
-}
-
-func (jc *JSONTemplateConverter) isDomain(s string) bool {
-	if strings.Contains(s, "://") || strings.Contains(s, "/") {
-		return false
-	}
-	return jc.domainRegex.MatchString(s)
-}
-
-func (jc *JSONTemplateConverter) isIP(s string) bool {
-	return net.ParseIP(s) != nil
-}
-
-func (jc *JSONTemplateConverter) isTimestampISO(s string) bool {
-	regex := regexp.MustCompile(`\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z?`)
-
-	matches := regex.FindAllString(s, -1)
-	if len(matches) > 0 {
-		return true
-	}
-
-	return false
-}
-
-func (jc *JSONTemplateConverter) isTimestampCommon(s string) bool {
-	regex := regexp.MustCompile(`\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}`)
-
-	matches := regex.FindAllString(s, -1)
-	if len(matches) > 0 {
-		return true
-	}
-
-	return false
-}
-
-func (jc *JSONTemplateConverter) isTimestampCLF(s string) bool {
-	regex := regexp.MustCompile(`\[\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}[^\]]*\]`)
-
-	matches := regex.FindAllString(s, -1)
-	if len(matches) > 0 {
-		return true
-	}
-
-	return false
-}
-
-func (jc *JSONTemplateConverter) isTimestampSyslog(s string) bool {
-	regex := regexp.MustCompile(`[A-Za-z]{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}`)
-
-	matches := regex.FindAllString(s, -1)
-	if len(matches) > 0 {
-		return true
-	}
-
-	return false
 }
 
 func (l *LogTemplate) UpdateValues() {
@@ -505,14 +194,14 @@ func LoadTemplatesForDataset(cfgPath, integration, dataset string) ([]LogTemplat
 		if ext == ".json" {
 			fileTemplates, err := ParseJSONFile(path, integration, dataset)
 			if err != nil {
-				log.Printf("Error parsing file %s: %v", path, err)
+				log.Debug(fmt.Sprintf("Error parsing file %s: %v", path, err))
 				return nil
 			}
 			templates = append(templates, fileTemplates...)
 		} else if ext == ".log" {
 			fileTemplates, err := ParseLogFile(path, integration, dataset)
 			if err != nil {
-				log.Printf("Error parsing file %s: %v", path, err)
+				log.Debug(fmt.Sprintf("Error parsing file %s: %v", path, err))
 				return nil
 			}
 			templates = append(templates, fileTemplates...)
@@ -524,6 +213,6 @@ func LoadTemplatesForDataset(cfgPath, integration, dataset string) ([]LogTemplat
 		return nil, fmt.Errorf("error walking directory %s: %w", basePath, err)
 	}
 
-	log.Printf("Loaded %d templates for %s:%s", len(templates), integration, dataset)
+	log.Debug(fmt.Sprintf("Loaded %d templates for %s:%s", len(templates), integration, dataset))
 	return templates, nil
 }

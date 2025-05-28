@@ -38,15 +38,16 @@ func (m *TabModel) getStatsSnapshot() map[string]StatsSnapshot {
 			Current: stat.Current,
 			Peak:    stat.Peak,
 			Trend:   stat.Trend,
-			Unit:    stat.Unit, // or get this from config
+			Unit:    stat.Unit,
 		}
 		stat.mu.RUnlock()
 	}
+	log.Debug(snapshot)
 	return snapshot
 }
 
 func (m *TabModel) RunTable() *table.Table {
-	headers := []string{"Integration", "Dataset", "Current", "Peak", "Trend"}
+	headers := []string{"Integration", "Dataset", "Sent", "Current", "Peak", "Trend"}
 
 	statsSnapshot := m.getStatsSnapshot()
 

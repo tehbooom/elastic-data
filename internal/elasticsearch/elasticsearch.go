@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/charmbracelet/log"
 	"github.com/elastic/go-elasticsearch/v9"
@@ -74,19 +75,22 @@ func SetClient(cfg config.ConfigConnection) (*elasticsearch.TypedClient, error) 
 	return es, nil
 }
 
-func (c *Config) BulkRequest(index string, events []map[string]interface{}) error {
+func (c *Config) BulkRequest(index string, events []map[string]interface{}) (time.Duration, error) {
+	var duration time.Duration
 	bulk := c.Client.Bulk().Index(index)
 	for _, event := range events {
 		err := bulk.CreateOp(*&types.CreateOperation{}, event)
 		if err != nil {
-			return err
+			return duration, err
 		}
 	}
 
+	start := time.Now()
 	resp, err := bulk.Do(c.Ctx)
 	if err != nil {
-		return err
+		return duration, err
 	}
+	duration = time.Since(start)
 
 	if resp.Errors {
 		for _, item := range resp.Items {
@@ -99,5 +103,5 @@ func (c *Config) BulkRequest(index string, events []map[string]interface{}) erro
 		}
 	}
 
-	return nil
+	return duration, nil
 }

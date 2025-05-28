@@ -23,34 +23,18 @@ type TabModel struct {
 	programContext *ProgramContext.ProgramContext
 	saveController *ProgramContext.SaveController
 	// the key is integrationName:datasetName
-	integrations          map[string]*IntegrationStats
-	table                 *table.Table
-	status                string
-	running               bool
-	error                 error
+	integrations map[string]*IntegrationStats
+	table        *table.Table
+	status       string
+	running      bool
+	error        error
+	// list of installed integrations
 	installedIntegrations []string
 	generators            map[string]*DataGenerator
 	mu                    sync.RWMutex
 	mainCtx               context.Context
 	mainCancel            context.CancelFunc
 	wg                    sync.WaitGroup
-}
-
-type IntegrationStats struct {
-	Current       float64
-	Peak          float64
-	Unit          string
-	LastValue     float64
-	Trend         string
-	recentBatches []BatchInfo
-	lastUpdate    time.Time
-	mu            sync.RWMutex
-}
-
-type BatchInfo struct {
-	Timestamp time.Time
-	SizeMB    float64
-	Events    int
 }
 
 type TabError struct {
@@ -107,4 +91,41 @@ func (m *TabModel) Init() tea.Cmd {
 func (m *TabModel) SetSize(width, height int) {
 	m.width = width
 	m.height = height
+}
+
+type RunTabModel struct {
+	TabModel *TabModel
+}
+
+func NewRunTabModel(context *ProgramContext.ProgramContext, saveController *ProgramContext.SaveController) *RunTabModel {
+	return &RunTabModel{
+		TabModel: NewTabModel(context, saveController),
+	}
+}
+
+func (m *RunTabModel) TabTitle() string {
+	return m.TabModel.TabTitle()
+}
+
+func (m *RunTabModel) SetSize(width, height int) {
+	m.TabModel.SetSize(width, height)
+}
+
+func (m *RunTabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	model, cmd := m.TabModel.Update(msg)
+
+	if updatedModel, ok := model.(*TabModel); ok {
+		m.TabModel = updatedModel
+		return m, cmd
+	}
+
+	return m, cmd
+}
+
+func (m RunTabModel) View() string {
+	return m.TabModel.View()
+}
+
+func (m RunTabModel) Init() tea.Cmd {
+	return m.TabModel.Init()
 }
