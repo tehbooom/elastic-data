@@ -51,41 +51,55 @@ func (m *TabModel) handleGlobalKeys(msg tea.Msg) tea.Cmd {
 func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
+		totalItems := len(m.integrationList.Items())
+		if m.handleGridNavigation(msg, totalItems) {
+			return m, nil
+		}
 		switch msg.String() {
 		case " ":
-			item, ok := m.integrationList.SelectedItem().(*IntegrationItem)
-			if !ok {
-				return m, nil
-			}
-			item.Selected = !item.Selected
-
-			m.context.SetIntegrationSelected(item.Name, item.Selected)
-			m.saveController.MarkDirty()
-
-			items := m.integrationList.Items()
-			items[m.integrationList.Index()] = item
-			m.integrationList.SetItems(items)
-			return m, nil
-
-		case "enter":
-			item, ok := m.integrationList.SelectedItem().(*IntegrationItem)
-			if !ok {
-				return m, nil
-			}
-
-			if !item.Selected {
-				item.Selected = true
+			if m.selectedIndex < totalItems {
+				item, ok := m.integrationList.Items()[m.selectedIndex].(*IntegrationItem)
+				if !ok {
+					return m, nil
+				}
+				item.Selected = !item.Selected
 				m.context.SetIntegrationSelected(item.Name, item.Selected)
 				m.saveController.MarkDirty()
 				items := m.integrationList.Items()
-				items[m.integrationList.Index()] = item
+				items[m.selectedIndex] = item
 				m.integrationList.SetItems(items)
+				// items := m.integrationList.Items()
+				// items[m.integrationList.Index()] = item
+				// m.integrationList.SetItems(items)
 			}
-
-			m.currentIntegration = item.Name
-			m.loadDatasetsForIntegration(item.Name)
-			m.state = StateSelectingDatasets
 			return m, nil
+
+		case "enter":
+			if m.selectedIndex < totalItems {
+				item, ok := m.integrationList.Items()[m.selectedIndex].(*IntegrationItem)
+				if !ok {
+					return m, nil
+				}
+
+				if !item.Selected {
+					item.Selected = true
+					m.context.SetIntegrationSelected(item.Name, item.Selected)
+					m.saveController.MarkDirty()
+					items := m.integrationList.Items()
+					items[m.selectedIndex] = item
+					m.integrationList.SetItems(items)
+					// items := m.integrationList.Items()
+					// items[m.integrationList.Index()] = item
+					// m.integrationList.SetItems(items)
+				}
+
+				m.currentIntegration = item.Name
+				m.loadDatasetsForIntegration(item.Name)
+				m.state = StateSelectingDatasets
+				m.selectedIndex = 0
+				m.scrollOffset = 0
+				return m, nil
+			}
 
 		case "esc", "q":
 			return m, nil

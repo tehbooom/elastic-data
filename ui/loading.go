@@ -38,13 +38,11 @@ func NewLoadingModel() LoadingModel {
 	}
 }
 
-// SetSize updates the size of the loading model
 func (m *LoadingModel) SetSize(width, height int) {
 	m.width = width
 	m.height = height
 }
 
-// Init initializes the loading model
 func (m LoadingModel) Init() tea.Cmd {
 	return tea.Batch(
 		m.spinner.Tick,
@@ -52,14 +50,12 @@ func (m LoadingModel) Init() tea.Cmd {
 	)
 }
 
-// requestProgressUpdates creates a ticker for updating the progress periodically
 func requestProgressUpdates() tea.Cmd {
 	return tea.Tick(time.Millisecond*100, func(t time.Time) tea.Msg {
 		return tea.KeyMsg{Type: tea.KeyRunes, Runes: []rune("progress")}
 	})
 }
 
-// getConfigDir returns the path to the configuration directory
 func getConfigDir() (string, error) {
 	configHome := os.Getenv("XDG_CONFIG_HOME")
 	if configHome == "" {
@@ -75,7 +71,6 @@ func getConfigDir() (string, error) {
 	return configDir, nil
 }
 
-// checkRepository checks if elastic/integrations exists in the direcotry and calls syncRepository
 func checkRepository() tea.Cmd {
 	return func() tea.Msg {
 		configDir, err := getConfigDir()
@@ -130,7 +125,6 @@ func syncRepository(repoPath string, exists bool) (string, error) {
 	}
 }
 
-// Update handles messages and updates the model
 func (m LoadingModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.WindowSizeMsg:
@@ -153,7 +147,6 @@ func (m LoadingModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	}
 }
 
-// View renders the loading screen
 func (m LoadingModel) View() string {
 	style := lipgloss.NewStyle().
 		Width(m.width).

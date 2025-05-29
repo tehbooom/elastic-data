@@ -4,7 +4,23 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 )
+
+var ProhibitedIntegrations = []string{
+	"apm",
+	"beaconing",
+	"beat",
+	"cloud_asset_inventory",
+	"cloud_defend",
+	"containerd",
+	"ded",
+	"dga",
+	"docker",
+	"elastic_agent",
+	"elastic_connectors",
+	"enterprisesearch",
+}
 
 func GetIntegrations(repoPath string) ([]string, error) {
 	basePath := filepath.Join(repoPath, "packages")
@@ -15,21 +31,18 @@ func GetIntegrations(repoPath string) ([]string, error) {
 	if !fileInfo.IsDir() {
 		return nil, fmt.Errorf("%s is not a directory", basePath)
 	}
-
-	// Read directory entries
 	entries, err := os.ReadDir(basePath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read directory %s: %w", basePath, err)
 	}
-
-	// Filter for directories only
 	var directories []string
 	for _, entry := range entries {
 		if entry.IsDir() {
-			directories = append(directories, entry.Name())
+			if hasValidDatasets(repoPath, entry.Name()) {
+				directories = append(directories, entry.Name())
+			}
 		}
 	}
-
 	return directories, nil
 }
 
@@ -42,20 +55,70 @@ func GetDatasets(repoPath, integration string) ([]string, error) {
 	if !fileInfo.IsDir() {
 		return nil, fmt.Errorf("%s is not a directory", basePath)
 	}
-
-	// Read directory entries
 	entries, err := os.ReadDir(basePath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read directory %s: %w", basePath, err)
 	}
-
-	// Filter for directories only
 	var directories []string
 	for _, entry := range entries {
 		if entry.IsDir() {
-			directories = append(directories, entry.Name())
+			if IsValidDataset(repoPath, integration, entry.Name()) {
+				directories = append(directories, entry.Name())
+			}
+		}
+	}
+	return directories, nil
+}
+
+func hasValidDatasets(repoPath, integration string) bool {
+	basePath := filepath.Join(repoPath, "packages", integration, "data_stream")
+	entries, err := os.ReadDir(basePath)
+	if err != nil {
+		return false
+	}
+
+	for _, entry := range entries {
+		if entry.IsDir() {
+			if IsValidDataset(repoPath, integration, entry.Name()) {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func IsValidDataset(repoPath, integration, dataset string) bool {
+	basePath := filepath.Join(repoPath, "packages", integration, "data_stream", dataset, "_dev", "test", "pipeline")
+
+	info, err := os.Stat(basePath)
+	if err != nil || !info.IsDir() {
+		return false
+	}
+
+	entries, err := os.ReadDir(basePath)
+	if err != nil {
+		return false
+	}
+
+	for _, entry := range entries {
+		if entry.IsDir() {
+			continue
+		}
+
+		fileName := entry.Name()
+		if strings.Contains(fileName, "-expected.json") {
+			continue
+		}
+
+		fileExt := strings.ToLower(filepath.Ext(fileName))
+		if fileExt == ".json" || fileExt == ".log" {
+			return true
 		}
 	}
 
-	return directories, nil
+	return false
+}
+
+func IsValidIntegration(repoPath, integration string) (bool, error) {
+	return hasValidDatasets(repoPath, integration), nil
 }

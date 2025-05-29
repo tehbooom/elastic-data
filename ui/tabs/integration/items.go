@@ -1,7 +1,5 @@
 package integration
 
-// Integrations Item
-
 type IntegrationItem struct {
 	Name     string
 	Selected bool
@@ -23,20 +21,16 @@ func (i IntegrationItem) Description() string {
 	return ""
 }
 
-// ToggleSelected toggles the selected state
 func (i *IntegrationItem) ToggleSelected() {
 	i.Selected = !i.Selected
 }
 
-// Create a new integration item
 func NewIntegrationItem(name string, selected bool) *IntegrationItem {
 	return &IntegrationItem{
 		Name:     name,
 		Selected: selected,
 	}
 }
-
-// Datasets Item
 
 type DatasetItem struct {
 	Name      string
@@ -61,7 +55,6 @@ func (i DatasetItem) Description() string {
 	return ""
 }
 
-// Create a new dataset item
 func NewDatasetItem(name string, selected bool, threshold int, unit string) DatasetItem {
 	return DatasetItem{
 		Name:      name,

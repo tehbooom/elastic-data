@@ -23,15 +23,19 @@ const (
 type TabModel struct {
 	width              int
 	height             int
-	integrationList    list.Model
 	context            *context.ProgramContext
+	saveController     *context.SaveController
 	state              int
+	integrationList    list.Model
 	datasetsList       list.Model
 	thresholdInput     textinput.Model
 	unitInput          textinput.Model
-	currentIntegration string
 	viewport           viewport.Model
-	saveController     *context.SaveController
+	currentIntegration string
+	columnsPerRow      int
+	selectedIndex      int
+	scrollOffset       int
+	visibleRows        int
 }
 
 func ValidateUnit(input string) error {
@@ -53,7 +57,6 @@ func ValidateThreshold(input string) error {
 	return nil
 }
 
-// NewTabModel creates a new integrations tab model
 func NewTabModel(context *context.ProgramContext, saveController *context.SaveController) *TabModel {
 	thInput := textinput.New()
 	thInput.Placeholder = "Enter threshold value"
@@ -71,7 +74,6 @@ func NewTabModel(context *context.ProgramContext, saveController *context.SaveCo
 	vp := viewport.New(0, 0)
 	delegate := NewCompactDelegate()
 
-	// Setup integration list
 	l := list.New([]list.Item{}, delegate, 0, 0)
 	l.Title = "Available Integrations"
 	l.SetShowHelp(false)
@@ -79,12 +81,12 @@ func NewTabModel(context *context.ProgramContext, saveController *context.SaveCo
 	l.SetShowStatusBar(false)
 	l.SetShowPagination(true)
 
-	// Setup datasets list
-	datasetsList := list.New([]list.Item{}, delegate, 0, 0)
+	datasetDelegate := NewCompactDelegate()
+	datasetsList := list.New([]list.Item{}, datasetDelegate, 0, 0)
 	datasetsList.SetShowHelp(false)
 	datasetsList.SetShowStatusBar(false)
 	datasetsList.SetShowPagination(false)
-
+	datasetsList.Styles.Title = TitleStyle
 	return &TabModel{
 		integrationList: l,
 		context:         context,
@@ -94,6 +96,8 @@ func NewTabModel(context *context.ProgramContext, saveController *context.SaveCo
 		unitInput:       uInput,
 		saveController:  saveController,
 		state:           StateSelectingIntegration,
+		scrollOffset:    0,
+		visibleRows:     1,
 	}
 }
 

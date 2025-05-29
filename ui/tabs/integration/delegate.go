@@ -1,7 +1,11 @@
 package integration
 
 import (
+	"fmt"
+	"io"
+
 	"github.com/charmbracelet/bubbles/list"
+	"github.com/charmbracelet/lipgloss"
 )
 
 type CompactDelegate struct {
@@ -10,27 +14,29 @@ type CompactDelegate struct {
 
 func NewCompactDelegate() CompactDelegate {
 	d := CompactDelegate{list.NewDefaultDelegate()}
-	d.Styles.NormalTitle.
-		PaddingLeft(0).
-		MarginTop(0).
-		PaddingTop(0).
-		PaddingBottom(0)
-	d.Styles.SelectedTitle.
-		PaddingLeft(0).
-		MarginTop(0).
-		PaddingTop(0).
-		PaddingBottom(0)
-	d.Styles.NormalDesc.
-		PaddingLeft(0).
-		MarginTop(0).
-		PaddingTop(0).
-		PaddingBottom(0)
-	d.Styles.SelectedDesc.
-		PaddingLeft(0).
-		MarginTop(0).
-		PaddingTop(0).
-		PaddingBottom(0)
 	d.SetSpacing(0)
 	d.ShowDescription = false
 	return d
+}
+
+func (d CompactDelegate) Render(w io.Writer, m list.Model, index int, listItem list.Item) {
+	var str string
+
+	if item, ok := listItem.(DatasetItem); ok {
+		str = item.Title()
+	} else if item, ok := listItem.(*IntegrationItem); ok {
+		str = item.Title()
+	} else {
+		str = listItem.FilterValue()
+	}
+
+	isSelected := index == m.Index()
+
+	if isSelected {
+		str = lipgloss.NewStyle().
+			Foreground(lipgloss.Color("#9ADC30")).
+			Render(str)
+	}
+
+	fmt.Fprint(w, str)
 }

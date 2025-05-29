@@ -7,6 +7,7 @@ import (
 	"math/rand"
 	"path/filepath"
 	"regexp"
+	"strings"
 	"text/template"
 	"time"
 
@@ -187,6 +188,10 @@ func LoadTemplatesForDataset(cfgPath, integration, dataset string) ([]LogTemplat
 		}
 
 		if d.IsDir() {
+			return nil
+		}
+
+		if strings.Contains(path, "-expected.json") {
 			return nil
 		}
 

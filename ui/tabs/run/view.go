@@ -162,7 +162,7 @@ func (m *TabModel) View() string {
 	help := HelpStyle.Render(
 		"(enter) Start/Stop, (q) Stop, (tab) Switch tabs, (ctrl+c) Quit")
 
-	return lipgloss.JoinVertical(lipgloss.Left, statusDisplay, baseStyle.Render(m.table.String())+"\n"+help)
+	return lipgloss.JoinVertical(lipgloss.Left, "\n"+statusDisplay, baseStyle.Render(m.table.String())+"\n"+help)
 
 }
 

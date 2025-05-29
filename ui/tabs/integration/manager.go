@@ -2,22 +2,21 @@ package integration
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/charmbracelet/bubbles/list"
+	"github.com/charmbracelet/log"
 	"github.com/tehbooom/elastic-data/internal/integrations"
 	"github.com/tehbooom/elastic-data/ui/context"
 )
 
-// SetIntegrations populates the integration list
-func (m *TabModel) SetIntegrations(integrations []string) {
+func (m *TabModel) SetIntegrations(integrationsList []string) {
 	m.integrationList.SetItems([]list.Item{})
 	var items []list.Item
 
-	for _, integration := range integrations {
+	for _, integration := range integrationsList {
 		isSelected := false
 		if m.context != nil && m.context.SelectedIntegrations != nil {
 			if selected, exists := m.context.SelectedIntegrations[integration]; exists {
@@ -30,9 +29,9 @@ func (m *TabModel) SetIntegrations(integrations []string) {
 	}
 
 	m.integrationList.SetItems(items)
+	log.Debug(fmt.Sprintf("Number of integrations is %d", len(m.integrationList.Items())))
 }
 
-// GetSelectedIntegrations returns a map of selected integrations
 func (m *TabModel) GetSelectedIntegrations() map[string]bool {
 	result := make(map[string]bool)
 	for _, item := range m.integrationList.Items() {
@@ -43,19 +42,15 @@ func (m *TabModel) GetSelectedIntegrations() map[string]bool {
 	return result
 }
 
-// loadDatasetsForIntegration loads the datasets for the selected integration
 func (m *TabModel) loadDatasetsForIntegration(integration string) {
 	var datasetItems []list.Item
 
-	// Check if we already have dataset configs for this integration
 	datasetMap, exists := m.context.DatasetConfigs[integration]
 	if !exists {
-		// If not, create a new map for this integration
 		datasetMap = make(map[string]context.DatasetConfig)
 		m.context.DatasetConfigs[integration] = datasetMap
 	}
 
-	// Always get the datasets from the repo to ensure we have the complete list
 	configDir, _ := getConfigDir()
 	repoDir := filepath.Join(configDir, "integrations")
 	dataSets, err := integrations.GetDatasets(repoDir, integration)
@@ -63,12 +58,9 @@ func (m *TabModel) loadDatasetsForIntegration(integration string) {
 		log.Fatal(err)
 	}
 
-	// Process all datasets from the repository
 	for _, ds := range dataSets {
-		// Check if we already have config for this dataset
 		existingConfig, configExists := datasetMap[ds]
 		if !configExists {
-			// If not, create a default config
 			datasetMap[ds] = context.DatasetConfig{
 				Name:      ds,
 				Selected:  false,
@@ -76,12 +68,10 @@ func (m *TabModel) loadDatasetsForIntegration(integration string) {
 				Unit:      "eps",
 			}
 		} else {
-			// Keep the existing config
 			datasetMap[ds] = existingConfig
 		}
 	}
 
-	// Create list items for all datasets
 	for _, config := range datasetMap {
 		datasetItems = append(datasetItems, NewDatasetItem(
 			config.Name,
@@ -91,12 +81,10 @@ func (m *TabModel) loadDatasetsForIntegration(integration string) {
 		))
 	}
 
-	// Update the UI list
 	m.datasetsList.SetItems(datasetItems)
 	m.datasetsList.Title = fmt.Sprintf("%s Datasets", strings.ToUpper(integration))
 }
 
-// updateDatasetConfigs updates the app state with the current dataset configurations
 func (m *TabModel) updateDatasetConfigs() {
 	if m.context == nil || m.currentIntegration == "" {
 		fmt.Printf("ERROR: Cannot update app state - context: %v, currentIntegration: %s\n",
@@ -129,7 +117,6 @@ func (m *TabModel) updateDatasetConfigs() {
 	m.saveController.MarkDirty()
 }
 
-// getConfigDir returns the path to the configuration directory
 func getConfigDir() (string, error) {
 	configHome := os.Getenv("XDG_CONFIG_HOME")
 	if configHome == "" {
