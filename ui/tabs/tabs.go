@@ -97,12 +97,8 @@ func (m TabsModel) View() string {
 	}
 
 	content := m.Tabs[m.ActiveTab].View()
-	helpText := "tab/shft+tab Navigate tabs • j/k Up/Down • ctrl+c Quit"
-	help := lipgloss.NewStyle().
-		Foreground(lipgloss.Color("240")).
-		Render(helpText)
 
-	return lipgloss.JoinVertical(lipgloss.Left, header.String(), content, help)
+	return lipgloss.JoinVertical(lipgloss.Left, header.String(), content)
 }
 
 func (m TabsModel) Init() tea.Cmd {

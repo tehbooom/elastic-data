@@ -16,6 +16,11 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	log.Debug(fmt.Sprintf("TabModel.Update received: %T", msg))
 	switch msg := msg.(type) {
 	case tickMsg:
+		// Only continue ticking if we should be ticking
+		if !m.shouldTick {
+			log.Debug("Ticker stopped - shouldTick is false")
+			return m, nil
+		}
 		log.Debug("Tick - refreshing view")
 		return m, tea.Tick(time.Second, func(time.Time) tea.Msg {
 			return tickMsg{}
@@ -28,6 +33,7 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.running = false
 				m.status = "Stopping..."
 				m.stopGeneration()
+				m.shouldTick = false
 				m.status = "Waiting to start"
 			}
 			return m, nil
@@ -35,7 +41,6 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			if !m.running {
 				m.running = true
 				m.status = StartedMsg
-				// Initiate connection to cluster
 				err := m.programContext.ESClient.TestConnection()
 				if err != nil {
 					log.Debug(err)
@@ -56,14 +61,20 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					)
 				}
 				m.StartGeneration()
-				log.Debug("Starting ticker for view updates")
-				return m, tea.Tick(time.Second, func(time.Time) tea.Msg {
-					return tickMsg{}
-				})
+				if !m.shouldTick {
+					m.shouldTick = true
+					log.Debug("Starting ticker for view updates")
+					return m, tea.Tick(time.Second, func(time.Time) tea.Msg {
+						return tickMsg{}
+					})
+				}
+				log.Debug("Ticker already running - not starting another")
+				return m, nil
 			} else {
 				m.running = false
 				m.status = "Stopping..."
 				m.stopGeneration()
+				m.shouldTick = false
 				m.status = "Waiting to start"
 			}
 

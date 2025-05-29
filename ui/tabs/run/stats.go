@@ -2,7 +2,6 @@ package run
 
 import (
 	"math"
-	"slices"
 	"sync"
 	"time"
 )
@@ -80,29 +79,40 @@ func (stats *IntegrationStats) SetBytesUnit(b int) {
 
 func (stats *IntegrationStats) CalculateLatency(duration time.Duration) {
 	ms := float64(duration.Nanoseconds()) / 1e6
-
 	stats.Current = ms
-
-	if len(stats.recentBatches) < 11 {
-		stats.Trend = "neutral"
-	} else {
-		var medianValues []float64
-		for _, batch := range stats.recentBatches {
-			medianValues = append(medianValues, batch.Duration)
-		}
-		slices.Sort(medianValues)
-		median := medianValues[6]
-		if stats.Current > median {
-			stats.Trend = "up"
-		} else if stats.Current < median {
-			stats.Trend = "down"
-		} else {
-			stats.Trend = "neutral"
-		}
-	}
 
 	if stats.Current > stats.Peak {
 		stats.Peak = stats.Current
 	}
 
+	if len(stats.recentBatches) < 6 {
+		stats.Trend = "neutral"
+		return
+	}
+
+	batchCount := len(stats.recentBatches)
+
+	// Recent average (last 3 batches including current)
+	recentSum := stats.Current
+	for i := batchCount - 2; i < batchCount && i >= 0; i++ {
+		recentSum += stats.recentBatches[i].Duration
+	}
+	recentAvg := recentSum / 3
+
+	// Older average (3 batches from earlier in the window)
+	olderSum := 0.0
+	startIdx := max(0, batchCount-6)
+	for i := startIdx; i < startIdx+3 && i < batchCount; i++ {
+		olderSum += stats.recentBatches[i].Duration
+	}
+	olderAvg := olderSum / 3
+
+	threshold := olderAvg * 0.1
+	if recentAvg > olderAvg+threshold {
+		stats.Trend = "up"
+	} else if recentAvg < olderAvg-threshold {
+		stats.Trend = "down"
+	} else {
+		stats.Trend = "neutral"
+	}
 }

@@ -33,13 +33,13 @@ func (m TabModel) View() string {
 		content.WriteString(m.integrationList.View())
 		content.WriteString("\n\n")
 		content.WriteString(HelpStyle.Render(
-			"(space) Toggle selection, (enter) Configure datasets, (tab) Switch tabs, (q) Quit"))
+			"(space) Toggle selection, (j/k) Navigate Up/Down, (enter) Configure datasets, (tab) Switch tabs, (ctrl+c) Quit"))
 
 	case StateSelectingDatasets:
 		content.WriteString(m.datasetsList.View())
 		content.WriteString("\n\n\n")
 		content.WriteString(HelpStyle.Render(
-			"(space) Toggle selection, (enter) Configure selected, (left) Back to integrations, (tab) Switch tabs, (q) Back"))
+			"(space) Toggle selection, (enter) Configure selected, (q) Back, (tab) Switch tabs, (ctrl+c) Quit"))
 
 	case StateConfiguringDataset:
 		content.WriteString(m.renderConfigForm())
@@ -75,7 +75,7 @@ func (m TabModel) renderConfigForm() string {
 	form.WriteString(fmt.Sprintf("\n  Configuring: %s\n\n", item.Name))
 	form.WriteString(fmt.Sprintf("  Threshold: %s\n", m.thresholdInput.View()))
 	form.WriteString(fmt.Sprintf("  Unit: %s\n\n", m.unitInput.View()))
-	form.WriteString(HelpStyle.Render("  (enter) Save, (esc) Cancel, (tab) Switch fields"))
+	form.WriteString(HelpStyle.Render("  (enter) Save, (q) Cancel, (tab) Switch fields"))
 
 	return form.String()
 }

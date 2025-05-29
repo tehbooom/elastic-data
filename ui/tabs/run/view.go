@@ -11,10 +11,10 @@ import (
 )
 
 var (
-	trendUpStyle = lipgloss.NewStyle().
+	trendDownStyle = lipgloss.NewStyle().
 			Foreground(lipgloss.Color("42"))
 
-	trendDownStyle = lipgloss.NewStyle().
+	trendUpStyle = lipgloss.NewStyle().
 			Foreground(lipgloss.Color("196"))
 
 	trendStableStyle = lipgloss.NewStyle().
@@ -85,18 +85,22 @@ func (m *TabModel) RunTable() *table.Table {
 	var rows [][]string
 	for _, integration := range integrationNames {
 		stat := statsSnapshot[integration]
-		log.Debug(fmt.Sprintf("table peak is %f", stat.Peak))
 		currentValue := FormatLatencyAdaptive(stat.Current)
 		peakValue := FormatLatencyAdaptive(stat.Peak)
 		var sent string
+		log.Debug(fmt.Sprintf("sent unit is %s", stat.SentBytesUnit))
 
 		if stat.Unit == "eps" {
 			sent = fmt.Sprintf("%d events", stat.SentEvents)
 		} else {
-			if stat.SentBytesUnit != "YB" {
-				sent = fmt.Sprintf("%3.1f%s", stat.SentBytes, stat.SentBytesUnit)
-			} else {
+			if stat.SentBytesUnit == "YB" {
 				sent = fmt.Sprintf("%.1f%s", stat.SentBytes, stat.SentBytesUnit)
+			} else if stat.SentBytesUnit == "b" {
+				sent = fmt.Sprintf("%f bytes", stat.SentBytes)
+			} else if stat.SentBytesUnit == "" {
+				sent = fmt.Sprintf("0 bytes")
+			} else {
+				sent = fmt.Sprintf("%3.1f%s", stat.SentBytes, stat.SentBytesUnit)
 			}
 		}
 
@@ -154,8 +158,11 @@ func (m *TabModel) View() string {
 	statusDisplay := statusStyle.Render(m.status)
 
 	m.table = m.RunTable()
+	HelpStyle := lipgloss.NewStyle().Foreground(lipgloss.Color("241"))
+	help := HelpStyle.Render(
+		"(enter) Start/Stop, (q) Stop, (tab) Switch tabs, (ctrl+c) Quit")
 
-	return lipgloss.JoinVertical(lipgloss.Left, statusDisplay, baseStyle.Render(m.table.String())+"\n")
+	return lipgloss.JoinVertical(lipgloss.Left, statusDisplay, baseStyle.Render(m.table.String())+"\n"+help)
 
 }
 

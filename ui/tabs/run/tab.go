@@ -35,6 +35,7 @@ type TabModel struct {
 	mu                    sync.RWMutex
 	mainCtx               context.Context
 	mainCancel            context.CancelFunc
+	shouldTick            bool
 	wg                    sync.WaitGroup
 }
 
@@ -68,6 +69,7 @@ func NewTabModel(programContext *ProgramContext.ProgramContext, saveController *
 		mainCtx:               ctx,
 		mainCancel:            cancel,
 		generators:            make(map[string]*DataGenerator),
+		shouldTick:            false,
 		running:               false,
 	}
 	model.RefreshIntegrations()

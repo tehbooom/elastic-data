@@ -163,10 +163,9 @@ func (dg *DataGenerator) sendBytes() error {
 
 		eventBytes := dg.calculateEventSize(event)
 
-		// Leave this commented incase we want to allow a hard stop at the threshold
-		// if dg.config.Unit == "bytes" && (dg.bytesSent+batchBytes+eventBytes) > dg.config.Threshold {
-		// 	break
-		// }
+		if dg.config.Unit == "bytes" && (dg.bytesSent+batchBytes+eventBytes) > dg.config.Threshold {
+			break
+		}
 
 		events = append(events, event)
 		batchBytes += eventBytes
