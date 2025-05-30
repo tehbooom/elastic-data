@@ -53,13 +53,13 @@ func (m TabsModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		}
 
 		switch msg.String() {
-		case "tab", "right":
+		case "tab":
 			m.ActiveTab = (m.ActiveTab + 1) % len(m.Tabs)
 			if runTab, ok := m.Tabs[m.ActiveTab].(*run.RunTabModel); ok {
 				runTab.TabModel.RefreshIntegrations()
 			}
 			return m, nil
-		case "shift+tab", "left":
+		case "shift+tab":
 			m.ActiveTab = (m.ActiveTab - 1 + len(m.Tabs)) % len(m.Tabs)
 			if runTab, ok := m.Tabs[m.ActiveTab].(*run.RunTabModel); ok {
 				runTab.TabModel.RefreshIntegrations()

@@ -220,3 +220,89 @@ func (m *TabModel) updateDatasetConfiguration(msg tea.Msg) (tea.Model, tea.Cmd) 
 	}
 	return m, cmd
 }
+
+func (m *TabModel) handleGridNavigation(msg tea.KeyMsg, totalItems int) bool {
+	if totalItems == 0 {
+		return false
+	}
+
+	columns := m.calculateColumns()
+	currentRow := m.selectedIndex / columns
+	currentCol := m.selectedIndex % columns
+	totalRows := (totalItems + columns - 1) / columns
+	oldIndex := m.selectedIndex
+
+	switch msg.String() {
+	case "k", "up":
+		if currentRow > 0 {
+			newIndex := (currentRow-1)*columns + currentCol
+			if newIndex >= 0 {
+				m.selectedIndex = newIndex
+			}
+		}
+	case "j", "down":
+		if currentRow < totalRows-1 {
+			newIndex := (currentRow+1)*columns + currentCol
+			if newIndex < totalItems {
+				m.selectedIndex = newIndex
+			} else {
+				lastRowStart := (totalRows - 1) * columns
+				if lastRowStart+currentCol < totalItems {
+					m.selectedIndex = lastRowStart + currentCol
+				} else {
+					m.selectedIndex = totalItems - 1
+				}
+			}
+		}
+	case "h", "left":
+		if currentCol > 0 {
+			m.selectedIndex--
+		} else if currentRow > 0 {
+			prevRowStart := (currentRow - 1) * columns
+			prevRowEnd := min(prevRowStart+columns-1, totalItems-1)
+			m.selectedIndex = prevRowEnd
+		}
+	case "l", "right":
+		if currentCol < columns-1 && m.selectedIndex < totalItems-1 {
+			nextIndex := m.selectedIndex + 1
+			nextRow := nextIndex / columns
+			if nextRow == currentRow {
+				m.selectedIndex = nextIndex
+			}
+		} else if currentRow < totalRows-1 {
+			m.selectedIndex = (currentRow + 1) * columns
+		}
+	case "pgup", "ctrl+u":
+		newRow := currentRow - m.visibleRows
+		if newRow < 0 {
+			newRow = 0
+		}
+		m.selectedIndex = newRow*columns + currentCol
+		if m.selectedIndex >= totalItems {
+			m.selectedIndex = totalItems - 1
+		}
+	case "pgdown", "ctrl+d":
+		newRow := currentRow + m.visibleRows
+		if newRow >= totalRows {
+			newRow = totalRows - 1
+		}
+		newIndex := newRow*columns + currentCol
+		if newIndex >= totalItems {
+			m.selectedIndex = totalItems - 1
+		} else {
+			m.selectedIndex = newIndex
+		}
+	case "home", "g":
+		m.selectedIndex = 0
+	case "end", "G":
+		m.selectedIndex = totalItems - 1
+	default:
+		return false
+	}
+
+	if m.selectedIndex != oldIndex {
+		m.ensureSelectionVisible(totalItems)
+	}
+
+	return true
+}

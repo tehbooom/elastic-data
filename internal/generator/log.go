@@ -2,10 +2,13 @@ package generator
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"os"
 	"strings"
 	"text/template"
+
+	"github.com/charmbracelet/log"
 )
 
 func ParseLogFile(filePath, integration, dataset string) ([]LogTemplate, error) {
@@ -18,8 +21,10 @@ func ParseLogFile(filePath, integration, dataset string) ([]LogTemplate, error) 
 	var templates []LogTemplate
 
 	scanner := bufio.NewScanner(file)
+	// TODO: Handle multiline log files
+	// Need to look in two places */data-stream/*/agent/stream/*.hbs and */data_stream/*/manifest.yml looking for - multiline:
+	// if multiline we need to scan() differently
 	for scanner.Scan() {
-		// TODO: Handle multiline log files
 		line := strings.TrimSpace(scanner.Text())
 		if line == "" {
 			continue
@@ -35,7 +40,17 @@ func ParseLogFile(filePath, integration, dataset string) ([]LogTemplate, error) 
 		}
 
 		template.AddCommonPatterns()
-		template.ParseLogLine()
+
+		if bytes.HasPrefix(lineBytes, []byte("{")) {
+			template.IsJSON = true
+			err = template.ParseJSONEvent()
+			if err != nil {
+				log.Debug(err)
+				return nil, err
+			}
+		} else {
+			template.ParseLogLine()
+		}
 
 		templates = append(templates, template)
 	}

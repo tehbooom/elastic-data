@@ -7,21 +7,6 @@ import (
 	"strings"
 )
 
-var ProhibitedIntegrations = []string{
-	"apm",
-	"beaconing",
-	"beat",
-	"cloud_asset_inventory",
-	"cloud_defend",
-	"containerd",
-	"ded",
-	"dga",
-	"docker",
-	"elastic_agent",
-	"elastic_connectors",
-	"enterprisesearch",
-}
-
 func GetIntegrations(repoPath string) ([]string, error) {
 	basePath := filepath.Join(repoPath, "packages")
 	fileInfo, err := os.Stat(basePath)
@@ -117,8 +102,4 @@ func IsValidDataset(repoPath, integration, dataset string) bool {
 	}
 
 	return false
-}
-
-func IsValidIntegration(repoPath, integration string) (bool, error) {
-	return hasValidDatasets(repoPath, integration), nil
 }
