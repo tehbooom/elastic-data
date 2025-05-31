@@ -33,9 +33,7 @@ type PatternRule struct {
 type DataPools struct {
 	IPs     []string
 	Domains []string
-	// Usernames  []string
-	// Hostnames  []string
-	Email []string
+	Email   []string
 }
 
 func initializeDataPools() map[string][]string {
@@ -86,6 +84,7 @@ func (l *LogTemplate) UpdateValues() {
 	if l.Data == nil {
 		l.Data = make(map[string]string)
 	}
+
 	if l.DataPools == nil {
 		l.DataPools = initializeDataPools()
 	}
@@ -180,9 +179,13 @@ func (l *LogTemplate) ExecuteTemplate() (string, error) {
 func LoadTemplatesForDataset(cfgPath, integration, dataset string) ([]LogTemplate, error) {
 	var templates []LogTemplate
 
-	basePath := filepath.Join(cfgPath, "integrations", "packages", integration, "data_stream", dataset, "_dev", "test", "pipeline")
+	datasetPath := filepath.Join(cfgPath, "integrations", "packages", integration, "data_stream", dataset)
 
-	err := filepath.WalkDir(basePath, func(path string, d fs.DirEntry, err error) error {
+	basePath := filepath.Join(datasetPath, "_dev", "test", "pipeline")
+
+	multilineConfig, err := GetMultiLineConfig(datasetPath)
+
+	err = filepath.WalkDir(basePath, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
@@ -197,14 +200,14 @@ func LoadTemplatesForDataset(cfgPath, integration, dataset string) ([]LogTemplat
 
 		ext := filepath.Ext(path)
 		if ext == ".json" {
-			fileTemplates, err := ParseJSONFile(path, integration, dataset)
+			fileTemplates, err := ParseJSONFile(path)
 			if err != nil {
 				log.Debug(fmt.Sprintf("Error parsing file %s: %v", path, err))
 				return nil
 			}
 			templates = append(templates, fileTemplates...)
 		} else if ext == ".log" {
-			fileTemplates, err := ParseLogFile(path, integration, dataset)
+			fileTemplates, err := ParseLogFile(path, multilineConfig)
 			if err != nil {
 				log.Debug(fmt.Sprintf("Error parsing file %s: %v", path, err))
 				return nil

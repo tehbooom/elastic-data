@@ -14,7 +14,7 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-func ParseJSONFile(filePath, integration, dataset string) ([]LogTemplate, error) {
+func ParseJSONFile(filePath string) ([]LogTemplate, error) {
 	file, err := os.ReadFile(filePath)
 	if err != nil {
 		log.Debug(err)
@@ -71,6 +71,7 @@ func (l *LogTemplate) ParseJSONEvent() error {
 
 	var data map[string]interface{}
 	if err := json.Unmarshal([]byte(l.Original), &data); err != nil {
+		log.Debug(err)
 		return fmt.Errorf("failed to unmarshal JSON: %w", err)
 	}
 
@@ -78,11 +79,13 @@ func (l *LogTemplate) ParseJSONEvent() error {
 
 	templateJSON, err := json.Marshal(data)
 	if err != nil {
+		log.Debug(err)
 		return fmt.Errorf("failed to marshal template JSON: %w", err)
 	}
 
 	tmpl, err := template.New("jsonevent").Parse(string(templateJSON))
 	if err != nil {
+		log.Debug(err)
 		return fmt.Errorf("failed to create template: %v", err)
 	}
 

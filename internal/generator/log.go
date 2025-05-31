@@ -1,61 +1,107 @@
 package generator
 
 import (
-	"bufio"
-	"bytes"
+	"encoding/json"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 	"text/template"
 
 	"github.com/charmbracelet/log"
+	"github.com/elastic/beats/v7/libbeat/reader"
+	"github.com/elastic/beats/v7/libbeat/reader/multiline"
 )
 
-func ParseLogFile(filePath, integration, dataset string) ([]LogTemplate, error) {
+func ParseLogFile(filePath string, multilineConfig *multiline.Config) ([]LogTemplate, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
-		return nil, err
+		log.Debug(err)
+		return nil, fmt.Errorf("failed to open log file %s: %w", filePath, err)
 	}
 	defer file.Close()
 
-	var templates []LogTemplate
+	finalReader, err := createReaderPipeline(file, multilineConfig)
+	if err != nil {
+		log.Debug(err)
+		return nil, fmt.Errorf("failed to create reader pipeline: %w", err)
+	}
 
-	scanner := bufio.NewScanner(file)
-	// TODO: Handle multiline log files
-	// Need to look in two places */data-stream/*/agent/stream/*.hbs and */data_stream/*/manifest.yml looking for - multiline:
-	// if multiline we need to scan() differently
-	for scanner.Scan() {
-		line := strings.TrimSpace(scanner.Text())
-		if line == "" {
-			continue
-		}
-		lineBytes := []byte(line)
-
-		template := LogTemplate{
-			Original:  line,
-			IsJSON:    false,
-			Size:      len(lineBytes),
-			Data:      make(map[string]string),
-			DataPools: initializeDataPools(),
-		}
-
-		template.AddCommonPatterns()
-
-		if bytes.HasPrefix(lineBytes, []byte("{")) {
-			template.IsJSON = true
-			err = template.ParseJSONEvent()
-			if err != nil {
-				log.Debug(err)
-				return nil, err
-			}
-		} else {
-			template.ParseLogLine()
-		}
-
-		templates = append(templates, template)
+	templates, err := parseMessages(finalReader, 100)
+	if err != nil {
+		log.Debug(err)
+		return nil, fmt.Errorf("failed to parse messages: %w", err)
 	}
 
 	return templates, nil
+}
+
+func parseMessages(reader reader.Reader, maxTemplates int) ([]LogTemplate, error) {
+	var templates []LogTemplate
+	messageCount := 0
+
+	for {
+		if maxTemplates > 0 && messageCount >= maxTemplates {
+			log.Debug("Reached maximum template limit", "count", maxTemplates)
+			break
+		}
+
+		message, err := reader.Next()
+		if err != nil {
+			if err == io.EOF {
+				log.Debug("Reached end of file", "templates_parsed", len(templates))
+				break
+			}
+			log.Debug("Error reading message", "error", err, "message_count", messageCount)
+			return nil, fmt.Errorf("failed to read message at position %d: %w", messageCount, err)
+		}
+
+		messageCount++
+
+		if len(message.Content) == 0 {
+			log.Debug("Skipping empty message", "message_count", messageCount)
+			continue
+		}
+
+		template, err := processLogLine(message.Content)
+		if err != nil {
+			log.Debug("Failed to process message", "error", err, "message_count", messageCount)
+			continue
+		}
+		templates = append(templates, template)
+	}
+
+	if len(templates) == 0 {
+		log.Warn("No valid templates generated from file")
+	}
+
+	return templates, nil
+}
+
+func processLogLine(line []byte) (LogTemplate, error) {
+	template := LogTemplate{
+		Original:  string(line),
+		IsJSON:    false,
+		Size:      len(line),
+		Data:      make(map[string]string),
+		DataPools: initializeDataPools(),
+	}
+
+	template.AddCommonPatterns()
+
+	if strings.HasPrefix(string(line), "{") && json.Valid(line) {
+		err := template.ParseJSONEvent()
+		if err != nil {
+			log.Debug(err)
+			return template, fmt.Errorf("failed to parse valid JSON: %w", err)
+		}
+
+		return template, nil
+	}
+
+	template.ParseLogLine()
+
+	return template, nil
 }
 
 func (l *LogTemplate) ParseLogLine() error {
@@ -78,6 +124,7 @@ func (l *LogTemplate) ParseLogLine() error {
 
 	tmpl, err := template.New("logline").Parse(templateStr)
 	if err != nil {
+		log.Debug(err)
 		return fmt.Errorf("failed to create template: %v", err)
 	}
 

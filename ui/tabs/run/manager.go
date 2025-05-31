@@ -62,11 +62,11 @@ func (m *TabModel) RefreshIntegrations() {
 
 func (m *TabModel) InstallPackage(integrationName string) error {
 	if slices.Contains(m.installedIntegrations, integrationName) {
-		log.Debug("Package installed")
+		log.Debug(fmt.Sprintf("Package %s installed", integrationName))
 		return nil
 	}
 
-	log.Debug("Installing Package ", integrationName)
+	log.Debug(fmt.Sprintf("Installing Package %s", integrationName))
 	err := m.programContext.KBClient.InstallPackage(integrationName)
 	if err != nil {
 		log.Debug(err)
@@ -100,6 +100,10 @@ func (m *TabModel) StartGeneration() error {
 			if err != nil {
 				log.Debug(err)
 				return err
+			}
+
+			if len(templates) == 0 {
+				return fmt.Errorf("loaded 0 templates for %s", fullName)
 			}
 
 			var templateSizesTotal int
