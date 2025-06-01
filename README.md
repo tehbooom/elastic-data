@@ -17,7 +17,7 @@ Repository of data that can be ingested into Elasticsearch using example data fr
   - username
   - hostname
   - time
-- Display the integrations README when selecting datasets
+- Display the integrations README when selecting datasets (use glamour)
 - Add search to integration selection
 - detect if dataset is logs or metrics (read in Type struct and its either metrics or logs)
 - golangcilint

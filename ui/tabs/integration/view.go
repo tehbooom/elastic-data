@@ -34,7 +34,6 @@ func (m TabModel) View() string {
 
 	case StateSelectingDatasets:
 		content.WriteString(m.datasetsList.View())
-		content.WriteString("HELLOOOO")
 		content.WriteString("\n\n\n")
 		content.WriteString(HelpStyle.Render(
 			"(space) Toggle selection, (enter) Configure selected, (q) Back, (tab) Switch tabs, (ctrl+c) Quit"))
