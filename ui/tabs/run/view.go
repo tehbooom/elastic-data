@@ -8,6 +8,7 @@ import (
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/lipgloss/table"
 	"github.com/charmbracelet/log"
+	"github.com/tehbooom/elastic-data/ui/style"
 )
 
 var (
@@ -155,9 +156,12 @@ func (m *TabModel) View() string {
 	statusDisplay := statusStyle.Render(m.status)
 
 	m.table = m.RunTable()
-	HelpStyle := lipgloss.NewStyle().Foreground(lipgloss.Color("241"))
-	help := HelpStyle.Render(
-		"(enter) Start/Stop, (q) Stop, (tab) Switch tabs, (ctrl+c) Quit")
+	help := style.FormatHelp(
+		"(enter)", "Start/Stop",
+		"(q)", "Stop",
+		"(tab)", "Switch tabs",
+		"(ctrl+c)", "Quit",
+	)
 
 	return lipgloss.JoinVertical(lipgloss.Left, "\n"+statusDisplay, baseStyle.Render(m.table.String())+"\n"+help)
 

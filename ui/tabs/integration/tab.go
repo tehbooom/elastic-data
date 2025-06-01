@@ -12,6 +12,7 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 
 	"github.com/tehbooom/elastic-data/ui/context"
+	"github.com/tehbooom/elastic-data/ui/style"
 )
 
 const (
@@ -86,7 +87,7 @@ func NewTabModel(context *context.ProgramContext, saveController *context.SaveCo
 	datasetsList.SetShowHelp(false)
 	datasetsList.SetShowStatusBar(false)
 	datasetsList.SetShowPagination(false)
-	datasetsList.Styles.Title = TitleStyle
+	datasetsList.Styles.Title = style.TitleStyle
 	return &TabModel{
 		integrationList: l,
 		context:         context,

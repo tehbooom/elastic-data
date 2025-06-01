@@ -4,7 +4,6 @@ Repository of data that can be ingested into Elasticsearch using example data fr
 
 ## TODO
 
-- Update help text
 - Show error messages to users
 - Allow to execute application without a TUI `elastic-data run`
 - Sending bytes stopping and starting restarts the count even if threshold is meet

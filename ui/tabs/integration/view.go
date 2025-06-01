@@ -7,12 +7,7 @@ import (
 	"github.com/charmbracelet/bubbles/list"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/log"
-)
-
-var (
-	TitleStyle = lipgloss.NewStyle().MarginLeft(2).Bold(true).Foreground(lipgloss.Color("#F04E98"))
-	ItemStyle  = lipgloss.NewStyle().PaddingLeft(4)
-	HelpStyle  = lipgloss.NewStyle().Foreground(lipgloss.Color("241"))
+	"github.com/tehbooom/elastic-data/ui/style"
 )
 
 func (m TabModel) View() string {
@@ -29,14 +24,29 @@ func (m TabModel) View() string {
 		m.ensureSelectionVisible(len(m.integrationList.Items()))
 		content.WriteString(m.renderMultiColumnList(m.integrationList.Items(), "Available Integrations"))
 		content.WriteString("\n\n")
-		content.WriteString(HelpStyle.Render(
-			"(hjkl/arrows) Navigate, (space) Toggle, (enter) Configure, (pgup/pgdn) Scroll, (tab) Switch tabs, (ctrl+c) Quit"))
+
+		help := style.FormatHelp(
+			"(hjkl/arrows)", "Navigate",
+			"(space)", "Toggle",
+			"(enter)", "Configure",
+			"(pgup/pgdn)", "Scroll",
+			"(tab)", "Switch tabs",
+			"(ctrl+c)", "Quit",
+		)
+
+		content.WriteString(help)
 
 	case StateSelectingDatasets:
 		content.WriteString(m.datasetsList.View())
 		content.WriteString("\n\n\n")
-		content.WriteString(HelpStyle.Render(
-			"(space) Toggle selection, (enter) Configure selected, (q) Back, (tab) Switch tabs, (ctrl+c) Quit"))
+		help := style.FormatHelp(
+			"(space)", "Toggle selection",
+			"(enter)", "Configure selected",
+			"(q)", "Back",
+			"(tab)", "Switch tabs",
+			"(ctrl+c)", "Quit",
+		)
+		content.WriteString(help)
 
 	case StateConfiguringDataset:
 		content.WriteString(m.renderConfigForm())
@@ -52,7 +62,12 @@ func (m TabModel) renderConfigForm() string {
 	form.WriteString(fmt.Sprintf("\n  Configuring: %s\n\n", item.Name))
 	form.WriteString(fmt.Sprintf("  Threshold: %s\n", m.thresholdInput.View()))
 	form.WriteString(fmt.Sprintf("  Unit: %s\n\n", m.unitInput.View()))
-	form.WriteString(HelpStyle.Render("  (enter) Save, (q) Cancel, (tab) Switch fields"))
+	help := style.FormatHelp(
+		"(enter)", "Save",
+		"(q)", "Cancel",
+		"(tab)", "Switch fields",
+	)
+	form.WriteString("  " + help)
 
 	return form.String()
 }
@@ -71,18 +86,18 @@ func (m *TabModel) calculateColumns() int {
 
 func (m TabModel) renderMultiColumnList(items []list.Item, title string) string {
 	if len(items) == 0 {
-		return fmt.Sprintf("%s\n\nNo items available", TitleStyle.Render(title))
+		return fmt.Sprintf("%s\n\nNo items available", style.TitleStyle.Render(title))
 	}
 
 	var content strings.Builder
-	content.WriteString(TitleStyle.Render(title) + "\n\n")
+	content.WriteString(style.TitleStyle.Render(title) + "\n\n")
 
 	columns := m.calculateColumns()
 	log.Debug(fmt.Sprintf("Columns is %d", columns))
 
 	minWidth := 20
 	if m.width < minWidth {
-		return fmt.Sprintf("%s\n\nTerminal too narrow to display items", TitleStyle.Render(title))
+		return fmt.Sprintf("%s\n\nTerminal too narrow to display items", style.TitleStyle.Render(title))
 	}
 
 	columnWidth := (m.width - 4) / columns
@@ -125,11 +140,11 @@ func (m TabModel) renderMultiColumnList(items []list.Item, title string) string 
 			}
 
 			if isSelected {
-				itemText = ItemStyle.
+				itemText = style.ItemStyle.
 					Foreground(lipgloss.Color("#02BCB7")).
 					Render(fmt.Sprintf("%-*s", columnWidth-2, itemText))
 			} else {
-				itemText = ItemStyle.Render(fmt.Sprintf("%-*s", columnWidth-2, itemText))
+				itemText = style.ItemStyle.Render(fmt.Sprintf("%-*s", columnWidth-2, itemText))
 			}
 
 			rowContent.WriteString(itemText)
