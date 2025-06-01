@@ -1,7 +1,6 @@
 package run
 
 import (
-	"fmt"
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -13,15 +12,11 @@ type tickMsg struct{}
 type refreshMsg struct{}
 
 func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	log.Debug(fmt.Sprintf("TabModel.Update received: %T", msg))
 	switch msg := msg.(type) {
 	case tickMsg:
-		// Only continue ticking if we should be ticking
 		if !m.shouldTick {
-			log.Debug("Ticker stopped - shouldTick is false")
 			return m, nil
 		}
-		log.Debug("Tick - refreshing view")
 		return m, tea.Tick(time.Second, func(time.Time) tea.Msg {
 			return tickMsg{}
 		})
@@ -63,12 +58,10 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.StartGeneration()
 				if !m.shouldTick {
 					m.shouldTick = true
-					log.Debug("Starting ticker for view updates")
 					return m, tea.Tick(time.Second, func(time.Time) tea.Msg {
 						return tickMsg{}
 					})
 				}
-				log.Debug("Ticker already running - not starting another")
 				return m, nil
 			} else {
 				m.running = false

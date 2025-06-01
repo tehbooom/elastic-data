@@ -89,7 +89,7 @@ func processLogLine(line []byte) (LogTemplate, error) {
 
 	template.AddCommonPatterns()
 
-	if strings.HasPrefix(string(line), "{") && json.Valid(line) {
+	if strings.HasPrefix(strings.TrimSpace(string(line)), "{") && json.Valid(line) {
 		err := template.ParseJSONEvent()
 		if err != nil {
 			log.Debug(err)

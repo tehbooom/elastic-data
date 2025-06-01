@@ -68,7 +68,6 @@ func (m *TabModel) getStatsSnapshot() map[string]StatsSnapshot {
 		}
 	}
 
-	log.Debug(snapshot)
 	return snapshot
 }
 
@@ -88,7 +87,6 @@ func (m *TabModel) RunTable() *table.Table {
 		currentValue := FormatLatencyAdaptive(stat.Current)
 		peakValue := FormatLatencyAdaptive(stat.Peak)
 		var sent string
-		log.Debug(fmt.Sprintf("sent unit is %s", stat.SentBytesUnit))
 
 		if stat.Unit == "eps" {
 			sent = fmt.Sprintf("%d events", stat.SentEvents)
@@ -134,7 +132,6 @@ func (m *TabModel) RunTable() *table.Table {
 }
 
 func (m *TabModel) View() string {
-	log.Debug("View() called")
 	if m.width == 0 {
 		return "Loading..."
 	}

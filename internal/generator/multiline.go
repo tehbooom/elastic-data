@@ -1,7 +1,9 @@
 package generator
 
 import (
+	"bytes"
 	"fmt"
+	"io"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -290,6 +292,17 @@ func isYAMLContent(line string) bool {
 
 func createReaderPipeline(file *os.File, multilineConfig *multiline.Config) (reader.Reader, error) {
 	log.Debug("Creating reader pipeline", "multiline_enabled", multilineConfig != nil)
+
+	var buf bytes.Buffer
+	if _, err := io.Copy(&buf, file); err != nil {
+		return nil, fmt.Errorf("failed to read file into buffer: %w", err)
+	}
+
+	content := buf.Bytes()
+	if len(content) > 0 && content[len(content)-1] != '\n' {
+		content = append(content, '\n')
+	}
+
 	encodingFactory := encoding.Plain
 	enc, err := encodingFactory(file)
 	if err != nil {
@@ -297,11 +310,14 @@ func createReaderPipeline(file *os.File, multilineConfig *multiline.Config) (rea
 		return nil, fmt.Errorf("failed to create encoding: %w", err)
 	}
 
-	encodeReader, err := readfile.NewEncodeReader(file, readfile.Config{
-		Codec:      enc,
-		BufferSize: 8192,
-		Terminator: readfile.LineFeed,
-		MaxBytes:   1024 * 1024 * 10,
+	bufReader := bytes.NewReader(content)
+
+	encodeReader, err := readfile.NewEncodeReader(io.NopCloser(bufReader), readfile.Config{
+		Codec:        enc,
+		BufferSize:   16 * 1024,
+		Terminator:   readfile.LineFeed,
+		CollectOnEOF: true,
+		MaxBytes:     1024 * 1024,
 	})
 	if err != nil {
 		log.Debug(err)

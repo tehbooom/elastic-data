@@ -108,6 +108,7 @@ func (dg *DataGenerator) sendEPS() error {
 		event := map[string]interface{}{
 			"message":    message,
 			"@timestamp": time.Now().UTC().Format(time.RFC3339),
+			"tags":       []string{"preserve_original_event"},
 		}
 
 		events = append(events, event)

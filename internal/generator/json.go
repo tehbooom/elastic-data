@@ -1,6 +1,7 @@
 package generator
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"net"
@@ -83,12 +84,20 @@ func (l *LogTemplate) ParseJSONEvent() error {
 		return fmt.Errorf("failed to marshal template JSON: %w", err)
 	}
 
-	tmpl, err := template.New("jsonevent").Parse(string(templateJSON))
+	var compactBuffer bytes.Buffer
+	if err := json.Compact(&compactBuffer, templateJSON); err != nil {
+		log.Debug(err)
+		return fmt.Errorf("failed to compact JSON: %w", err)
+	}
+	compactJSON := compactBuffer.Bytes()
+
+	tmpl, err := template.New("jsonevent").Parse(string(compactJSON))
 	if err != nil {
 		log.Debug(err)
 		return fmt.Errorf("failed to create template: %v", err)
 	}
 
+	l.IsJSON = true
 	l.Template = tmpl
 
 	return nil
