@@ -32,9 +32,9 @@ func (d CompactDelegate) Render(w io.Writer, m list.Model, index int, listItem l
 
 	isSelected := index == m.Index()
 
-	if isSelected {
+	if isSelected && len(m.Items()) > 1 {
 		str = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("#9ADC30")).
+			Foreground(lipgloss.Color("#48EFCF")).
 			Render(str)
 	}
 

@@ -126,7 +126,7 @@ func (m *TabModel) RunTable() *table.Table {
 		Height(m.height).
 		Headers(headers...).
 		Rows(rows...).
-		Border(lipgloss.NormalBorder()).
+		Border(lipgloss.RoundedBorder()).
 		BorderStyle(lipgloss.NewStyle().Foreground(lipgloss.Color("238")))
 
 	return t
@@ -144,13 +144,15 @@ func (m *TabModel) View() string {
 
 	statusStyle := lipgloss.NewStyle().
 		Foreground(lipgloss.Color("205")).
+		Width(m.width-2).
+		Align(lipgloss.Center).
 		Bold(true).
 		Padding(0, 1)
 
 	if m.running {
-		statusStyle = statusStyle.Foreground(lipgloss.Color("42")) // Green for running
+		statusStyle = statusStyle.Foreground(lipgloss.Color("42"))
 	} else {
-		statusStyle = statusStyle.Foreground(lipgloss.Color("208")) // Orange for waiting
+		statusStyle = statusStyle.Foreground(lipgloss.Color("208"))
 	}
 
 	statusDisplay := statusStyle.Render(m.status)
@@ -168,7 +170,7 @@ func (m *TabModel) View() string {
 }
 
 var baseStyle = lipgloss.NewStyle().
-	BorderStyle(lipgloss.NormalBorder()).
+	BorderStyle(lipgloss.RoundedBorder()).
 	BorderForeground(lipgloss.Color("240"))
 
 func FormatLatencyAdaptive(ms float64) string {

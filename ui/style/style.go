@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	TitleStyle    = lipgloss.NewStyle().MarginLeft(2).Bold(true).Foreground(lipgloss.Color("#F04E98"))
+	TitleStyle    = lipgloss.NewStyle().MarginLeft(2).Bold(true).Foreground(lipgloss.Color("#FEC514"))
 	ItemStyle     = lipgloss.NewStyle().PaddingLeft(4)
 	HelpStyle     = lipgloss.NewStyle().Foreground(lipgloss.Color("239"))
 	HelpStyleKeys = lipgloss.NewStyle().Foreground(lipgloss.Color("241")).Bold(true)

@@ -5,12 +5,15 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/bubbles/list"
+	"github.com/charmbracelet/bubbles/viewport"
+	"github.com/charmbracelet/glamour"
 	"github.com/charmbracelet/lipgloss"
+	"github.com/charmbracelet/lipgloss/table"
 	"github.com/charmbracelet/log"
 	"github.com/tehbooom/elastic-data/ui/style"
 )
 
-func (m TabModel) View() string {
+func (m *TabModel) View() string {
 	if m.width == 0 {
 		return "Loading..."
 	}
@@ -22,7 +25,14 @@ func (m TabModel) View() string {
 	switch m.state {
 	case StateSelectingIntegration:
 		m.ensureSelectionVisible(len(m.integrationList.Items()))
-		content.WriteString(m.renderMultiColumnList(m.integrationList.Items(), "Available Integrations"))
+		tableContent := m.renderMultiColumnList(m.integrationList.Items(), "Available Integrations")
+		borderedTable := lipgloss.NewStyle().
+			Border(lipgloss.RoundedBorder()).
+			BorderForeground(lipgloss.Color("240")).
+			Padding(1).
+			Render(tableContent)
+
+		content.WriteString(borderedTable)
 		content.WriteString("\n\n")
 
 		help := style.FormatHelp(
@@ -30,6 +40,8 @@ func (m TabModel) View() string {
 			"(space)", "Toggle",
 			"(enter)", "Configure",
 			"(pgup/pgdn)", "Scroll",
+			"(home/g)", "Top",
+			"(end/G)", "Bottom",
 			"(tab)", "Switch tabs",
 			"(ctrl+c)", "Quit",
 		)
@@ -37,8 +49,68 @@ func (m TabModel) View() string {
 		content.WriteString(help)
 
 	case StateSelectingDatasets:
-		content.WriteString(m.datasetsList.View())
-		content.WriteString("\n\n\n")
+		listView := m.datasetsList.View()
+
+		if m.focusedDatasetComponent == FocusDatasetList {
+			styledList := lipgloss.NewStyle().
+				Border(lipgloss.RoundedBorder()).
+				BorderForeground(lipgloss.Color("#FF957D")).
+				Padding(0, 1).
+				Render(listView)
+			content.WriteString(styledList)
+		} else {
+			styledList := lipgloss.NewStyle().
+				Border(lipgloss.RoundedBorder()).
+				BorderForeground(lipgloss.Color("#F5F7FA")).
+				Padding(0, 1).
+				Render(listView)
+			content.WriteString(styledList)
+		}
+
+		content.WriteString("\n")
+
+		if !m.readmeRendered {
+			var readMeContent string
+			var err error
+			readMeContent, err = m.getReadMe()
+			if err != nil {
+				log.Debug(err)
+				readMeContent = "Unable to load README"
+			}
+
+			glamourRenderWidth := m.width - 6
+			renderer, err := glamour.NewTermRenderer(
+				glamour.WithStandardStyle("dark"),
+				glamour.WithWordWrap(glamourRenderWidth),
+			)
+
+			viewportHeight := m.height/2 - 5
+
+			if m.viewport.Width == 0 || m.viewport.Height == 0 {
+				m.viewport = viewport.New(m.width-4, viewportHeight)
+			} else {
+				m.viewport.Width = m.width - 4
+				m.viewport.Height = m.height - 10
+			}
+
+			if err != nil {
+				log.Debug(err)
+				m.viewport.SetContent(readMeContent)
+			} else {
+				str, err := renderer.Render(readMeContent)
+				if err != nil {
+					log.Debug(err)
+					log.Debug("Error rendering with glamour:", err)
+					m.viewport.SetContent(readMeContent)
+				} else {
+					m.viewport.SetContent(str)
+				}
+			}
+			m.readmeRendered = true
+		} else {
+		}
+		content.WriteString(m.viewport.View())
+		content.WriteString("\n")
 		help := style.FormatHelp(
 			"(space)", "Toggle selection",
 			"(enter)", "Configure selected",
@@ -55,7 +127,7 @@ func (m TabModel) View() string {
 	return content.String()
 }
 
-func (m TabModel) renderConfigForm() string {
+func (m *TabModel) renderConfigForm() string {
 	item := m.datasetsList.SelectedItem().(DatasetItem)
 	form := strings.Builder{}
 
@@ -84,29 +156,20 @@ func (m *TabModel) calculateColumns() int {
 	}
 }
 
-func (m TabModel) renderMultiColumnList(items []list.Item, title string) string {
+func (m *TabModel) renderMultiColumnList(items []list.Item, title string) string {
 	if len(items) == 0 {
 		return fmt.Sprintf("%s\n\nNo items available", style.TitleStyle.Render(title))
 	}
 
 	var content strings.Builder
-	content.WriteString(style.TitleStyle.Render(title) + "\n\n")
+	centeredTitle := lipgloss.NewStyle().
+		Width(m.width - 6).
+		Align(lipgloss.Center).
+		Render(style.TitleStyle.Render(title))
+
+	content.WriteString(centeredTitle + "\n\n")
 
 	columns := m.calculateColumns()
-	log.Debug(fmt.Sprintf("Columns is %d", columns))
-
-	minWidth := 20
-	if m.width < minWidth {
-		return fmt.Sprintf("%s\n\nTerminal too narrow to display items", style.TitleStyle.Render(title))
-	}
-
-	columnWidth := (m.width - 4) / columns
-	log.Debug(fmt.Sprintf("Columns: %d, Width: %d", columns, m.width))
-	if columnWidth < 10 {
-		columns = 1
-		columnWidth = m.width - 4
-	}
-
 	totalItems := len(items)
 	rowsNeeded := (totalItems + columns - 1) / columns
 
@@ -115,44 +178,66 @@ func (m TabModel) renderMultiColumnList(items []list.Item, title string) string 
 	if endRow > rowsNeeded {
 		endRow = rowsNeeded
 	}
-	log.Debug(fmt.Sprintf("Rendering rows %d-%d of %d total rows (selected: %d)",
-		startRow, endRow-1, rowsNeeded, m.selectedIndex))
+
+	t := table.New().
+		Width(m.width - 6).
+		Border(lipgloss.RoundedBorder()).
+		BorderStyle(lipgloss.NewStyle().Foreground(lipgloss.Color("240"))).
+		StyleFunc(func(row, col int) lipgloss.Style {
+			actualRow := startRow + row
+			itemIndex := actualRow*columns + col
+
+			if itemIndex >= totalItems {
+				return lipgloss.NewStyle()
+			}
+
+			isCursorSelected := itemIndex == m.selectedIndex
+
+			var isItemSelected bool
+			if itemIndex < len(items) {
+				if integrationItem, ok := items[itemIndex].(*IntegrationItem); ok {
+					isItemSelected = integrationItem.Selected
+				}
+			}
+
+			if isCursorSelected {
+				return lipgloss.NewStyle().
+					Foreground(lipgloss.Color("#48EFCF")).
+					Bold(true)
+			} else if isItemSelected {
+				return lipgloss.NewStyle().
+					Foreground(lipgloss.Color("#90EE90"))
+			}
+
+			return lipgloss.NewStyle()
+		})
+
+	var tableData [][]string
 
 	for row := startRow; row < endRow; row++ {
-		var rowContent strings.Builder
-
+		var rowData []string
 		for col := 0; col < columns; col++ {
 			itemIndex := row*columns + col
 			if itemIndex >= totalItems {
+				rowData = append(rowData, "")
 				continue
 			}
 
 			item := items[itemIndex]
-			isSelected := itemIndex == m.selectedIndex
-
 			var itemText string
+
 			if integrationItem, ok := item.(*IntegrationItem); ok {
 				itemText = integrationItem.Title()
 			}
 
-			if len(itemText) > columnWidth-2 {
-				itemText = itemText[:columnWidth-5] + "..."
-			}
-
-			if isSelected {
-				itemText = style.ItemStyle.
-					Foreground(lipgloss.Color("#02BCB7")).
-					Render(fmt.Sprintf("%-*s", columnWidth-2, itemText))
-			} else {
-				itemText = style.ItemStyle.Render(fmt.Sprintf("%-*s", columnWidth-2, itemText))
-			}
-
-			rowContent.WriteString(itemText)
+			rowData = append(rowData, itemText)
 		}
-
-		content.WriteString(rowContent.String() + "\n")
+		tableData = append(tableData, rowData)
 	}
 
+	t = t.Rows(tableData...)
+
+	content.WriteString(t.Render())
 	return content.String()
 }
 

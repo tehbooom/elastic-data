@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 
 	"github.com/charmbracelet/bubbles/list"
@@ -57,6 +58,12 @@ func (m *TabModel) loadDatasetsForIntegration(integration string) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	for i, j := range dataSets {
+		log.Debug(fmt.Sprintf("Datset number %d: %s", i, j))
+	}
+
+	m.datasetsList.SetSize(m.width, len(dataSets)+2)
 
 	for _, ds := range dataSets {
 		existingConfig, configExists := datasetMap[ds]
@@ -130,4 +137,18 @@ func getConfigDir() (string, error) {
 	configDir := filepath.Join(configHome, "elastic-data")
 
 	return configDir, nil
+}
+
+func (m *TabModel) getReadMe() (string, error) {
+	integrationReadMe := filepath.Join(m.context.ConfigPath, "integrations", "packages", m.currentIntegration, "_dev", "build", "docs", "README.md")
+	content, err := os.ReadFile(integrationReadMe)
+	if err != nil {
+		return "", err
+	}
+
+	pattern := `\{\{[^}]*\}\}`
+	re := regexp.MustCompile(pattern)
+	cleanedContent := re.ReplaceAllString(string(content), "")
+
+	return cleanedContent, nil
 }

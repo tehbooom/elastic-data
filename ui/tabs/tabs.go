@@ -86,7 +86,7 @@ func (m TabsModel) View() string {
 		if i == m.ActiveTab {
 			header.WriteString(lipgloss.NewStyle().
 				Bold(true).
-				Foreground(lipgloss.Color("#FEC514")).
+				Foreground(lipgloss.Color("#0B64DD")).
 				Padding(0, 1).
 				Render("[ " + tab.TabTitle() + " ]"))
 		} else {

@@ -19,17 +19,15 @@ const (
 
 // TabModel represents the integrations tab
 type TabModel struct {
-	width          int
-	height         int
-	programContext *ProgramContext.ProgramContext
-	saveController *ProgramContext.SaveController
-	// the key is integrationName:datasetName
-	integrations map[string]*IntegrationStats
-	table        *table.Table
-	status       string
-	running      bool
-	error        error
-	// list of installed integrations
+	width                 int
+	height                int
+	programContext        *ProgramContext.ProgramContext
+	saveController        *ProgramContext.SaveController
+	integrations          map[string]*IntegrationStats
+	table                 *table.Table
+	status                string
+	running               bool
+	error                 error
 	installedIntegrations []string
 	generators            map[string]*DataGenerator
 	mu                    sync.RWMutex

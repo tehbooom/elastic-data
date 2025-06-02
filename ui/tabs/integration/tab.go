@@ -10,6 +10,7 @@ import (
 	"github.com/charmbracelet/bubbles/textinput"
 	"github.com/charmbracelet/bubbles/viewport"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
 
 	"github.com/tehbooom/elastic-data/ui/context"
 	"github.com/tehbooom/elastic-data/ui/style"
@@ -19,24 +20,30 @@ const (
 	StateSelectingIntegration = iota
 	StateSelectingDatasets
 	StateConfiguringDataset
+
+	FocusDatasetList = iota
+	FocusViewport
 )
 
 type TabModel struct {
-	width              int
-	height             int
-	context            *context.ProgramContext
-	saveController     *context.SaveController
-	state              int
-	integrationList    list.Model
-	datasetsList       list.Model
-	thresholdInput     textinput.Model
-	unitInput          textinput.Model
-	viewport           viewport.Model
-	currentIntegration string
-	columnsPerRow      int
-	selectedIndex      int
-	scrollOffset       int
-	visibleRows        int
+	width                   int
+	height                  int
+	context                 *context.ProgramContext
+	saveController          *context.SaveController
+	state                   int
+	integrationList         list.Model
+	datasetsList            list.Model
+	thresholdInput          textinput.Model
+	unitInput               textinput.Model
+	viewport                viewport.Model
+	currentIntegration      string
+	columnsPerRow           int
+	selectedIndex           int
+	scrollOffset            int
+	visibleRows             int
+	readmeRendered          bool
+	focusedDatasetComponent int
+	lastListIndex           int
 }
 
 func ValidateUnit(input string) error {
@@ -72,7 +79,6 @@ func NewTabModel(context *context.ProgramContext, saveController *context.SaveCo
 	uInput.CharLimit = 5
 	uInput.Validate = ValidateUnit
 
-	vp := viewport.New(0, 0)
 	delegate := NewCompactDelegate()
 
 	l := list.New([]list.Item{}, delegate, 0, 0)
@@ -88,17 +94,25 @@ func NewTabModel(context *context.ProgramContext, saveController *context.SaveCo
 	datasetsList.SetShowStatusBar(false)
 	datasetsList.SetShowPagination(false)
 	datasetsList.Styles.Title = style.TitleStyle
+
+	vp := viewport.New(80, 20)
+	vp.Style = lipgloss.NewStyle().
+		Border(lipgloss.RoundedBorder()).
+		BorderForeground(lipgloss.Color("240"))
+
 	return &TabModel{
-		integrationList: l,
-		context:         context,
-		viewport:        vp,
-		datasetsList:    datasetsList,
-		thresholdInput:  thInput,
-		unitInput:       uInput,
-		saveController:  saveController,
-		state:           StateSelectingIntegration,
-		scrollOffset:    0,
-		visibleRows:     1,
+		integrationList:         l,
+		context:                 context,
+		datasetsList:            datasetsList,
+		thresholdInput:          thInput,
+		unitInput:               uInput,
+		saveController:          saveController,
+		state:                   StateSelectingIntegration,
+		scrollOffset:            0,
+		visibleRows:             1,
+		viewport:                vp,
+		readmeRendered:          false,
+		focusedDatasetComponent: FocusDatasetList,
 	}
 }
 
@@ -113,8 +127,12 @@ func (m TabModel) Init() tea.Cmd {
 func (m *TabModel) SetSize(width, height int) {
 	m.width = width
 	m.height = height
+
+	listHeight := height / 2
+
 	m.integrationList.SetSize(width, height)
-	m.datasetsList.SetSize(width, height)
+	m.datasetsList.SetSize(width, listHeight)
+
 }
 
 func (m *TabModel) IsInConfigurationState() bool {

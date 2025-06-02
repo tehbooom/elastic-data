@@ -1,9 +1,12 @@
 package integration
 
 import (
+	"fmt"
 	"strconv"
 
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
+	"github.com/charmbracelet/log"
 	"github.com/tehbooom/elastic-data/ui/context"
 )
 
@@ -68,9 +71,6 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 				items := m.integrationList.Items()
 				items[m.selectedIndex] = item
 				m.integrationList.SetItems(items)
-				// items := m.integrationList.Items()
-				// items[m.integrationList.Index()] = item
-				// m.integrationList.SetItems(items)
 			}
 			return m, nil
 
@@ -88,9 +88,6 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 					items := m.integrationList.Items()
 					items[m.selectedIndex] = item
 					m.integrationList.SetItems(items)
-					// items := m.integrationList.Items()
-					// items[m.integrationList.Index()] = item
-					// m.integrationList.SetItems(items)
 				}
 
 				m.currentIntegration = item.Name
@@ -102,6 +99,7 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 			}
 
 		case "esc", "q":
+			m.readmeRendered = false
 			return m, nil
 		}
 	}
@@ -115,39 +113,86 @@ func (m *TabModel) updateDatasetSelection(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.String() {
+		case "j", "down":
+			if m.focusedDatasetComponent == FocusDatasetList {
+				log.Debug(fmt.Sprintf("index is %d", m.datasetsList.Index()))
+				if m.datasetsList.Index() < len(m.datasetsList.Items())-1 {
+					var cmd tea.Cmd
+					m.datasetsList, cmd = m.datasetsList.Update(msg)
+					return m, cmd
+				} else {
+					m.focusedDatasetComponent = FocusViewport
+					m.viewport.Style = lipgloss.NewStyle().
+						Border(lipgloss.RoundedBorder()).
+						BorderForeground(lipgloss.Color("62"))
+					m.lastListIndex = m.datasetsList.Index()
+					if len(m.datasetsList.Items()) > 1 {
+						m.datasetsList.Select(-1)
+					}
+					return m, nil
+				}
+			} else {
+				var cmd tea.Cmd
+				m.viewport, cmd = m.viewport.Update(msg)
+				return m, cmd
+			}
+		case "k", "up":
+			if m.focusedDatasetComponent == FocusViewport {
+				if m.viewport.AtTop() {
+					m.focusedDatasetComponent = FocusDatasetList
+					m.viewport.Style = lipgloss.NewStyle().
+						Border(lipgloss.RoundedBorder()).
+						BorderForeground(lipgloss.Color("240"))
+					m.datasetsList.Select(m.lastListIndex)
+					return m, nil
+				} else {
+					var cmd tea.Cmd
+					m.viewport, cmd = m.viewport.Update(msg)
+					return m, cmd
+				}
+			} else {
+				var cmd tea.Cmd
+				m.datasetsList, cmd = m.datasetsList.Update(msg)
+				return m, cmd
+			}
 		case " ":
-			item, ok := m.datasetsList.SelectedItem().(DatasetItem)
-			if !ok {
-				return m, nil
-			}
-			item.Selected = !item.Selected
-			items := m.datasetsList.Items()
-			items[m.datasetsList.Index()] = item
-			m.datasetsList.SetItems(items)
-			m.updateDatasetConfigs()
-			return m, nil
-
-		case "enter":
-			item, ok := m.datasetsList.SelectedItem().(DatasetItem)
-			if !ok {
-				return m, nil
-			}
-
-			if !item.Selected {
-				item.Selected = true
+			if m.focusedDatasetComponent == FocusDatasetList {
+				item, ok := m.datasetsList.SelectedItem().(DatasetItem)
+				if !ok {
+					return m, nil
+				}
+				item.Selected = !item.Selected
 				items := m.datasetsList.Items()
 				items[m.datasetsList.Index()] = item
 				m.datasetsList.SetItems(items)
 				m.updateDatasetConfigs()
 			}
-
-			m.thresholdInput.SetValue(strconv.Itoa(item.Threshold))
-			m.thresholdInput.Focus()
-			m.unitInput.SetValue(item.Unit)
-			m.state = StateConfiguringDataset
 			return m, nil
 
-		case "left", "esc", "q":
+		case "enter":
+			if m.focusedDatasetComponent == FocusDatasetList {
+				item, ok := m.datasetsList.SelectedItem().(DatasetItem)
+				if !ok {
+					return m, nil
+				}
+
+				if !item.Selected {
+					item.Selected = true
+					items := m.datasetsList.Items()
+					items[m.datasetsList.Index()] = item
+					m.datasetsList.SetItems(items)
+					m.updateDatasetConfigs()
+				}
+
+				m.thresholdInput.SetValue(strconv.Itoa(item.Threshold))
+				m.thresholdInput.Focus()
+				m.unitInput.SetValue(item.Unit)
+				m.state = StateConfiguringDataset
+			}
+			return m, nil
+
+		case "esc", "q":
+			m.readmeRendered = false
 			m.state = StateSelectingIntegration
 			return m, nil
 		}

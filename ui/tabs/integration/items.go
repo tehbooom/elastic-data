@@ -10,10 +10,12 @@ func (i IntegrationItem) FilterValue() string {
 }
 
 func (i IntegrationItem) Title() string {
-	prefix := "  "
+
+	prefix := "☐ "
 	if i.Selected {
-		prefix = "✓ "
+		prefix = "☑ "
 	}
+
 	return prefix + i.Name
 }
 
@@ -44,9 +46,9 @@ func (i DatasetItem) FilterValue() string {
 }
 
 func (i DatasetItem) Title() string {
-	prefix := "  "
+	prefix := "☐ "
 	if i.Selected {
-		prefix = "✓ "
+		prefix = "☑ "
 	}
 	return prefix + i.Name
 }
