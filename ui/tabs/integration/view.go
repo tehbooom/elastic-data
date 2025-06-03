@@ -38,6 +38,7 @@ func (m *TabModel) View() string {
 		help := style.FormatHelp(
 			"(hjkl/arrows)", "Navigate",
 			"(space)", "Toggle",
+			"(/)", "Search",
 			"(enter)", "Configure",
 			"(pgup/pgdn)", "Scroll",
 			"(home/g)", "Top",

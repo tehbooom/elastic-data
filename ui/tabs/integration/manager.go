@@ -163,8 +163,8 @@ func (m *TabModel) filterItems(items []list.Item, query string) []list.Item {
 
 	for _, item := range items {
 		if integrationItem, ok := item.(*IntegrationItem); ok {
-			if strings.Contains(strings.ToLower(integrationItem.Title()), query) ||
-				strings.Contains(strings.ToLower(integrationItem.Name), query) {
+			if strings.HasPrefix(strings.ToLower(integrationItem.Title()), query) ||
+				strings.HasPrefix(strings.ToLower(integrationItem.Name), query) {
 				filtered = append(filtered, item)
 			}
 		}

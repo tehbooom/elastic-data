@@ -94,7 +94,7 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 			totalItems := len(items)
 
 			switch msg.String() {
-			case "/", "ctrl+f":
+			case "/":
 				m.searchMode = true
 				m.searchQuery = ""
 				m.filteredItems = m.integrationList.Items()
