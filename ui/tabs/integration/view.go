@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/bubbles/list"
-	"github.com/charmbracelet/bubbles/viewport"
 	"github.com/charmbracelet/glamour"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/lipgloss/table"
@@ -50,6 +49,15 @@ func (m *TabModel) View() string {
 		content.WriteString(help)
 
 	case StateSelectingDatasets:
+		if len(m.datasetsList.Items()) == 0 {
+			content.WriteString("No datasets available for this integration.\n")
+			return content.String()
+		}
+
+		if m.datasetsList.Index() >= len(m.datasetsList.Items()) {
+			m.datasetsList.Select(0)
+		}
+
 		listView := m.datasetsList.View()
 
 		if m.focusedDatasetComponent == FocusDatasetList {
@@ -57,22 +65,29 @@ func (m *TabModel) View() string {
 				Border(lipgloss.RoundedBorder()).
 				BorderForeground(lipgloss.Color("#FF957D")).
 				Padding(0, 1).
+				Height(m.datasetsList.Height()).
 				Render(listView)
+
 			content.WriteString(styledList)
 		} else {
 			styledList := lipgloss.NewStyle().
 				Border(lipgloss.RoundedBorder()).
 				BorderForeground(lipgloss.Color("#F5F7FA")).
+				Height(m.datasetsList.Height()).
 				Padding(0, 1).
 				Render(listView)
+
 			content.WriteString(styledList)
 		}
 
 		content.WriteString("\n")
 
 		if !m.readmeRendered {
+			m.viewport.GotoTop()
+
 			var readMeContent string
 			var err error
+
 			readMeContent, err = m.getReadMe()
 			if err != nil {
 				log.Debug(err)
@@ -85,14 +100,7 @@ func (m *TabModel) View() string {
 				glamour.WithWordWrap(glamourRenderWidth),
 			)
 
-			viewportHeight := m.height/2 - 5
-
-			if m.viewport.Width == 0 || m.viewport.Height == 0 {
-				m.viewport = viewport.New(m.width-4, viewportHeight)
-			} else {
-				m.viewport.Width = m.width - 4
-				m.viewport.Height = m.height - 10
-			}
+			m.viewport.Width = m.width - 4
 
 			if err != nil {
 				log.Debug(err)
@@ -134,7 +142,8 @@ func (m *TabModel) renderConfigForm() string {
 
 	form.WriteString(fmt.Sprintf("\n  Configuring: %s\n\n", item.Name))
 	form.WriteString(fmt.Sprintf("  Threshold: %s\n", m.thresholdInput.View()))
-	form.WriteString(fmt.Sprintf("  Unit: %s\n\n", m.unitInput.View()))
+	form.WriteString(fmt.Sprintf("  Unit: %s\n", m.unitInput.View()))
+	form.WriteString(fmt.Sprintf("  Preserve Original Event: %s\n\n", m.preserveInput.View()))
 	help := style.FormatHelp(
 		"(enter)", "Save",
 		"(q)", "Cancel",

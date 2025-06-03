@@ -165,6 +165,7 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 					m.currentIntegration = item.Name
 					m.loadDatasetsForIntegration(item.Name)
 					m.state = StateSelectingDatasets
+
 					m.selectedIndex = 0
 					m.scrollOffset = 0
 					return m, nil
@@ -259,12 +260,16 @@ func (m *TabModel) updateDatasetSelection(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.thresholdInput.SetValue(strconv.Itoa(item.Threshold))
 				m.thresholdInput.Focus()
 				m.unitInput.SetValue(item.Unit)
+				m.preserveInput.SetValue(strconv.FormatBool(item.PreserveEventOriginal))
 				m.state = StateConfiguringDataset
 			}
 			return m, nil
 
 		case "esc", "q":
 			m.readmeRendered = false
+			m.focusedDatasetComponent = FocusDatasetList
+			m.viewport.AtTop()
+			m.datasetsList.Select(0)
 			m.state = StateSelectingIntegration
 			return m, nil
 		}
@@ -283,8 +288,13 @@ func (m *TabModel) updateDatasetConfiguration(msg tea.Msg) (tea.Model, tea.Cmd) 
 			if m.thresholdInput.Focused() {
 				m.thresholdInput.Blur()
 				m.unitInput.Focus()
-			} else {
+			} else if m.unitInput.Focused() {
 				m.unitInput.Blur()
+				m.preserveInput.Focus()
+			} else if m.preserveInput.Focused() {
+				m.preserveInput.Blur()
+				m.thresholdInput.Focus()
+			} else {
 				m.thresholdInput.Focus()
 			}
 			return m, nil
@@ -299,6 +309,10 @@ func (m *TabModel) updateDatasetConfiguration(msg tea.Msg) (tea.Model, tea.Cmd) 
 
 			threshold, _ := strconv.Atoi(m.thresholdInput.Value())
 			unit := m.unitInput.Value()
+			preserve, err := strconv.ParseBool(m.preserveInput.Value())
+			if err != nil {
+				preserve = false
+			}
 
 			item.Threshold = threshold
 			item.Unit = unit
@@ -312,10 +326,11 @@ func (m *TabModel) updateDatasetConfiguration(msg tea.Msg) (tea.Model, tea.Cmd) 
 			}
 
 			datasetMap[item.Name] = context.DatasetConfig{
-				Name:      item.Name,
-				Selected:  item.Selected,
-				Threshold: threshold,
-				Unit:      unit,
+				Name:                  item.Name,
+				Selected:              item.Selected,
+				Threshold:             threshold,
+				Unit:                  unit,
+				PreserveEventOriginal: preserve,
 			}
 
 			m.saveController.MarkDirty()
@@ -334,6 +349,8 @@ func (m *TabModel) updateDatasetConfiguration(msg tea.Msg) (tea.Model, tea.Cmd) 
 		m.thresholdInput, cmd = m.thresholdInput.Update(msg)
 	} else if m.unitInput.Focused() {
 		m.unitInput, cmd = m.unitInput.Update(msg)
+	} else {
+		m.preserveInput, cmd = m.preserveInput.Update(msg)
 	}
 	return m, cmd
 }

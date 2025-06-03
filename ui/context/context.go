@@ -21,10 +21,11 @@ type ProgramContext struct {
 }
 
 type DatasetConfig struct {
-	Name      string
-	Selected  bool
-	Threshold int
-	Unit      string
+	Name                  string
+	Selected              bool
+	Threshold             int
+	Unit                  string
+	PreserveEventOriginal bool
 }
 
 func NewProgramContext() *ProgramContext {
@@ -50,28 +51,28 @@ func (a *ProgramContext) SetIntegrationSelected(integration string, selected boo
 	a.Dirty = true
 }
 
+// SaveIntegrations persists the current integration and dataset selections to the config file.
+// Only saves integrations that are either:
+// - Enabled (regardless of dataset configuration)
+// - Disabled but have existing dataset configurations (to preserve user's work)
+// Disabled integrations with no datasets are omitted as they represent default state.
+// For enabled integrations, only saves datasets with non-default configurations
 func (a *ProgramContext) SaveIntegrations() {
 	if a.Config == nil {
 		log.Println("Cannot save: no config loaded")
 		return
 	}
 
-	// Create updated integrations map
 	updatedIntegrations := make(map[string]config.Integration)
 
-	// Process all integrations that exist in our UI state
 	for integration, enabled := range a.SelectedIntegrations {
-		// For selected integrations, save their dataset configs
 		if enabled {
 			datasetConfigs, exists := a.DatasetConfigs[integration]
 
-			// Initialize the datasets map
 			datasetsToSave := make(map[string]config.Dataset)
 
-			// If the integration has dataset configs, process them
 			if exists {
 				for datasetName, datasetConfig := range datasetConfigs {
-					// Save datasets that are selected AND have non-default configuration
 					if datasetConfig.Selected && (datasetConfig.Threshold != 0 || datasetConfig.Unit != "eps") {
 						datasetsToSave[datasetName] = config.Dataset{
 							Enabled:   datasetConfig.Selected,
@@ -82,18 +83,28 @@ func (a *ProgramContext) SaveIntegrations() {
 				}
 			}
 
-			// Always save selected integrations, even if no datasets are configured
 			updatedIntegrations[integration] = config.Integration{
 				Enabled:  true,
 				Datasets: datasetsToSave,
 			}
+		} else {
+			existingIntegration, exists := a.Config.Integrations[integration]
+			if exists {
+				updatedIntegrations[integration] = config.Integration{
+					Enabled:  false,
+					Datasets: existingIntegration.Datasets,
+				}
+			} else {
+				updatedIntegrations[integration] = config.Integration{
+					Enabled:  false,
+					Datasets: make(map[string]config.Dataset),
+				}
+			}
 		}
 	}
 
-	// Replace the entire integrations map with our updated version
 	a.Config.Integrations = updatedIntegrations
 
-	// Save the config
 	if err := config.SaveConfig(a.Config, a.ConfigPath); err != nil {
 		log.Printf("Error saving config: %v", err)
 	}

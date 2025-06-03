@@ -32,8 +32,9 @@ type Integration struct {
 }
 
 type Dataset struct {
-	Enabled   bool `mapstructure:"enabled"`
-	Threshold int  `mapstructure:"threshold"`
+	Enabled               bool `mapstructure:"enabled"`
+	Threshold             int  `mapstructure:"threshold"`
+	PreserveEventOriginal bool `mapstructure:"preserve_original_event"`
 	// EPS or bytes
 	Unit string `mapstructure:"unit"`
 }
@@ -65,37 +66,28 @@ func LoadConfig() (*Config, string, error) {
 	viper.SetConfigType("yaml")
 	viper.SetConfigName("config")
 
-	// First try to read existing config
 	configExists := false
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
-			// Config file not found, we'll create a new one with defaults
 			log.Println("Config file not found, creating new one with defaults")
 		} else {
-			// Some other error occurred while reading the config file
 			return nil, "", fmt.Errorf("failed to read config file: %w", err)
 		}
 	} else {
 		configExists = true
 	}
 
-	// Unmarshal the config
 	if err := viper.Unmarshal(config); err != nil {
 		return nil, "", fmt.Errorf("failed to unmarshal config: %w", err)
 	}
 
-	// Check if config is empty and set defaults if needed
 	if isConfigEmpty(config) {
 		setDefaults()
-		// Re-unmarshal after setting defaults
 		if err := viper.Unmarshal(config); err != nil {
 			return nil, "", fmt.Errorf("failed to unmarshal config with defaults: %w", err)
 		}
-		// Save the config with defaults
 		SaveConfig(config, "")
 	} else if !configExists {
-		// If the config didn't exist but somehow wasn't empty after unmarshaling,
-		// still save it to create the file
 		SaveConfig(config, "")
 	}
 
@@ -104,7 +96,6 @@ func LoadConfig() (*Config, string, error) {
 
 // Helper function to check if the config is empty
 func isConfigEmpty(config *Config) bool {
-	// Check if Endpoints slice is empty or if first endpoint is empty
 	kibanaEndpointsEmpty := len(config.Connection.KibanaEndpoints) == 0 ||
 		(len(config.Connection.KibanaEndpoints) > 0 && config.Connection.KibanaEndpoints[0] == "")
 
@@ -116,7 +107,6 @@ func isConfigEmpty(config *Config) bool {
 	if !kibanaEndpointsEmpty && !esEndpointsEmpty {
 		endpointsEmpty = false
 	}
-	// Check if username is empty
 	usernameEmpty := config.Connection.Username == ""
 
 	return endpointsEmpty && usernameEmpty

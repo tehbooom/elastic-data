@@ -85,8 +85,8 @@ func (m *TabModel) RunTable() *table.Table {
 	var rows [][]string
 	for _, integration := range integrationNames {
 		stat := statsSnapshot[integration]
-		currentValue := FormatLatencyAdaptive(stat.Current)
-		peakValue := FormatLatencyAdaptive(stat.Peak)
+		currentValue := formatLatencyAdaptive(stat.Current)
+		peakValue := formatLatencyAdaptive(stat.Peak)
 		var sent string
 
 		if stat.Unit == "eps" {
@@ -173,7 +173,7 @@ var baseStyle = lipgloss.NewStyle().
 	BorderStyle(lipgloss.RoundedBorder()).
 	BorderForeground(lipgloss.Color("240"))
 
-func FormatLatencyAdaptive(ms float64) string {
+func formatLatencyAdaptive(ms float64) string {
 	switch {
 	case ms >= 1000:
 		return fmt.Sprintf("%.2f s", ms/1000)

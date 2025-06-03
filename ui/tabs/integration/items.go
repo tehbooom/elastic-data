@@ -35,10 +35,11 @@ func NewIntegrationItem(name string, selected bool) *IntegrationItem {
 }
 
 type DatasetItem struct {
-	Name      string
-	Selected  bool
-	Threshold int
-	Unit      string
+	Name                  string
+	Selected              bool
+	Threshold             int
+	Unit                  string
+	PreserveEventOriginal bool
 }
 
 func (i DatasetItem) FilterValue() string {

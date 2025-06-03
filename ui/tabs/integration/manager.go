@@ -112,10 +112,11 @@ func (m *TabModel) updateDatasetConfigs() {
 		}
 
 		config := context.DatasetConfig{
-			Name:      datasetItem.Name,
-			Selected:  datasetItem.Selected,
-			Threshold: datasetItem.Threshold,
-			Unit:      datasetItem.Unit,
+			Name:                  datasetItem.Name,
+			Selected:              datasetItem.Selected,
+			Threshold:             datasetItem.Threshold,
+			Unit:                  datasetItem.Unit,
+			PreserveEventOriginal: datasetItem.PreserveEventOriginal,
 		}
 
 		datasetMap[datasetItem.Name] = config

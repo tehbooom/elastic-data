@@ -35,6 +35,7 @@ type TabModel struct {
 	datasetsList            list.Model
 	thresholdInput          textinput.Model
 	unitInput               textinput.Model
+	preserveInput           textinput.Model
 	viewport                viewport.Model
 	currentIntegration      string
 	columnsPerRow           int
@@ -85,6 +86,11 @@ func NewTabModel(context *context.ProgramContext, saveController *context.SaveCo
 	uInput.CharLimit = 5
 	uInput.Validate = ValidateUnit
 
+	pInput := textinput.New()
+	pInput.Placeholder = "false"
+	pInput.SetSuggestions([]string{"true", "false"})
+	pInput.ShowSuggestions = true
+
 	delegate := NewCompactDelegate()
 
 	l := list.New([]list.Item{}, delegate, 0, 0)
@@ -112,6 +118,7 @@ func NewTabModel(context *context.ProgramContext, saveController *context.SaveCo
 		datasetsList:            datasetsList,
 		thresholdInput:          thInput,
 		unitInput:               uInput,
+		preserveInput:           pInput,
 		saveController:          saveController,
 		state:                   StateSelectingIntegration,
 		scrollOffset:            0,
@@ -134,11 +141,13 @@ func (m *TabModel) SetSize(width, height int) {
 	m.width = width
 	m.height = height
 
-	listHeight := height / 2
+	helpHeight := 2
+	paddingHeight := 4
+	viewportHeight := height/2 - 5
 
-	m.integrationList.SetSize(width, height)
+	availableHeight := height - viewportHeight - helpHeight - paddingHeight
+	listHeight := max(availableHeight, 5)
 	m.datasetsList.SetSize(width, listHeight)
-
 }
 
 func (m *TabModel) IsInConfigurationState() bool {

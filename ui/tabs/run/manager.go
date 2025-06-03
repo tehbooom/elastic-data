@@ -146,9 +146,29 @@ func (m *TabModel) stopGeneration() {
 }
 
 func (m *TabModel) stopAllGenerators() {
-	for k, generator := range m.generators {
+	for _, generator := range m.generators {
 		generator.stop()
-		delete(m.generators, k)
+		generator.resetStats()
 	}
 	m.wg.Wait()
+}
+
+func (dg *DataGenerator) resetStats() {
+	dg.mu.Lock()
+	defer dg.mu.Unlock()
+
+	if dg.stats != nil {
+		dg.stats.mu.Lock()
+		dg.stats.Current = 0
+		dg.stats.Peak = 0
+		dg.stats.SentBytes = 0
+		dg.stats.SentEvents = 0
+		dg.stats.SentBytesUnit = ""
+		dg.stats.Trend = "stable"
+		dg.stats.mu.Unlock()
+	}
+
+	dg.bytesSent = 0
+	dg.eventsSent = 0
+	dg.averageEventSize = 0
 }

@@ -82,10 +82,11 @@ func (m Model) Init() tea.Cmd {
 
 				for datasetName, configDataset := range integrationData.Datasets {
 					datasetConfig := ProgramContext.DatasetConfig{
-						Name:      datasetName,
-						Selected:  configDataset.Enabled,
-						Unit:      configDataset.Unit,
-						Threshold: configDataset.Threshold,
+						Name:                  datasetName,
+						Selected:              configDataset.Enabled,
+						Unit:                  configDataset.Unit,
+						Threshold:             configDataset.Threshold,
+						PreserveEventOriginal: configDataset.PreserveEventOriginal,
 					}
 					datasetMap[datasetName] = datasetConfig
 				}

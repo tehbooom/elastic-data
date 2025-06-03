@@ -55,6 +55,7 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 						},
 					)
 				}
+
 				m.StartGeneration()
 				if !m.shouldTick {
 					m.shouldTick = true
@@ -67,11 +68,9 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.running = false
 				m.status = "Stopping..."
 				m.stopGeneration()
-				m.shouldTick = false
 				m.status = "Waiting to start"
+				return m, nil
 			}
-
-			return m, nil
 		}
 	case error:
 		m.error = msg

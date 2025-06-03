@@ -105,10 +105,19 @@ func (dg *DataGenerator) sendEPS() error {
 			return err
 		}
 
-		event := map[string]interface{}{
-			"message":    message,
-			"@timestamp": time.Now().UTC().Format(time.RFC3339),
-			"tags":       []string{"preserve_original_event"},
+		var event map[string]interface{}
+		if dg.config.PreserveEventOriginal {
+			event = map[string]interface{}{
+				"message":    message,
+				"@timestamp": time.Now().UTC().Format(time.RFC3339),
+				"tags":       []string{"preserve_original_event"},
+			}
+		} else {
+			event = map[string]interface{}{
+				"message":    message,
+				"@timestamp": time.Now().UTC().Format(time.RFC3339),
+				"tags":       []string{"preserve_original_event"},
+			}
 		}
 
 		events = append(events, event)
@@ -155,11 +164,20 @@ func (dg *DataGenerator) sendBytes() error {
 			log.Debug(err)
 			return err
 		}
-		//log.Debug(fmt.Sprintf("event %d for %s: %s", i, dg.config.Name, message))
 
-		event := map[string]interface{}{
-			"message":    message,
-			"@timestamp": time.Now().UTC().Format(time.RFC3339),
+		var event map[string]interface{}
+		if dg.config.PreserveEventOriginal {
+			event = map[string]interface{}{
+				"message":    message,
+				"@timestamp": time.Now().UTC().Format(time.RFC3339),
+				"tags":       []string{"preserve_original_event"},
+			}
+		} else {
+			event = map[string]interface{}{
+				"message":    message,
+				"@timestamp": time.Now().UTC().Format(time.RFC3339),
+				"tags":       []string{"preserve_original_event"},
+			}
 		}
 
 		eventBytes := dg.calculateEventSize(event)

@@ -4,11 +4,8 @@ Repository of data that can be ingested into Elasticsearch using example data fr
 
 ## TODO
 
-- Show error messages to users
 - Allow to execute application without a TUI `elastic-data run`
-- Sending bytes stopping and starting restarts the count even if threshold is meet
-- Update README to explain what integrations/datasets are supported
-- Generate a list of supported integrations and their datasets for users to easily look at
+- Show error messages to users
 - Support more timestamp formats
   - snort needs more timestamps
   - crowdstrike uses  crowdstrike.metadata.eventCreationTime and need to adjust the json
@@ -16,9 +13,9 @@ Repository of data that can be ingested into Elasticsearch using example data fr
   - username
   - hostname
   - time
-- golangcilint
-- write tests
 - user can add their own domains, IPs, and emails
 - user can provide their own log examples
-- when unselecting a integration it erases the dataset
-- add support for preserving event original
+- golangcilint
+- write tests
+- Generate a list of supported integrations and their datasets for users to easily look at
+- Update README to explain what integrations/datasets are supported
