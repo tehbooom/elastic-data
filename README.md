@@ -16,7 +16,6 @@ Repository of data that can be ingested into Elasticsearch using example data fr
   - username
   - hostname
   - time
-- Add search to integration selection
 - golangcilint
 - write tests
 - user can add their own domains, IPs, and emails

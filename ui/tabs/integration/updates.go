@@ -54,53 +54,125 @@ func (m *TabModel) handleGlobalKeys(msg tea.Msg) tea.Cmd {
 func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
-		totalItems := len(m.integrationList.Items())
-		if m.handleGridNavigation(msg, totalItems) {
-			return m, nil
-		}
-		switch msg.String() {
-		case " ":
-			if m.selectedIndex < totalItems {
-				item, ok := m.integrationList.Items()[m.selectedIndex].(*IntegrationItem)
-				if !ok {
-					return m, nil
-				}
-				item.Selected = !item.Selected
-				m.context.SetIntegrationSelected(item.Name, item.Selected)
-				m.saveController.MarkDirty()
-				items := m.integrationList.Items()
-				items[m.selectedIndex] = item
-				m.integrationList.SetItems(items)
-			}
-			return m, nil
-
-		case "enter":
-			if m.selectedIndex < totalItems {
-				item, ok := m.integrationList.Items()[m.selectedIndex].(*IntegrationItem)
-				if !ok {
-					return m, nil
-				}
-
-				if !item.Selected {
-					item.Selected = true
-					m.context.SetIntegrationSelected(item.Name, item.Selected)
-					m.saveController.MarkDirty()
-					items := m.integrationList.Items()
-					items[m.selectedIndex] = item
-					m.integrationList.SetItems(items)
-				}
-
-				m.currentIntegration = item.Name
-				m.loadDatasetsForIntegration(item.Name)
-				m.state = StateSelectingDatasets
+		if m.searchMode {
+			switch msg.String() {
+			case "enter":
+				m.searchMode = false
 				m.selectedIndex = 0
-				m.scrollOffset = 0
+				return m, nil
+			case "esc":
+				m.searchMode = false
+				m.searchQuery = ""
+				m.filteredItems = nil
+				m.selectedIndex = 0
+				return m, nil
+			case "backspace":
+				if len(m.searchQuery) > 0 {
+					m.searchQuery = m.searchQuery[:len(m.searchQuery)-1]
+					m.filteredItems = m.filterItems(m.integrationList.Items(), m.searchQuery)
+					m.selectedIndex = 0
+				}
+				return m, nil
+			default:
+				if len(msg.String()) == 1 && msg.String() != " " || msg.String() == "space" {
+					char := msg.String()
+					if char == "space" {
+						char = " "
+					}
+					m.searchQuery += char
+					m.filteredItems = m.filterItems(m.integrationList.Items(), m.searchQuery)
+					m.selectedIndex = 0
+				}
+				return m, nil
+			}
+		} else {
+			items := m.integrationList.Items()
+			if m.searchMode && m.filteredItems != nil {
+				items = m.filteredItems
+			}
+
+			totalItems := len(items)
+
+			switch msg.String() {
+			case "/", "ctrl+f":
+				m.searchMode = true
+				m.searchQuery = ""
+				m.filteredItems = m.integrationList.Items()
 				return m, nil
 			}
 
-		case "esc", "q":
-			m.readmeRendered = false
-			return m, nil
+			if m.handleGridNavigation(msg, totalItems) {
+				return m, nil
+			}
+
+			switch msg.String() {
+			case " ":
+				if m.selectedIndex < totalItems {
+					var item *IntegrationItem
+					var ok bool
+					if m.searchMode && m.filteredItems != nil {
+						item, ok = m.filteredItems[m.selectedIndex].(*IntegrationItem)
+					} else {
+						item, ok = m.integrationList.Items()[m.selectedIndex].(*IntegrationItem)
+					}
+					if !ok {
+						return m, nil
+					}
+					item.Selected = !item.Selected
+					m.context.SetIntegrationSelected(item.Name, item.Selected)
+					m.saveController.MarkDirty()
+
+					originalItems := m.integrationList.Items()
+					for i, origItem := range originalItems {
+						if origIntegration, ok := origItem.(*IntegrationItem); ok && origIntegration.Name == item.Name {
+							originalItems[i] = item
+							break
+						}
+					}
+					m.integrationList.SetItems(originalItems)
+
+					if m.searchMode && m.filteredItems != nil {
+						m.filteredItems[m.selectedIndex] = item
+					}
+				}
+				return m, nil
+			case "enter":
+				if m.selectedIndex < totalItems {
+					var item *IntegrationItem
+					var ok bool
+					if m.searchMode && m.filteredItems != nil {
+						item, ok = m.filteredItems[m.selectedIndex].(*IntegrationItem)
+					} else {
+						item, ok = m.integrationList.Items()[m.selectedIndex].(*IntegrationItem)
+					}
+					if !ok {
+						return m, nil
+					}
+					if !item.Selected {
+						item.Selected = true
+						m.context.SetIntegrationSelected(item.Name, item.Selected)
+						m.saveController.MarkDirty()
+
+						originalItems := m.integrationList.Items()
+						for i, origItem := range originalItems {
+							if origIntegration, ok := origItem.(*IntegrationItem); ok && origIntegration.Name == item.Name {
+								originalItems[i] = item
+								break
+							}
+						}
+						m.integrationList.SetItems(originalItems)
+					}
+					m.currentIntegration = item.Name
+					m.loadDatasetsForIntegration(item.Name)
+					m.state = StateSelectingDatasets
+					m.selectedIndex = 0
+					m.scrollOffset = 0
+					return m, nil
+				}
+			case "esc", "q":
+				m.readmeRendered = false
+				return m, nil
+			}
 		}
 	}
 

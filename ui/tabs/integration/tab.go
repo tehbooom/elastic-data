@@ -44,6 +44,9 @@ type TabModel struct {
 	readmeRendered          bool
 	focusedDatasetComponent int
 	lastListIndex           int
+	searchMode              bool
+	searchQuery             string
+	filteredItems           []list.Item
 }
 
 func ValidateUnit(input string) error {
@@ -57,9 +60,13 @@ func ValidateUnit(input string) error {
 }
 
 func ValidateThreshold(input string) error {
-	_, err := strconv.Atoi(input)
+	value, err := strconv.Atoi(input)
 	if err != nil {
 		return fmt.Errorf("Threshold value is not a number")
+	}
+
+	if value < 1 {
+		return fmt.Errorf("Threshold value must be greater than or equal to 1")
 	}
 
 	return nil
@@ -69,8 +76,7 @@ func NewTabModel(context *context.ProgramContext, saveController *context.SaveCo
 	thInput := textinput.New()
 	thInput.Placeholder = "Enter threshold value"
 	thInput.CharLimit = 10
-	// TODO: Verify only ints are entered
-	//thInput.Validate()
+	thInput.Validate = ValidateThreshold
 
 	uInput := textinput.New()
 	uInput.Placeholder = "Unit (eps or bytes)"
@@ -84,7 +90,7 @@ func NewTabModel(context *context.ProgramContext, saveController *context.SaveCo
 	l := list.New([]list.Item{}, delegate, 0, 0)
 	l.Title = "Available Integrations"
 	l.SetShowHelp(false)
-	l.SetFilteringEnabled(false)
+	l.SetFilteringEnabled(true)
 	l.SetShowStatusBar(false)
 	l.SetShowPagination(true)
 

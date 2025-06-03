@@ -152,3 +152,22 @@ func (m *TabModel) getReadMe() (string, error) {
 
 	return cleanedContent, nil
 }
+
+func (m *TabModel) filterItems(items []list.Item, query string) []list.Item {
+	if query == "" {
+		return items
+	}
+
+	var filtered []list.Item
+	query = strings.ToLower(query)
+
+	for _, item := range items {
+		if integrationItem, ok := item.(*IntegrationItem); ok {
+			if strings.Contains(strings.ToLower(integrationItem.Title()), query) ||
+				strings.Contains(strings.ToLower(integrationItem.Name), query) {
+				filtered = append(filtered, item)
+			}
+		}
+	}
+	return filtered
+}

@@ -157,11 +157,33 @@ func (m *TabModel) calculateColumns() int {
 }
 
 func (m *TabModel) renderMultiColumnList(items []list.Item, title string) string {
-	if len(items) == 0 {
-		return fmt.Sprintf("%s\n\nNo items available", style.TitleStyle.Render(title))
+	displayItems := items
+
+	if m.searchMode {
+		displayItems = m.filteredItems
+		title = fmt.Sprintf("%s (Search: %s)", title, m.searchQuery)
+	}
+
+	if len(displayItems) == 0 {
+		emptyMsg := "No items available"
+		if m.searchMode && len(m.searchQuery) > 0 {
+			emptyMsg = fmt.Sprintf("No items found for '%s'", m.searchQuery)
+		}
+		return fmt.Sprintf("%s\n\n%s", style.TitleStyle.Render(title), emptyMsg)
 	}
 
 	var content strings.Builder
+
+	if m.searchMode {
+		searchPrompt := fmt.Sprintf("Search: %s█", m.searchQuery)
+		searchStyle := lipgloss.NewStyle().
+			Width(m.width - 6).
+			Align(lipgloss.Left).
+			Foreground(lipgloss.Color("#FFFF00")).
+			Render(searchPrompt)
+		content.WriteString(searchStyle + "\n")
+	}
+
 	centeredTitle := lipgloss.NewStyle().
 		Width(m.width - 6).
 		Align(lipgloss.Center).
@@ -170,7 +192,7 @@ func (m *TabModel) renderMultiColumnList(items []list.Item, title string) string
 	content.WriteString(centeredTitle + "\n\n")
 
 	columns := m.calculateColumns()
-	totalItems := len(items)
+	totalItems := len(displayItems)
 	rowsNeeded := (totalItems + columns - 1) / columns
 
 	startRow := m.scrollOffset
@@ -194,7 +216,7 @@ func (m *TabModel) renderMultiColumnList(items []list.Item, title string) string
 			isCursorSelected := itemIndex == m.selectedIndex
 
 			var isItemSelected bool
-			if itemIndex < len(items) {
+			if itemIndex < len(displayItems) {
 				if integrationItem, ok := items[itemIndex].(*IntegrationItem); ok {
 					isItemSelected = integrationItem.Selected
 				}
@@ -223,7 +245,7 @@ func (m *TabModel) renderMultiColumnList(items []list.Item, title string) string
 				continue
 			}
 
-			item := items[itemIndex]
+			item := displayItems[itemIndex]
 			var itemText string
 
 			if integrationItem, ok := item.(*IntegrationItem); ok {
