@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/charmbracelet/log"
 	"github.com/tehbooom/elastic-data/internal/config"
 	"github.com/tehbooom/go-kibana"
 	"github.com/tehbooom/go-kibana/kbapi"
@@ -26,7 +27,8 @@ func (c *Config) TestConnection() error {
 
 	_, err := c.Client.Status.GetRedacted(c.Ctx, &kbapi.GetStatusRequest{})
 	if err != nil {
-		return fmt.Errorf("error connecting to cluster: %w", err)
+		log.Debug(err)
+		return fmt.Errorf("error connecting to kibana: %w", err)
 	}
 
 	c.Connected = true
@@ -52,6 +54,7 @@ func SetClient(cfg config.ConfigConnection) (*kibana.Client, error) {
 	if cfg.CACert != "" {
 		cert, err := os.ReadFile(cfg.CACert)
 		if err != nil {
+			log.Debug(err)
 			return nil, fmt.Errorf("error reading certificate authority %s: %w", cfg.CACert, err)
 		}
 		kbConfig.CACert = cert
@@ -59,6 +62,7 @@ func SetClient(cfg config.ConfigConnection) (*kibana.Client, error) {
 
 	client, err := kibana.NewClient(kbConfig)
 	if err != nil {
+		log.Debug(err)
 		return nil, fmt.Errorf("failed to create kibana client: %w", err)
 	}
 
@@ -71,6 +75,7 @@ func (c *Config) InstallPackage(pkgName string) error {
 	})
 
 	if err != nil {
+		log.Debug(err)
 		return fmt.Errorf("failed to install package %s: %w", pkgName, err)
 	}
 
@@ -80,6 +85,7 @@ func (c *Config) InstallPackage(pkgName string) error {
 func (c *Config) GetInstalledPackages() ([]string, error) {
 	resp, err := c.Client.EPM.GetPackagesInstalled(c.Ctx, &kbapi.FleetEPMGetInstalledPackagesRequest{})
 	if err != nil {
+		log.Debug(err)
 		return nil, fmt.Errorf("error getting install packages: %w", err)
 	}
 

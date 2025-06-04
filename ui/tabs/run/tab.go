@@ -2,7 +2,6 @@ package run
 
 import (
 	"context"
-	"fmt"
 	"sync"
 	"time"
 
@@ -34,24 +33,6 @@ type TabModel struct {
 	mainCancel            context.CancelFunc
 	shouldTick            bool
 	wg                    sync.WaitGroup
-}
-
-type TabError struct {
-	Message string
-	Err     error
-}
-
-func errorCmd(err error) tea.Cmd {
-	return func() tea.Msg {
-		return err
-	}
-}
-
-func (e TabError) Error() string {
-	if e.Err != nil {
-		return fmt.Sprintf("%s: %v", e.Message, e.Err)
-	}
-	return e.Message
 }
 
 // NewTabModel creates a new run tab model

@@ -11,6 +11,11 @@ var (
 	ItemStyle     = lipgloss.NewStyle().PaddingLeft(4)
 	HelpStyle     = lipgloss.NewStyle().Foreground(lipgloss.Color("239"))
 	HelpStyleKeys = lipgloss.NewStyle().Foreground(lipgloss.Color("241")).Bold(true)
+	ErrorStyle    = lipgloss.NewStyle().
+			Background(lipgloss.Color("#2D2D2D")).
+			Foreground(lipgloss.Color("#FF6B6B")).
+			Padding(0, 1).
+			Bold(true)
 )
 
 func FormatHelp(items ...string) string {

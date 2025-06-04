@@ -164,12 +164,14 @@ func (l *LogTemplate) UpdateValues() {
 
 func (l *LogTemplate) ExecuteTemplate() (string, error) {
 	if l.Template == nil {
+		log.Debug(fmt.Errorf("template not parsed yet, call Parse() first"))
 		return "", fmt.Errorf("template not parsed yet, call Parse() first")
 	}
 
 	var buf bytes.Buffer
 	err := l.Template.Execute(&buf, l.Data)
 	if err != nil {
+		log.Debug(err)
 		return "", fmt.Errorf("failed to execute template: %v", err)
 	}
 
@@ -187,6 +189,7 @@ func LoadTemplatesForDataset(cfgPath, integration, dataset string) ([]LogTemplat
 
 	err = filepath.WalkDir(basePath, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
+			log.Debug(err)
 			return err
 		}
 
@@ -218,6 +221,7 @@ func LoadTemplatesForDataset(cfgPath, integration, dataset string) ([]LogTemplat
 	})
 
 	if err != nil {
+		log.Debug(err)
 		return nil, fmt.Errorf("error walking directory %s: %w", basePath, err)
 	}
 

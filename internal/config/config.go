@@ -2,10 +2,10 @@ package config
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"path/filepath"
 
+	"github.com/charmbracelet/log"
 	"github.com/spf13/viper"
 )
 
@@ -46,11 +46,13 @@ func LoadConfig() (*Config, string, error) {
 	if configHome == "" {
 		home, err := os.UserHomeDir()
 		if err != nil {
+			log.Debug(err)
 			return nil, "", fmt.Errorf("failed to find home directory: %w", err)
 		}
 		configHome = filepath.Join(home, ".config")
 		if _, err := os.Stat(configHome); os.IsNotExist(err) {
 			if err := os.Mkdir(configHome, 0755); err != nil {
+				log.Debug(err)
 				return nil, "", fmt.Errorf("failed to create config directory: %w", err)
 			}
 		}
@@ -58,6 +60,7 @@ func LoadConfig() (*Config, string, error) {
 	appConfigDir := filepath.Join(configHome, "elastic-data")
 	if _, err := os.Stat(appConfigDir); os.IsNotExist(err) {
 		if err := os.Mkdir(appConfigDir, 0755); err != nil {
+			log.Debug(err)
 			return nil, "", fmt.Errorf("failed to create application config directory: %w", err)
 		}
 	}
@@ -69,8 +72,9 @@ func LoadConfig() (*Config, string, error) {
 	configExists := false
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
-			log.Println("Config file not found, creating new one with defaults")
+			log.Debug("Config file not found, creating new one with defaults")
 		} else {
+			log.Debug(err)
 			return nil, "", fmt.Errorf("failed to read config file: %w", err)
 		}
 	} else {
@@ -78,12 +82,14 @@ func LoadConfig() (*Config, string, error) {
 	}
 
 	if err := viper.Unmarshal(config); err != nil {
+		log.Debug(err)
 		return nil, "", fmt.Errorf("failed to unmarshal config: %w", err)
 	}
 
 	if isConfigEmpty(config) {
 		setDefaults()
 		if err := viper.Unmarshal(config); err != nil {
+			log.Debug(err)
 			return nil, "", fmt.Errorf("failed to unmarshal config with defaults: %w", err)
 		}
 		SaveConfig(config, "")
@@ -128,11 +134,13 @@ func SaveConfig(config *Config, configPath string) error {
 	} else {
 		home, err := os.UserHomeDir()
 		if err != nil {
+			log.Debug(err)
 			return fmt.Errorf("failed to find home directory: %w", err)
 		}
 
 		configDir := filepath.Join(home, ".config", "elastic-data")
 		if err := os.MkdirAll(configDir, 0755); err != nil {
+			log.Debug(err)
 			return fmt.Errorf("failed to create config directory: %w", err)
 		}
 
@@ -143,6 +151,7 @@ func SaveConfig(config *Config, configPath string) error {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
 			return viper.SafeWriteConfig()
 		}
+		log.Debug(err)
 		return fmt.Errorf("failed to write config file: %w", err)
 	}
 

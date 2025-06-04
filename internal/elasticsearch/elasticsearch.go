@@ -28,10 +28,10 @@ func (c *Config) TestConnection() error {
 
 	resp, err := c.Client.Core.Info().Do(c.Ctx)
 	if err != nil {
-		return fmt.Errorf("error connecting to cluster: %w", err)
+		log.Debug(err)
+		return fmt.Errorf("error connecting to elasticsearch cluster: %w", err)
 	}
 
-	log.Debug(resp.ClusterName)
 	c.Version = resp.Version.Int
 	c.Connected = true
 
@@ -56,6 +56,7 @@ func SetClient(cfg config.ConfigConnection) (*elasticsearch.TypedClient, error) 
 	if cfg.CACert != "" {
 		cert, err := os.ReadFile(cfg.CACert)
 		if err != nil {
+			log.Debug(err)
 			return nil, fmt.Errorf("error reading certificate authority %s: %w", cfg.CACert, err)
 		}
 		esConfig.CACert = cert
@@ -63,14 +64,9 @@ func SetClient(cfg config.ConfigConnection) (*elasticsearch.TypedClient, error) 
 
 	es, err := elasticsearch.NewTypedClient(esConfig)
 	if err != nil {
+		log.Debug(err)
 		return nil, fmt.Errorf("error creating ES client: %w", err)
 	}
-
-	esadd := fmt.Sprintf("ESAddress: %s", esConfig.Addresses)
-	esconfig := fmt.Sprintf("ES CONFIG ENDPOINTS: %s", cfg.ElasticsearchEndpoints)
-
-	log.Debug(esadd)
-	log.Debug(esconfig)
 
 	return es, nil
 }
@@ -81,6 +77,7 @@ func (c *Config) BulkRequest(index string, events []map[string]interface{}) (tim
 	for _, event := range events {
 		err := bulk.CreateOp(*&types.CreateOperation{}, event)
 		if err != nil {
+			log.Debug(err)
 			return duration, err
 		}
 	}

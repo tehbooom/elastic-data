@@ -15,6 +15,8 @@ import (
 	"github.com/tehbooom/elastic-data/internal/integrations"
 	"github.com/tehbooom/elastic-data/internal/kibana"
 	ProgramContext "github.com/tehbooom/elastic-data/ui/context"
+	"github.com/tehbooom/elastic-data/ui/errors"
+	"github.com/tehbooom/elastic-data/ui/style"
 	"github.com/tehbooom/elastic-data/ui/tabs"
 	"github.com/tehbooom/elastic-data/ui/tabs/integration"
 	"github.com/tehbooom/elastic-data/ui/tabs/run"
@@ -37,6 +39,7 @@ type Model struct {
 	loading        LoadingModel
 	tabs           tabs.TabsModel
 	saveController *ProgramContext.SaveController
+	error          *errors.ErrorOverlay
 }
 
 func NewModel() Model {
@@ -122,6 +125,12 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	var cmds []tea.Cmd
 
 	switch msg := msg.(type) {
+	case errors.ShowErrorMsg:
+		m.error = errors.NewErrorOverlay(msg.Message)
+		return m, errors.ErrorTimeout()
+	case errors.ErrorTimeoutMsg:
+		m.error = nil
+		return m, nil
 	case tea.WindowSizeMsg:
 		m.width = msg.Width
 		m.height = msg.Height
@@ -184,6 +193,23 @@ func (m Model) View() string {
 		)
 	case TabsScreen:
 		content = m.tabs.View()
+	}
+
+	if m.error != nil {
+		errorBox := style.ErrorStyle.Render("❌ " + m.error.Message)
+
+		if m.width > 0 && m.height > 0 {
+			errorOverlay := lipgloss.Place(
+				m.width,
+				m.height,
+				lipgloss.Center,
+				lipgloss.Center,
+				errorBox,
+			)
+			return errorOverlay
+		} else {
+			return "\n\n" + errorBox
+		}
 	}
 
 	return content

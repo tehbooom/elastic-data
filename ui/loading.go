@@ -9,7 +9,9 @@ import (
 	"github.com/charmbracelet/bubbles/spinner"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
+	"github.com/charmbracelet/log"
 	"github.com/go-git/go-git/v5"
+	"github.com/tehbooom/elastic-data/ui/errors"
 )
 
 const ElasticIntegrationsRepoURL string = "https://github.com/elastic/integrations"
@@ -132,8 +134,10 @@ func (m LoadingModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return m, nil
 
 	case errMsg:
-		m.err = msg
-		return m, nil
+		log.Debug(msg)
+		return m, func() tea.Msg {
+			return errors.ShowErrorMsg{Message: fmt.Sprintf("Operation failed: %v", msg)}
+		}
 
 	case loadingCompleteMsg:
 		m.complete = true

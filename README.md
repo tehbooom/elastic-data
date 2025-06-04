@@ -5,7 +5,6 @@ Repository of data that can be ingested into Elasticsearch using example data fr
 ## TODO
 
 - Allow to execute application without a TUI `elastic-data run`
-- Show error messages to users
 - Support more timestamp formats
   - snort needs more timestamps
   - crowdstrike uses  crowdstrike.metadata.eventCreationTime and need to adjust the json

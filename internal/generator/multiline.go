@@ -51,6 +51,7 @@ func GetMultiLineConfig(datasetPath string) (*multiline.Config, error) {
 	handlebarFiles := filepath.Join(datasetPath, "agent", "stream")
 	entries, err := os.ReadDir(handlebarFiles)
 	if err != nil {
+		log.Debug(err)
 		return nil, fmt.Errorf("failed to read directory %s: %w", handlebarFiles, err)
 	}
 
@@ -77,7 +78,6 @@ func GetMultiLineConfig(datasetPath string) (*multiline.Config, error) {
 			if yaml.Unmarshal(yamlContent, &flat) == nil {
 				if flat.Pattern != "" {
 					log.Debug(fmt.Sprintf("flat multiline config found for %s", handlebarFiles))
-					log.Debug(flat)
 
 					config, err := buildMultilineConfig(flat)
 					if err != nil {
@@ -165,6 +165,7 @@ func buildMultilineConfig(flat FlatConfig) (*multiline.Config, error) {
 	if flat.Timeout != "" {
 		timeout, err := parseTimeout(flat.Timeout)
 		if err != nil {
+			log.Debug(err)
 			return nil, fmt.Errorf("failed to parse timeout '%s': %w", flat.Timeout, err)
 		}
 		config.Timeout = &timeout
@@ -250,6 +251,7 @@ func extractMultilineFromManifest(manifest map[string]interface{}) *multiline.Co
 func ExtractYAMLFromHBS(filename string) ([]byte, error) {
 	content, err := os.ReadFile(filename)
 	if err != nil {
+		log.Debug(err)
 		return nil, fmt.Errorf("failed to read file: %w", err)
 	}
 
@@ -295,6 +297,7 @@ func createReaderPipeline(file *os.File, multilineConfig *multiline.Config) (rea
 
 	var buf bytes.Buffer
 	if _, err := io.Copy(&buf, file); err != nil {
+		log.Debug(err)
 		return nil, fmt.Errorf("failed to read file into buffer: %w", err)
 	}
 
@@ -386,6 +389,7 @@ func buildMultilineConfigNested(flat NestedConfig) (*multiline.Config, error) {
 		if flat.Multiline.Match == "after" || flat.Multiline.Match == "before" {
 			config.Match = flat.Multiline.Match
 		} else {
+			log.Debug(fmt.Errorf("invalid match type '%s': must be 'after' or 'before'", flat.Multiline.Match))
 			return nil, fmt.Errorf("invalid match type '%s': must be 'after' or 'before'", flat.Multiline.Match)
 		}
 	}
@@ -411,6 +415,7 @@ func buildMultilineConfigNested(flat NestedConfig) (*multiline.Config, error) {
 	if flat.Multiline.Timeout != "" {
 		timeout, err := parseTimeout(flat.Multiline.Timeout)
 		if err != nil {
+			log.Debug(fmt.Errorf("failed to parse timeout '%s': %w", flat.Multiline.Timeout, err))
 			return nil, fmt.Errorf("failed to parse timeout '%s': %w", flat.Multiline.Timeout, err)
 		}
 		config.Timeout = &timeout

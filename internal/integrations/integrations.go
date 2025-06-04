@@ -5,19 +5,24 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/charmbracelet/log"
 )
 
 func GetIntegrations(repoPath string) ([]string, error) {
 	basePath := filepath.Join(repoPath, "packages")
 	fileInfo, err := os.Stat(basePath)
 	if err != nil {
+		log.Debug(err)
 		return nil, fmt.Errorf("failed to access path %s: %w", basePath, err)
 	}
 	if !fileInfo.IsDir() {
+		log.Debug(err)
 		return nil, fmt.Errorf("%s is not a directory", basePath)
 	}
 	entries, err := os.ReadDir(basePath)
 	if err != nil {
+		log.Debug(err)
 		return nil, fmt.Errorf("failed to read directory %s: %w", basePath, err)
 	}
 	var directories []string
@@ -35,13 +40,16 @@ func GetDatasets(repoPath, integration string) ([]string, error) {
 	basePath := filepath.Join(repoPath, "packages", integration, "data_stream")
 	fileInfo, err := os.Stat(basePath)
 	if err != nil {
+		log.Debug(err)
 		return nil, fmt.Errorf("failed to access path %s: %w", basePath, err)
 	}
 	if !fileInfo.IsDir() {
+		log.Debug(err)
 		return nil, fmt.Errorf("%s is not a directory", basePath)
 	}
 	entries, err := os.ReadDir(basePath)
 	if err != nil {
+		log.Debug(err)
 		return nil, fmt.Errorf("failed to read directory %s: %w", basePath, err)
 	}
 	var directories []string

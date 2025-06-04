@@ -112,25 +112,20 @@ func (a *ProgramContext) SaveIntegrations() {
 	a.Dirty = false
 }
 
-// LoadFromConfig loads the application state from the config
 func (a *ProgramContext) LoadFromConfig(cfg *config.Config, path string) {
 	a.Config = cfg
 	a.ConfigPath = filepath.Join(path, "config.yaml")
 
-	// Initialize from config
 	if cfg.Integrations != nil {
 		for integration, integrationData := range cfg.Integrations {
-			// Set selection state
 			a.SelectedIntegrations[integration] = integrationData.Enabled
 
-			// Create dataset map if it doesn't exist
 			datasetMap, exists := a.DatasetConfigs[integration]
 			if !exists {
 				datasetMap = make(map[string]DatasetConfig)
 				a.DatasetConfigs[integration] = datasetMap
 			}
 
-			// Add datasets
 			for datasetName, configDataset := range integrationData.Datasets {
 				datasetMap[datasetName] = DatasetConfig{
 					Name:      datasetName,

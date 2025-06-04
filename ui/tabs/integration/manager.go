@@ -43,7 +43,7 @@ func (m *TabModel) GetSelectedIntegrations() map[string]bool {
 	return result
 }
 
-func (m *TabModel) loadDatasetsForIntegration(integration string) {
+func (m *TabModel) loadDatasetsForIntegration(integration string) error {
 	var datasetItems []list.Item
 
 	datasetMap, exists := m.context.DatasetConfigs[integration]
@@ -56,7 +56,7 @@ func (m *TabModel) loadDatasetsForIntegration(integration string) {
 	repoDir := filepath.Join(configDir, "integrations")
 	dataSets, err := integrations.GetDatasets(repoDir, integration)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	for i, j := range dataSets {
@@ -90,6 +90,8 @@ func (m *TabModel) loadDatasetsForIntegration(integration string) {
 
 	m.datasetsList.SetItems(datasetItems)
 	m.datasetsList.Title = fmt.Sprintf("%s Datasets", strings.ToUpper(integration))
+
+	return nil
 }
 
 func (m *TabModel) updateDatasetConfigs() {

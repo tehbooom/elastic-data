@@ -1,10 +1,12 @@
 package run
 
 import (
+	"fmt"
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/log"
+	"github.com/tehbooom/elastic-data/ui/errors"
 )
 
 type tickMsg struct{}
@@ -39,24 +41,27 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				err := m.programContext.ESClient.TestConnection()
 				if err != nil {
 					log.Debug(err)
-					return m, tea.Batch(
-						func() tea.Msg {
-							return TabError{Message: "Failed to connect to cluster", Err: err}
-						},
-					)
+					return m, func() tea.Msg {
+						return errors.ShowErrorMsg{Message: fmt.Sprintf("Error: %v", err)}
+					}
 				}
 
 				err = m.programContext.KBClient.TestConnection()
 				if err != nil {
 					log.Debug(err)
-					return m, tea.Batch(
-						func() tea.Msg {
-							return TabError{Message: "Failed to connect to cluster", Err: err}
-						},
-					)
+					return m, func() tea.Msg {
+						return errors.ShowErrorMsg{Message: fmt.Sprintf("Error: %v", err)}
+					}
 				}
 
-				m.StartGeneration()
+				err = m.StartGeneration()
+				if err != nil {
+					log.Debug(err)
+					return m, func() tea.Msg {
+						return errors.ShowErrorMsg{Message: fmt.Sprintf("Error generating data: %v", err)}
+					}
+				}
+
 				if !m.shouldTick {
 					m.shouldTick = true
 					return m, tea.Tick(time.Second, func(time.Time) tea.Msg {
@@ -72,12 +77,6 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				return m, nil
 			}
 		}
-	case error:
-		m.error = msg
-		return m, tea.Quit
-	case TabError:
-		m.error = msg
-		return m, tea.Quit
 	}
 
 	return m, nil

@@ -5,6 +5,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
+	"github.com/tehbooom/elastic-data/ui/errors"
 	"github.com/tehbooom/elastic-data/ui/tabs/integration"
 	"github.com/tehbooom/elastic-data/ui/tabs/run"
 )
@@ -40,6 +41,8 @@ func (m *TabsModel) SetSize(width, height int) {
 
 func (m TabsModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
+	case errors.ShowErrorMsg:
+		return m, func() tea.Msg { return msg }
 	case tea.KeyMsg:
 		if integrationsTab, ok := m.Tabs[m.ActiveTab].(*integration.IntegrationsTabModel); ok {
 			if integrationsTab.IsInConfigurationState() {
