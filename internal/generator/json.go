@@ -9,6 +9,7 @@ import (
 	"net/url"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 	"text/template"
 
@@ -49,7 +50,7 @@ func ParseJSONFile(filePath string) ([]LogTemplate, error) {
 			DataPools: initializeDataPools(),
 		}
 
-		template.AddCommonPatterns()
+		template.AddCommonPatterns(true)
 		err = template.ParseJSONEvent()
 		if err != nil {
 			log.Debug(err)
@@ -107,31 +108,59 @@ func processMap(data map[string]interface{}, extractedData map[string]string) {
 	for key, value := range data {
 		switch v := value.(type) {
 		case string:
-			placeholder := convertStringValue(v, extractedData)
+			placeholder := convertStringValue(key, v, extractedData)
 			data[key] = placeholder
+		case float64:
+			placeholder := convertNumericValue(key, v, extractedData)
+			if placeholder != "" {
+				data[key] = placeholder
+			}
+		case int64:
+			placeholder := convertNumericValue(key, float64(v), extractedData)
+			if placeholder != "" {
+				data[key] = placeholder
+			}
 		case map[string]interface{}:
 			processMap(v, extractedData)
 		case []interface{}:
-			processSlice(v, extractedData)
+			processSlice(key, v, extractedData)
 		}
 	}
 }
 
-func processSlice(slice []interface{}, extractedData map[string]string) {
+func processSlice(key string, slice []interface{}, extractedData map[string]string) {
 	for i, value := range slice {
 		switch v := value.(type) {
 		case string:
-			placeholder := convertStringValue(v, extractedData)
+			placeholder := convertStringValue(key, v, extractedData)
 			slice[i] = placeholder
 		case map[string]interface{}:
 			processMap(v, extractedData)
 		case []interface{}:
-			processSlice(v, extractedData)
+			processSlice(key, v, extractedData)
 		}
 	}
 }
 
-func convertStringValue(value string, extractedData map[string]string) string {
+func convertNumericValue(k string, value float64, extractedData map[string]string) string {
+	key := strings.ToLower(k)
+
+	if strings.Contains(key, "time") || strings.Contains(key, "timestamp") {
+		valueStr := strconv.FormatFloat(value, 'f', 0, 64)
+
+		if unixMsRegex.MatchString(valueStr) {
+			extractedData["timestamp_unix_ms"] = valueStr
+			return "{{.timestamp_unix_ms}}"
+		} else if unixSecRegex.MatchString(valueStr) {
+			extractedData["timestamp_unix_s"] = valueStr
+			return "{{.timestamp_unix_s}}"
+		}
+	}
+
+	return ""
+}
+
+func convertStringValue(k, value string, extractedData map[string]string) string {
 	value = strings.TrimSpace(value)
 
 	if isEmail(value) {
@@ -154,26 +183,47 @@ func convertStringValue(value string, extractedData map[string]string) string {
 		return "{{.IPs}}"
 	}
 
-	if isTimestampISO(value) {
+	if isoRegex.MatchString(value) {
 		extractedData["timestamp_iso"] = value
 		return "{{.timestamp_iso}}"
 	}
 
-	if isTimestampCommon(value) {
+	if commonRegex.MatchString(value) {
 		extractedData["timestamp_common"] = value
 		return "{{.timestamp_common}}"
 	}
 
-	if isTimestampCLF(value) {
+	if clfRegex.MatchString(value) {
 		extractedData["timestamp_clf"] = value
 		return "{{.timestamp_clf}}"
 	}
 
-	if isTimestampSyslog(value) {
+	if syslogRegex.MatchString(value) {
 		extractedData["timestamp_syslog"] = value
 		return "{{.timestamp_syslog}}"
 	}
+	if snortRegex.MatchString(value) {
+		extractedData["timestamp_snort"] = value
+		return "{{.timestamp_snort}}"
+	}
 
+	key := strings.ToLower(k)
+
+	if strings.Contains(key, "time") || strings.Contains(key, "timestamp") {
+		if unixMsRegex.MatchString(value) {
+			extractedData["timestamp_unix_ms"] = value
+			return "{{.timestamp_unix_ms}}"
+		} else if unixSecRegex.MatchString(value) {
+			extractedData["timestamp_unix_s"] = value
+			return "{{.timestamp_unix_s}}"
+		}
+	} else if strings.Contains(key, "username") {
+		extractedData["Users"] = value
+		return "{{.Users}}"
+	} else if strings.Contains(key, "hostname") {
+		extractedData["Hosts"] = value
+		return "{{.Hosts}}"
+	}
 	return value
 }
 
@@ -201,48 +251,4 @@ func isDomain(s string) bool {
 
 func isIP(s string) bool {
 	return net.ParseIP(s) != nil
-}
-
-func isTimestampISO(s string) bool {
-	regex := regexp.MustCompile(`\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z?`)
-
-	matches := regex.FindAllString(s, -1)
-	if len(matches) > 0 {
-		return true
-	}
-
-	return false
-}
-
-func isTimestampCommon(s string) bool {
-	regex := regexp.MustCompile(`\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}`)
-
-	matches := regex.FindAllString(s, -1)
-	if len(matches) > 0 {
-		return true
-	}
-
-	return false
-}
-
-func isTimestampCLF(s string) bool {
-	regex := regexp.MustCompile(`\[\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}[^\]]*\]`)
-
-	matches := regex.FindAllString(s, -1)
-	if len(matches) > 0 {
-		return true
-	}
-
-	return false
-}
-
-func isTimestampSyslog(s string) bool {
-	regex := regexp.MustCompile(`[A-Za-z]{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}`)
-
-	matches := regex.FindAllString(s, -1)
-	if len(matches) > 0 {
-		return true
-	}
-
-	return false
 }

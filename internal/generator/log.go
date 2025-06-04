@@ -87,9 +87,8 @@ func processLogLine(line []byte) (LogTemplate, error) {
 		DataPools: initializeDataPools(),
 	}
 
-	template.AddCommonPatterns()
-
 	if strings.HasPrefix(strings.TrimSpace(string(line)), "{") && json.Valid(line) {
+		template.AddCommonPatterns(true)
 		err := template.ParseJSONEvent()
 		if err != nil {
 			log.Debug(err)
@@ -99,6 +98,8 @@ func processLogLine(line []byte) (LogTemplate, error) {
 		return template, nil
 	}
 
+	// do not include unix timestamps to prevent overwriting non timestamp fields
+	template.AddCommonPatterns(false)
 	template.ParseLogLine()
 
 	return template, nil

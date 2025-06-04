@@ -7,6 +7,7 @@ import (
 	"math/rand"
 	"path/filepath"
 	"regexp"
+	"strconv"
 	"strings"
 	"text/template"
 	"time"
@@ -33,8 +34,20 @@ type PatternRule struct {
 type DataPools struct {
 	IPs     []string
 	Domains []string
-	Email   []string
+	Emails  []string
+	Users   []string
+	Hosts   []string
 }
+
+var (
+	isoRegex     = regexp.MustCompile(`\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z?`)
+	commonRegex  = regexp.MustCompile(`\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}`)
+	clfRegex     = regexp.MustCompile(`\[\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}[^\]]*\]`)
+	syslogRegex  = regexp.MustCompile(`[A-Za-z]{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}`)
+	unixSecRegex = regexp.MustCompile(`\b\d{10}\b`)
+	unixMsRegex  = regexp.MustCompile(`\b\d{13}\b`)
+	snortRegex   = regexp.MustCompile(`\d{2}/\d{2}-\d{2}:\d{2}:\d{2}\.\d+`)
+)
 
 func initializeDataPools() map[string][]string {
 	dataPools := make(map[string][]string)
@@ -53,18 +66,47 @@ func initializeDataPools() map[string][]string {
 		"alice@test.org",
 		"root@service.io",
 	}
+	dataPools["Users"] = []string{
+		"alice",
+		"admin",
+		"bob",
+		"root",
+	}
+	dataPools["Hosts"] = []string{
+		"localhost",
+	}
 	return dataPools
 }
 
-func (l *LogTemplate) AddCommonPatterns() {
-	commonPatterns := map[string]*regexp.Regexp{
-		"IPs":              regexp.MustCompile(`\b(?:\d{1,3}\.){3}\d{1,3}\b`),
-		"timestamp_iso":    regexp.MustCompile(`\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z?`),
-		"timestamp_common": regexp.MustCompile(`\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}`),
-		"timestamp_clf":    regexp.MustCompile(`\[\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}[^\]]*\]`),
-		"timestamp_syslog": regexp.MustCompile(`[A-Za-z]{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}`),
-		"Emails":           regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
-		"Domains":          regexp.MustCompile(`[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
+// AddCommonPatterns add common templates to the patterns slice.
+// Unix timestamps should not include non json logs as it may overwrite non time fields
+func (l *LogTemplate) AddCommonPatterns(unix bool) {
+	var commonPatterns map[string]*regexp.Regexp
+
+	if unix {
+		commonPatterns = map[string]*regexp.Regexp{
+			"IPs":               regexp.MustCompile(`\b(?:\d{1,3}\.){3}\d{1,3}\b`),
+			"timestamp_iso":     isoRegex,
+			"timestamp_common":  commonRegex,
+			"timestamp_clf":     clfRegex,
+			"timestamp_syslog":  syslogRegex,
+			"timestamp_snort":   snortRegex,
+			"timestamp_unix_s":  unixSecRegex,
+			"timestamp_unix_ms": unixMsRegex,
+			"Emails":            regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
+			"Domains":           regexp.MustCompile(`[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
+		}
+	} else {
+		commonPatterns = map[string]*regexp.Regexp{
+			"IPs":              regexp.MustCompile(`\b(?:\d{1,3}\.){3}\d{1,3}\b`),
+			"timestamp_iso":    isoRegex,
+			"timestamp_common": commonRegex,
+			"timestamp_clf":    clfRegex,
+			"timestamp_syslog": syslogRegex,
+			"timestamp_snort":  snortRegex,
+			"Emails":           regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
+			"Domains":          regexp.MustCompile(`[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
+		}
 	}
 
 	for name, pattern := range commonPatterns {
@@ -117,6 +159,15 @@ func (l *LogTemplate) UpdateValues() {
 			case "timestamp_syslog":
 				now := time.Now()
 				value = now.Format("Jan _2 15:04:05")
+			case "timestamp_snort":
+				now := time.Now()
+				value = now.Format("01/02-15:04:05.000000")
+			case "timestamp_unix_s":
+				now := time.Now()
+				value = strconv.FormatInt(now.Unix(), 10)
+			case "timestamp_unix_ms":
+				now := time.Now()
+				value = strconv.FormatInt(now.UnixMilli(), 10)
 			}
 			if value != "" {
 				l.Data[key] = value
@@ -154,6 +205,9 @@ func (l *LogTemplate) UpdateValues() {
 			case "timestamp_syslog":
 				now := time.Now()
 				value = now.Format("Jan _2 15:04:05")
+			case "timestamp_snort":
+				now := time.Now()
+				value = now.Format("01/02-15:04:05.000000")
 			}
 			if value != "" {
 				l.Data[pattern.Name] = value

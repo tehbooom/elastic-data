@@ -104,6 +104,7 @@ func (dg *DataGenerator) sendEPS() error {
 			log.Debug(err)
 			return err
 		}
+		log.Debug(fmt.Sprintf("Message %d: %s", i, message))
 
 		var event map[string]interface{}
 		if dg.config.PreserveEventOriginal {

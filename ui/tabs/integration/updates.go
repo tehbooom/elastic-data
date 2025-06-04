@@ -87,7 +87,7 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 			}
 		} else {
 			items := m.integrationList.Items()
-			if m.searchMode && m.filteredItems != nil {
+			if m.searchMode || m.filteredItems != nil {
 				items = m.filteredItems
 			}
 
@@ -110,7 +110,7 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 				if m.selectedIndex < totalItems {
 					var item *IntegrationItem
 					var ok bool
-					if m.searchMode && m.filteredItems != nil {
+					if m.searchMode || m.filteredItems != nil {
 						item, ok = m.filteredItems[m.selectedIndex].(*IntegrationItem)
 					} else {
 						item, ok = m.integrationList.Items()[m.selectedIndex].(*IntegrationItem)
@@ -171,6 +171,10 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 					return m, nil
 				}
 			case "esc", "q":
+				m.searchMode = false
+				m.searchQuery = ""
+				m.filteredItems = nil
+				m.selectedIndex = 0
 				m.readmeRendered = false
 				return m, nil
 			}

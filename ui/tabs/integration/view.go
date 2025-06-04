@@ -43,6 +43,7 @@ func (m *TabModel) View() string {
 			"(home/g)", "Top",
 			"(end/G)", "Bottom",
 			"(tab)", "Switch tabs",
+			"(esc)", "Exit Search Mode",
 			"(ctrl+c)", "Quit",
 		)
 
@@ -169,7 +170,7 @@ func (m *TabModel) calculateColumns() int {
 func (m *TabModel) renderMultiColumnList(items []list.Item, title string) string {
 	displayItems := items
 
-	if m.searchMode {
+	if m.searchMode || m.filteredItems != nil {
 		displayItems = m.filteredItems
 		title = fmt.Sprintf("%s (Search: %s)", title, m.searchQuery)
 	}
@@ -227,7 +228,7 @@ func (m *TabModel) renderMultiColumnList(items []list.Item, title string) string
 
 			var isItemSelected bool
 			if itemIndex < len(displayItems) {
-				if integrationItem, ok := items[itemIndex].(*IntegrationItem); ok {
+				if integrationItem, ok := displayItems[itemIndex].(*IntegrationItem); ok {
 					isItemSelected = integrationItem.Selected
 				}
 			}
