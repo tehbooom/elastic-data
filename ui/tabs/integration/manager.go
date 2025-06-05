@@ -52,8 +52,7 @@ func (m *TabModel) loadDatasetsForIntegration(integration string) error {
 		m.context.DatasetConfigs[integration] = datasetMap
 	}
 
-	configDir, _ := getConfigDir()
-	repoDir := filepath.Join(configDir, "integrations")
+	repoDir := filepath.Join(m.context.ConfigPath, "integrations")
 	dataSets, err := integrations.GetDatasets(repoDir, integration)
 	if err != nil {
 		return err
@@ -69,28 +68,27 @@ func (m *TabModel) loadDatasetsForIntegration(integration string) error {
 		existingConfig, configExists := datasetMap[ds]
 		if !configExists {
 			datasetMap[ds] = context.DatasetConfig{
-				Name:      ds,
-				Selected:  false,
-				Threshold: 0,
-				Unit:      "eps",
+				Name:                  ds,
+				Selected:              false,
+				Threshold:             0,
+				Unit:                  "eps",
+				PreserveEventOriginal: false,
+				Events:                []string{},
 			}
-		} else {
-			datasetMap[ds] = existingConfig
+			existingConfig = datasetMap[ds]
 		}
-	}
-
-	for _, config := range datasetMap {
 		datasetItems = append(datasetItems, NewDatasetItem(
-			config.Name,
-			config.Selected,
-			config.Threshold,
-			config.Unit,
+			existingConfig.Name,
+			existingConfig.Selected,
+			existingConfig.Threshold,
+			existingConfig.Unit,
+			existingConfig.PreserveEventOriginal,
+			existingConfig.Events,
 		))
 	}
 
 	m.datasetsList.SetItems(datasetItems)
 	m.datasetsList.Title = fmt.Sprintf("%s Datasets", strings.ToUpper(integration))
-
 	return nil
 }
 
@@ -119,27 +117,13 @@ func (m *TabModel) updateDatasetConfigs() {
 			Threshold:             datasetItem.Threshold,
 			Unit:                  datasetItem.Unit,
 			PreserveEventOriginal: datasetItem.PreserveEventOriginal,
+			Events:                datasetItem.Events,
 		}
 
 		datasetMap[datasetItem.Name] = config
 	}
 
 	m.saveController.MarkDirty()
-}
-
-func getConfigDir() (string, error) {
-	configHome := os.Getenv("XDG_CONFIG_HOME")
-	if configHome == "" {
-		home, err := os.UserHomeDir()
-		if err != nil {
-			return "", fmt.Errorf("failed to get user home directory: %w", err)
-		}
-		configHome = filepath.Join(home, ".config")
-	}
-
-	configDir := filepath.Join(configHome, "elastic-data")
-
-	return configDir, nil
 }
 
 func (m *TabModel) getReadMe() (string, error) {

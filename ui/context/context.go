@@ -26,6 +26,7 @@ type DatasetConfig struct {
 	Threshold             int
 	Unit                  string
 	PreserveEventOriginal bool
+	Events                []string
 }
 
 func NewProgramContext() *ProgramContext {
@@ -78,6 +79,7 @@ func (a *ProgramContext) SaveIntegrations() {
 							Enabled:   datasetConfig.Selected,
 							Threshold: datasetConfig.Threshold,
 							Unit:      datasetConfig.Unit,
+							Events:    datasetConfig.Events,
 						}
 					}
 				}
@@ -132,6 +134,7 @@ func (a *ProgramContext) LoadFromConfig(cfg *config.Config, path string) {
 					Selected:  configDataset.Enabled,
 					Threshold: configDataset.Threshold,
 					Unit:      configDataset.Unit,
+					Events:    configDataset.Events,
 				}
 			}
 		}

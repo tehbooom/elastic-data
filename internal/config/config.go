@@ -12,6 +12,7 @@ import (
 type Config struct {
 	Connection   ConfigConnection       `mapstructure:"connection"`
 	Integrations map[string]Integration `mapstructure:"integrations"`
+	Replacements Replacements           `mapstructure:"replacements"`
 }
 
 type ConfigConnection struct {
@@ -27,8 +28,8 @@ type ConfigConnection struct {
 }
 
 type Integration struct {
-	Enabled  bool `mapstructure:"enabled"`
-	Datasets map[string]Dataset
+	Enabled  bool               `mapstructure:"enabled"`
+	Datasets map[string]Dataset `mapstructure:"datasets"`
 }
 
 type Dataset struct {
@@ -36,9 +37,11 @@ type Dataset struct {
 	Threshold             int  `mapstructure:"threshold"`
 	PreserveEventOriginal bool `mapstructure:"preserve_original_event"`
 	// EPS or bytes
-	Unit string `mapstructure:"unit"`
+	Unit   string   `mapstructure:"unit"`
+	Events []string `mapstructure:"events"`
 }
 
+// LoadConfig returns the config, configuration directory and errors
 func LoadConfig() (*Config, string, error) {
 	config := &Config{}
 	// Follow XDG Base Directory Specification
@@ -86,6 +89,10 @@ func LoadConfig() (*Config, string, error) {
 		return nil, "", fmt.Errorf("failed to unmarshal config: %w", err)
 	}
 
+	if config.Replacements.isEmpty() {
+		config.Replacements.setDefaults()
+	}
+
 	if isConfigEmpty(config) {
 		setDefaults()
 		if err := viper.Unmarshal(config); err != nil {
@@ -120,14 +127,57 @@ func isConfigEmpty(config *Config) bool {
 
 // SaveConfig saves the current configuration to a file
 func SaveConfig(config *Config, configPath string) error {
+
 	viper.Set("connection.kibana_endpoints", config.Connection.KibanaEndpoints)
 	viper.Set("connection.elasticsearch_endpoints", config.Connection.ElasticsearchEndpoints)
 	viper.Set("connection.username", config.Connection.Username)
 	viper.Set("connection.password", config.Connection.Password)
+	viper.Set("connection.api_key", config.Connection.APIKey)
+	viper.Set("connection.unsafe", config.Connection.Unsafe)
+	viper.Set("connection.ca_cert", config.Connection.CACert)
+	viper.Set("connection.cert", config.Connection.Cert)
+	viper.Set("connection.key", config.Connection.Key)
 
 	if config.Integrations != nil && len(config.Integrations) > 0 {
-		viper.Set("integrations", config.Integrations)
+		integrations := make(map[string]interface{})
+		for name, integration := range config.Integrations {
+			intMap := map[string]interface{}{
+				"enabled": integration.Enabled,
+			}
+			if integration.Datasets != nil && len(integration.Datasets) > 0 {
+				datasets := make(map[string]interface{})
+				for dsName, dataset := range integration.Datasets {
+					datasets[dsName] = map[string]interface{}{
+						"enabled":                 dataset.Enabled,
+						"threshold":               dataset.Threshold,
+						"preserve_original_event": dataset.PreserveEventOriginal,
+						"unit":                    dataset.Unit,
+						"events":                  dataset.Events,
+					}
+				}
+				intMap["datasets"] = datasets
+			}
+			integrations[name] = intMap
+		}
+		viper.Set("integrations", integrations)
 	}
+
+	var replacementErr error
+	validReplacements, replacementErr := config.Replacements.validReplacements()
+
+	if !validReplacements {
+		replacementErr = fmt.Errorf("Invalid replacement: %v", replacementErr)
+	}
+
+	replacements := map[string]interface{}{
+		"ip_addresses": config.Replacements.IPs,
+		"usernames":    config.Replacements.Users,
+		"domains":      config.Replacements.Domains,
+		"hostnames":    config.Replacements.Hosts,
+		"emails":       config.Replacements.Emails,
+	}
+
+	viper.Set("replacements", replacements)
 
 	if configPath != "" {
 		viper.SetConfigFile(filepath.Join(configPath, "config.yaml"))
@@ -155,6 +205,10 @@ func SaveConfig(config *Config, configPath string) error {
 		return fmt.Errorf("failed to write config file: %w", err)
 	}
 
+	if replacementErr != nil {
+		return replacementErr
+	}
+
 	return nil
 }
 
@@ -163,17 +217,4 @@ func setDefaults() {
 	viper.SetDefault("connection.elasticsearch_endpoints", []string{"http://localhost:9200"})
 	viper.SetDefault("connection.password", "changeme")
 	viper.SetDefault("connection.username", "elastic")
-}
-
-// GetConnectionDetails returns the current connection details
-func (c *Config) GetConnectionDetails() ([]string, []string, string, string) {
-	return c.Connection.KibanaEndpoints, c.Connection.ElasticsearchEndpoints, c.Connection.Username, c.Connection.Password
-}
-
-// SetConnectionDetails sets the connection details
-func (c *Config) SetConnectionDetails(esEndpoints, kibanaEndpoints []string, username, password string) {
-	c.Connection.ElasticsearchEndpoints = esEndpoints
-	c.Connection.KibanaEndpoints = kibanaEndpoints
-	c.Connection.Username = username
-	c.Connection.Password = password
 }

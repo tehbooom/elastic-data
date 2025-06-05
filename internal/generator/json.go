@@ -4,16 +4,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"net"
-	"net/mail"
-	"net/url"
 	"os"
-	"regexp"
 	"strconv"
 	"strings"
 	"text/template"
 
 	"github.com/charmbracelet/log"
+	"github.com/tehbooom/elastic-data/internal/common"
 )
 
 func ParseJSONFile(filePath string) ([]LogTemplate, error) {
@@ -36,18 +33,34 @@ func ParseJSONFile(filePath string) ([]LogTemplate, error) {
 	}
 
 	for _, event := range JSONLog.Events {
-		original, err := json.Marshal(event)
+		var eventToProcess map[string]any
+
+		if messageField, exists := event["message"]; exists {
+			if messageStr, ok := messageField.(string); ok {
+				var innerEvent map[string]any
+				if err := json.Unmarshal([]byte(messageStr), &innerEvent); err == nil {
+					eventToProcess = innerEvent
+				} else {
+					eventToProcess = event
+				}
+			} else {
+				eventToProcess = event
+			}
+		} else {
+			eventToProcess = event
+		}
+
+		original, err := json.Marshal(eventToProcess)
 		if err != nil {
 			log.Debug(err)
 			return nil, err
 		}
 
 		template := LogTemplate{
-			Original:  string(original),
-			IsJSON:    true,
-			Size:      len(original),
-			Data:      make(map[string]string),
-			DataPools: initializeDataPools(),
+			Original: string(original),
+			IsJSON:   true,
+			Size:     len(original),
+			Data:     make(map[string]string),
 		}
 
 		template.AddCommonPatterns(true)
@@ -66,9 +79,6 @@ func ParseJSONFile(filePath string) ([]LogTemplate, error) {
 func (l *LogTemplate) ParseJSONEvent() error {
 	if l.Data == nil {
 		l.Data = make(map[string]string)
-	}
-	if l.DataPools == nil {
-		l.DataPools = initializeDataPools()
 	}
 
 	var data map[string]interface{}
@@ -91,6 +101,7 @@ func (l *LogTemplate) ParseJSONEvent() error {
 		return fmt.Errorf("failed to compact JSON: %w", err)
 	}
 	compactJSON := compactBuffer.Bytes()
+	log.Debug(data)
 
 	tmpl, err := template.New("jsonevent").Parse(string(compactJSON))
 	if err != nil {
@@ -148,10 +159,10 @@ func convertNumericValue(k string, value float64, extractedData map[string]strin
 	if strings.Contains(key, "time") || strings.Contains(key, "timestamp") {
 		valueStr := strconv.FormatFloat(value, 'f', 0, 64)
 
-		if unixMsRegex.MatchString(valueStr) {
+		if common.UnixMsRegex.MatchString(valueStr) {
 			extractedData["timestamp_unix_ms"] = valueStr
 			return "{{.timestamp_unix_ms}}"
-		} else if unixSecRegex.MatchString(valueStr) {
+		} else if common.UnixSecRegex.MatchString(valueStr) {
 			extractedData["timestamp_unix_s"] = valueStr
 			return "{{.timestamp_unix_s}}"
 		}
@@ -163,46 +174,46 @@ func convertNumericValue(k string, value float64, extractedData map[string]strin
 func convertStringValue(k, value string, extractedData map[string]string) string {
 	value = strings.TrimSpace(value)
 
-	if isEmail(value) {
+	if common.IsEmail(value) {
 		extractedData["Emails"] = value
 		return "{{.Emails}}"
 	}
 
-	if isURL(value) {
+	if common.IsURL(value) {
 		extractedData["Domains"] = value
 		return "{{.Domains}}"
 	}
 
-	if isDomain(value) {
+	if common.IsDomain(value) {
 		extractedData["Domains"] = value
 		return "{{.Domains}}"
 	}
 
-	if isIP(value) {
+	if common.IsIP(value) {
 		extractedData["IPs"] = value
 		return "{{.IPs}}"
 	}
 
-	if isoRegex.MatchString(value) {
+	if common.IsoRegex.MatchString(value) {
 		extractedData["timestamp_iso"] = value
 		return "{{.timestamp_iso}}"
 	}
 
-	if commonRegex.MatchString(value) {
+	if common.CommonRegex.MatchString(value) {
 		extractedData["timestamp_common"] = value
 		return "{{.timestamp_common}}"
 	}
 
-	if clfRegex.MatchString(value) {
+	if common.ClfRegex.MatchString(value) {
 		extractedData["timestamp_clf"] = value
 		return "{{.timestamp_clf}}"
 	}
 
-	if syslogRegex.MatchString(value) {
+	if common.SyslogRegex.MatchString(value) {
 		extractedData["timestamp_syslog"] = value
 		return "{{.timestamp_syslog}}"
 	}
-	if snortRegex.MatchString(value) {
+	if common.SnortRegex.MatchString(value) {
 		extractedData["timestamp_snort"] = value
 		return "{{.timestamp_snort}}"
 	}
@@ -210,10 +221,10 @@ func convertStringValue(k, value string, extractedData map[string]string) string
 	key := strings.ToLower(k)
 
 	if strings.Contains(key, "time") || strings.Contains(key, "timestamp") {
-		if unixMsRegex.MatchString(value) {
+		if common.UnixMsRegex.MatchString(value) {
 			extractedData["timestamp_unix_ms"] = value
 			return "{{.timestamp_unix_ms}}"
-		} else if unixSecRegex.MatchString(value) {
+		} else if common.UnixSecRegex.MatchString(value) {
 			extractedData["timestamp_unix_s"] = value
 			return "{{.timestamp_unix_s}}"
 		}
@@ -225,30 +236,4 @@ func convertStringValue(k, value string, extractedData map[string]string) string
 		return "{{.Hosts}}"
 	}
 	return value
-}
-
-func isEmail(s string) bool {
-	_, err := mail.ParseAddress(s)
-	regex := regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`)
-
-	return err == nil && regex.MatchString(s)
-}
-
-func isURL(s string) bool {
-	u, err := url.Parse(s)
-	return err == nil && u.Scheme != "" && u.Host != ""
-}
-
-func isDomain(s string) bool {
-	if strings.Contains(s, "://") || strings.Contains(s, "/") {
-		return false
-	}
-
-	regex := regexp.MustCompile(`^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`)
-
-	return regex.MatchString(s)
-}
-
-func isIP(s string) bool {
-	return net.ParseIP(s) != nil
 }

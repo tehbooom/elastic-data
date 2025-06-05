@@ -57,15 +57,19 @@ func (m TabsModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 		switch msg.String() {
 		case "tab":
+			var wasRunning, wasTicking bool
+			if currentRunTab, ok := m.Tabs[m.ActiveTab].(*run.RunTabModel); ok {
+				wasRunning = currentRunTab.TabModel.IsRunning()
+				wasTicking = currentRunTab.TabModel.IsTicking()
+			}
+
 			m.ActiveTab = (m.ActiveTab + 1) % len(m.Tabs)
 			if runTab, ok := m.Tabs[m.ActiveTab].(*run.RunTabModel); ok {
 				runTab.TabModel.RefreshIntegrations()
-			}
-			return m, nil
-		case "shift+tab":
-			m.ActiveTab = (m.ActiveTab - 1 + len(m.Tabs)) % len(m.Tabs)
-			if runTab, ok := m.Tabs[m.ActiveTab].(*run.RunTabModel); ok {
-				runTab.TabModel.RefreshIntegrations()
+				if wasRunning && wasTicking {
+					runTab.TabModel.SetRunningState(wasRunning, wasTicking)
+					return m, run.CreateTickCmd()
+				}
 			}
 			return m, nil
 		}

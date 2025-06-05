@@ -40,6 +40,7 @@ type DatasetItem struct {
 	Threshold             int
 	Unit                  string
 	PreserveEventOriginal bool
+	Events                []string
 }
 
 func (i DatasetItem) FilterValue() string {
@@ -58,11 +59,13 @@ func (i DatasetItem) Description() string {
 	return ""
 }
 
-func NewDatasetItem(name string, selected bool, threshold int, unit string) DatasetItem {
+func NewDatasetItem(name string, selected bool, threshold int, unit string, preserveEventOriginal bool, events []string) DatasetItem {
 	return DatasetItem{
-		Name:      name,
-		Selected:  selected,
-		Threshold: threshold,
-		Unit:      unit,
+		Name:                  name,
+		Selected:              selected,
+		Threshold:             threshold,
+		Unit:                  unit,
+		PreserveEventOriginal: preserveEventOriginal,
+		Events:                events,
 	}
 }

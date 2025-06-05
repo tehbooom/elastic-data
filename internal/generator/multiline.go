@@ -292,7 +292,7 @@ func isYAMLContent(line string) bool {
 	return false
 }
 
-func createReaderPipeline(file *os.File, multilineConfig *multiline.Config) (reader.Reader, error) {
+func createReaderPipeline(file io.Reader, multilineConfig *multiline.Config) (reader.Reader, error) {
 	log.Debug("Creating reader pipeline", "multiline_enabled", multilineConfig != nil)
 
 	var buf bytes.Buffer

@@ -22,9 +22,10 @@ func getTrendIndicator(trend string) string {
 
 // RefreshIntegrations initializes or refreshes the integrations data from AppState
 func (m *TabModel) RefreshIntegrations() {
-	if m.integrations == nil {
-		m.integrations = make(map[string]*IntegrationStats)
-	}
+	m.mu.Lock()
+	defer m.mu.Unlock()
+
+	m.integrations = make(map[string]*IntegrationStats)
 
 	for integrationName, isSelected := range m.programContext.SelectedIntegrations {
 		if !isSelected {
@@ -96,7 +97,7 @@ func (m *TabModel) StartGeneration() error {
 		integrationDatasets := m.programContext.DatasetConfigs[integrationName]
 
 		if dataset, ok := integrationDatasets[datasetName]; ok {
-			templates, err := generator.LoadTemplatesForDataset(m.programContext.ConfigPath, integrationName, datasetName)
+			templates, err := generator.LoadTemplatesForDataset(m.programContext.ConfigPath, integrationName, datasetName, m.programContext.Config)
 			if err != nil {
 				log.Debug(err)
 				return err

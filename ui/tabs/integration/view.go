@@ -314,9 +314,6 @@ func (m *TabModel) ensureSelectionVisible(totalItems int) {
 		m.visibleRows = 5
 	}
 
-	log.Debug(fmt.Sprintf("Selection: idx=%d, row=%d, visibleRows=%d, scrollOffset=%d, totalRows=%d",
-		m.selectedIndex, selectedRow, m.visibleRows, m.scrollOffset, rowsNeeded))
-
 	if selectedRow >= m.scrollOffset+m.visibleRows {
 		m.scrollOffset = selectedRow - m.visibleRows + 1
 		log.Debug(fmt.Sprintf("Scrolling down to offset %d", m.scrollOffset))

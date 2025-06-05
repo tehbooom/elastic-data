@@ -64,7 +64,7 @@ func (m *TabModel) TabTitle() string {
 func (m *TabModel) Init() tea.Cmd {
 	m.RefreshIntegrations()
 	return tea.Tick(time.Second, func(time.Time) tea.Msg {
-		return tickMsg{}
+		return TickMsg{}
 	})
 }
 
@@ -72,6 +72,31 @@ func (m *TabModel) Init() tea.Cmd {
 func (m *TabModel) SetSize(width, height int) {
 	m.width = width
 	m.height = height
+}
+
+func (m *TabModel) IsRunning() bool {
+	m.mu.RLock()
+	defer m.mu.RUnlock()
+	return m.running
+}
+
+func (m *TabModel) IsTicking() bool {
+	m.mu.RLock()
+	defer m.mu.RUnlock()
+	return m.shouldTick
+}
+
+func (m *TabModel) SetRunningState(running, ticking bool) {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	m.running = running
+	m.shouldTick = ticking
+}
+
+func CreateTickCmd() tea.Cmd {
+	return tea.Tick(time.Second, func(time.Time) tea.Msg {
+		return TickMsg{} // or tickMsg{} if you keep it internal
+	})
 }
 
 type RunTabModel struct {

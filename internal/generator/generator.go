@@ -13,6 +13,8 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
+	"github.com/tehbooom/elastic-data/internal/common"
+	"github.com/tehbooom/elastic-data/internal/config"
 )
 
 type LogTemplate struct {
@@ -39,43 +41,16 @@ type DataPools struct {
 	Hosts   []string
 }
 
-var (
-	isoRegex     = regexp.MustCompile(`\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z?`)
-	commonRegex  = regexp.MustCompile(`\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}`)
-	clfRegex     = regexp.MustCompile(`\[\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}[^\]]*\]`)
-	syslogRegex  = regexp.MustCompile(`[A-Za-z]{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}`)
-	unixSecRegex = regexp.MustCompile(`\b\d{10}\b`)
-	unixMsRegex  = regexp.MustCompile(`\b\d{13}\b`)
-	snortRegex   = regexp.MustCompile(`\d{2}/\d{2}-\d{2}:\d{2}:\d{2}\.\d+`)
-)
-
-func initializeDataPools() map[string][]string {
-	dataPools := make(map[string][]string)
-	dataPools["IPs"] = []string{
-		"192.168.1.100", "10.0.0.1", "172.16.0.1", "203.0.113.1",
-		"198.51.100.1", "127.0.0.1", "192.168.0.1", "10.1.1.1",
+func (l *LogTemplate) initializeDataPools(replacements *config.Replacements) {
+	if l.DataPools == nil {
+		l.DataPools = make(map[string][]string)
 	}
 
-	dataPools["Domains"] = []string{
-		"example.com", "test.org", "mycompany.net", "service.io",
-		"app.local", "api.service.com", "web.example.org",
-	}
-	dataPools["Emails"] = []string{
-		"admin@example.com",
-		"user@hello.world.com",
-		"alice@test.org",
-		"root@service.io",
-	}
-	dataPools["Users"] = []string{
-		"alice",
-		"admin",
-		"bob",
-		"root",
-	}
-	dataPools["Hosts"] = []string{
-		"localhost",
-	}
-	return dataPools
+	l.DataPools["IPs"] = replacements.IPs
+	l.DataPools["Domains"] = replacements.Domains
+	l.DataPools["Emails"] = replacements.Emails
+	l.DataPools["Users"] = replacements.Users
+	l.DataPools["Hosts"] = replacements.Hosts
 }
 
 // AddCommonPatterns add common templates to the patterns slice.
@@ -86,24 +61,24 @@ func (l *LogTemplate) AddCommonPatterns(unix bool) {
 	if unix {
 		commonPatterns = map[string]*regexp.Regexp{
 			"IPs":               regexp.MustCompile(`\b(?:\d{1,3}\.){3}\d{1,3}\b`),
-			"timestamp_iso":     isoRegex,
-			"timestamp_common":  commonRegex,
-			"timestamp_clf":     clfRegex,
-			"timestamp_syslog":  syslogRegex,
-			"timestamp_snort":   snortRegex,
-			"timestamp_unix_s":  unixSecRegex,
-			"timestamp_unix_ms": unixMsRegex,
+			"timestamp_iso":     common.IsoRegex,
+			"timestamp_common":  common.CommonRegex,
+			"timestamp_clf":     common.ClfRegex,
+			"timestamp_syslog":  common.SyslogRegex,
+			"timestamp_snort":   common.SnortRegex,
+			"timestamp_unix_s":  common.UnixSecRegex,
+			"timestamp_unix_ms": common.UnixMsRegex,
 			"Emails":            regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
 			"Domains":           regexp.MustCompile(`[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
 		}
 	} else {
 		commonPatterns = map[string]*regexp.Regexp{
 			"IPs":              regexp.MustCompile(`\b(?:\d{1,3}\.){3}\d{1,3}\b`),
-			"timestamp_iso":    isoRegex,
-			"timestamp_common": commonRegex,
-			"timestamp_clf":    clfRegex,
-			"timestamp_syslog": syslogRegex,
-			"timestamp_snort":  snortRegex,
+			"timestamp_iso":    common.IsoRegex,
+			"timestamp_common": common.CommonRegex,
+			"timestamp_clf":    common.ClfRegex,
+			"timestamp_syslog": common.SyslogRegex,
+			"timestamp_snort":  common.SnortRegex,
 			"Emails":           regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
 			"Domains":          regexp.MustCompile(`[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
 		}
@@ -123,12 +98,10 @@ func (l *LogTemplate) AddPattern(name string, pattern *regexp.Regexp) {
 }
 
 func (l *LogTemplate) UpdateValues() {
+	log.Debug(fmt.Sprintf("DataPools: %+v", l.DataPools))
+	log.Debug(fmt.Sprintf("Data keys: %+v", l.Data))
 	if l.Data == nil {
 		l.Data = make(map[string]string)
-	}
-
-	if l.DataPools == nil {
-		l.DataPools = initializeDataPools()
 	}
 
 	if l.IsJSON {
@@ -232,7 +205,7 @@ func (l *LogTemplate) ExecuteTemplate() (string, error) {
 	return buf.String(), nil
 }
 
-func LoadTemplatesForDataset(cfgPath, integration, dataset string) ([]LogTemplate, error) {
+func LoadTemplatesForDataset(cfgPath, integration, dataset string, cfg *config.Config) ([]LogTemplate, error) {
 	var templates []LogTemplate
 
 	datasetPath := filepath.Join(cfgPath, "integrations", "packages", integration, "data_stream", dataset)
@@ -257,22 +230,41 @@ func LoadTemplatesForDataset(cfgPath, integration, dataset string) ([]LogTemplat
 
 		ext := filepath.Ext(path)
 		if ext == ".json" {
+
 			fileTemplates, err := ParseJSONFile(path)
 			if err != nil {
 				log.Debug(fmt.Sprintf("Error parsing file %s: %v", path, err))
 				return nil
 			}
+
 			templates = append(templates, fileTemplates...)
 		} else if ext == ".log" {
+
 			fileTemplates, err := ParseLogFile(path, multilineConfig)
 			if err != nil {
 				log.Debug(fmt.Sprintf("Error parsing file %s: %v", path, err))
 				return nil
 			}
+
 			templates = append(templates, fileTemplates...)
 		}
+
 		return nil
 	})
+
+	// add user provided events
+	if len(cfg.Integrations[integration].Datasets[dataset].Events) > 0 {
+		userTemplates, err := ParseUserEvents(multilineConfig, cfg.Integrations[integration].Datasets[dataset].Events)
+		if err != nil {
+			log.Debug(fmt.Sprintf("Error user templates: %v", err))
+			return nil, err
+		}
+		templates = append(templates, userTemplates...)
+	}
+
+	for i := range templates {
+		templates[i].initializeDataPools(&cfg.Replacements)
+	}
 
 	if err != nil {
 		log.Debug(err)

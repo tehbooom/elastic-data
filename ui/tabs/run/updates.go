@@ -9,18 +9,22 @@ import (
 	"github.com/tehbooom/elastic-data/ui/errors"
 )
 
-type tickMsg struct{}
+type TickMsg struct{}
 
 type refreshMsg struct{}
 
 func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
-	case tickMsg:
-		if !m.shouldTick {
+	case TickMsg:
+		m.mu.RLock()
+		shouldContinue := m.shouldTick
+		m.mu.RUnlock()
+
+		if !shouldContinue {
 			return m, nil
 		}
 		return m, tea.Tick(time.Second, func(time.Time) tea.Msg {
-			return tickMsg{}
+			return TickMsg{}
 		})
 
 	case tea.KeyMsg:
@@ -65,7 +69,7 @@ func (m *TabModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				if !m.shouldTick {
 					m.shouldTick = true
 					return m, tea.Tick(time.Second, func(time.Time) tea.Msg {
-						return tickMsg{}
+						return TickMsg{}
 					})
 				}
 				return m, nil

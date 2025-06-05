@@ -36,6 +36,30 @@ func ParseLogFile(filePath string, multilineConfig *multiline.Config) ([]LogTemp
 	return templates, nil
 }
 
+// ParseUserEvents parses the events for the dataset that the user has provided in the config file
+func ParseUserEvents(multilineConfig *multiline.Config, events []string) ([]LogTemplate, error) {
+	log.Debug("parsing user events")
+	content := strings.Join(events, "")
+	log.Debug(fmt.Sprintf("Events: %s", content))
+	eventsReader := strings.NewReader(content)
+
+	finalReader, err := createReaderPipeline(eventsReader, multilineConfig)
+	if err != nil {
+		log.Debug(err)
+		return nil, fmt.Errorf("failed to create reader pipeline: %w", err)
+	}
+
+	templates, err := parseMessages(finalReader, 100)
+	if err != nil {
+		log.Debug(err)
+		return nil, fmt.Errorf("failed to parse messages: %w", err)
+	}
+
+	log.Debug(fmt.Sprintf("User provided template: %v", templates[0].Template))
+
+	return templates, nil
+}
+
 func parseMessages(reader reader.Reader, maxTemplates int) ([]LogTemplate, error) {
 	var templates []LogTemplate
 	messageCount := 0
@@ -80,11 +104,10 @@ func parseMessages(reader reader.Reader, maxTemplates int) ([]LogTemplate, error
 
 func processLogLine(line []byte) (LogTemplate, error) {
 	template := LogTemplate{
-		Original:  string(line),
-		IsJSON:    false,
-		Size:      len(line),
-		Data:      make(map[string]string),
-		DataPools: initializeDataPools(),
+		Original: string(line),
+		IsJSON:   false,
+		Size:     len(line),
+		Data:     make(map[string]string),
 	}
 
 	if strings.HasPrefix(strings.TrimSpace(string(line)), "{") && json.Valid(line) {
@@ -108,9 +131,6 @@ func processLogLine(line []byte) (LogTemplate, error) {
 func (l *LogTemplate) ParseLogLine() error {
 	if l.Data == nil {
 		l.Data = make(map[string]string)
-	}
-	if l.DataPools == nil {
-		l.DataPools = initializeDataPools()
 	}
 
 	templateStr := l.Original

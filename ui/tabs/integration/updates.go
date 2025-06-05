@@ -110,7 +110,7 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 				if m.selectedIndex < totalItems {
 					var item *IntegrationItem
 					var ok bool
-					if m.searchMode || m.filteredItems != nil {
+					if m.filteredItems != nil {
 						item, ok = m.filteredItems[m.selectedIndex].(*IntegrationItem)
 					} else {
 						item, ok = m.integrationList.Items()[m.selectedIndex].(*IntegrationItem)
@@ -140,7 +140,7 @@ func (m *TabModel) updateIntegrationSelection(msg tea.Msg) (tea.Model, tea.Cmd) 
 				if m.selectedIndex < totalItems {
 					var item *IntegrationItem
 					var ok bool
-					if m.searchMode && m.filteredItems != nil {
+					if m.filteredItems != nil {
 						item, ok = m.filteredItems[m.selectedIndex].(*IntegrationItem)
 					} else {
 						item, ok = m.integrationList.Items()[m.selectedIndex].(*IntegrationItem)
@@ -335,6 +335,7 @@ func (m *TabModel) updateDatasetConfiguration(msg tea.Msg) (tea.Model, tea.Cmd) 
 				Threshold:             threshold,
 				Unit:                  unit,
 				PreserveEventOriginal: preserve,
+				Events:                []string{"test"},
 			}
 
 			m.saveController.MarkDirty()
