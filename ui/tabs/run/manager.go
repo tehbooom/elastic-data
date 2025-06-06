@@ -102,6 +102,9 @@ func (m *TabModel) StartGeneration() error {
 				log.Debug(err)
 				return err
 			}
+			for i, j := range templates {
+				log.Debug(fmt.Sprintf("Template %d: %v", i, j.Original))
+			}
 
 			if len(templates) == 0 {
 				return fmt.Errorf("loaded 0 templates for %s", fullName)

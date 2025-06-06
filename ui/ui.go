@@ -90,6 +90,7 @@ func (m Model) Init() tea.Cmd {
 						Unit:                  configDataset.Unit,
 						Threshold:             configDataset.Threshold,
 						PreserveEventOriginal: configDataset.PreserveEventOriginal,
+						Events:                configDataset.Events,
 					}
 					datasetMap[datasetName] = datasetConfig
 				}

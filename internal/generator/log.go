@@ -13,7 +13,7 @@ import (
 	"github.com/elastic/beats/v7/libbeat/reader/multiline"
 )
 
-func ParseLogFile(filePath string, multilineConfig *multiline.Config) ([]LogTemplate, error) {
+func ParseLogFile(filePath string, multilineConfig *multiline.Config) ([]*LogTemplate, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
 		log.Debug(err)
@@ -27,17 +27,21 @@ func ParseLogFile(filePath string, multilineConfig *multiline.Config) ([]LogTemp
 		return nil, fmt.Errorf("failed to create reader pipeline: %w", err)
 	}
 
-	templates, err := parseMessages(finalReader, 100)
+	templates, err := parseMessages(finalReader, 100, false)
 	if err != nil {
 		log.Debug(err)
 		return nil, fmt.Errorf("failed to parse messages: %w", err)
+	}
+
+	for i := range templates {
+		templates[i].UserProvided = false
 	}
 
 	return templates, nil
 }
 
 // ParseUserEvents parses the events for the dataset that the user has provided in the config file
-func ParseUserEvents(multilineConfig *multiline.Config, events []string) ([]LogTemplate, error) {
+func ParseUserEvents(multilineConfig *multiline.Config, events []string) ([]*LogTemplate, error) {
 	log.Debug("parsing user events")
 	content := strings.Join(events, "")
 	log.Debug(fmt.Sprintf("Events: %s", content))
@@ -49,7 +53,7 @@ func ParseUserEvents(multilineConfig *multiline.Config, events []string) ([]LogT
 		return nil, fmt.Errorf("failed to create reader pipeline: %w", err)
 	}
 
-	templates, err := parseMessages(finalReader, 100)
+	templates, err := parseMessages(finalReader, 100, true)
 	if err != nil {
 		log.Debug(err)
 		return nil, fmt.Errorf("failed to parse messages: %w", err)
@@ -60,8 +64,8 @@ func ParseUserEvents(multilineConfig *multiline.Config, events []string) ([]LogT
 	return templates, nil
 }
 
-func parseMessages(reader reader.Reader, maxTemplates int) ([]LogTemplate, error) {
-	var templates []LogTemplate
+func parseMessages(reader reader.Reader, maxTemplates int, userProvided bool) ([]*LogTemplate, error) {
+	var templates []*LogTemplate
 	messageCount := 0
 
 	for {
@@ -87,7 +91,7 @@ func parseMessages(reader reader.Reader, maxTemplates int) ([]LogTemplate, error
 			continue
 		}
 
-		template, err := processLogLine(message.Content)
+		template, err := processLogLine(message.Content, userProvided)
 		if err != nil {
 			log.Debug("Failed to process message", "error", err, "message_count", messageCount)
 			continue
@@ -102,12 +106,13 @@ func parseMessages(reader reader.Reader, maxTemplates int) ([]LogTemplate, error
 	return templates, nil
 }
 
-func processLogLine(line []byte) (LogTemplate, error) {
-	template := LogTemplate{
-		Original: string(line),
-		IsJSON:   false,
-		Size:     len(line),
-		Data:     make(map[string]string),
+func processLogLine(line []byte, userProvided bool) (*LogTemplate, error) {
+	template := &LogTemplate{
+		Original:     string(line),
+		IsJSON:       false,
+		Size:         len(line),
+		Data:         make(map[string]string),
+		UserProvided: userProvided,
 	}
 
 	if strings.HasPrefix(strings.TrimSpace(string(line)), "{") && json.Valid(line) {
@@ -142,6 +147,7 @@ func (l *LogTemplate) ParseLogLine() error {
 
 		templateStr = pattern.Regex.ReplaceAllString(templateStr, pattern.Replace)
 	}
+	log.Debug(fmt.Sprintf("Template is %s", templateStr))
 
 	tmpl, err := template.New("logline").Parse(templateStr)
 	if err != nil {

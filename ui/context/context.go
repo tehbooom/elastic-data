@@ -63,54 +63,61 @@ func (a *ProgramContext) SaveIntegrations() {
 		log.Println("Cannot save: no config loaded")
 		return
 	}
-
 	updatedIntegrations := make(map[string]config.Integration)
 
 	for integration, enabled := range a.SelectedIntegrations {
 		if enabled {
 			datasetConfigs, exists := a.DatasetConfigs[integration]
-
 			datasetsToSave := make(map[string]config.Dataset)
 
 			if exists {
 				for datasetName, datasetConfig := range datasetConfigs {
-					if datasetConfig.Selected && (datasetConfig.Threshold != 0 || datasetConfig.Unit != "eps") {
+					hasNonDefaultValues := datasetConfig.Threshold != 0 ||
+						datasetConfig.Unit != "eps" ||
+						datasetConfig.PreserveEventOriginal != false
+
+					wasPreviouslyEnabled := false
+					if existingIntegration, exists := a.Config.Integrations[integration]; exists {
+						if existingDataset, exists := existingIntegration.Datasets[datasetName]; exists {
+							wasPreviouslyEnabled = existingDataset.Enabled
+						}
+					}
+
+					if datasetConfig.Selected || hasNonDefaultValues || wasPreviouslyEnabled {
 						datasetsToSave[datasetName] = config.Dataset{
-							Enabled:   datasetConfig.Selected,
-							Threshold: datasetConfig.Threshold,
-							Unit:      datasetConfig.Unit,
-							Events:    datasetConfig.Events,
+							Enabled:               datasetConfig.Selected,
+							Threshold:             datasetConfig.Threshold,
+							Unit:                  datasetConfig.Unit,
+							Events:                datasetConfig.Events,
+							PreserveEventOriginal: datasetConfig.PreserveEventOriginal,
 						}
 					}
 				}
 			}
 
-			updatedIntegrations[integration] = config.Integration{
-				Enabled:  true,
-				Datasets: datasetsToSave,
+			// Only save the integration if it has datasets worth saving
+			if len(datasetsToSave) > 0 {
+				updatedIntegrations[integration] = config.Integration{
+					Enabled:  true,
+					Datasets: datasetsToSave,
+				}
 			}
 		} else {
+			// For disabled integrations, only save if they have existing datasets
 			existingIntegration, exists := a.Config.Integrations[integration]
-			if exists {
+			if exists && len(existingIntegration.Datasets) > 0 {
 				updatedIntegrations[integration] = config.Integration{
 					Enabled:  false,
 					Datasets: existingIntegration.Datasets,
-				}
-			} else {
-				updatedIntegrations[integration] = config.Integration{
-					Enabled:  false,
-					Datasets: make(map[string]config.Dataset),
 				}
 			}
 		}
 	}
 
 	a.Config.Integrations = updatedIntegrations
-
 	if err := config.SaveConfig(a.Config, a.ConfigPath); err != nil {
 		log.Printf("Error saving config: %v", err)
 	}
-
 	a.Dirty = false
 }
 

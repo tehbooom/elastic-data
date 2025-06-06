@@ -24,7 +24,7 @@ type DataGenerator struct {
 	wg               *sync.WaitGroup
 	mu               sync.RWMutex
 	client           *elasticsearch.Config
-	templates        []generator.LogTemplate
+	templates        []*generator.LogTemplate
 	dataPools        *generator.DataPools
 	duration         time.Duration
 	bytesSent        int
@@ -92,11 +92,13 @@ func (dg *DataGenerator) sendEPS() error {
 	defer dg.mu.Unlock()
 
 	batchSize := dg.calculateOptimalBatchSize()
+	selectedTemplates := dg.selectTemplatesAdaptive(batchSize)
+
 	var events []map[string]interface{}
 	var batchBytes int
 
 	for i := 0; i < batchSize; i++ {
-		template := dg.templates[rand.Intn(len(dg.templates))]
+		template := selectedTemplates[i%len(selectedTemplates)]
 		template.UpdateValues()
 
 		message, err := template.ExecuteTemplate()
@@ -104,7 +106,6 @@ func (dg *DataGenerator) sendEPS() error {
 			log.Debug(err)
 			return err
 		}
-		log.Debug(fmt.Sprintf("Message %d: %s", i, message))
 
 		var event map[string]interface{}
 		if dg.config.PreserveEventOriginal {
@@ -119,6 +120,8 @@ func (dg *DataGenerator) sendEPS() error {
 				"@timestamp": time.Now().UTC().Format(time.RFC3339),
 			}
 		}
+
+		log.Debug(fmt.Sprintf("Event %d: %v", i, event))
 
 		events = append(events, event)
 
@@ -148,6 +151,8 @@ func (dg *DataGenerator) sendBytes() error {
 	batchSize := dg.calculateOptimalBatchSize()
 	log.Debug(fmt.Sprintf("Batch size is %d for %s", batchSize, dg.config.Name))
 
+	selectedTemplates := dg.selectTemplatesAdaptive(batchSize)
+
 	var events []map[string]interface{}
 	var batchBytes int
 
@@ -156,7 +161,7 @@ func (dg *DataGenerator) sendBytes() error {
 			log.Debug(fmt.Sprintf("Threshold %d met for %s", batchSize, dg.config.Name))
 			break
 		}
-		template := dg.templates[rand.Intn(len(dg.templates))]
+		template := selectedTemplates[i%len(selectedTemplates)]
 		template.UpdateValues()
 
 		message, err := template.ExecuteTemplate()
@@ -203,6 +208,83 @@ func (dg *DataGenerator) sendBytes() error {
 	dg.bytesSent += batchBytes
 	dg.updateStats(len(events), duration)
 	return nil
+}
+
+func (dg *DataGenerator) selectTemplatesAdaptive(batchSize int) []*generator.LogTemplate {
+	var defaultTemplates []*generator.LogTemplate
+	var userTemplates []*generator.LogTemplate
+
+	for _, template := range dg.templates {
+		if template.UserProvided {
+			log.Debug("Found user provided template")
+			userTemplates = append(userTemplates, template)
+		} else {
+			defaultTemplates = append(defaultTemplates, template)
+		}
+	}
+
+	if len(userTemplates) == 0 {
+		return dg.selectRandomTemplates(dg.templates, batchSize)
+	}
+
+	var userCount int
+
+	switch {
+	case len(userTemplates) == 1:
+		userCount = 1
+	case len(userTemplates) <= 3:
+		userCount = len(userTemplates)
+	case len(userTemplates) < batchSize/3:
+		userCount = len(userTemplates)
+	default:
+		userCount = batchSize / 3
+	}
+
+	log.Debug(fmt.Sprintf("User count is %d", userCount))
+
+	userCount = min(userCount, batchSize)
+
+	result := make([]*generator.LogTemplate, 0, batchSize)
+
+	if userCount > 0 {
+		userSelected := dg.selectRandomTemplates(userTemplates, userCount)
+		result = append(result, userSelected...)
+	}
+
+	remainingSlots := batchSize - len(result)
+	if remainingSlots > 0 && len(defaultTemplates) > 0 {
+		defaultSelected := dg.selectRandomTemplates(defaultTemplates, remainingSlots)
+		result = append(result, defaultSelected...)
+	}
+
+	rand.Shuffle(len(result), func(i, j int) {
+		result[i], result[j] = result[j], result[i]
+	})
+
+	return result
+}
+
+func (dg *DataGenerator) selectRandomTemplates(templates []*generator.LogTemplate, count int) []*generator.LogTemplate {
+	if count >= len(templates) {
+		result := make([]*generator.LogTemplate, len(templates))
+		copy(result, templates)
+		return result
+	}
+
+	indices := make([]int, len(templates))
+	for i := range indices {
+		indices[i] = i
+	}
+	rand.Shuffle(len(indices), func(i, j int) {
+		indices[i], indices[j] = indices[j], indices[i]
+	})
+
+	result := make([]*generator.LogTemplate, count)
+	for i := 0; i < count; i++ {
+		result[i] = templates[indices[i]]
+	}
+
+	return result
 }
 
 func (dg *DataGenerator) calculateOptimalBatchSize() int {

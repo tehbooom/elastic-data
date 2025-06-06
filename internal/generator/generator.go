@@ -18,13 +18,14 @@ import (
 )
 
 type LogTemplate struct {
-	Original  string
-	Template  *template.Template
-	IsJSON    bool
-	Patterns  []PatternRule
-	Size      int
-	Data      map[string]string
-	DataPools map[string][]string
+	Original     string
+	Template     *template.Template
+	IsJSON       bool
+	Patterns     []PatternRule
+	Size         int
+	Data         map[string]string
+	DataPools    map[string][]string
+	UserProvided bool
 }
 
 type PatternRule struct {
@@ -56,36 +57,36 @@ func (l *LogTemplate) initializeDataPools(replacements *config.Replacements) {
 // AddCommonPatterns add common templates to the patterns slice.
 // Unix timestamps should not include non json logs as it may overwrite non time fields
 func (l *LogTemplate) AddCommonPatterns(unix bool) {
-	var commonPatterns map[string]*regexp.Regexp
-
-	if unix {
-		commonPatterns = map[string]*regexp.Regexp{
-			"IPs":               regexp.MustCompile(`\b(?:\d{1,3}\.){3}\d{1,3}\b`),
-			"timestamp_iso":     common.IsoRegex,
-			"timestamp_common":  common.CommonRegex,
-			"timestamp_clf":     common.ClfRegex,
-			"timestamp_syslog":  common.SyslogRegex,
-			"timestamp_snort":   common.SnortRegex,
-			"timestamp_unix_s":  common.UnixSecRegex,
-			"timestamp_unix_ms": common.UnixMsRegex,
-			"Emails":            regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
-			"Domains":           regexp.MustCompile(`[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
-		}
-	} else {
-		commonPatterns = map[string]*regexp.Regexp{
-			"IPs":              regexp.MustCompile(`\b(?:\d{1,3}\.){3}\d{1,3}\b`),
-			"timestamp_iso":    common.IsoRegex,
-			"timestamp_common": common.CommonRegex,
-			"timestamp_clf":    common.ClfRegex,
-			"timestamp_syslog": common.SyslogRegex,
-			"timestamp_snort":  common.SnortRegex,
-			"Emails":           regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
-			"Domains":          regexp.MustCompile(`[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`),
-		}
+	patterns := []struct {
+		name  string
+		regex *regexp.Regexp
+	}{
+		{"timestamp_clf_timezone", common.ClfWithTimezoneRegex},
+		{"timestamp_clf", common.ClfRegex},
+		{"timestamp_common", common.CommonRegex},
+		{"timestamp_iso", common.IsoRegex},
+		{"timestamp_syslog", common.SyslogRegex},
+		{"timestamp_snort", common.SnortRegex},
+		{"IPs", regexp.MustCompile(`\b(?:\d{1,3}\.){3}\d{1,3}\b`)},
+		{"Emails", regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`)},
+		{"Domains", regexp.MustCompile(`[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`)},
 	}
 
-	for name, pattern := range commonPatterns {
-		l.AddPattern(name, pattern)
+	if unix {
+		patterns = append(patterns,
+			struct {
+				name  string
+				regex *regexp.Regexp
+			}{"timestamp_unix_s", common.UnixSecRegex},
+			struct {
+				name  string
+				regex *regexp.Regexp
+			}{"timestamp_unix_ms", common.UnixMsRegex},
+		)
+	}
+
+	for _, p := range patterns {
+		l.AddPattern(p.name, p.regex)
 	}
 }
 
@@ -98,11 +99,10 @@ func (l *LogTemplate) AddPattern(name string, pattern *regexp.Regexp) {
 }
 
 func (l *LogTemplate) UpdateValues() {
-	log.Debug(fmt.Sprintf("DataPools: %+v", l.DataPools))
-	log.Debug(fmt.Sprintf("Data keys: %+v", l.Data))
 	if l.Data == nil {
 		l.Data = make(map[string]string)
 	}
+	now := time.Now()
 
 	if l.IsJSON {
 		for key := range l.Data {
@@ -121,25 +121,20 @@ func (l *LogTemplate) UpdateValues() {
 					value = array[rand.Intn(len(array))]
 				}
 			case "timestamp_iso":
-				now := time.Now()
 				value = now.UTC().Format("2006-01-02T15:04:05.000Z")
 			case "timestamp_common":
-				now := time.Now()
 				value = now.Format("02/Jan/2006:15:04:05")
-			case "timestamp_clf":
-				now := time.Now()
+			case "timestamp_clf_timezone":
 				value = now.Format("[02/Jan/2006:15:04:05 -0700]")
+			case "timestamp_clf":
+				value = now.Format("[02/Jan/2006:15:04:05]")
 			case "timestamp_syslog":
-				now := time.Now()
 				value = now.Format("Jan _2 15:04:05")
 			case "timestamp_snort":
-				now := time.Now()
 				value = now.Format("01/02-15:04:05.000000")
 			case "timestamp_unix_s":
-				now := time.Now()
 				value = strconv.FormatInt(now.Unix(), 10)
 			case "timestamp_unix_ms":
-				now := time.Now()
 				value = strconv.FormatInt(now.UnixMilli(), 10)
 			}
 			if value != "" {
@@ -167,19 +162,16 @@ func (l *LogTemplate) UpdateValues() {
 					value = array[rand.Intn(len(array))]
 				}
 			case "timestamp_iso":
-				now := time.Now()
 				value = now.UTC().Format("2006-01-02T15:04:05.000Z")
 			case "timestamp_common":
-				now := time.Now()
 				value = now.Format("02/Jan/2006:15:04:05")
+			case "timestamp_clf_timezone":
+				value = now.Format("[02/Jan/2006:15:04:05 -0700]")
 			case "timestamp_clf":
-				now := time.Now()
 				value = now.Format("[02/Jan/2006:15:04:05 -0700]")
 			case "timestamp_syslog":
-				now := time.Now()
 				value = now.Format("Jan _2 15:04:05")
 			case "timestamp_snort":
-				now := time.Now()
 				value = now.Format("01/02-15:04:05.000000")
 			}
 			if value != "" {
@@ -205,8 +197,8 @@ func (l *LogTemplate) ExecuteTemplate() (string, error) {
 	return buf.String(), nil
 }
 
-func LoadTemplatesForDataset(cfgPath, integration, dataset string, cfg *config.Config) ([]LogTemplate, error) {
-	var templates []LogTemplate
+func LoadTemplatesForDataset(cfgPath, integration, dataset string, cfg *config.Config) ([]*LogTemplate, error) {
+	var templates []*LogTemplate
 
 	datasetPath := filepath.Join(cfgPath, "integrations", "packages", integration, "data_stream", dataset)
 

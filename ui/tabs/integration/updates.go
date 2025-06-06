@@ -335,7 +335,7 @@ func (m *TabModel) updateDatasetConfiguration(msg tea.Msg) (tea.Model, tea.Cmd) 
 				Threshold:             threshold,
 				Unit:                  unit,
 				PreserveEventOriginal: preserve,
-				Events:                []string{"test"},
+				Events:                item.Events,
 			}
 
 			m.saveController.MarkDirty()

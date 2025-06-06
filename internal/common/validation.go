@@ -9,15 +9,16 @@ import (
 )
 
 var (
-	IsoRegex      = regexp.MustCompile(`\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z?`)
-	CommonRegex   = regexp.MustCompile(`\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}`)
-	ClfRegex      = regexp.MustCompile(`\[\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}[^\]]*\]`)
-	SyslogRegex   = regexp.MustCompile(`[A-Za-z]{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}`)
-	UnixSecRegex  = regexp.MustCompile(`\b\d{10}\b`)
-	UnixMsRegex   = regexp.MustCompile(`\b\d{13}\b`)
-	SnortRegex    = regexp.MustCompile(`\d{2}/\d{2}-\d{2}:\d{2}:\d{2}\.\d+`)
-	HostnameRegex = regexp.MustCompile(`^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$`)
-	UsernameRegex = regexp.MustCompile(`^[a-zA-Z0-9._-]+$`)
+	IsoRegex             = regexp.MustCompile(`\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z?`)
+	CommonRegex          = regexp.MustCompile(`\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}`)
+	ClfRegex             = regexp.MustCompile(`\[\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}\]`)
+	ClfWithTimezoneRegex = regexp.MustCompile(`\[\d{2}/[A-Za-z]{3}/\d{4}:\d{2}:\d{2}:\d{2}\s+[+-]\d{4}\]`)
+	SyslogRegex          = regexp.MustCompile(`[A-Za-z]{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}`)
+	UnixSecRegex         = regexp.MustCompile(`\b\d{10}\b`)
+	UnixMsRegex          = regexp.MustCompile(`\b\d{13}\b`)
+	SnortRegex           = regexp.MustCompile(`\d{2}/\d{2}-\d{2}:\d{2}:\d{2}\.\d+`)
+	HostnameRegex        = regexp.MustCompile(`^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$`)
+	UsernameRegex        = regexp.MustCompile(`^[a-zA-Z0-9._-]+$`)
 )
 
 func IsEmail(s string) bool {

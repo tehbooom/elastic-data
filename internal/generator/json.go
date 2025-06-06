@@ -13,14 +13,14 @@ import (
 	"github.com/tehbooom/elastic-data/internal/common"
 )
 
-func ParseJSONFile(filePath string) ([]LogTemplate, error) {
+func ParseJSONFile(filePath string) ([]*LogTemplate, error) {
 	file, err := os.ReadFile(filePath)
 	if err != nil {
 		log.Debug(err)
 		return nil, err
 	}
 
-	var templates []LogTemplate
+	var templates []*LogTemplate
 
 	var JSONLog struct {
 		Events []map[string]any
@@ -56,11 +56,12 @@ func ParseJSONFile(filePath string) ([]LogTemplate, error) {
 			return nil, err
 		}
 
-		template := LogTemplate{
-			Original: string(original),
-			IsJSON:   true,
-			Size:     len(original),
-			Data:     make(map[string]string),
+		template := &LogTemplate{
+			Original:     string(original),
+			IsJSON:       true,
+			Size:         len(original),
+			Data:         make(map[string]string),
+			UserProvided: false,
 		}
 
 		template.AddCommonPatterns(true)
