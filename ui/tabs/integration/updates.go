@@ -339,7 +339,7 @@ func (m *TabModel) updateDatasetConfiguration(msg tea.Msg) (tea.Model, tea.Cmd) 
 
 			if threshold <= 0 {
 				return m, func() tea.Msg {
-					return errors.ShowErrorMsg{Message: fmt.Sprintf("threshold must be greater than 0")}
+					return errors.ShowErrorMsg{Message: "threshold must be greater than 0"}
 				}
 			}
 
