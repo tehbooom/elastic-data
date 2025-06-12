@@ -26,6 +26,7 @@ You can download the binary corresponding to your operating system from the rele
 Once downloaded you can run the binary from the command line:
 
 ```bash
+tar -xzf elastic-data_Linux_x86_64.tar.gz
 ./elastic-data
 ```
 
@@ -40,6 +41,8 @@ go install github.com/tehbooom/elastic-data@latest
 ```
 
 ## Usage
+
+> You must be authenticated with `git` before execution
 
 1. Ensure you have a configuration file in `~/.config/elastic-data/config.yaml`
 
