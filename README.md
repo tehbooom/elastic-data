@@ -658,8 +658,6 @@ Some integrations are not supported since their tests do no include example logs
 
 - [sysmon_linux](https://www.elastic.co/docs/reference/integrations/sysmon_linux)
 
-- [system](https://www.elastic.co/docs/reference/integrations/system)
-
 - [system_audit](https://www.elastic.co/docs/reference/integrations/system_audit)
 
 - [tanium](https://www.elastic.co/docs/reference/integrations/tanium)

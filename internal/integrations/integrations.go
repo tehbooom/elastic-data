@@ -27,10 +27,16 @@ func GetIntegrations(repoPath string) ([]string, error) {
 	}
 	var directories []string
 	for _, entry := range entries {
-		if entry.IsDir() {
-			if hasValidDatasets(repoPath, entry.Name()) {
-				directories = append(directories, entry.Name())
-			}
+		if !entry.IsDir() {
+			continue
+		}
+
+		if entry.Name() == "system" {
+			continue
+		}
+
+		if hasValidDatasets(repoPath, entry.Name()) {
+			directories = append(directories, entry.Name())
 		}
 	}
 	return directories, nil
