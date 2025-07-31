@@ -49,7 +49,7 @@ func ParseJSONFile(filePath string) ([]*LogTemplate, error) {
 			UserProvided: false,
 		}
 
-		template.AddCommonPatterns(true)
+		template.AddCommonPatterns()
 		err = template.ParseJSONEvent()
 		if err != nil {
 			log.Debug(err)
@@ -223,26 +223,30 @@ func convertStringValue(k, value string, extractedData map[string]string) string
 		extractedData["timestamp_syslog"] = escapedValue
 		return "{{.timestamp_syslog}}"
 	}
+
 	if common.SnortRegex.MatchString(value) {
 		extractedData["timestamp_snort"] = escapedValue
 		return "{{.timestamp_snort}}"
 	}
+
 	if common.SnortNoYearRegex.MatchString(value) {
 		extractedData["timestamp_snort"] = escapedValue
 		return "{{.timestamp_snort}}"
 	}
 
+	if common.UnixMsRegex.MatchString(value) {
+		extractedData["timestamp_unix_ms"] = escapedValue
+		return "{{.timestamp_unix_ms}}"
+	}
+
+	if common.UnixSecRegex.MatchString(value) {
+		extractedData["timestamp_unix_s"] = escapedValue
+		return "{{.timestamp_unix_s}}"
+	}
+
 	key := strings.ToLower(k)
 
-	if strings.Contains(key, "time") || strings.Contains(key, "timestamp") {
-		if common.UnixMsRegex.MatchString(value) {
-			extractedData["timestamp_unix_ms"] = escapedValue
-			return "{{.timestamp_unix_ms}}"
-		} else if common.UnixSecRegex.MatchString(value) {
-			extractedData["timestamp_unix_s"] = escapedValue
-			return "{{.timestamp_unix_s}}"
-		}
-	} else if strings.Contains(key, "username") {
+	if strings.Contains(key, "username") {
 		extractedData["Users"] = escapedValue
 		return "{{.Users}}"
 	} else if strings.Contains(key, "hostname") {

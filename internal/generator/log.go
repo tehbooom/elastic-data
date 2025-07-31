@@ -119,8 +119,9 @@ func processLogLine(line []byte, userProvided bool) (*LogTemplate, error) {
 		UserProvided: userProvided,
 	}
 
+	template.AddCommonPatterns()
+
 	if strings.HasPrefix(strings.TrimSpace(string(line)), "{") && json.Valid(line) {
-		template.AddCommonPatterns(true)
 		err := template.ParseJSONEvent()
 		if err != nil {
 			log.Debug(err)
@@ -128,16 +129,14 @@ func processLogLine(line []byte, userProvided bool) (*LogTemplate, error) {
 		}
 
 		return template, nil
-	}
+	} else {
+		if err := template.ParseLogLine(); err != nil {
+			log.Debug(err)
+			return nil, fmt.Errorf("failed to parse log: %w", err)
+		}
 
-	// do not include unix timestamps to prevent overwriting non timestamp fields
-	template.AddCommonPatterns(false)
-	if err := template.ParseLogLine(); err != nil {
-		log.Debug(err)
-		return nil, fmt.Errorf("failed to parse log: %w", err)
+		return template, nil
 	}
-
-	return template, nil
 }
 
 func (l *LogTemplate) ParseLogLine() error {

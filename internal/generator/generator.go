@@ -54,9 +54,7 @@ func (l *LogTemplate) initializeDataPools(replacements *config.Replacements) {
 	l.DataPools["Hosts"] = replacements.Hosts
 }
 
-// AddCommonPatterns add common templates to the patterns slice.
-// Unix timestamps should not include non json logs as it may overwrite non time fields
-func (l *LogTemplate) AddCommonPatterns(unix bool) {
+func (l *LogTemplate) AddCommonPatterns() {
 	patterns := []struct {
 		name  string
 		regex *regexp.Regexp
@@ -68,22 +66,11 @@ func (l *LogTemplate) AddCommonPatterns(unix bool) {
 		{"timestamp_syslog", common.SyslogRegex},
 		{"timestamp_snort", common.SnortRegex},
 		{"timestamp_snort_no_year", common.SnortNoYearRegex},
+		{"timestamp_unix_s", common.UnixSecRegex},
+		{"timestamp_unix_ms", common.UnixMsRegex},
 		{"IPs", regexp.MustCompile(`\b(?:\d{1,3}\.){3}\d{1,3}\b`)},
 		{"Emails", regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`)},
 		{"Domains", regexp.MustCompile(`[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}`)},
-	}
-
-	if unix {
-		patterns = append(patterns,
-			struct {
-				name  string
-				regex *regexp.Regexp
-			}{"timestamp_unix_s", common.UnixSecRegex},
-			struct {
-				name  string
-				regex *regexp.Regexp
-			}{"timestamp_unix_ms", common.UnixMsRegex},
-		)
 	}
 
 	for _, p := range patterns {
@@ -148,7 +135,9 @@ func (l *LogTemplate) UpdateValues() {
 	}
 
 	for _, pattern := range l.Patterns {
+		log.Debug(fmt.Sprintf("Processing pattern: %s", pattern.Name))
 		matches := pattern.Regex.FindAllString(l.Original, -1)
+		log.Debug(fmt.Sprintf("Matches found for %s: %v", pattern.Name, matches))
 		if len(matches) > 0 {
 			var value string
 			switch pattern.Name {
@@ -178,6 +167,10 @@ func (l *LogTemplate) UpdateValues() {
 				value = now.Format("01/02/06-15:04:05.000000")
 			case "timestamp_snort_no_year":
 				value = now.Format("01/02-15:04:05.000000")
+			case "timestamp_unix_s":
+				value = strconv.FormatInt(now.Unix(), 10)
+			case "timestamp_unix_ms":
+				value = strconv.FormatInt(now.UnixMilli(), 10)
 			}
 			if value != "" {
 				l.Data[pattern.Name] = value
