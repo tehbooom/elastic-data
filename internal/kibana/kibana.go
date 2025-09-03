@@ -77,6 +77,9 @@ func SetClient(cfg config.ConfigConnection) (*kibana.Client, error) {
 func (c *Config) InstallPackage(pkgName string) error {
 	_, err := c.Client.EPM.InstallPackageRegistry(c.Ctx, &kbapi.FleetEPMInstallPackageRegistryRequest{
 		PackageName: pkgName,
+		Params: kbapi.FleetEPMInstallPackageRegistryRequestParams{
+			Prerelease: kbapi.BoolPtr(true),
+		},
 	})
 
 	if err != nil {
