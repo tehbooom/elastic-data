@@ -1,0 +1,481 @@
+# Time: 180613 11:04:36
+---EVENT_DELIMITER---
+# User@Host: root[root] @ localhost [{{.IPs}}]
+# Thread_id: 5  Schema:   QC_hit: No
+# Query_time: 2.000652  Lock_time: 0.000000  Rows_sent: 1  Rows_examined: 0
+SET timestamp={{.timestamp_unix_s}};
+select sleep(2);
+---EVENT_DELIMITER---
+mysqld, Version: 10.2.12-MariaDB-10.2.12+maria~jessie-log ({{.Domains}} binary distribution). started with:
+Tcp port: 0  Unix socket: /var/run/mysqld/{{.Domains}}
+Time                 Id Command    Argument
+mysqld, Version: 10.2.12-MariaDB-10.2.12+maria~jessie-log ({{.Domains}} binary distribution). started with:
+Tcp port: 3306  Unix socket: /var/run/mysqld/{{.Domains}}
+Time                 Id Command    Argument
+---EVENT_DELIMITER---
+# Time: 190117 16:04:03
+---EVENT_DELIMITER---
+# User@Host: root[root] @ localhost []
+# Thread_id: 8  Schema:   QC_hit: No
+# Query_time: 2.000227  Lock_time: 0.000000  Rows_sent: 1  Rows_examined: 0
+# Rows_affected: 0
+SET timestamp={{.timestamp_unix_s}};
+select sleep(2)
+AS foo;
+---EVENT_DELIMITER---
+# Time: 190117 16:04:18
+---EVENT_DELIMITER---
+# User@Host: root[root] @  [{{.IPs}}]
+# Thread_id: 25844  Schema: blah  QC_hit: No
+# Query_time: 178.306017  Lock_time: 0.000000  Rows_sent: 0  Rows_examined: 53022772
+# Rows_affected: 3062
+# Full_scan: Yes  Full_join: No  Tmp_table: Yes  Tmp_table_on_disk: No
+# Filesort: Yes  Filesort_on_disk: No  Merge_passes: 0  Priority_queue: No
+SET timestamp={{.timestamp_unix_s}};
+call PROC('blah');
+---EVENT_DELIMITER---
+/usr/sbin/mysqld, Version: 10.3.13-MariaDB-1:10.3.13+maria~bionic-log ({{.Domains}} binary distribution). started with:
+Tcp port: 3306  Unix socket: /var/run/mysqld/{{.Domains}}
+Time		    Id Command	Argument
+---EVENT_DELIMITER---
+# Time: 190324 16:03:00
+---EVENT_DELIMITER---
+# User@Host: root[root] @ localhost []
+# Thread_id: 37  Schema: employees-test  QC_hit: No
+# Query_time: 2.461578  Lock_time: 0.000196  Rows_sent: 10  Rows_examined: 3145718
+# Rows_affected: 0  Bytes_sent: 319
+# Tmp_tables: 1  Tmp_disk_tables: 0  Tmp_table_sizes: 4026528
+# Full_scan: Yes  Full_join: No  Tmp_table: Yes  Tmp_table_on_disk: No
+# Filesort: Yes  Filesort_on_disk: No  Merge_passes: 0  Priority_queue: Yes
+use employees-test;
+SET timestamp={{.timestamp_unix_s}};
+SELECT last_name, MAX(salary) AS salary FROM employees
+    INNER JOIN salaries ON {{.Domains}}_no = {{.Domains}}_no
+    GROUP BY last_name
+    ORDER BY salary DESC
+    LIMIT 10;
+---EVENT_DELIMITER---
+# Time: 131112 17:03:32
+---EVENT_DELIMITER---
+# User@Host: root[root] @ localhost []
+# Thread_id: 2  Schema: dbt3sf1  QC_hit: No
+# Query_time: 5.524103  Lock_time: 0.000337  Rows_sent: 1  Rows_examined: 65633
+#
+# explain: id   select_type     table   type    possible_keys   key     key_len ref     rows    Extra
+# explain: 1    SIMPLE  nation  ref     PRIMARY,n_name  n_name  26      const   1       Using where; Using index
+# explain: 1    SIMPLE  customer        ref     PRIMARY,i_c_nationkey   i_c_nationkey   5       {{.Domains}}.n_nationkey      3145    Using index
+# explain: 1    SIMPLE  orders  ref     i_o_custkey     i_o_custkey     5       {{.Domains}}.c_custkey      7       Using index
+#
+SET timestamp={{.timestamp_unix_s}};
+select count(*) from customer, orders, nation
+  where c_custkey=o_custkey
+    and c_nationkey=n_nationkey
+    and n_name='GERMANY';
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}604+08:00
+---EVENT_DELIMITER---
+# User@Host: root[root] @  [{{.IPs}}]  Id:  7234
+# Query_time: 15.000223  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0
+SET timestamp={{.timestamp_unix_s}};
+select sleep(15);
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}604+08:00
+---EVENT_DELIMITER---
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.000153  Lock_time: 0.000061 Rows_sent: 1  Rows_examined: 5
+SET timestamp={{.timestamp_unix_s}};
+SELECT count(*) FROM {{.Domains}} WHERE user='root' and password='';
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}604+08:00
+---EVENT_DELIMITER---
+# User@Host: appuser[appuser] @ apphost [{{.IPs}}]  Id: 10997316
+# Query_time: 4.071491  Lock_time: 0.000212 Rows_sent: 1000  Rows_examined: 1489615
+SET timestamp={{.timestamp_unix_s}};
+SELECT {{.Domains}}_guid, {{.Domains}}_guid, {{.Domains}}_url, {{.Domains}}_crawlelements, {{.Domains}}_order, GROUP_CONCAT({{.Domains}}_guid SEPARATOR ";") as mca_guid
+                    FROM kat_mailcustomerurl mcu, kat_customer cus, kat_mailcampaign mca
+                    WHERE {{.Domains}}_guid = {{.Domains}}_guid
+                        AND {{.Domains}}_code = 'CYB'
+                        AND {{.Domains}}_offline = 0
+                        AND {{.Domains}}_guid = {{.Domains}}_guid
+                        AND ({{.Domains}}_date IS NULL OR {{.Domains}}_date < CURDATE())
+                        AND {{.Domains}}_crawlelements IS NOT NULL
+                    GROUP BY {{.Domains}}_guid
+                    ORDER BY {{.Domains}}_order ASC
+                    LIMIT 1000;
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}604+08:00
+---EVENT_DELIMITER---
+# User@Host: appuser[appuser] @ apphost [{{.IPs}}]  Id: 10999834
+# Query_time: 10.346539  Lock_time: 0.000036 Rows_sent: 0  Rows_examined: 4751313
+SET timestamp={{.timestamp_unix_s}};
+call load_stats(1, '2017-04-28 00:00:00');
+---EVENT_DELIMITER---
+/usr/local/Cellar/mysql/5.7.10/bin/mysqld, Version: 5.7.10 (Homebrew). started with:
+Tcp port: 3306  Unix socket: /tmp/{{.Domains}}
+Time                 Id Command    Argument
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}172Z
+---EVENT_DELIMITER---
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 11.004467  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0
+SET timestamp={{.timestamp_unix_s}};
+select sleep(11);
+---EVENT_DELIMITER---
+# User@Host: apphost[apphost] @ apphost [{{.IPs}}]  Id: 10997316
+# Query_time: 4.071491  Lock_time: 0.000212 Rows_sent: 1000  Rows_examined: 1489615
+SET timestamp={{.timestamp_unix_s}};
+SELECT {{.Domains}}_guid, {{.Domains}}_guid, {{.Domains}}_url, {{.Domains}}_crawlelements, {{.Domains}}_order, GROUP_CONCAT({{.Domains}}_guid SEPARATOR ";") as mca_guid
+                    FROM kat_mailcustomerurl mcu, kat_customer cus, kat_mailcampaign mca
+                    WHERE {{.Domains}}_guid = {{.Domains}}_guid
+                        AND {{.Domains}}_code = 'CYB'
+                        AND {{.Domains}}_offline = 0
+                        AND {{.Domains}}_guid = {{.Domains}}_guid
+                        AND ({{.Domains}}_date IS NULL OR {{.Domains}}_date < CURDATE())
+                        AND {{.Domains}}_crawlelements IS NOT NULL
+                    GROUP BY {{.Domains}}_guid
+                    ORDER BY {{.Domains}}_order ASC
+                    LIMIT 1000;
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}365Z
+---EVENT_DELIMITER---
+# User@Host: apphost[apphost] @ apphost [{{.IPs}}]  Id: 10999834
+# Query_time: 10.346539  Lock_time: 0.000036 Rows_sent: 0  Rows_examined: 4751313
+SET timestamp={{.timestamp_unix_s}};
+call load_stats(1, '2017-04-28 00:00:00');
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}657Z
+---EVENT_DELIMITER---
+# User@Host: apphost[apphost] @ apphost [{{.IPs}}]  Id: 11004208
+# Query_time: 10.508030  Lock_time: 0.000034 Rows_sent: 0  Rows_examined: 4754675
+SET timestamp={{.timestamp_unix_s}};
+call load_stats(1, '2017-04-28 00:00:00');
+---EVENT_DELIMITER---
+# User@Host: root[root] @  [{{.IPs}}]  Id:     5
+# Query_time: 0.000100  Lock_time: 0.000033 Rows_sent: 101  Rows_examined: 101
+SET timestamp={{.timestamp_unix_s}};
+SELECT intcol1,charcol1 FROM t1;
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}295Z
+---EVENT_DELIMITER---
+/usr/sbin/mysqld, Version: 5.5.53-0ubuntu0.12.04.1-log ((Ubuntu)). started with:
+Tcp port: 3306  Unix socket: /var/run/mysqld/{{.Domains}}
+Time                 Id Command    Argument
+---EVENT_DELIMITER---
+# Time: 161209 14:37:59
+---EVENT_DELIMITER---
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.000153  Lock_time: 0.000061 Rows_sent: 1  Rows_examined: 5
+SET timestamp={{.timestamp_unix_s}};
+SELECT count(*) FROM {{.Domains}} WHERE user='root' and password='';
+---EVENT_DELIMITER---
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.002456  Lock_time: 0.000095 Rows_sent: 31  Rows_examined: 81
+SET timestamp={{.timestamp_unix_s}};
+select concat('select count(*) into @discard from `',
+                    TABLE_SCHEMA, '`.`', TABLE_NAME, '`')
+      from information_{{.Domains}} where ENGINE='MyISAM';
+---EVENT_DELIMITER---
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.006278  Lock_time: 0.000153 Rows_sent: 0  Rows_examined: 808
+SET timestamp={{.timestamp_unix_s}};
+select count(*) into @discard from `information_schema`.`COLUMNS`;
+---EVENT_DELIMITER---
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.000262  Lock_time: 0.000204 Rows_sent: 0  Rows_examined: 0
+SET timestamp={{.timestamp_unix_s}};
+select count(*) into @discard from `information_schema`.`EVENTS`;
+---EVENT_DELIMITER---
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.000323  Lock_time: 0.000241 Rows_sent: 0  Rows_examined: 0
+SET timestamp={{.timestamp_unix_s}};
+select count(*) into @discard from `information_schema`.`PARAMETERS`;
+---EVENT_DELIMITER---
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.007084  Lock_time: 0.000148 Rows_sent: 0  Rows_examined: 81
+SET timestamp={{.timestamp_unix_s}};
+select count(*) into @discard from `information_schema`.`PARTITIONS`;
+---EVENT_DELIMITER---
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.000277  Lock_time: 0.000135 Rows_sent: 0  Rows_examined: 23
+SET timestamp={{.timestamp_unix_s}};
+select count(*) into @discard from `information_schema`.`PLUGINS`;
+---EVENT_DELIMITER---
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.000254  Lock_time: 0.000159 Rows_sent: 0  Rows_examined: 1
+SET timestamp={{.timestamp_unix_s}};
+select count(*) into @discard from `information_schema`.`PROCESSLIST`;
+---EVENT_DELIMITER---
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.000297  Lock_time: 0.000229 Rows_sent: 0  Rows_examined: 0
+SET timestamp={{.timestamp_unix_s}};
+select count(*) into @discard from `information_schema`.`ROUTINES`;
+---EVENT_DELIMITER---
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.001676  Lock_time: 0.000156 Rows_sent: 0  Rows_examined: 0
+SET timestamp={{.timestamp_unix_s}};
+select count(*) into @discard from `information_schema`.`TRIGGERS`;
+---EVENT_DELIMITER---
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.008782  Lock_time: 0.001187 Rows_sent: 0  Rows_examined: 0
+SET timestamp={{.timestamp_unix_s}};
+select count(*) into @discard from `information_schema`.`VIEWS`;
+---EVENT_DELIMITER---
+# Time: 161209 14:39:02
+---EVENT_DELIMITER---
+# User@Host: root[root] @ localhost []
+# Query_time: 2.000268  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0
+SET timestamp={{.timestamp_unix_s}};
+select sleep(2);
+---EVENT_DELIMITER---
+# Time: 161209 14:39:23
+---EVENT_DELIMITER---
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000138  Lock_time: 0.000056 Rows_sent: 0  Rows_examined: 0
+use mysql;
+SET timestamp={{.timestamp_unix_s}};
+select * from general_log;
+---EVENT_DELIMITER---
+# Time: 161209 14:39:40
+---EVENT_DELIMITER---
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000159  Lock_time: 0.000059 Rows_sent: 5  Rows_examined: 5
+SET timestamp={{.timestamp_unix_s}};
+select * from user;
+---EVENT_DELIMITER---
+/usr/sbin/mysqld, Version: 8.0.15 (MySQL Community Server - GPL). started with:
+Tcp port: 3306  Unix socket: /var/run/mysqld/{{.Domains}}
+Time                 Id Command    Argument
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}234Z
+---EVENT_DELIMITER---
+# User@Host: root[root] @ localhost []  Id:    14
+# Query_time: 2.475469  Lock_time: 0.000287 Rows_sent: 10  Rows_examined: 3145718
+use employees;
+SET timestamp={{.timestamp_unix_s}};
+SELECT last_name, MAX(salary) AS salary FROM employees INNER JOIN salaries ON {{.Domains}}_no = {{.Domains}}_no GROUP BY last_name ORDER BY salary DESC LIMIT 10;
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}951Z
+---EVENT_DELIMITER---
+# User@Host: root[root] @ localhost []  Id:    16
+# Query_time: 2.631844  Lock_time: 0.000145 Rows_sent: 10  Rows_examined: 3145718 Thread_id: 16 Errno: 0 Killed: 0 Bytes_received: 0 Bytes_sent: 312 Read_first: 1 Read_last: 0 Read_key: 3144072 Read_next: 2844047 Read_prev: 0 Read_rnd: 10 Read_rnd_next: 301663 Sort_merge_passes: 0 Sort_range_count: 0 Sort_rows: 10 Sort_scan_count: 1 Created_tmp_disk_tables: 0 Created_tmp_tables: 1 Start: {{.timestamp_iso}}107Z End: {{.timestamp_iso}}951Z
+use employees;
+SET timestamp={{.timestamp_unix_s}};
+SELECT last_name, MAX(salary) AS salary FROM employees
+    INNER JOIN salaries ON {{.Domains}}_no = {{.Domains}}_no
+    GROUP BY last_name
+    ORDER BY salary DESC
+    LIMIT 10;
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}128Z
+---EVENT_DELIMITER---
+# User@Host: exporter[exporter] @ localhost []  Id: 14367293
+# Schema:   Last_errno: 1370  Killed: 0
+# Query_time: 0.050365  Lock_time: 0.010733  Rows_sent: 16  Rows_examined: 3146  Rows_affected: 0
+# Bytes_sent: 1362  Tmp_tables: 376  Tmp_disk_tables: 71  Tmp_table_sizes: 606208
+# QC_Hit: No  Full_scan: Yes  Full_join: Yes  Tmp_table: Yes  Tmp_table_on_disk: Yes
+# Filesort: No  Filesort_on_disk: No  Merge_passes: 0
+# No InnoDB statistics available for this query
+# Log_slow_rate_type: query  Log_slow_rate_limit: 100
+SET timestamp={{.timestamp_unix_s}};
+SELECT {{.Domains}}_schema, {{.Domains}}_name, column_name, `auto_increment`,
+                  pow(2, case data_type
+                    when 'tinyint'   then 7
+                    when 'smallint'  then 15
+                    when 'mediumint' then 23
+                    when 'int'       then 31
+                    when 'bigint'    then 63
+                    end+(column_type like '% unsigned'))-1 as max_int
+                  FROM information_{{.Domains}} t
+                  JOIN information_{{.Domains}} c
+                    ON BINARY {{.Domains}}_schema = {{.Domains}}_schema AND BINARY {{.Domains}}_name = {{.Domains}}_name
+                  WHERE {{.Domains}} = 'auto_increment' AND {{.Domains}}_increment IS NOT NULL;
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}710Z
+---EVENT_DELIMITER---
+# User@Host: test[test] @  [{{.IPs}}]  Id: 14370752
+# Schema: test  Last_errno: 3170  Killed: 0
+# Query_time: 153.883481  Lock_time: 0.024022  Rows_sent: 0  Rows_examined: 120309968  Rows_affected: 19198
+# Bytes_sent: 62  Tmp_tables: 0  Tmp_disk_tables: 0  Tmp_table_sizes: 0
+# InnoDB_trx_id: 69BB9C7F9
+# QC_Hit: No  Full_scan: No  Full_join: No  Tmp_table: No  Tmp_table_on_disk: No
+# Filesort: No  Filesort_on_disk: No  Merge_passes: 0
+#   InnoDB_IO_r_ops: 9744  InnoDB_IO_r_bytes: 79822848  InnoDB_IO_r_wait: 0.883446
+#   InnoDB_rec_lock_wait: 0.003038  InnoDB_queue_wait: 0.000000
+#   InnoDB_pages_distinct: 64872
+# Log_slow_rate_type: query  Log_slow_rate_limit: 100
+SET timestamp={{.timestamp_unix_s}};
+UPDATE test    SET {{.Domains}} = 'NOT_RELEVANT', modified = now()  WHERE {{.Domains}} IN (26328833, 390, 149386, 152268, 160997, 165304, 168524, 184105, 193022, 194533, 194862, 196469, 196487, 246398, 256594, 260566, 261862, 262342, 263701, 264166, 264607, 267671, 274879, 276704, 280964, 284366, 289323, 289843, 290004, 298999, 301213, 303494, 307920, 311905, 316311, 318404, 330846, 340751, 341433, 357191, 369184, 376876, 378360, 378492, 379470, 382131, 384077, 388368, 396815, 396881, 398272, 398950, 399589, 401299, 408787, 411293, 419109, 425953, 427659, 433183, 437030, 438332, 438386, 447037, 454231, 455257, 455344, 456385, 460420, 460425, 461252, 462338, 462531, 462684, 463104, 463395, 471073, 480069, 480078, 482399, 485205, 487971, 497191, 500261, 501855, 517585, 519310, 519654, 522575, 538425, 543560, 562315, 573934, 583466, 583490, 583502, 597605, 600875, 601546, 603879, 604467, 604619, 757786, 797285, 799155, 802905, 806268, 806798, 811974, 819684, 822629, 826406, 837733, 840128, 840131, 840251, 840277, 840302, 842966, 844294, 844300, 847837, 852503, 854272, 854299, 862983, 881405, 881461, 881467, 881560, 881908, 882435, 882453, 882651, 882711, 882811, 888265, 888286, 914091, 916288, 916316, 917708, 918238, 918887, 919222, 926607, 976977, 977010, 977067, 977131, 977185, 988249, 988276, 988336, 988360, 988504, 990994);
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}222Z
+---EVENT_DELIMITER---
+# User@Host: check[check] @ localhost []  Id: {{.timestamp_unix_s}}
+# Schema:   Last_errno: 0  Killed: 0
+# Query_time: 0.010569  Lock_time: 0.000067  Rows_sent: 1  Rows_examined: 928  Rows_affected: 0
+# Bytes_sent: 180  Tmp_tables: 1  Tmp_disk_tables: 0  Tmp_table_sizes: 0
+# QC_Hit: No  Full_scan: Yes  Full_join: No  Tmp_table: Yes  Tmp_table_on_disk: No
+# Filesort: No  Filesort_on_disk: No  Merge_passes: 0
+# No InnoDB statistics available for this query
+# Log_slow_rate_type: query  Log_slow_rate_limit: 100
+SET timestamp={{.timestamp_unix_s}};
+SHOW GLOBAL STATUS LIKE 'wsrep_local_state';
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}552Z
+---EVENT_DELIMITER---
+# User@Host: select[select] @  [{{.IPs}}]  Id: {{.timestamp_unix_s}}
+# Schema: database  Last_errno: 0  Killed: 0
+# Query_time: 0.036112  Lock_time: 0.000165  Rows_sent: 1  Rows_examined: 1  Rows_affected: 0
+# Bytes_sent: 529  Tmp_tables: 0  Tmp_disk_tables: 0  Tmp_table_sizes: 0
+# QC_Hit: No  Full_scan: No  Full_join: No  Tmp_table: No  Tmp_table_on_disk: No
+# Filesort: No  Filesort_on_disk: No  Merge_passes: 0
+#   InnoDB_IO_r_ops: 0  InnoDB_IO_r_bytes: 0  InnoDB_IO_r_wait: 0.000000
+#   InnoDB_rec_lock_wait: 0.000000  InnoDB_queue_wait: 0.000000
+#   InnoDB_pages_distinct: 3
+# Log_slow_rate_type: query  Log_slow_rate_limit: 100
+SET timestamp={{.timestamp_unix_s}};
+select {{.Domains}} as id, {{.Domains}} as active from config where {{.Domains}}='123456';
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}939Z
+---EVENT_DELIMITER---
+# User@Host: exporter[exporter] @ localhost []  Id: 14366748
+# Schema:   Last_errno: 0  Killed: 0
+# Query_time: 0.023385  Lock_time: 0.000039  Rows_sent: 390  Rows_examined: 390  Rows_affected: 0
+# Bytes_sent: 20195  Tmp_tables: 0  Tmp_disk_tables: 0  Tmp_table_sizes: 0
+# QC_Hit: No  Full_scan: Yes  Full_join: No  Tmp_table: No  Tmp_table_on_disk: No
+# Filesort: No  Filesort_on_disk: No  Merge_passes: 0
+# No InnoDB statistics available for this query
+# Log_slow_rate_type: query  Log_slow_rate_limit: 100
+SET timestamp={{.timestamp_unix_s}};
+SELECT EVENT_NAME, COUNT_STAR, SUM_TIMER_WAIT
+          FROM performance_{{.Domains}}_waits_summary_global_by_event_name;
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}734Z
+---EVENT_DELIMITER---
+# User@Host: test[test] @  [{{.IPs}}]  Id: 14349788
+# Schema: test  Last_errno: 0  Killed: 0
+# Query_time: 0.010278  Lock_time: 0.000000  Rows_sent: 0  Rows_examined: 0  Rows_affected: 0
+# Bytes_sent: 11  Tmp_tables: 0  Tmp_disk_tables: 0  Tmp_table_sizes: 0
+# InnoDB_trx_id: 69B884E82
+# QC_Hit: No  Full_scan: No  Full_join: No  Tmp_table: No  Tmp_table_on_disk: No
+# Filesort: No  Filesort_on_disk: No  Merge_passes: 0
+# No InnoDB statistics available for this query
+# Log_slow_rate_type: query  Log_slow_rate_limit: 100
+SET timestamp={{.timestamp_unix_s}};
+commit;
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}616Z
+---EVENT_DELIMITER---
+# User@Host: exporter[exporter] @ localhost []  Id: 14367106
+# Schema:   Last_errno: 1370  Killed: 0
+# Query_time: 0.014315  Lock_time: 0.000095  Rows_sent: 101  Rows_examined: 101  Rows_affected: 0
+# Bytes_sent: 7131  Tmp_tables: 111  Tmp_disk_tables: 24  Tmp_table_sizes: 114688
+# QC_Hit: No  Full_scan: Yes  Full_join: No  Tmp_table: Yes  Tmp_table_on_disk: Yes
+# Filesort: No  Filesort_on_disk: No  Merge_passes: 0
+# No InnoDB statistics available for this query
+# Log_slow_rate_type: query  Log_slow_rate_limit: 100
+SET timestamp={{.timestamp_unix_s}};
+SELECT
+                    TABLE_SCHEMA,
+                    TABLE_NAME,
+                    TABLE_TYPE,
+                    ifnull(ENGINE, 'NONE') as ENGINE,
+                    ifnull(VERSION, '0') as VERSION,
+                    ifnull(ROW_FORMAT, 'NONE') as ROW_FORMAT,
+                    ifnull(TABLE_ROWS, '0') as TABLE_ROWS,
+                    ifnull(DATA_LENGTH, '0') as DATA_LENGTH,
+                    ifnull(INDEX_LENGTH, '0') as INDEX_LENGTH,
+                    ifnull(DATA_FREE, '0') as DATA_FREE,
+                    ifnull(CREATE_OPTIONS, 'NONE') as CREATE_OPTIONS
+                  FROM information_{{.Domains}}
+                  WHERE TABLE_SCHEMA = 'sys';
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}128Z
+---EVENT_DELIMITER---
+# User@Host: exporter[exporter] @ localhost []  Id: 14367293
+# Schema:   Last_errno: 1370  Killed: 0
+# Query_time: 0.050365  Lock_time: 0.010733  Rows_sent: 16  Rows_examined: 3146  Rows_affected: 0
+# Bytes_sent: 1362  Tmp_tables: 376  Tmp_disk_tables: 71  Tmp_table_sizes: 606208
+# QC_Hit: No  Full_scan: Yes  Full_join: Yes  Tmp_table: Yes  Tmp_table_on_disk: Yes
+# Filesort: No  Filesort_on_disk: No  Merge_passes: 0
+# No InnoDB statistics available for this query
+# Log_slow_rate_type: query  Log_slow_rate_limit: 100
+SET timestamp={{.timestamp_unix_s}};
+SELECT {{.Domains}}_schema, {{.Domains}}_name, column_name, `auto_increment`,
+                  pow(2, case data_type
+                    when 'tinyint'   then 7
+                    when 'smallint'  then 15
+                    when 'mediumint' then 23
+                    when 'int'       then 31
+                    when 'bigint'    then 63
+                    end+(column_type like '% unsigned'))-1 as max_int
+                  FROM information_{{.Domains}} t
+                  JOIN information_{{.Domains}} c
+                    ON BINARY {{.Domains}}_schema = {{.Domains}}_schema AND BINARY {{.Domains}}_name = {{.Domains}}_name
+                  WHERE {{.Domains}} = 'auto_increment' AND {{.Domains}}_increment IS NOT NULL;
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}376Z
+---EVENT_DELIMITER---
+# User@Host: test[test] @  [{{.IPs}}]  Id: 14360213
+# Schema: test  Last_errno: 0  Killed: 0
+# Query_time: 32.463767  Lock_time: 0.000084  Rows_sent: 267  Rows_examined: 267  Rows_affected: 0
+# Bytes_sent: 43805  Tmp_tables: 0  Tmp_disk_tables: 0  Tmp_table_sizes: 0
+# QC_Hit: No  Full_scan: No  Full_join: No  Tmp_table: No  Tmp_table_on_disk: No
+# Filesort: No  Filesort_on_disk: No  Merge_passes: 0
+#   InnoDB_IO_r_ops: 2  InnoDB_IO_r_bytes: 16384  InnoDB_IO_r_wait: 0.000213
+#   InnoDB_rec_lock_wait: 0.000000  InnoDB_queue_wait: 0.000000
+#   InnoDB_pages_distinct: 64832
+# Log_slow_rate_type: query  Log_slow_rate_limit: 100
+SET timestamp={{.timestamp_unix_s}};
+select {{.Domains}} as id, {{.Domains}} as mo, {{.Domains}} as pr from test where ({{.Domains}} in ('NOT_RELEVANT')) and {{.Domains}}<='2019-01-21 06:36:08.432' and {{.Domains}}<='2019-01-07 06:36:08.432' limit 100000;
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}710Z
+---EVENT_DELIMITER---
+# User@Host: test[test] @  [{{.IPs}}]  Id: 14370752
+# Schema: test  Last_errno: 3170  Killed: 0
+# Query_time: 153.883481  Lock_time: 0.024022  Rows_sent: 0  Rows_examined: 120309968  Rows_affected: 19198
+# Bytes_sent: 62  Tmp_tables: 0  Tmp_disk_tables: 0  Tmp_table_sizes: 0
+# InnoDB_trx_id: 69BB9C7F9
+# QC_Hit: No  Full_scan: No  Full_join: No  Tmp_table: No  Tmp_table_on_disk: No
+# Filesort: No  Filesort_on_disk: No  Merge_passes: 0
+#   InnoDB_IO_r_ops: 9744  InnoDB_IO_r_bytes: 79822848  InnoDB_IO_r_wait: 0.883446
+#   InnoDB_rec_lock_wait: 0.003038  InnoDB_queue_wait: 0.000000
+#   InnoDB_pages_distinct: 64872
+# Log_slow_rate_type: query  Log_slow_rate_limit: 100
+SET timestamp={{.timestamp_unix_s}};
+UPDATE test    SET {{.Domains}} = 'NOT_RELEVANT', modified = now()  WHERE {{.Domains}} IN (26328833, 390, 149386, 152268, 160997, 165304, 168524, 184105, 193022, 194533, 194862, 196469, 196487, 246398, 256594, 260566, 261862, 262342, 263701, 264166, 264607, 267671, 274879, 276704, 280964, 284366, 289323, 289843, 290004, 298999, 301213, 303494, 307920, 311905, 316311, 318404, 330846, 340751, 341433, 357191, 369184, 376876, 378360, 378492, 379470, 382131, 384077, 388368, 396815, 396881, 398272, 398950, 399589, 401299, 408787, 411293, 419109, 425953, 427659, 433183, 437030, 438332, 438386, 447037, 454231, 455257, 455344, 456385, 460420, 460425, 461252, 462338, 462531, 462684, 463104, 463395, 471073, 480069, 480078, 482399, 485205, 487971, 497191, 500261, 501855, 517585, 519310, 519654, 522575, 538425, 543560, 562315, 573934, 583466, 583490, 583502, 597605, 600875, 601546, 603879, 604467, 604619, 757786, 797285, 799155, 802905, 806268, 806798, 811974, 819684, 822629, 826406, 837733, 840128, 840131, 840251, 840277, 840302, 842966, 844294, 844300, 847837, 852503, 854272, 854299, 862983, 881405, 881461, 881467, 881560, 881908, 882435, 882453, 882651, 882711, 882811, 888265, 888286, 914091, 916288, 916316, 917708, 918238, 918887, 919222, 926607, 976977, 977010, 977067, 977131, 977185, 988249, 988276, 988336, 988360, 988504, 990994);
+---EVENT_DELIMITER---
+/usr/sbin/mysqld, Version: 8.0.15-5 (Percona Server (GPL), Release '5', Revision 'f8a9e99'). started with:
+Tcp port: 3306  Unix socket: /var/run/mysqld/{{.Domains}}
+Time                 Id Command    Argument
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}524Z
+---EVENT_DELIMITER---
+# User@Host: root[root] @ localhost []  Id:   182
+# Schema: employees  Last_errno: 0  Killed: 0
+# Query_time: 2.746607  Lock_time: 0.000138  Rows_sent: 10  Rows_examined: 3145718  Rows_affected: 0
+# Bytes_sent: 312
+use employees;
+SET timestamp={{.timestamp_unix_s}};
+SELECT last_name, MAX(salary) AS salary FROM employees     INNER JOIN salaries ON {{.Domains}}_no = {{.Domains}}_no     GROUP BY last_name     ORDER BY salary DESC     LIMIT 10;
+/usr/sbin/mysqld, Version: 8.0.15-5 (Percona Server (GPL), Release '5', Revision 'f8a9e99'). started with:
+Tcp port: 0  Unix socket: /var/run/mysqld/{{.Domains}}
+Time                 Id Command    Argument
+---EVENT_DELIMITER---
+# Time: {{.timestamp_iso}}151Z
+---EVENT_DELIMITER---
+# User@Host: root[root] @ localhost []  Id:     8
+# Schema: employees  Last_errno: 0  Killed: 0
+# Query_time: 3.133066  Lock_time: 0.000190  Rows_sent: 10  Rows_examined: 3145718  Rows_affected: 0
+# Bytes_sent: 312  Tmp_tables: 1  Tmp_disk_tables: 0  Tmp_table_sizes: 0
+# InnoDB_trx_id: 0
+# Full_scan: Yes  Full_join: No  Tmp_table: Yes  Tmp_table_on_disk: No
+# Filesort: Yes  Filesort_on_disk: No  Merge_passes: 0
+#   InnoDB_IO_r_ops: 5491  InnoDB_IO_r_bytes: 89964544  InnoDB_IO_r_wait: 0.003183
+#   InnoDB_rec_lock_wait: 0.000000  InnoDB_queue_wait: 0.000000
+#   InnoDB_pages_distinct: 6122
+use employees;
+SET timestamp={{.timestamp_unix_s}};
+SELECT last_name, MAX(salary) AS salary FROM employees
+    INNER JOIN salaries ON {{.Domains}}_no = {{.Domains}}_no
+    GROUP BY last_name
+    ORDER BY salary DESC
+    LIMIT 10;

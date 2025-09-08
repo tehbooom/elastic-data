@@ -1,0 +1,39 @@
+[ERROR] plugin/errors: 2 {{.Domains}}. A: dial tcp {{.IPs}}:853: connect: no route to host
+---EVENT_DELIMITER---
+[ERROR] plugin/errors: 2 {{.Domains}}. A: dial tcp {{.IPs}}:853: i/o timeout
+---EVENT_DELIMITER---
+[ERROR] plugin/errors: 2 {{.Domains}}. HTTPS: read tcp {{.IPs}}:39436->{{.IPs}}:853: i/o timeout
+---EVENT_DELIMITER---
+[ERROR] plugin/errors: 2 {{.Domains}}. AAAA: read udp {{.IPs}}:39548->{{.IPs}}:8600: i/o timeout
+---EVENT_DELIMITER---
+[ERROR] plugin/errors: 4 errors like '^error.*!$' occurred in last 2s
+---EVENT_DELIMITER---
+[WARNING] plugin/errors: 4 errors like '^error.*!$' occurred in last 2s
+---EVENT_DELIMITER---
+[INFO] plugin/errors: 4 errors like '^error.*!$' occurred in last 2s
+---EVENT_DELIMITER---
+[DEBUG] plugin/errors: 4 errors like '^error.*!$' occurred in last 2s
+---EVENT_DELIMITER---
+{"message":"[INFO] {{.IPs}}:36413 - 21583 \"A IN {{.Domains}}. udp 43 false 512\" NXDOMAIN qr,rd,ra 136 0.000102078s", "stream": "stdout", "time": "{{.timestamp_iso}}433597Z", "kubernetes": { "container": { "name": "coredns" }, "node": { "name": "minikube" }, "pod": { "uid": "d57d545e-2a9d-11e9-995f-08002730e0dc", "name": "coredns-86c58d9df4-jwhsg" }, "namespace": "kube-system", "replicaset": { "name": "coredns-86c58d9df4" }, "labels": { "pod-template-hash": "86c58d9df4", "k8s-app": "kube-dns" } } }
+---EVENT_DELIMITER---
+{"message":"[INFO] {{.IPs}}:37723 - 6966 \"A IN {{.Domains}}. udp 29 false 512\" NOERROR qr,rd,ra 83 0.000082083s\n","stream":"stdout","time":"{{.timestamp_iso}}583742Z", "kubernetes": { "container": { "name": "coredns" }, "node": { "name": "minikube" }, "pod": { "uid": "d57d545e-2a9d-11e9-995f-08002730e0dc", "name": "coredns-86c58d9df4-jwhsg" }, "namespace": "kube-system", "replicaset": { "name": "coredns-86c58d9df4" }, "labels": { "pod-template-hash": "86c58d9df4", "k8s-app": "kube-dns" } } }
+---EVENT_DELIMITER---
+{"message":"[INFO] [::1]:37915 - 62762 \"AAAA IN {{.Domains}}. udp 29 false 512\" NOERROR qr,rd,ra 100 0.00006286s\n","stream":"stdout","time":"{{.timestamp_iso}}970788Z", "kubernetes": { "container": { "name": "coredns" }, "node": { "name": "minikube" }, "pod": { "uid": "d57d545e-2a9d-11e9-995f-08002730e0dc", "name": "coredns-86c58d9df4-jwhsg" }, "namespace": "kube-system", "replicaset": { "name": "coredns-86c58d9df4" }, "labels": { "pod-template-hash": "86c58d9df4", "k8s-app": "kube-dns" } } }
+---EVENT_DELIMITER---
+[INFO] {{.IPs}}:42114 - 64820 "A IN {{.Domains}}. udp 57 false 1232" NOERROR qr,aa,rd 66 0.000150566s "0"
+---EVENT_DELIMITER---
+[INFO] {{.IPs}}:53202 - 15835 "A IN {{.Domains}}. udp 48 false 1232" NOERROR qr,rd,ra 174 0.059537278s "0"
+---EVENT_DELIMITER---
+[INFO] {{.IPs}}:41393 - 54384 "A IN {{.Domains}}. udp 50 false 1232" NXDOMAIN qr,rd,ra 113 0.056197162s "0"
+---EVENT_DELIMITER---
+[INFO] {{.IPs}}:56457 - 60490 "MX IN {{.Domains}}. udp 57 false 1232" NOERROR qr,rd,ra 345 0.069406899s "0"
+---EVENT_DELIMITER---
+[INFO] {{.IPs}}:50261 - 52029 "CNAME IN {{.Domains}}. udp 61 false 1232" NOERROR qr,rd,ra 161 0.100163598s "0"
+---EVENT_DELIMITER---
+[INFO] {{.IPs}}:53157 - 41596 "A IN {{.Domains}}. udp 51 true 1232" NOERROR qr,rd,ra 65 0.000723156s "0"
+---EVENT_DELIMITER---
+[INFO] [::1]:55527 - 18434 "PTR IN {{.IPs}}. udp 48 false 1232" NXDOMAIN qr,rd,ra 111 0.097184417s
+---EVENT_DELIMITER---
+[INFO] {{.IPs}}:36413 - 21583 "A IN {{.Domains}}. udp 43 false 512" NXDOMAIN qr,rd,ra 136 0.000102078s
+---EVENT_DELIMITER---
+[INFO] [::1]:57413 - 14639 "A IN {{.Domains}}. udp 42 true 4096" NOERROR qr,rd,ra 188 0.020948545s

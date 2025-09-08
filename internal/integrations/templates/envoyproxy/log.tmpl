@@ -1,0 +1,13 @@
+[{{.timestamp_iso}}] "- - -" 0 - 87 254 4 - "-" "-" "-" "-" "{{.IPs}}:80"
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /service/1 HTTP/1.1" 200 - 0 89 5 4 "-" "curl/7.54.0" "c219f6da-2b7f-483e-9ced-ec323d9330a9" "localhost:8000" "{{.IPs}}:80"
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /elastic HTTP/1.1" 404 NR 0 0 0 - "{{.IPs}}" "curl/7.59.0" "58436667-bf70-4fd0-9fe9-cdadadecfd55" "{{.IPs}}:30901" "-"
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /elastic/ HTTP/1.1" 301 - 0 0 41 39 "{{.IPs}}" "curl/7.59.0" "078d1daa-b786-4d6d-85a5-7e4366adaa19" "{{.Domains}}" "{{.IPs}}:80"
+---EVENT_DELIMITER---
+ACCESS [{{.timestamp_iso}}] "GET /backend/ HTTP/1.1" 200 - 0 141 0 0 "{{.IPs}}" "curl/8.4.0" "b7ba9b4c-f4b7-47c2-9718-c23aa1465f49" "localhost:9001" "{{.IPs}}:80"
+---EVENT_DELIMITER---
+{"message":"ACCESS [{{.timestamp_iso}}] \"GET /httpbin/status/501 HTTP/1.1\" 501 - 0 0 180 179 \"{{.IPs}}\" \"curl/7.59.0\" \"413bf460-bd56-4515-ada4-2a69c5e78e54\" \"{{.Domains}}\" \"{{.IPs}}:80\"","stream":"stdout","time":"{{.timestamp_iso}}620629Z", "kubernetes": { "container": { "name": "ambassador" }, "node": { "name": "minikube" }, "pod": { "uid": "e57d545e-2a9d-11e9-995f-08002730e0dc", "name": "ambassador-76c58d9df4-jwhsg" }, "namespace": "default", "labels": { "service": "ambassador" }}}
+---EVENT_DELIMITER---
+{"message":"ACCESS [{{.timestamp_iso}}] \"- - -\" 0 UF,URX 0 0 0 - \"-\" \"-\" \"-\" \"-\" \"{{.IPs}}:9200\"","stream":"stdout","time":"{{.timestamp_iso}}620629Z", "kubernetes": { "container": { "name": "ambassador" }, "node": { "name": "minikube" }, "pod": { "uid": "e57d545e-2a9d-11e9-995f-08002730e0dc", "name": "ambassador-76c58d9df4-jwhsg" }, "namespace": "default", "labels": { "service": "ambassador" }}}

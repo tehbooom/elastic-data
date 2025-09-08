@@ -1,0 +1,1313 @@
+{"metadata":{"customerIDString":"abcabcabc22222","offset":8693900,"eventType":"FirewallMatchEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"DeviceId":"6734ff444f4456","CustomerId":"abcabcabc22222","Ipv":"ipv4","CommandLine":"System","ConnectionDirection":"1","EventType":"FirewallRuleIP4Matched","Flags":{"Audit":false,"Log":true,"Monitor":true},"HostName":"INPUNEDITCLP229","ICMPCode":"","ICMPType":"","ImageFileName":"System","LocalAddress":"{{.IPs}}","LocalPort":"445","MatchCount":1,"MatchCountSinceLastReport":1,"NetworkProfile":"2","PID":"11111111","PolicyName":"PROD-FW-Workstations-Office-20201001","PolicyID":"3ec266b28bef471f9fd990e4f39ac829","Protocol":"6","RemoteAddress":"{{.IPs}}","RemotePort":"53452","RuleAction":"2","RuleDescription":"","RuleFamilyID":"11111111aaaaaaaa","RuleGroupName":"SMBRules","RuleName":"InboundSMBBlock\u0026LogPrivate","RuleId":"4877172638743447345","Status":"","Timestamp":"{{.timestamp_iso}}","TreeID":"","Platform":"windows"}}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"abcabcabc22222","offset":8693906,"eventType":"IdpDetectionSummaryEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"ContextTimeStamp":133433951380000000,"DetectId":"abcabcabc22222:ind:abcabcabc22222:5E8D397E-79C1-AAAA-9715-EEEEEE2222","DetectName":"Unusual login to an endpoint","DetectDescription":"A user logged into a machine for the first time","FalconHostLink":"https://{{.Domains}}/identity-protection/detections/abcabcabc22222:ind:abcabcabc22222:5E8D397E-79C1-AAAA-9715-EEEEEE2222?_cid=abcabcabc22222","StartTime":133433949600000000,"EndTime":133433949600000000,"Severity":34,"SeverityName":"Low","Tactic":"InitialAccess","Technique":"ValidAccounts","Objective":"Gain Access","SourceAccountDomain":"{{.Domains}}","SourceAccountName":"{{.Domains}}","SourceAccountUpn":"{{.Emails}}","SourceAccountObjectSid":"S-1-S-1-S-1-1111-{{.timestamp_unix_s}}-{{.timestamp_unix_s}}-175881","SourceEndpointAccountObjectGuid":"C078A5DA-E13B-4418-AA28-802EF8C16210","SourceEndpointAccountObjectSid":"S-1-S-1-S-1-1111-{{.timestamp_unix_s}}-{{.timestamp_unix_s}}-316681","SourceEndpointHostName":"{{.Domains}}","SourceEndpointIpAddress":"{{.IPs}}","SourceEndpointSensorId":"a2f1de586958434eb5e14e30214e17ed","ActivityId":"76CC8396-7148-4CEB-84CB-08FAFE4FAC37","PatternId":51135,"SourceVendors":"CrowdStrike","SourceProducts":"FalconIdentityProtection","DataDomains":"Identity"}}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"abcabcabc22222","offset":8694126,"eventType":"IdentityProtectionEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"IncidentType":"Unusuallogintoanendpoint","IncidentDescription":"Unusuallogintoanendpoint","Severity":4,"SeverityName":"LOW","StartTime":{{.timestamp_unix_ms}},"EndTime":{{.timestamp_unix_ms}},"IdentityProtectionIncidentId":"7a79b2de-4e10-41fb-818f-2bdf53c1625a","UserName":"{{.Domains}}\\{{.Domains}}","EndpointName":"{{.Domains}}","EndpointIp":"","Category":"Detections","NumbersOfAlerts":1,"NumberOfCompromisedEntities":2,"State":"NEW","FalconHostLink":"https://{{.Domains}}/identity-protection/detections/abcabcabc22222:ind:abcabcabc22222:7A79B2DE-4E10-41FB-818F-2BDF53C1625A"}}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"abcabcabc22222","offset":8694676,"eventType":"AuthActivityAuditEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"UserId":"{{.Emails}}","UserIp":"{{.IPs}}","OperationName":"saml2Assert","ServiceName":"CrowdstrikeAuthentication","Success":true,"UTCTimestamp":{{.timestamp_unix_s}},"AuditKeyValues":[{"Key":"target_user","ValueString":"{{.Emails}}"},{"Key":"trace_id","ValueString":"19169200-76c5-4861-92f1-355d0a908f40"},{"Key":"saml_envelope","ValueString":"SampleValue"},{"Key":"saml_assertion","ValueString":"sampleassertion"},{"Key":"app_id","ValueString":"fa8e047e-2e60-4837-b987-c57020947cd6"},{"Key":"actor_user","ValueString":"{{.Emails}}"},{"Key":"actor_user_uuid","ValueString":"8940ddf0-bc3c-480b-a05a-bb94ff5dc0fb"},{"Key":"actor_cid","ValueString":"abcabcabc22222"}],"Attributes":{"actor_cid":"abcabcabc22222","actor_user":"{{.Emails}}","actor_user_uuid":"00000000-aaaa-480b-a05a-bb94ff5dc0fb","app_id":"aaaaaaaa-2e60-4837-b987-c57020947cd6","saml_assertion":"saml_assertion_sample","target_user":"{{.Emails}}","trace_id":"000000-76c5-4861-92f1-355d0a908f40"}}}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"abcabcabc22222","offset":8694733,"eventType":"UserActivityAuditEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"UserId":"{{.Emails}}","UserIp":"{{.IPs}}","OperationName":"reveal_token","ServiceName":"sensor_update_policy","AuditKeyValues":[{"Key":"device_id","ValueString":"abcancancbanjjagjaj"},{"Key":"seedID","ValueString":"101"},{"Key":"message","ValueString":"Removeduplicatesensor."}],"UTCTimestamp":{{.timestamp_unix_s}},"Attributes":{"device_id":"afjafanfafasfjaf","message":"Removeduplicatesensor.","seedID":"101"}}}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"abcabcabc22222","offset":8694992,"eventType":"ScheduledReportNotificationEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"UserUUID":"9999999-bc3c-99bb-a05a-bb94ff5dc0fb","UserID":"{{.Emails}}","ExecutionID":"efghtigh","ReportID":"999999ddddddddd","ReportName":"LarouxSearch","ReportType":"event_search","ReportFileReference":"/reports/entities/report-executions-download/v1?ids=eeeeeeeeeerrrrr444444","Status":1,"StatusMessage":"message","ExecutionMetadata":{"ExecutionStart":{{.timestamp_unix_ms}},"ExecutionDuration":152176,"ReportFileName":"Laroux_Search_2023_November_2_13017_{{.Domains}}","ResultCount":0,"ResultID":"fffffzdlIiwiY3VzdG9tZXJfYXBwIjoiZWFtIiwic2lnbmF0dXJlX3BvcnRpb24iOiIzYWRhOTZiNDA4MTkxNTFhZmIxYjFkOTM2MWZhMmE1NjBmNGNkMzc0ODQxNTY4MDlkYzhmNDRkMmRkZDY1NzdlIn0=","SearchWindowStart":{{.timestamp_unix_ms}},"SearchWindowEnd":{{.timestamp_unix_ms}}}}}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"abcabcabc22222","offset":8695284,"eventType":"RemoteResponseSessionStartEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"SessionId":"1111-fffff-4bb4-99c1-74c13cfc3e5a","HostnameField":"UKCHUDL00206","UserName":"{{.Emails}}","StartTimestamp":{{.timestamp_unix_s}},"AgentIdString":"fffffffff33333"}}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"abcabcabc22222","offset":8695332,"eventType":"DetectionSummaryEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"ProcessStartTime":{{.timestamp_unix_s}},"ProcessEndTime":{{.timestamp_unix_s}},"ProcessId":54665651,"ParentProcessId":540396081,"ComputerName":"INNOIDL0032","UserName":"{{.Domains}}","DetectName":"AttackerMethodology","DetectDescription":"{{.Domains}},astheylikelyreferencethemaliciouspayload.","Severity":4,"SeverityName":"High","FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Windows\\System32","CommandLine":"\"C:\\Windows\\System32\\{{.Domains}}\"\\{{.Domains}},kokknnjfybyqjrrh","SHA256String":"d64d27be4c907b0a2a0c32e1b1a4a44a1333a936fe63127d69df41c859da8c9e","MD5String":"a52bfa4a96f97c368312028dbd7c8461","SHA1String":"0000000000000000000000000000000000000000","MachineDomain":"AP","FalconHostLink":"https://{{.Domains}}/activity/detections/detail/6902738b2a374a718cd9a45085baaf50/2246270721205?_cid=gffffffffy3zjobdz7ewb4xjqyjsy5a","SensorId":"69027ffffffffffffaaf50","IOCType":"hash_sha256","IOCValue":"d64d27be4c907b0a2a0c32e1b1a4a44a1333a936fe63127d69df41c859da8c9e","DetectId":"ldt:690ddddddd0721205","LocalIP":"{{.IPs}}","MACAddress":"02-50-41-00-00-01","Tactic":"DefenseEvasion","Technique":"Rundll32","Objective":"KeepAccess","PatternDispositionDescription":"Prevention,processwasblockedfromexecution.","PatternDispositionValue":2048,"PatternDispositionFlags":{"Indicator":false,"Detect":false,"InddetMask":false,"SensorOnly":false,"Rooting":false,"KillProcess":false,"KillSubProcess":false,"QuarantineMachine":false,"QuarantineFile":false,"PolicyDisabled":false,"KillParent":false,"OperationBlocked":false,"ProcessBlocked":true,"RegistryOperationBlocked":false,"CriticalProcessDisabled":false,"BootupSafeguardEnabled":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"KillActionFailed":false,"BlockingUnsupportedOrDisabled":false,"SuspendProcess":false,"SuspendParent":false},"ParentImageFileName":"\\Device\\HarddiskVolume4\\Windows\\{{.Domains}}","ParentCommandLine":"C:\\Windows\\{{.Domains}}","GrandparentImageFileName":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","GrandparentCommandLine":"C:\\Windows\\system32\\{{.Domains}}","HostGroups":"e2091491a28248eaae3ede9f217e03fc,e837d750b8ba400c953380da346e2b04,186c20383a98495cb0e0a7d5540f3aff,24d1f760fcdc46d992bb8f41d7dd897b,2b7bd0fede874baaa1afdea20f255632,a293aded9c4548469d0e853b7267cce5,adab9db4541040729e01d16211189a27,b75b27ce17244922bd0a862a712ea812","Tags":"SensorGroupingTags/USB_Storage_Exception","AssociatedFile":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","PatternId":10186}}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"abcabcabc22222","offset":8698239,"eventType":"IncidentSummaryEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"IncidentStartTime":{{.timestamp_unix_s}},"IncidentEndTime":{{.timestamp_unix_s}},"FalconHostLink":"https://{{.Domains}}/crowdscore/incidents/details/inc:654a735066d640939aaaaaaaaaaaaaaaaaaaaaaaf47349032acd86820223e?_cid=ggggffffhhhhjjjjj","State":"open","FineScore":6.1,"LateralMovement":0,"IncidentType":1,"IncidentID":"inc:654a735066d640939aaaaaaaaaaaaaaaaaaaaaaaf47349032acd86820223e","HostID":"4345454534534545"}}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 1045,
+        "eventType": "RemoteResponseSessionStartEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "SessionId": "6020260b-0398-4d41-999d-5531b55522de",
+        "HostnameField": "hostnameofmachine",
+        "UserName": "{{.Emails}}",
+        "StartTimestamp": {{.timestamp_unix_s}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 1046,
+        "eventType": "RemoteResponseSessionEndEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "SessionId": "6020260b-0398-4d41-999d-5531b55522de",
+        "HostnameField": "hostnameofmachine",
+        "UserName": "{{.Emails}}",
+        "EndTimestamp": {{.timestamp_unix_s}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 0,
+        "eventType": "AuthActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "api-client-id:1234567890abcdefghijklmnopqrstuvwxyz",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "streamStarted",
+        "ServiceName": "Crowdstrike Streaming API",
+        "Success": true,
+        "UTCTimestamp": {{.timestamp_unix_s}},
+        "AuditKeyValues": [
+            {
+                "Key": "APIClientID",
+                "ValueString": "1234567890abcdefghijklmnopqr"
+            },
+            {
+                "Key": "partition",
+                "ValueString": "0"
+            },
+            {
+                "Key": "offset",
+                "ValueString": "-1"
+            },
+            {
+                "Key": "appId",
+                "ValueString": "siem-connector-v2.0.0"
+            },
+            {
+                "Key": "eventType",
+                "ValueString": "[UserActivityAuditEvent HashSpreadingEvent RemoteResponseSessionStartEvent RemoteResponseSessionEndEvent DetectionSummaryEvent AuthActivityAuditEvent]"
+            }
+        ]
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 1,
+        "eventType": "AuthActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "{{.Emails}}",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "twoFactorAuthenticate",
+        "ServiceName": "CrowdStrike Authentication",
+        "Success": true,
+        "UTCTimestamp": {{.timestamp_unix_ms}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 2,
+        "eventType": "AuthActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "{{.Emails}}",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "twoFactorAuthenticate",
+        "ServiceName": "CrowdStrike Authentication",
+        "Success": true,
+        "UTCTimestamp": {{.timestamp_unix_ms}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 3,
+        "eventType": "UserActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "{{.Emails}}",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "update_group",
+        "ServiceName": "groups",
+        "AuditKeyValues": [
+            {
+                "Key": "group_id",
+                "ValueString": "3c80ce30b9654cb4bd15beec6a517e65"
+            },
+            {
+                "Key": "action_name",
+                "ValueString": "add_group_member"
+            }
+        ],
+        "UTCTimestamp": {{.timestamp_unix_s}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 4,
+        "eventType": "AuthActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "{{.Emails}}",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "requestResetPassword",
+        "ServiceName": "CrowdStrike Authentication",
+        "Success": true,
+        "UTCTimestamp": {{.timestamp_unix_ms}},
+        "AuditKeyValues": [
+            {
+                "Key": "target_name",
+                "ValueString": "{{.Emails}}"
+            }
+        ]
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 5,
+        "eventType": "AuthActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "{{.Emails}}",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "twoFactorAuthenticate",
+        "ServiceName": "CrowdStrike Authentication",
+        "Success": true,
+        "UTCTimestamp": {{.timestamp_unix_ms}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 6,
+        "eventType": "AuthActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "{{.Emails}}",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "changePassword",
+        "ServiceName": "CrowdStrike Authentication",
+        "Success": true,
+        "UTCTimestamp": {{.timestamp_unix_ms}},
+        "AuditKeyValues": [
+            {
+                "Key": "target_name",
+                "ValueString": "{{.Emails}}"
+            }
+        ]
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 7,
+        "eventType": "AuthActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "{{.Emails}}",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "userAuthenticate",
+        "ServiceName": "CrowdStrike Authentication",
+        "Success": true,
+        "UTCTimestamp": {{.timestamp_unix_ms}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 8,
+        "eventType": "AuthActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "{{.Emails}}",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "twoFactorAuthenticate",
+        "ServiceName": "CrowdStrike Authentication",
+        "Success": true,
+        "UTCTimestamp": {{.timestamp_unix_ms}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 9,
+        "eventType": "AuthActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "{{.Emails}}",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "selfAcceptEula",
+        "ServiceName": "CrowdStrike Authentication",
+        "Success": true,
+        "UTCTimestamp": {{.timestamp_unix_ms}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 10,
+        "eventType": "UserActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "{{.Emails}}",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "detection_update",
+        "ServiceName": "detections",
+        "AuditKeyValues": [
+            {
+                "Key": "detection_id",
+                "ValueString": "ldt:5a6fd0b7347440cd74cb84855a8aee18:17180539745"
+            },
+            {
+                "Key": "new_state",
+                "ValueString": "in_progress"
+            },
+            {
+                "Key": "assigned_to",
+                "ValueString": "First Last"
+            },
+            {
+                "Key": "assigned_to_uid",
+                "ValueString": "{{.Emails}}"
+            }
+        ],
+        "UTCTimestamp": {{.timestamp_unix_s}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "123123abcd",
+        "offset": 6,
+        "eventType": "AuthActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "API:USERID",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "streamStopped",
+        "ServiceName": "Crowdstrike Streaming API",
+        "Success": true,
+        "UTCTimestamp": {{.timestamp_unix_s}},
+        "AuditKeyValues": [
+            {
+                "Key": "eventType",
+                "ValueString": "All event type(s)"
+            },
+            {
+                "Key": "APIClientID",
+                "ValueString": "APIID"
+            },
+            {
+                "Key": "partition",
+                "ValueString": "0"
+            },
+            {
+                "Key": "offset",
+                "ValueString": "2"
+            },
+            {
+                "Key": "appId",
+                "ValueString": "APPIDTEST"
+            }
+        ],
+        "Attributes": {
+            "APIClientID": "APPCLIENTIDTEST",
+            "appId": "APPIDTEST",
+            "eventType": "All event type(s)",
+            "offset": "2",
+            "partition": "0"
+        }
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "123123abcd",
+        "offset": 8,
+        "eventType": "AuthActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "API:USERID",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "streamStarted",
+        "ServiceName": "Crowdstrike Streaming API",
+        "Success": true,
+        "UTCTimestamp": {{.timestamp_unix_s}},
+        "AuditKeyValues": [
+            {
+                "Key": "APIClientID",
+                "ValueString": "APICLIENTID"
+            },
+            {
+                "Key": "partition",
+                "ValueString": "0"
+            },
+            {
+                "Key": "offset",
+                "ValueString": "8"
+            },
+            {
+                "Key": "appId",
+                "ValueString": "APPIDTEST"
+            },
+            {
+                "Key": "eventType",
+                "ValueString": "All event type(s)"
+            }
+        ],
+        "Attributes": {
+            "APIClientID": "APICLIENTID",
+            "appId": "APPIDTEST",
+            "eventType": "All event type(s)",
+            "offset": "8",
+            "partition": "0"
+        }
+    }
+}
+---EVENT_DELIMITER---
+{
+	"metadata": {
+		"customerIDString": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"offset": 54712858,
+		"eventType": "CSPMIOAStreamingEvent",
+		"eventCreationTime": {{.timestamp_unix_ms}},
+		"version": "1.0"
+	},
+	"event": {
+		"AccountId": "XXXXXXXXXXXX",
+		"PolicyId": 249,
+		"PolicyStatement": "EC2 instance manually deleted by IAM user",
+		"CloudProvider": "aws",
+		"CloudService": "EC2",
+		"Severity": 1,
+		"SeverityName": "High",
+		"EventAction": "TerminateInstances",
+		"EventSource": "{{.Domains}}",
+		"EventCreatedTimestamp": {{.timestamp_unix_s}},
+		"UserId": "AIDAXRCSSEFWEAH3BLR2Z",
+		"UserName": "cs_internal_service_acct",
+		"UserSourceIp": "{{.IPs}}",
+		"Tactic": "Impact",
+		"Technique": "Data Destruction"
+	}
+}
+---EVENT_DELIMITER---
+{
+	"metadata": {
+
+		"customerIDString": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"offset": 54712611,
+		"eventType": "CSPMSearchStreamingEvent",
+		"eventCreationTime": {{.timestamp_unix_ms}},
+		"version": "1.0"
+	},
+	"event": {
+		"AccountId": "XXXXXXXXXXXX",
+		"Region": "us-west-2",
+		"ResourceId": "i-0108fce80eXXXXXXX",
+		"ResourceIdType": "Instance Id",
+		"ResourceName": "",
+		"ResourceCreateTime": 0,
+		"PolicyStatement": "EC2 NACL configured for global ingress",
+		"PolicyId": 26,
+		"Severity": 1,
+		"SeverityName": "High",
+		"CloudPlatform": "AWS",
+		"CloudService": "EC2",
+		"Disposition": "Failed",
+		"ResourceUrl": "https://{{.Domains}}/ec2/v2/home?region=us-west-2#InstanceDetails:instanceId=i-0108fce80eXXXXXXX",
+		"Finding": "Instance ID: i-0108fce80e5ab5129|VPC ID: vpc-0e886040c27d9f526|Network ACL ID: acl-005e6bb98e75ac17e|Rule Number: 100|CIDR Block: {{.IPs}}/0|Protocol: All",
+		"ResourceAttributes": "{\"ACL ID\": \"acl - 005e6 bb98e75ac17e\",\"VPC ID\": \"vpc - 0e886040 c27d9f526\",\"Platform\": \"Linux\",\"Instance ID\": \"i - 0108 fce80eXXXXXXX\",\"Launch Time\": \"2022 - 09 - 12 17: 11: 06 + 00\",\"Instance State\": \"running\"}",
+		"Tags": [{
+			"Key": "cstag-business",
+			"ValueString": "Sales"
+		}, {
+			"Key": "cstag-accounting",
+			"ValueString": "dev"
+		}, {
+			"Key": "cstag-department",
+			"ValueString": "Sales - 310000"
+		}, {
+			"Key": "Slackbot Env UUID",
+			"ValueString": "C68EC25E-32BD-11ED-AE4B-0EBCA3237C75"
+		}, {
+			"Key": "Name",
+			"ValueString": "{{.Domains}}"
+		}, {
+			"Key": "Slack_User",
+			"ValueString": "{{.Domains}}"
+		}, {
+			"Key": "cstag-owner",
+			"ValueString": "{{.Domains}}"
+		}],
+		"ReportUrl": "https://{{.Domains}}/cloud-security/cspm/assessment-drilldown?event-type=cspm_policy_26\u0026policy_id=26\u0026scan_id=1a8adc1c36aa7d83e90e5c06\u0026service=EC2",
+		"Timestamp": {{.timestamp_unix_ms}}
+	}
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "123123abcd",
+        "offset": 1,
+        "eventType": "DetectionSummaryEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "ProcessStartTime": {{.timestamp_unix_ms}},
+        "ProcessEndTime": 0,
+        "ProcessId": 123123,
+        "ParentProcessId": 321321,
+        "ComputerName": "ELASTICHOST",
+        "UserName": "ELASTICUSER",
+        "DetectName": "NGAV",
+        "DetectDescription": "This file is classified as Adware/PUP based on its SHA256 hash.",
+        "Severity": 2,
+        "SeverityName": "Low",
+        "FileName": "{{.Domains}}",
+        "FilePath": "\\Device\\HarddiskVolume3\\Users\\ELASTICUSER\\Software\\TESTSOFTWARE",
+        "CommandLine": "\"C:\\Users\\TESTUSER\\SOFTWARE\\TESTSOFTWARE\\{{.Domains}}\" -Embedding",
+        "SHA256String": "0b2cde5b355bda69aeb15159fa98b5554053f0936259a53c6dfb0934389238a2",
+        "MD5String": "49f30e09200e7b59edc5ef32fbd0442c",
+        "SHA1String": "7e54a24d4df5b7fe4a75d7ce1c027705c368666b",
+        "MachineDomain": "INTERNAL",
+        "NetworkAccesses": [
+            {
+                "AccessType": 0,
+                "AccessTimestamp": {{.timestamp_unix_s}},
+                "Protocol": "TCP",
+                "LocalAddress": "{{.IPs}}",
+                "LocalPort": 53517,
+                "RemoteAddress": "{{.IPs}}",
+                "RemotePort": 443,
+                "ConnectionDirection": 0,
+                "IsIPV6": false
+            },
+            {
+                "AccessType": 0,
+                "AccessTimestamp": {{.timestamp_unix_s}},
+                "Protocol": "TCP",
+                "LocalAddress": "{{.IPs}}",
+                "LocalPort": 53518,
+                "RemoteAddress": "{{.IPs}}",
+                "RemotePort": 80,
+                "ConnectionDirection": 0,
+                "IsIPV6": false
+            }
+        ],
+        "FalconHostLink": "https://{{.Domains}}/activity/detections/detail/REFERENCE?_cid=CID",
+        "SensorId": "sensorid123",
+        "IOCType": "hash_sha256",
+        "IOCValue": "0b2cde5b355bda69aeb15159fa98b5554053f0936259a53c6dfb0934389238a2",
+        "DetectId": "detect::id::test",
+        "LocalIP": "{{.IPs}}",
+        "MACAddress": "1c-2d-b3-4a-56-7e",
+        "Tactic": "Malware",
+        "Technique": "PUP",
+        "Objective": "Falcon Detection Method",
+        "PatternDispositionDescription": "Detection, process would have been blocked if related prevention policy setting was enabled.",
+        "PatternDispositionValue": 2304,
+        "PatternDispositionFlags": {
+            "Indicator": false,
+            "Detect": false,
+            "InddetMask": false,
+            "SensorOnly": false,
+            "Rooting": false,
+            "KillProcess": false,
+            "KillSubProcess": false,
+            "QuarantineMachine": false,
+            "QuarantineFile": false,
+            "PolicyDisabled": true,
+            "KillParent": false,
+            "OperationBlocked": false,
+            "ProcessBlocked": true,
+            "RegistryOperationBlocked": false,
+            "CriticalProcessDisabled": false,
+            "BootupSafeguardEnabled": false,
+            "FsOperationBlocked": false,
+            "HandleOperationDowngraded": false,
+            "KillActionFailed": false,
+            "BlockingUnsupportedOrDisabled": false,
+            "SuspendProcess": false,
+            "SuspendParent": false
+        },
+        "ParentImageFileName": "",
+        "ParentCommandLine": "",
+        "GrandparentImageFileName": "",
+        "GrandparentCommandLine": "",
+        "HostGroups": "hostgroupsID",
+        "AssociatedFile": "\\Device\\HarddiskVolume3\\TESTUSER\\TESTELASTICUSER\\SOFTWARE\\TESTSOFTWARE\\{{.Domains}}",
+        "PatternId": 5728
+    }
+}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"123123abcd","offset":1,"eventType":"EppDetectionSummaryEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"ProcessStartTime":{{.timestamp_unix_s}},"ProcessEndTime":{{.timestamp_unix_s}},"ProcessId":43009301133,"ParentProcessId":25841449898,"Hostname":"DESKTOP1111","UserName":"USER11111","Name":"NGAV","Description":"This file is classified as Adware/PUP based on its SHA256 hash.","Severity":30,"SeverityName":"Low","FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume2\\Program Files (x86)\\Remote Utilities - Host\\{{.Domains}}","CommandLine":"\"C:\\Program Files (x86)\\Remote Utilities - Host\\{{.Domains}}\" /rsession","SHA256String":"faf0c5e4ef7dbcfd863377c55a4d1d87a3f6a58c13a8a9882e11012066f31976","MD5String":"848a53dc549be0386e5da0f49700c389","SHA1String":"0000000000000000000000000000000000000000","LogonDomain":"OVAC","FalconHostLink":"https://{{.Domains}}/activity-v2/detections/44be50f58ccfcfcfcfcfcfcfcffc:ind:c8d1292a8a904216aa25ab728f4b45fd:11111111111-2222-3333333?_cid=99999999999999999999999999999999","AgentId":"c8d1292a8a904216aa25ab728f4b45fd","IOCType":"hash_sha256","IOCValue":"faf0c5e4ef7dbcfd863377c55a4d1d87a3f6a58c13a8a9882e11012066f31976","CompositeId":"44be50f58ccfcfcfcfcfcfcfcffc:ind:c8d1292a8a904216aa25ab728f4b45fd:11111111111-2222-3333333","LocalIP":"{{.IPs}}","MACAddress":"01-23-45-67-89-ab","Tactic":"Malware","Technique":"PUP","Objective":"Falcon Detection Method","PatternDispositionDescription":"Prevention, process was blocked from execution.","PatternDispositionValue":2048,"PatternDispositionFlags":{"Indicator":false,"Detect":false,"InddetMask":false,"SensorOnly":false,"Rooting":false,"KillProcess":false,"KillSubProcess":false,"QuarantineMachine":false,"QuarantineFile":false,"PolicyDisabled":false,"KillParent":false,"OperationBlocked":false,"ProcessBlocked":true,"RegistryOperationBlocked":false,"CriticalProcessDisabled":false,"BootupSafeguardEnabled":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"KillActionFailed":false,"BlockingUnsupportedOrDisabled":false,"SuspendProcess":false,"SuspendParent":false},"ParentImageFileName":"{{.Domains}}","ParentCommandLine":"\"C:\\Program Files (x86)\\Remote Utilities - Host\\{{.Domains}}\"","GrandParentImageFileName":"{{.Domains}}","GrandParentCommandLine":"C:\\Windows\\system32\\{{.Domains}}","HostGroups":"ba7f8041fd6c47dcae4cff3194861088,c8d1292a8a904216aa25ab728f4b45fd","AssociatedFile":"\\Device\\HarddiskVolume2\\Program Files (x86)\\Remote Utilities - Host\\{{.Domains}}","PatternId":5728,"SourceVendors":"CrowdStrike","SourceProducts":"Falcon Insight","DataDomains":"Endpoint","AggregateId":"aggind:c8d1292a8a904216aa25ab728f4b45fd:21483417902","Type":"ldt","ParentImageFilePath":"\\Device\\HarddiskVolume2\\Program Files (x86)\\Remote Utilities - Host\\{{.Domains}}","GrandParentImageFilePath":"\\Device\\HarddiskVolume2\\Windows\\System32\\{{.Domains}}","LocalIPv6":""}}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"123123abcd","offset":1,"eventType":"EppDetectionSummaryEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"ProcessStartTime":{{.timestamp_unix_s}},"ProcessEndTime":0,"ProcessId":1719309930613520072,"ParentProcessId":1719308637781199091,"Hostname":"linux-vm","UserName":"azureuser","Name":"Known Malware","Description":"A suspicious process related to a likely malicious file was launched. Review any binaries involved as they may be related to malware.","Severity":70,"SeverityName":"High","FileName":"git","FilePath":"/usr/bin/git","CommandLine":"git clone https://{{.Domains}}/redcanaryco/{{.Domains}}","SHA256String":"29aa689f38158d2e8941fa54e436f0260890af31cecad1e8799e5c2df7bc1ecc","MD5String":"675853ca01ec441df7a015b91a7e1272","SHA1String":"0000000000000000000000000000000000000000","LogonDomain":"","FilesWritten":[{"Timestamp":{{.timestamp_unix_s}},"FileName":"test_upx_header_changed","FilePath":"/home/azureuser/atomic-red-team/atomics/T1027.002/bin/linux/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"test_upx","FilePath":"/home/azureuser/atomic-red-team/atomics/T1027.002/bin/linux/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1055.012/bin/x64/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1055.004/bin/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1055/bin/x64/vuln_dll/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1047/bin/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"T1055.011_{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1055.011/bin/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1055/bin/x64/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1055.012/bin/x64/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1036.003/bin/"}],"FalconHostLink":"https://{{.Domains}}/activity-v2/detections/44be50f58ccfcfcfcfcfcfcfcffc:ind:c8d1292a8a904216aa25ab728f4b45fd:11111111111-2222-3333333?_cid=99999999999999999999999999999999","AgentId":"c8d1292a8a904216aa25ab728f4b45fd","CompositeId":"44be50f58ccfcfcfcfcfcfcfcffc:ind:c8d1292a8a904216aa25ab728f4b45fd:11111111111-2222-3333333","LocalIP":"{{.IPs}}","MACAddress":"02-42-d8-66-fe-03","Tactic":"Malware","Technique":"Malicious File","Objective":"Falcon Detection Method","PatternDispositionDescription":"Detection, process would have been killed if related prevention policy setting was enabled.","PatternDispositionValue":272,"PatternDispositionFlags":{"Indicator":false,"Detect":false,"InddetMask":false,"SensorOnly":false,"Rooting":false,"KillProcess":true,"KillSubProcess":false,"QuarantineMachine":false,"QuarantineFile":false,"PolicyDisabled":true,"KillParent":false,"OperationBlocked":false,"ProcessBlocked":false,"RegistryOperationBlocked":false,"CriticalProcessDisabled":false,"BootupSafeguardEnabled":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"KillActionFailed":false,"BlockingUnsupportedOrDisabled":false,"SuspendProcess":false,"SuspendParent":false},"ParentImageFileName":"bash","ParentCommandLine":"-bash","GrandParentImageFileName":"sshd","GrandParentCommandLine":"/usr/sbin/sshd -D -R","HostGroups":"44be50f58ccfcfcfcfcfcfcfcffc","PatternId":30115,"SourceVendors":"CrowdStrike","SourceProducts":"Falcon Insight","DataDomains":"Endpoint","AggregateId":"aggind:c8d1292a8a904216aa25ab728f4b45fd:11111111111","Type":"ldt","ParentImageFilePath":"/usr/bin/bash","GrandParentImageFilePath":"/usr/sbin/sshd","LocalIPv6":""}}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"123123abcd","offset":1,"eventType":"EppDetectionSummaryEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"Hostname":"FRHOSTNAME","Name":"OnDemandScanfiletest","Severity":70,"FileName":"{{.Domains}}","FilePath":"D:\\RECYCLER\\testpath\\{{.Domains}}","SHA256String":"774f50830a645392a94338815913e281096f1594ce5f4d992cf3f167fde509a1","FalconHostLink":"https://{{.Domains}}/activity-v2/detections","AgentId":"1122025ec596478d830520000000000","CompositeId":"7da61e27e34f4b8394081896af72e2c7","LocalIP":"{{.IPs}}","MACAddress":"88-44-66-77-11-22","Tactic":"Machine Learning","Technique":"Sensor-based ML","Objective":"Falcon Detection Method","HostGroups":"2a5927e82d644aa9,be74ccf2c2f444cf900","SourceVendors":"CrowdStrike","SourceProducts":"Falcon Insight","DataDomains":"Endpoint","Type":"ods","LocalIPv6":""}}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"123123abcd","offset":1,"eventType":"EppDetectionSummaryEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"ProcessStartTime":{{.timestamp_unix_s}},"ProcessEndTime":0,"ProcessId":1719309930613520072,"ParentProcessId":1719308637781199091,"Hostname":"linux-vm","UserName":"azureuser","Name":"Known Malware","Description":"A suspicious process related to a likely malicious file was launched. Review any binaries involved as they may be related to malware.","Severity":70,"SeverityName":"High","FileName":"git","FilePath":"/usr/bin/git","CommandLine":"git clone https://{{.Domains}}/redcanaryco/{{.Domains}}","SHA256String":"29aa689f38158d2e8941fa54e436f0260890af31cecad1e8799e5c2df7bc1ecc","MD5String":"675853ca01ec441df7a015b91a7e1272","SHA1String":"0000000000000000000000000000000000000000","LogonDomain":"","FilesWritten":[{"Timestamp":{{.timestamp_unix_s}},"FileName":"test_upx_header_changed","FilePath":"/home/azureuser/atomic-red-team/atomics/T1027.002/bin/linux/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"test_upx","FilePath":"/home/azureuser/atomic-red-team/atomics/T1027.002/bin/linux/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1055.012/bin/x64/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1055.004/bin/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1055/bin/x64/vuln_dll/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1047/bin/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"T1055.011_{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1055.011/bin/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1055/bin/x64/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1055.012/bin/x64/"},{"Timestamp":{{.timestamp_unix_s}},"FileName":"{{.Domains}}","FilePath":"/home/azureuser/atomic-red-team/atomics/T1036.003/bin/"}],"FalconHostLink":"https://{{.Domains}}/activity-v2/detections/44be50f58ccfcfcfcfcfcfcfcffc:ind:c8d1292a8a904216aa25ab728f4b45fd:11111111111-2222-3333333?_cid=99999999999999999999999999999999","AgentId":"c8d1292a8a904216aa25ab728f4b45fd","CompositeId":"44be50f58ccfcfcfcfcfcfcfcffc:ind:c8d1292a8a904216aa25ab728f4b45fd:11111111111-2222-3333333","LocalIP":"{{.IPs}}","MACAddress":"02-42-d8-66-fe-03","Tactic":"Malware","Technique":"Malicious File","Objective":"Falcon Detection Method","PatternDispositionDescription":"Detection, process would have been killed if related prevention policy setting was enabled.","PatternDispositionValue":272,"PatternDispositionFlags":{"Indicator":false,"Detect":false,"InddetMask":false,"SensorOnly":false,"Rooting":false,"KillProcess":true,"KillSubProcess":false,"QuarantineMachine":false,"QuarantineFile":false,"PolicyDisabled":true,"KillParent":false,"OperationBlocked":false,"ProcessBlocked":false,"RegistryOperationBlocked":false,"CriticalProcessDisabled":false,"BootupSafeguardEnabled":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"KillActionFailed":false,"BlockingUnsupportedOrDisabled":false,"SuspendProcess":false,"SuspendParent":false},"ParentImageFileName":"bash","ParentCommandLine":"-bash","GrandParentImageFileName":"sshd","GrandParentCommandLine":"/usr/sbin/sshd -D -R","HostGroups":"44be50f58ccfcfcfcfcfcfcfcffc","PatternId":30115,"SourceVendors":"CrowdStrike","SourceProducts":"Falcon Insight","DataDomains":"Endpoint","AggregateId":"aggind:c8d1292a8a904216aa25ab728f4b45fd:11111111111","Type":"ldt","ParentImageFilePath":"/usr/bin/bash","GrandParentImageFilePath":"/usr/sbin/sshd","LocalIPv6":"2a02:cf40::"}}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"cccccccccccccccccccccccccccccccc","offset":1532939,"eventType":"EppDetectionSummaryEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"ProcessStartTime":{{.timestamp_unix_s}},"ProcessEndTime":{{.timestamp_unix_s}},"ProcessId":43185188660,"ParentProcessId":43146803382,"Hostname":"CISO-DUMMY-CSDEV","UserName":"Administrator","Name":"Suspicious Activity","Description":"For evaluation only - benign, no action needed.","Severity":30,"SeverityName":"Low","FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","CommandLine":"choice  /m crowdstrike_sample_detection","SHA256String":"0000000000000000000000000000000000000000000000000000000000000000","MD5String":"00000000000000000000000000000000","SHA1String":"0000000000000000000000000000000000000000","LogonDomain":"CISO-DUMMY-CSDEV","FalconHostLink":"https://{{.Domains}}/activity-v2/detections/cccccccccccccccccccccccccccccccc:ind:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:43185188660-10197-561424?_cid=cccccccccccccccccccccccccccccccc","AgentId":"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee","CompositeId":"cccccccccccccccccccccccccccccccc:ind:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:43185188660-10197-561424","LocalIP":"{{.IPs}}","MACAddress":"00-0c-29-46-56-09","Tactic":"Malware","Technique":"Malicious File","Objective":"Falcon Detection Method","PatternDispositionDescription":"Detection, standard detection.","PatternDispositionValue":0,"PatternDispositionFlags":{"Indicator":false,"Detect":false,"InddetMask":false,"SensorOnly":false,"Rooting":false,"KillProcess":false,"KillSubProcess":false,"QuarantineMachine":false,"QuarantineFile":false,"PolicyDisabled":false,"KillParent":false,"OperationBlocked":false,"ProcessBlocked":false,"RegistryOperationBlocked":false,"CriticalProcessDisabled":false,"BootupSafeguardEnabled":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"KillActionFailed":false,"BlockingUnsupportedOrDisabled":false,"SuspendProcess":false,"SuspendParent":false,"ContainmentFileSystem":false},"ParentImageFileName":"{{.Domains}}","ParentCommandLine":"\"C:\\Windows\\system32\\{{.Domains}}\" ","GrandParentImageFileName":"{{.Domains}}","GrandParentCommandLine":"C:\\Windows\\{{.Domains}}","HostGroups":"88888888888888888888888888888888","PatternId":10197,"SourceVendors":"CrowdStrike","SourceProducts":"Falcon Insight","DataDomains":"Endpoint","AggregateId":"aggind:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:42952716106","Type":"ldt","ParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","GrandParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\{{.Domains}}","LocalIPv6":""}}
+---EVENT_DELIMITER---
+{"metadata":{"customerIDString":"cccccccccccccccccccccccccccccccc","offset":1532956,"eventType":"EppDetectionSummaryEvent","eventCreationTime":{{.timestamp_unix_ms}},"version":"1.0"},"event":{"ProcessStartTime":{{.timestamp_unix_s}},"ProcessEndTime":{{.timestamp_unix_s}},"ProcessId":43186863960,"ParentProcessId":43046029968,"Hostname":"CISO-DUMMY-CSDEV","UserName":"Administrator","Name":"Suspicious Activity","Description":"A process triggered a high severity custom rule.","Severity":70,"SeverityName":"High","FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\Administrator\\Desktop\\{{.Domains}}","CommandLine":"\"C:\\Users\\Administrator\\Desktop\\{{.Domains}}\" ","SHA256String":"0000000000000000000000000000000000000000000000000000000000000000","MD5String":"00000000000000000000000000000000","SHA1String":"0000000000000000000000000000000000000000","LogonDomain":"CISO-DUMMY-CSDEV","FalconHostLink":"https://{{.Domains}}/activity-v2/detections/cccccccccccccccccccccccccccccccc:ind:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:43186863960-41001-568080?_cid=cccccccccccccccccccccccccccccccc","AgentId":"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee","IOCType":"hash_sha256","IOCValue":"0000000000000000000000000000000000000000000000000000000000000000","CompositeId":"cccccccccccccccccccccccccccccccc:ind:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:43186863960-41001-568080","LocalIP":"{{.IPs}}","MACAddress":"00-ff-12-46-56-09","Tactic":"Custom Intelligence","Technique":"Indicator of Attack","Objective":"Falcon Detection Method","PatternDispositionDescription":"Prevention, process was blocked from execution.","PatternDispositionValue":2048,"PatternDispositionFlags":{"Indicator":false,"Detect":false,"InddetMask":false,"SensorOnly":false,"Rooting":false,"KillProcess":false,"KillSubProcess":false,"QuarantineMachine":false,"QuarantineFile":false,"PolicyDisabled":false,"KillParent":false,"OperationBlocked":false,"ProcessBlocked":true,"RegistryOperationBlocked":false,"CriticalProcessDisabled":false,"BootupSafeguardEnabled":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"KillActionFailed":false,"BlockingUnsupportedOrDisabled":false,"SuspendProcess":false,"SuspendParent":false,"ContainmentFileSystem":false},"ParentImageFileName":"{{.Domains}}","ParentCommandLine":"C:\\Windows\\{{.Domains}}","GrandParentImageFileName":"{{.Domains}}","GrandParentCommandLine":"C:\\Windows\\system32\\{{.Domains}}","IOARuleInstanceID":"167","IOARuleInstanceVersion":2,"IOARuleName":"Initial Access via Remote Service (Atera) Block","IOARuleGroupName":"Custom IOA Group - Windows","HostGroups":"88888888888888888888888888888888","AssociatedFile":"\\Device\\HarddiskVolume4\\Users\\Administrator\\Desktop\\{{.Domains}}","PatternId":41001,"SourceVendors":"CrowdStrike","SourceProducts":"Falcon Insight","DataDomains":"Endpoint","AggregateId":"aggind:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:42953194054","Type":"ldt","ParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\{{.Domains}}","GrandParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","LocalIPv6":""}}
+---EVENT_DELIMITER---
+{"event":{"AgentId":"4ebcabee560d4345b025d6c732656ba9","AggregateId":"aggind:4ebcabee560d4345b025d6c732656ba9:1237323","CommandLine":"./{{.Domains}}","CompositeId":"e880572ce33c42458b31e0dd368497fc:ind:4ebcabee560d4345b025d6c732656ba9:1753352263802791435-145-268048","DataDomains":"Endpoint","Description":"Anexecutablewasrunwithacontradictingfileextension","FalconHostLink":"https://{{.Domains}}/activity-v2/detections/e880572ce33c42458b31e0dd368497fc:ind:4ebcabee560d4345b025d6c732656ba9:1753352263802791435-145-268048?_cid=NTdmNWVjYzZmYzM0NDYyZTg4NGRiN2NmZjkzYzE5YWMK","FileName":"{{.Domains}}","FilePath":"/home/devuser/{{.Domains}}","GrandParentCommandLine":"sshd:devuser@pts/0","GrandParentImageFileName":"sshd","GrandParentImageFilePath":"/usr/sbin/sshd","Hostname":"navnit-test-instance","LocalIP":"{{.IPs}}","LocalIPv6":"","LogonDomain":"","MACAddress":"42-01-0a-80-00-18","MD5String":"3e4129c7bb0c01793aa9ecad38ccb4d0","Name":"SuspiciousActivity","Objective":"KeepAccess","ParentCommandLine":"-bash","ParentImageFileName":"bash","ParentImageFilePath":"/usr/bin/bash","ParentProcessId":1753351172854337800,"PatternDispositionDescription":"Detection,processwouldhavebeenkilledifrelatedpreventionpolicysettingwasenabled.","PatternDispositionFlags":{"BlockingUnsupportedOrDisabled":false,"BootupSafeguardEnabled":false,"ContainmentFileSystem":false,"CriticalProcessDisabled":false,"Detect":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"InddetMask":false,"Indicator":false,"KillActionFailed":false,"KillParent":false,"KillProcess":true,"KillSubProcess":false,"OperationBlocked":false,"PolicyDisabled":true,"ProcessBlocked":false,"QuarantineFile":false,"QuarantineMachine":false,"RegistryOperationBlocked":false,"Rooting":false,"SensorOnly":false,"SuspendParent":false,"SuspendProcess":false},"PatternDispositionValue":272,"PatternId":145,"PlatformId":"3","PlatformName":"Linux","ProcessEndTime":{{.timestamp_unix_s}},"ProcessId":1753352263802791400,"ProcessStartTime":{{.timestamp_unix_s}},"SHA1String":"0000000000000000000000000000000000000000","SHA256String":"0cb73775cb5eff70ee9189030eb00bfeb03b7245f2e12edc7d59119e86fd7490","Severity":50,"SeverityName":"Medium","SourceProducts":"FalconInsight","SourceVendors":"CrowdStrike","Tactic":"DefenseEvasion","Technique":"Masquerading","Type":"ldt","UserName":"devuser"},"metadata":{"customerIDString":"e880572ce33c42458b31e0dd368497fc","eventCreationTime":{{.timestamp_unix_ms}},"eventType":"EppDetectionSummaryEvent","offset":2092190,"version":"1.0"}}
+---EVENT_DELIMITER---
+{"event":{"AgentId":"cff45d56127743a593792fb968dac907","AggregateId":"aggind:cff45d56127743a593792fb968dac907:42951223180","CommandLine":"cmd  crowdstrike_test_informational","CompositeId":"e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:43455859437-10307-1951760","DataDomains":"Endpoint","Description":"An informational level detection was triggered on this process for testing purposes.","FalconHostLink":"https://{{.Domains}}/activity-v2/detections/e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:43455859437-10307-1951760?_cid=NTdmNWVjYzZmYzM0NDYyZTg4NGRiN2NmZjkzYzE5YWMK","FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","GrandParentCommandLine":"cmd  crowdstrike_test_medium","GrandParentImageFileName":"{{.Domains}}","GrandParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","HostGroups":"6b15afc3ea3a42ed810b5c163e490a9d","Hostname":"dave-win10-3","LocalIP":"{{.IPs}}","LocalIPv6":"","LogonDomain":"dave-win10-3","MACAddress":"ba-d0-00-ba-d0-00","MD5String":"d53f596e5ea7117ac18aae9f9bd8a481","Name":"Suspicious Activity","Objective":"Falcon Detection Method","ParentCommandLine":"cmd  crowdstrike_test_low","ParentImageFileName":"{{.Domains}}","ParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","ParentProcessId":43450917603,"PatternDispositionDescription":"Detection, standard detection.","PatternDispositionFlags":{"BlockingUnsupportedOrDisabled":false,"BootupSafeguardEnabled":false,"ContainmentFileSystem":false,"CriticalProcessDisabled":false,"Detect":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"InddetMask":false,"Indicator":false,"KillActionFailed":false,"KillParent":false,"KillProcess":false,"KillSubProcess":false,"OperationBlocked":false,"PolicyDisabled":false,"ProcessBlocked":false,"QuarantineFile":false,"QuarantineMachine":false,"RegistryOperationBlocked":false,"Rooting":false,"SensorOnly":false,"SuspendParent":false,"SuspendProcess":false},"PatternDispositionValue":0,"PatternId":10307,"PlatformId":"0","PlatformName":"Windows","ProcessEndTime":0,"ProcessId":43455859437,"ProcessStartTime":{{.timestamp_unix_s}},"SHA1String":"0000000000000000000000000000000000000000","SHA256String":"b2088f2a4a4648dd659ad60169369184a98528aeb7c0766273870b96dd4fa682","Severity":10,"SeverityName":"Informational","SourceProducts":"Falcon Insight","SourceVendors":"CrowdStrike","Tactic":"Falcon Overwatch","Technique":"Malicious Activity","Type":"ldt","UserName":"win10_user3"},"metadata":{"customerIDString":"e880572ce33c42458b31e0dd368497fc","eventCreationTime":{{.timestamp_unix_ms}},"eventType":"EppDetectionSummaryEvent","offset":2021281,"version":"1.0"}}
+---EVENT_DELIMITER---
+{"event":{"AgentId":"cff45d56127743a593792fb968dac907","AggregateId":"aggind:cff45d56127743a593792fb968dac907:42951223180","CommandLine":"cmd  crowdstrike_test_low","CompositeId":"e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:43450917603-10306-1941776","DataDomains":"Endpoint","Description":"A low level detection was triggered on this process for testing purposes.","FalconHostLink":"https://{{.Domains}}/activity-v2/detections/e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:43450917603-10306-1941776?_cid=NTdmNWVjYzZmYzM0NDYyZTg4NGRiN2NmZjkzYzE5YWMK","FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","GrandParentCommandLine":"cmd  crowdstrike_test_high","GrandParentImageFileName":"{{.Domains}}","GrandParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","HostGroups":"6b15afc3ea3a42ed810b5c163e490a9d","Hostname":"dave-win10-3","LocalIP":"{{.IPs}}","LocalIPv6":"","LogonDomain":"dave-win10-3","MACAddress":"ba-d0-00-ba-d0-00","MD5String":"86920ea0b350c9a3e3752a6aba6e1143","Name":"Suspicious Activity","Objective":"Falcon Detection Method","ParentCommandLine":"cmd  crowdstrike_test_medium","ParentImageFileName":"{{.Domains}}","ParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","ParentProcessId":43448891811,"PatternDispositionDescription":"Detection, standard detection.","PatternDispositionFlags":{"BlockingUnsupportedOrDisabled":false,"BootupSafeguardEnabled":false,"ContainmentFileSystem":false,"CriticalProcessDisabled":false,"Detect":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"InddetMask":false,"Indicator":false,"KillActionFailed":false,"KillParent":false,"KillProcess":false,"KillSubProcess":false,"OperationBlocked":false,"PolicyDisabled":false,"ProcessBlocked":false,"QuarantineFile":false,"QuarantineMachine":false,"RegistryOperationBlocked":false,"Rooting":false,"SensorOnly":false,"SuspendParent":false,"SuspendProcess":false},"PatternDispositionValue":0,"PatternId":10306,"PlatformId":"0","PlatformName":"Windows","ProcessEndTime":0,"ProcessId":43450917603,"ProcessStartTime":{{.timestamp_unix_s}},"SHA1String":"0000000000000000000000000000000000000000","SHA256String":"27c6ca0e877b6e7a9c7fb2c2e2919df8eaf7db84d82b2652e9a90c31a271db06","Severity":30,"SeverityName":"Low","SourceProducts":"Falcon Insight","SourceVendors":"CrowdStrike","Tactic":"Falcon Overwatch","Technique":"Malicious Activity","Type":"ldt","UserName":"win10_user3"},"metadata":{"customerIDString":"e880572ce33c42458b31e0dd368497fc","eventCreationTime":{{.timestamp_unix_ms}},"eventType":"EppDetectionSummaryEvent","offset":2021280,"version":"1.0"}}
+---EVENT_DELIMITER---
+{"event":{"AgentId":"cff45d56127743a593792fb968dac907","AggregateId":"aggind:cff45d56127743a593792fb968dac907:42951223180","CommandLine":"cmd  crowdstrike_test_high","CompositeId":"e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:43447659975-10304-1911824","DataDomains":"Endpoint","Description":"A high level detection was triggered on this process for testing purposes.","FalconHostLink":"https://{{.Domains}}/activity-v2/detections/e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:43447659975-10304-1911824?_cid=NTdmNWVjYzZmYzM0NDYyZTg4NGRiN2NmZjkzYzE5YWMK","FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","GrandParentCommandLine":"\"C:\\Windows\\system32\\{{.Domains}}\" ","GrandParentImageFileName":"{{.Domains}}","GrandParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","HostGroups":"6b15afc3ea3a42ed810b5c163e490a9d","Hostname":"dave-win10-3","LocalIP":"{{.IPs}}","LocalIPv6":"","LogonDomain":"dave-win10-3","MACAddress":"ba-d0-00-ba-d0-00","MD5String":"099d5a3c2f87817751337a9cf8d6a70b","Name":"Suspicious Activity","Objective":"Falcon Detection Method","ParentCommandLine":"cmd  crowdstrike_test_critical","ParentImageFileName":"{{.Domains}}","ParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","ParentProcessId":43444774922,"PatternDispositionDescription":"Detection, standard detection.","PatternDispositionFlags":{"BlockingUnsupportedOrDisabled":false,"BootupSafeguardEnabled":false,"ContainmentFileSystem":false,"CriticalProcessDisabled":false,"Detect":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"InddetMask":false,"Indicator":false,"KillActionFailed":false,"KillParent":false,"KillProcess":false,"KillSubProcess":false,"OperationBlocked":false,"PolicyDisabled":false,"ProcessBlocked":false,"QuarantineFile":false,"QuarantineMachine":false,"RegistryOperationBlocked":false,"Rooting":false,"SensorOnly":false,"SuspendParent":false,"SuspendProcess":false},"PatternDispositionValue":0,"PatternId":10304,"PlatformId":"0","PlatformName":"Windows","ProcessEndTime":0,"ProcessId":43447659975,"ProcessStartTime":{{.timestamp_unix_s}},"SHA1String":"0000000000000000000000000000000000000000","SHA256String":"27c6ca0e877b6e7a9c7fb2c2e2919df8eaf7db84d82b2652e9a90c31a271db06","Severity":70,"SeverityName":"High","SourceProducts":"Falcon Insight","SourceVendors":"CrowdStrike","Tactic":"Falcon Overwatch","Technique":"Malicious Activity","Type":"ldt","UserName":"win10_user3"},"metadata":{"customerIDString":"e880572ce33c42458b31e0dd368497fc","eventCreationTime":{{.timestamp_unix_ms}},"eventType":"EppDetectionSummaryEvent","offset":2021278,"version":"1.0"}}
+---EVENT_DELIMITER---
+{"event":{"AgentId":"cff45d56127743a593792fb968dac907","AggregateId":"aggind:cff45d56127743a593792fb968dac907:42951223180","CommandLine":"cmd  crowdstrike_test_critical","CompositeId":"e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:43444774922-10303-1888528","DataDomains":"Endpoint","Description":"A critical level detection was triggered on this process for testing purposes.","FalconHostLink":"https://{{.Domains}}/activity-v2/detections/e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:43444774922-10303-1888528?_cid=NTdmNWVjYzZmYzM0NDYyZTg4NGRiN2NmZjkzYzE5YWMK","FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","GrandParentCommandLine":"C:\\Windows\\{{.Domains}}","GrandParentImageFileName":"{{.Domains}}","GrandParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\{{.Domains}}","HostGroups":"6b15afc3ea3a42ed810b5c163e490a9d","Hostname":"dave-win10-3","LocalIP":"{{.IPs}}","LocalIPv6":"","LogonDomain":"dave-win10-3","MACAddress":"ba-d0-00-ba-d0-00","MD5String":"bd5bfe63bc48507039f7e3afa5b01a70","Name":"Suspicious Activity","Objective":"Falcon Detection Method","ParentCommandLine":"\"C:\\Windows\\system32\\{{.Domains}}\" ","ParentImageFileName":"{{.Domains}}","ParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","ParentProcessId":43425257674,"PatternDispositionDescription":"Detection, standard detection.","PatternDispositionFlags":{"BlockingUnsupportedOrDisabled":false,"BootupSafeguardEnabled":false,"ContainmentFileSystem":false,"CriticalProcessDisabled":false,"Detect":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"InddetMask":false,"Indicator":false,"KillActionFailed":false,"KillParent":false,"KillProcess":false,"KillSubProcess":false,"OperationBlocked":false,"PolicyDisabled":false,"ProcessBlocked":false,"QuarantineFile":false,"QuarantineMachine":false,"RegistryOperationBlocked":false,"Rooting":false,"SensorOnly":false,"SuspendParent":false,"SuspendProcess":false},"PatternDispositionValue":0,"PatternId":10303,"PlatformId":"0","PlatformName":"Windows","ProcessEndTime":0,"ProcessId":43444774922,"ProcessStartTime":{{.timestamp_unix_s}},"SHA1String":"0000000000000000000000000000000000000000","SHA256String":"27c6ca0e877b6e7a9c7fb2c2e2919df8eaf7db84d82b2652e9a90c31a271db06","Severity":90,"SeverityName":"Critical","SourceProducts":"Falcon Insight","SourceVendors":"CrowdStrike","Tactic":"Falcon Overwatch","Technique":"Malicious Activity","Type":"ldt","UserName":"win10_user3"},"metadata":{"customerIDString":"e880572ce33c42458b31e0dd368497fc","eventCreationTime":{{.timestamp_unix_ms}},"eventType":"EppDetectionSummaryEvent","offset":2021272,"version":"1.0"}}
+---EVENT_DELIMITER---
+{"event":{"AgentId":"cff45d56127743a593792fb968dac907","AggregateId":"aggind:cff45d56127743a593792fb968dac907:42951223180","CommandLine":"cmd  crowdstrike_test_medium","CompositeId":"e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:43448891811-10305-1929744","DataDomains":"Endpoint","Description":"A medium level detection was triggered on this process for testing purposes.","FalconHostLink":"https://{{.Domains}}/activity-v2/detections/e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:43448891811-10305-1929744?_cid=NTdmNWVjYzZmYzM0NDYyZTg4NGRiN2NmZjkzYzE5YWMK","FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","GrandParentCommandLine":"cmd  crowdstrike_test_critical","GrandParentImageFileName":"{{.Domains}}","GrandParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","HostGroups":"6b15afc3ea3a42ed810b5c163e490a9d","Hostname":"dave-win10-3","LocalIP":"{{.IPs}}","LocalIPv6":"","LogonDomain":"dave-win10-3","MACAddress":"ba-d0-00-ba-d0-00","MD5String":"645b4fecb42fb954858850fe127ceb98","Name":"Suspicious Activity","Objective":"Falcon Detection Method","ParentCommandLine":"cmd  crowdstrike_test_high","ParentImageFileName":"{{.Domains}}","ParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","ParentProcessId":43447659975,"PatternDispositionDescription":"Detection, standard detection.","PatternDispositionFlags":{"BlockingUnsupportedOrDisabled":false,"BootupSafeguardEnabled":false,"ContainmentFileSystem":false,"CriticalProcessDisabled":false,"Detect":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"InddetMask":false,"Indicator":false,"KillActionFailed":false,"KillParent":false,"KillProcess":false,"KillSubProcess":false,"OperationBlocked":false,"PolicyDisabled":false,"ProcessBlocked":false,"QuarantineFile":false,"QuarantineMachine":false,"RegistryOperationBlocked":false,"Rooting":false,"SensorOnly":false,"SuspendParent":false,"SuspendProcess":false},"PatternDispositionValue":0,"PatternId":10305,"PlatformId":"0","PlatformName":"Windows","ProcessEndTime":0,"ProcessId":43448891811,"ProcessStartTime":{{.timestamp_unix_s}},"SHA1String":"0000000000000000000000000000000000000000","SHA256String":"27c6ca0e877b6e7a9c7fb2c2e2919df8eaf7db84d82b2652e9a90c31a271db06","Severity":50,"SeverityName":"Medium","SourceProducts":"Falcon Insight","SourceVendors":"CrowdStrike","Tactic":"Falcon Overwatch","Technique":"Malicious Activity","Type":"ldt","UserName":"win10_user3"},"metadata":{"customerIDString":"e880572ce33c42458b31e0dd368497fc","eventCreationTime":{{.timestamp_unix_ms}},"eventType":"EppDetectionSummaryEvent","offset":2021265,"version":"1.0"}}
+---EVENT_DELIMITER---
+{"event":{"AgentId":"cff45d56127743a593792fb968dac907","AggregateId":"aggind:cff45d56127743a593792fb968dac907:42950506623","CommandLine":"choice  /m crowdstrike_sample_detection","CompositeId":"e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:43438097407-10197-1874448","DataDomains":"Endpoint","Description":"For evaluation only - benign, no action needed.","FalconHostLink":"https://{{.Domains}}/activity-v2/detections/e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:43438097407-10197-1874448?_cid=NTdmNWVjYzZmYzM0NDYyZTg4NGRiN2NmZjkzYzE5YWMK","FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","GrandParentCommandLine":"C:\\Windows\\{{.Domains}}","GrandParentImageFileName":"{{.Domains}}","GrandParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\{{.Domains}}","HostGroups":"6b15afc3ea3a42ed810b5c163e490a9d","Hostname":"dave-win10-3","LocalIP":"{{.IPs}}","LocalIPv6":"","LogonDomain":"dave-win10-3","MACAddress":"ba-d0-00-ba-d0-00","MD5String":"ce0219f7ab9077db1c089a48eaa82eb1","Name":"Suspicious Activity","Objective":"Falcon Detection Method","ParentCommandLine":"\"C:\\Windows\\system32\\{{.Domains}}\" ","ParentImageFileName":"{{.Domains}}","ParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","ParentProcessId":43425257674,"PatternDispositionDescription":"Detection, standard detection.","PatternDispositionFlags":{"BlockingUnsupportedOrDisabled":false,"BootupSafeguardEnabled":false,"ContainmentFileSystem":false,"CriticalProcessDisabled":false,"Detect":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"InddetMask":false,"Indicator":false,"KillActionFailed":false,"KillParent":false,"KillProcess":false,"KillSubProcess":false,"OperationBlocked":false,"PolicyDisabled":false,"ProcessBlocked":false,"QuarantineFile":false,"QuarantineMachine":false,"RegistryOperationBlocked":false,"Rooting":false,"SensorOnly":false,"SuspendParent":false,"SuspendProcess":false},"PatternDispositionValue":0,"PatternId":10197,"PlatformId":"0","PlatformName":"Windows","ProcessEndTime":0,"ProcessId":43438097407,"ProcessStartTime":{{.timestamp_unix_s}},"SHA1String":"0000000000000000000000000000000000000000","SHA256String":"a1eb4e497f40111f44a1dca4674ead06dce7ea37d6b8df5a84b5022bf4072930","Severity":30,"SeverityName":"Low","SourceProducts":"Falcon Insight","SourceVendors":"CrowdStrike","Tactic":"Malware","Technique":"Malicious File","Type":"ldt","UserName":"win10_user3"},"metadata":{"customerIDString":"e880572ce33c42458b31e0dd368497fc","eventCreationTime":{{.timestamp_unix_ms}},"eventType":"EppDetectionSummaryEvent","offset":2021264,"version":"1.0"}}
+---EVENT_DELIMITER---
+{"event":{"AgentId":"1d58fa2265b540b79cd057e8fa798e4d","AggregateId":"aggind:1d58fa2265b540b79cd057e8fa798e4d:47245659364","CommandLine":"/bin/bash -c printf \"X5O!P%%@AP[4\\\\PZX54(P^)7CC)7}\\$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!\\$H+H*\" > {{.Domains}} /bin/bash","CompositeId":"e880572ce33c42458b31e0dd368497fc:ind:1d58fa2265b540b79cd057e8fa798e4d:1751532935660926966-30195-323088","DataDomains":"Endpoint","Description":"A process has written a known EICAR test file. Review the files written by the triggered process.","FalconHostLink":"https://{{.Domains}}/activity-v2/detections/e880572ce33c42458b31e0dd368497fc:ind:1d58fa2265b540b79cd057e8fa798e4d:1751532935660926966-30195-323088?_cid=NTdmNWVjYzZmYzM0NDYyZTg4NGRiN2NmZjkzYzE5YWMK","FileName":"bash","FilePath":"/usr/bin/bash","GrandParentCommandLine":"falcon-sensor-bpf","GrandParentImageFileName":"falcon-sensor-bpf17804","GrandParentImageFilePath":"/opt/CrowdStrike/falcon-sensor-bpf17804","HostGroups":"5b2e67ccb1de4ac0b1c49225c8fcb132","Hostname":"cs-elastic","LocalIP":"{{.IPs}}","LocalIPv6":"","LogonDomain":"","MACAddress":"52-54-00-58-b6-5e","MD5String":"21cdb844225f8dc4ea6e9f80f9940a2b","Name":"Attacker Methodology","Objective":"Follow Through","ParentCommandLine":"/bin/bash --noprofile --norc -c #!/bin/bash\n# SYNOPSIS\n#    Run a bash script with specified command line and timeout\n# DESCRIPTION\n#   CrowdStrike Real Time Response command\n# PARAMETER WD\n#    Current working directory\n# PARAMETER Param1\n#    Script body - Required\n# PARAMETER Param2\n#    Command line sent to script\n# PARAMETER Param3\n#    Local path - path to local file to be used as script body\n# PARAMETER Param4\n#    Timeout in seconds\n# NOTES\n#    File Name  : {{.Domains}}\n#    Contact    : {{.Emails}}\n#    Copyright  : CrowdStrike 2020\n# LINK\n#    https://{{.Domains}}/\n\nset -euo pipefail\nshopt -s extglob\n\ncommand=runscript\n\nfunction die\n{\n    echo \"$command: $1\" >&2\n    exit 1\n}\n\nfunction err_handler()\n{\n    # Rewrite the error message to remove the internal command prefix\n    echo \"$command:${1#*cat:}\" >&2\n}\ntrap 'err_handler \"$script\"' ERR\n\nfunction get_arg() {\n    eval set -- \"$1\"\n    echo \"$@\"\n}\n\nscript=\nif [ \"$#\" -ge 1 ]; then\n    script=\"$1\"\n    shift\nfi\n\nscript_args=\nif [ \"$#\" -ge 1 ]; then\n    script_args=\"$1\"\n    shift\nfi\n\n# following Windows behavior where HostPath clobbers Raw\nif [ \"$#\" -ge 1 ]; then\n    script_path=\"$(get_arg \"$1\")\"\n    if [ -n \"$script_path\" ]; then\n        script=\"$(/bin/cat \"$script_path\" 2>&1)\"\n    fi\n    shift\nfi\n\ntimeout=60\nif [ \"$#\" -ge 1 ]; then\n    if [ -n \"$1\" ]; then\n        timeout=\"$1\"\n    fi\n    shift\nfi\n\nif [ -z \"$script\" ]; then\n    die \"Either -Raw or -HostPath must be specified\"\nfi\n\nif [[ \"$timeout\" =~ .*[^0-9].* ]] || [ \"$timeout\" -eq 0 ]; then\n    die \"Timeout must be a positive integer\"\nfi\n\neval set -- \"$script_args\"\n/bin/bash -c \"$script\" /bin/bash \"$@\" &\npid=$!\n\nfunction get_time()\n{\n    sed -n '1s/\\([0-9]\\+\\)\\.\\([0-9][0-9]\\).*/\\1\\2/p' /proc/uptime\n}\n\nstart_time=$(get_time)\nlast_print_time=$start_time\nwait_interval=0.1\nprint_interval=5\nresolution=100\nwhile kill -0 $pid 2> /dev/null ; do\n    current_time=$(get_time)\n    if ((current_time - start_time >= timeout*resolution)); then\n        kill -9 $pid >/dev/null 2>&1\n        echo \"$command: Timed out waiting for script to exit\" >&2\n        kill -9 -$$ >/dev/null 2>&1\n    fi\n    if ((current_time - last_print_time >= print_interval*resolution)); then\n        printf %b '\\xe2\\x80\\x8b' # hex for unicode '\\u200b' for backward compatibility\n        last_print_time=$current_time\n    fi\n    /bin/sleep $wait_interval\ndone\n /bin/bash printf \"X5O!P%%@AP[4\\\\PZX54(P^)7CC)7}\\$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!\\$H+H*\" > {{.Domains}}         ","ParentImageFileName":"bash","ParentImageFilePath":"/usr/bin/bash","ParentProcessId":1751532935654264600,"PatternDispositionDescription":"Detection, standard detection.","PatternDispositionFlags":{"BlockingUnsupportedOrDisabled":false,"BootupSafeguardEnabled":false,"ContainmentFileSystem":false,"CriticalProcessDisabled":false,"Detect":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"InddetMask":false,"Indicator":false,"KillActionFailed":false,"KillParent":false,"KillProcess":false,"KillSubProcess":false,"OperationBlocked":false,"PolicyDisabled":false,"ProcessBlocked":false,"QuarantineFile":false,"QuarantineMachine":false,"RegistryOperationBlocked":false,"Rooting":false,"SensorOnly":false,"SuspendParent":false,"SuspendProcess":false},"PatternDispositionValue":0,"PatternId":30195,"PlatformId":"3","PlatformName":"Linux","ProcessEndTime":{{.timestamp_unix_s}},"ProcessId":1751532935660927000,"ProcessStartTime":{{.timestamp_unix_s}},"SHA1String":"0000000000000000000000000000000000000000","SHA256String":"c43e9716c26e88801364e80e997f986760f5d82b5649f9e149b164396dd08c3d","Severity":10,"SeverityName":"Informational","SourceProducts":"Falcon Insight","SourceVendors":"CrowdStrike","Tactic":"Execution","Technique":"User Execution","Type":"ldt","UserName":"root"},"metadata":{"customerIDString":"e880572ce33c42458b31e0dd368497fc","eventCreationTime":{{.timestamp_unix_ms}},"eventType":"EppDetectionSummaryEvent","offset":1962865,"version":"1.0"}}
+---EVENT_DELIMITER---
+{"event":{"AgentId":"cff45d56127743a593792fb968dac907","AggregateId":"aggind:cff45d56127743a593792fb968dac907:38655211725","CommandLine":"C:\\Windows\\{{.Domains}}","CompositeId":"e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:38850874557-10418-770320","DataDomains":"Endpoint","Description":"A process has written a known EICAR test file. Review the files written by the triggered process.","FalconHostLink":"https://{{.Domains}}/activity-v2/detections/e880572ce33c42458b31e0dd368497fc:ind:cff45d56127743a593792fb968dac907:38850874557-10418-770320?_cid=NTdmNWVjYzZmYzM0NDYyZTg4NGRiN2NmZjkzYzE5YWMK","FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Windows\\{{.Domains}}","FilesAccessed":[{"FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\Downloads","Timestamp":{{.timestamp_unix_s}}},{"FileName":"thumbcache_{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\AppData\\Local\\Microsoft\\Windows\\Explorer","Timestamp":{{.timestamp_unix_s}}},{"FileName":"eicar_{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\Downloads\\eicarcom2","Timestamp":{{.timestamp_unix_s}}},{"FileName":"thumbcache_{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\AppData\\Local\\Microsoft\\Windows\\Explorer","Timestamp":{{.timestamp_unix_s}}},{"FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\AppData\\Local\\Packages\\{{.Domains}}_cw5n1h2txyewy\\LocalState\\ShellFeeds","Timestamp":{{.timestamp_unix_s}}},{"FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\AppData\\Local\\Packages\\{{.Domains}}_cw5n1h2txyewy\\LocalState\\ShellFeeds","Timestamp":{{.timestamp_unix_s}}},{"FileName":"eicar_{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\Downloads\\eicarcom2","Timestamp":{{.timestamp_unix_s}}},{"FileName":"eicar_{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\Downloads\\eicarcom2","Timestamp":{{.timestamp_unix_s}}},{"FileName":"eicar_{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\Downloads\\eicarcom2","Timestamp":{{.timestamp_unix_s}}},{"FileName":"iconcache_{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\AppData\\Local\\Microsoft\\Windows\\Explorer","Timestamp":{{.timestamp_unix_s}}}],"FilesWritten":[{"FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\Downloads\\eicarcom2\\eicar_com","Timestamp":{{.timestamp_unix_s}}},{"FileName":"The {{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\AppData\\Roaming\\Microsoft\\Windows\\Recent","Timestamp":{{.timestamp_unix_s}}},{"FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\AppData\\Roaming\\Microsoft\\Windows\\Recent","Timestamp":{{.timestamp_unix_s}}},{"FileName":"The {{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\AppData\\Roaming\\Microsoft\\Windows\\Recent","Timestamp":{{.timestamp_unix_s}}},{"FileName":"{{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\AppData\\Roaming\\Microsoft\\Windows\\Recent","Timestamp":{{.timestamp_unix_s}}},{"FileName":"{{.Domains}}-fwlink-linkid=142185&name=ToolWin32-EICAR_Test_File&threatid={{.Domains}}","FilePath":"\\Device\\HarddiskVolume4\\Users\\win10_user3\\AppData\\Roaming\\Microsoft\\Windows\\Recent","Timestamp":{{.timestamp_unix_s}}}],"GrandParentCommandLine":"{{.Domains}}","GrandParentImageFileName":"{{.Domains}}","GrandParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","HostGroups":"6b15afc3ea3a42ed810b5c163e490a9d","Hostname":"dave-win10-3","LocalIP":"{{.IPs}}","LocalIPv6":"","LogonDomain":"dave-win10-3","MACAddress":"ba-d0-00-ba-d0-00","MD5String":"23ba370fc8357f6f827812da142b5fcb","Name":"Known Malware","NetworkAccesses":[{"AccessTimestamp":{{.timestamp_unix_s}},"AccessType":0,"ConnectionDirection":0,"IsIPV6":false,"LocalAddress":"{{.IPs}}","LocalPort":49729,"Protocol":"TCP","RemoteAddress":"{{.IPs}}","RemotePort":443},{"AccessTimestamp":{{.timestamp_unix_s}},"AccessType":0,"ConnectionDirection":0,"IsIPV6":false,"LocalAddress":"{{.IPs}}","LocalPort":49730,"Protocol":"TCP","RemoteAddress":"{{.IPs}}","RemotePort":443},{"AccessTimestamp":{{.timestamp_unix_s}},"AccessType":0,"ConnectionDirection":0,"IsIPV6":false,"LocalAddress":"{{.IPs}}","LocalPort":49948,"Protocol":"TCP","RemoteAddress":"{{.IPs}}","RemotePort":443}],"Objective":"Follow Through","ParentCommandLine":"C:\\Windows\\system32\\{{.Domains}}","ParentImageFileName":"{{.Domains}}","ParentImageFilePath":"\\Device\\HarddiskVolume4\\Windows\\System32\\{{.Domains}}","ParentProcessId":38850737845,"PatternDispositionDescription":"Detection, standard detection.","PatternDispositionFlags":{"BlockingUnsupportedOrDisabled":false,"BootupSafeguardEnabled":false,"ContainmentFileSystem":false,"CriticalProcessDisabled":false,"Detect":false,"FsOperationBlocked":false,"HandleOperationDowngraded":false,"InddetMask":false,"Indicator":false,"KillActionFailed":false,"KillParent":false,"KillProcess":false,"KillSubProcess":false,"OperationBlocked":false,"PolicyDisabled":false,"ProcessBlocked":false,"QuarantineFile":false,"QuarantineMachine":false,"RegistryOperationBlocked":false,"Rooting":false,"SensorOnly":false,"SuspendParent":false,"SuspendProcess":false},"PatternDispositionValue":0,"PatternId":10418,"PlatformId":"0","PlatformName":"Windows","ProcessEndTime":0,"ProcessId":38850874557,"ProcessStartTime":{{.timestamp_unix_s}},"ReferrerUrl":"C:\\Users\\win10_user3\\Downloads\\eicarcom2\\eicar_{{.Domains}}","SHA1String":"0000000000000000000000000000000000000000","SHA256String":"a9cc4e666b1a0cb0b6349fbe076e2bd7d2ac5b10f40d6466eb369e9e596978f7","Severity":10,"SeverityName":"Informational","SourceProducts":"Falcon Insight","SourceVendors":"CrowdStrike","Tactic":"Execution","Technique":"User Execution","Type":"ldt","UserName":"win10_user3"},"metadata":{"customerIDString":"e880572ce33c42458b31e0dd368497fc","eventCreationTime":{{.timestamp_unix_ms}},"eventType":"EppDetectionSummaryEvent","offset":1956190,"version":"1.0"}}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 294564,
+        "eventType": "DetectionSummaryEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "ProcessStartTime": {{.timestamp_unix_s}},
+        "ProcessEndTime": 0,
+        "ProcessId": 38684386611,
+        "ParentProcessId": 38682494050,
+        "ComputerName": "alice-laptop",
+        "UserName": "alice",
+        "DetectName": "Process Terminated",
+        "DetectDescription": "Terminated a process related to the deletion of backups, which is often indicative of ransomware activity.",
+        "Severity": 4,
+        "SeverityName": "High",
+        "FileName": "{{.Domains}}",
+        "FilePath": "\\Device\\HarddiskVolume1\\Windows",
+        "CommandLine": "C:\\Windows\\{{.Domains}}",
+        "SHA256String": "6a671b92a69755de6fd063fcbe4ba926d83b49f78c42dbaeed8cdb6bbc57576a",
+        "MD5String": "ac4c51eb24aa95b77f705ab159189e24",
+        "MachineDomain": "CORP-DOMAIN",
+        "FalconHostLink": "https://{{.Domains}}/ec86abd353824e96765ecbe18eb4f0b4",
+        "SensorId": "7c808b4c8878433287eea53d4a8c3268",
+        "DetectId": "ldt:ec86abd353824e96765ecbe18eb4f0b4:38655257584",
+        "LocalIP": "{{.IPs}}",
+        "MACAddress": "00-00-00-11-22-33",
+        "Tactic": "Malware",
+        "Technique": "Ransomware",
+        "Objective": "Falcon Detection Method",
+        "PatternDispositionDescription": "Prevention, process killed.",
+        "PatternDispositionValue": 16,
+        "PatternDispositionFlags": {
+            "Indicator": false,
+            "Detect": false,
+            "InddetMask": false,
+            "SensorOnly": false,
+            "Rooting": false,
+            "KillProcess": true,
+            "KillSubProcess": false,
+            "QuarantineMachine": false,
+            "QuarantineFile": false,
+            "PolicyDisabled": false,
+            "KillParent": false,
+            "OperationBlocked": false,
+            "ProcessBlocked": false
+        }
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 1824,
+        "eventType": "IncidentSummaryEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "IncidentStartTime": {{.timestamp_unix_s}},
+        "IncidentEndTime": {{.timestamp_unix_s}},
+        "FalconHostLink": "https://{{.Domains}}/crowdscore/incidents/details/inc:8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "State": "open",
+        "FineScore": 1.2
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "8f69fe9e-b995-4204-95ad-44f9bcf75b6b",
+        "offset": 22865,
+        "eventType": "UserActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "Crowdstrike",
+        "UserIp": "",
+        "OperationName": "quarantined_file_update",
+        "ServiceName": "quarantined_files",
+        "AuditKeyValues": [
+            {
+                "Key": "quarantined_file_id",
+                "ValueString": "35b35a53da374816a6b471cf09e12019_a076d3121743755f2d4f8d4d5807f0bc013177f7847d09b48e76de88ace08c78"
+            },
+            {
+                "Key": "action_taken",
+                "ValueString": "quarantined"
+            }
+        ],
+        "UTCTimestamp": {{.timestamp_unix_s}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "12345a1bc2d34fghi56jk7890lmno12p",
+        "offset": 70689,
+        "eventType": "FirewallMatchEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "DeviceId": "12345a1bc2d34fghi56jk7890lmno12p",
+        "CustomerId": "12345a1bc2d34fghi56jk7890lmno12p",
+        "Ipv": "ipv4",
+        "CommandLine": "nginx",
+        "ConnectionDirection": "1",
+        "EventType": "FirewallRuleIP4Matched",
+        "Flags": {
+            "Audit": false,
+            "Log": false,
+            "Monitor": true
+        },
+        "HostName": "TESTDEVICE01",
+        "ICMPCode": "",
+        "ICMPType": "",
+        "ImageFileName": "/usr/bin/nginx",
+        "LocalAddress": "{{.IPs}}",
+        "LocalPort": "445",
+        "MatchCount": 1,
+        "MatchCountSinceLastReport": 1,
+        "NetworkProfile": "2",
+        "PID": "206158879910",
+        "PolicyName": "PROD-FW-TESTSTATION-General",
+        "PolicyID": "12345a1bc2d34fghi56jk7890lmno12p",
+        "Protocol": "6",
+        "RemoteAddress": "{{.IPs}}",
+        "RemotePort": "54952",
+        "RuleAction": "2",
+        "RuleDescription": "",
+        "RuleFamilyID": "fec73e96a1bf4481be582c3f89b234fa",
+        "RuleGroupName": "SMB Rules",
+        "RuleName": "Inbound SMB Block \u0026 Log Private",
+        "RuleId": "4877172638743447345",
+        "Status": "",
+        "Timestamp": "{{.timestamp_iso}}",
+        "TreeID": "158446832506666"
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "3426316453426234",
+        "offset": 2664264,
+        "eventType": "IdentityProtectionEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "IncidentType": "UNUSUAL_ENDPOINT_USE",
+        "IncidentDescription": "User seen coming from a location that deviates from their baseline.",
+        "Severity": 1,
+        "SeverityName": "INFO",
+        "StartTime": {{.timestamp_unix_ms}},
+        "EndTime": {{.timestamp_unix_ms}},
+        "IdentityProtectionIncidentId": "INC-123",
+        "UserName": "TESTUSER",
+        "EndpointName": "TESTHOSTNAME",
+        "EndpointIp": "{{.IPs}}",
+        "Category": "Incidents",
+        "NumbersOfAlerts": 1,
+        "NumberOfCompromisedEntities": 1,
+        "State": "NEW",
+        "FalconHostLink": "https://{{.Domains}}/identity-protection/incidents/INC-123"
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "123123abcd",
+        "offset": 2,
+        "eventType": "IncidentSummaryEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "IncidentStartTime": {{.timestamp_unix_s}},
+        "IncidentEndTime": {{.timestamp_unix_s}},
+        "FalconHostLink": "https://{{.Domains}}/crowdscore/incidents/details/inc:123:abc?_cid=CID",
+        "State": "open",
+        "FineScore": 0.5,
+        "LateralMovement": 0,
+        "IncidentType": 1,
+        "IncidentID": "inc:123:abc",
+        "HostID": "TESTHOSTID",
+        "LMHostIDs": [
+            "TESTHOSTID1",
+            "TESTHOSTID2"
+        ],
+        "UserId": "{{.Emails}}"
+    }
+}
+---EVENT_DELIMITER---
+{
+	"metadata": {
+		"customerIDString": "12312312312312321",
+		"offset": 2662765,
+		"eventType": "IdpDetectionSummaryEvent",
+		"eventCreationTime": {{.timestamp_unix_ms}},
+		"version": "1.0"
+	},
+	"event": {
+		"ContextTimeStamp": 133221234560000000,
+		"DetectId": "12345678901234567890123456789012:ind:12345678901234567890123456789012:12345678-1234-1234-1234-123456789000",
+		"DetectName": "Unusual login to an endpoint",
+		"DetectDescription": "A user logged in to a machine for the first time",
+		"FalconHostLink": "https://{{.Domains}}/identity-protection/detections/12345678901234567890123456789012:ind:12345678901234567890123456789012:12345678-1234-1234-1234-123456789000?cid=12345678901234567890123456789012",
+		"StartTime": 123456789000000000,
+		"EndTime": 123456789000000000,
+		"Severity": 7,
+		"Tactic": "Initial Access",
+		"Technique": "Valid Accounts",
+		"Objective": "Gain Access",
+		"SourceAccountDomain": "{{.Domains}}",
+		"SourceAccountName": "johnb",
+		"SourceAccountObjectSid": "S-1-3-44-55555555-666666666-7777777777-88888",
+		"SourceEndpointAccountObjectGuid": "12345678-1234-1234-1234-123456789000",
+		"SourceEndpointAccountObjectSid": "S-1-3-44-55555555-666666666-7777777777-88888",
+		"SourceEndpointHostName": "{{.Domains}}",
+		"SourceEndpointIpAddress": "{{.IPs}}",
+		"SourceEndpointSensorId": "12345678901234567890123456789012",
+		"PrecedingActivityTimeStamp": 133154452345780000,
+		"MostRecentActivityTimeStamp": 133313215755670000,
+		"ActivityId": "12345678-1234-1234-1234-123456789000",
+		"PatternId": 51135
+	}
+}
+---EVENT_DELIMITER---
+{
+	"metadata": {
+		"customerIDString": "0123456789ABCDEFGHIJKLMNOPQRSTUV",
+		"offset": 701283,
+		"eventType": "MobileDetectionSummaryEvent",
+		"eventCreationTime": {{.timestamp_unix_ms}},
+		"version": "1.0"
+	},
+	"event": {
+		"SensorId": "85ae98xxxxxxd9a8f2",
+		"MobileDetectionId": {{.timestamp_unix_s}},
+		"ComputerName": "TESTComputer",
+		"UserName": "TestUSER",
+		"ContextTimeStamp": {{.timestamp_unix_s}},
+		"DetectId": "0123456789ABCDEFGHIJKLMNOPQRSTUV:ind:85ae98xxxxxxd9a8f2:41104|{{.timestamp_unix_s}}",
+		"DetectName": "AppSideloadDetected",
+		"DetectDescription": "Apps are installed from outside the PlayStore. Trigger based on a System callback when apps are installed or updated. ",
+		"Tactic": "Insecure security posture",
+		"TacticId": "CSTA0009",
+		"Technique": "Bad device settings",
+		"TechniqueId": "CST0024",
+		"Objective": "Falcon Detection Method",
+		"Severity": 50,
+		"FalconHostLink": "https://{{.Domains}}/mobile/detections/0123456789ABCDEFGHIJKLMNOPQRSTUV:ind:85ae98xxxxxxd9a8f2:41104|{{.timestamp_unix_s}}?_cid=0123456789ABCDEFGHIJKLMNOPQRSTUV",
+		"MobileAppsDetails": [{
+			"AppIdentifier": "{{.Domains}}",
+			"AndroidAppLabel": "Facebook",
+			"DexFileHashes": "abc456xxxxxxxxxxxxxxxxdef789",
+			"ImageFileName": "/data/app/{{.Domains}}-djFExxxxxxxxxrkg==/{{.Domains}}",
+			"AppInstallerInformation": "unknown",
+			"IsBeingDebugged": false,
+			"AndroidAppVersionName": "{{.IPs}}.119",
+			"IsContainerized": false
+		}]
+	}
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "{{.timestamp_unix_ms}}",
+        "offset": 2664218,
+        "eventType": "ReconNotificationSummaryEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "NotificationId": "oifgdjgpoidfsjhpoihio",
+        "Highlights": [
+            "Some highlighed text \u0026lt;cs-highlight\u0026gt;test\u0026lt;/cs-highlight\u0026gt; \u0026lt;cs-highlight\u0026gt;gdsfgasd\u0026lt;/cs-highlight\u0026gt;.\n\nAs an Some more text"
+        ],
+        "MatchedTimestamp": {{.timestamp_unix_ms}},
+        "RuleId": "123543-0cb1-4806-9ccd-a543123",
+        "RuleName": "TestRuleName",
+        "RuleTopic": "TestRuleTopic",
+        "RulePriority": "high",
+        "ItemId": "oigjfdsiughsiopudhfoiusadhfiouhipou==",
+        "ItemType": "post",
+        "ItemPostedTimestamp": {{.timestamp_unix_ms}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "12345a1bc2d34fghi56jk7890lmno12p",
+        "offset": 1045,
+        "eventType": "RemoteResponseSessionStartEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "SessionId": "12345a1bc2d34fghi56jk7890lmno12p",
+        "HostnameField": "hostnameofmachine",
+        "UserName": "{{.Emails}}",
+        "StartTimestamp": {{.timestamp_unix_s}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "12345a1bc2d34fghi56jk7890lmno12p",
+        "offset": 1046,
+        "eventType": "RemoteResponseSessionEndEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "SessionId": "12345a1bc2d34fghi56jk7890lmno12p",
+        "HostnameField": "hostnameofmachine",
+        "UserName": "{{.Emails}}",
+        "EndTimestamp": {{.timestamp_unix_s}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "12345a1bc2d34fghi56jk7890lmno12p",
+        "offset": 70689,
+        "eventType": "FirewallMatchEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "DeviceId": "718af202ab2c4ba5b6a5d10d39c0e0a5",
+        "CustomerId": "12345a1bc2d34fghi56jk7890lmno12p",
+        "Ipv": "ipv4",
+        "CommandLine": "",
+        "ConnectionDirection": "1",
+        "EventType": "FirewallRuleIP4Matched",
+        "Flags": {
+            "Audit": false,
+            "Log": false,
+            "Monitor": true
+        },
+        "HostName": "TESTDEVICE01",
+        "ICMPCode": "",
+        "ICMPType": "",
+        "ImageFileName": "",
+        "LocalAddress": "{{.IPs}}",
+        "LocalPort": "445",
+        "MatchCount": 1,
+        "MatchCountSinceLastReport": 1,
+        "NetworkProfile": "2",
+        "PID": "206158879910",
+        "PolicyName": "PROD-FW-Workstations-General",
+        "PolicyID": "74e7f1552a3a4d90a6d65578642c8584",
+        "Protocol": "6",
+        "RemoteAddress": "{{.IPs}}",
+        "RemotePort": "54952",
+        "RuleAction": "2",
+        "RuleDescription": "",
+        "RuleFamilyID": "fec73e96a1bf4481be582c3f89b234fa",
+        "RuleGroupName": "SMB Rules",
+        "RuleName": "Inbound SMB Block \u0026 Log Private",
+        "RuleId": "4877172638743447345",
+        "Status": "",
+        "Timestamp": "{{.timestamp_iso}}",
+        "TreeID": ""
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "12345a1bc2d34fghi56jk7890lmno12p",
+        "offset": 57181,
+        "eventType": "IncidentSummaryEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "IncidentStartTime": {{.timestamp_unix_s}},
+        "IncidentEndTime": {{.timestamp_unix_s}},
+        "FalconHostLink": "https://{{.Domains}}/crowdscore/incidents/details/inc:1234567893cd4e55b3a832ba2140478e:72e291e40c1544d390eabf135d875e54",
+        "State": "open",
+        "FineScore": 0.1,
+        "LateralMovement": 0
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "12345a1bc2d34fghi56jk7890lmno12p",
+        "offset": 70509,
+        "eventType": "AuthActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "{{.Emails}}",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "saml2Assert",
+        "ServiceName": "Crowdstrike Authentication",
+        "Success": true,
+        "UTCTimestamp": {{.timestamp_unix_s}},
+        "AuditKeyValues": [
+            {
+                "Key": "trace_id",
+                "ValueString": "b0b33836-555c-4e0e-a5ef-d368f6799f6b"
+            },
+            {
+                "Key": "actor_user",
+                "ValueString": "{{.Emails}}"
+            },
+            {
+                "Key": "actor_user_uuid",
+                "ValueString": "123ab123-abc1-12a1-12a1-12a1ab12a1a1"
+            },
+            {
+                "Key": "actor_cid",
+                "ValueString": "123456a1ab1a12abc12ab1234abcd12a"
+            },
+            {
+                "Key": "target_user",
+                "ValueString": "{{.Emails}}"
+            }
+        ]
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "12345a1bc2d34fghi56jk7890lmno12p",
+        "offset": 70683,
+        "eventType": "UserActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "Crowdstrike",
+        "UserIp": "",
+        "OperationName": "quarantined_file_update",
+        "ServiceName": "quarantined_files",
+        "AuditKeyValues": [
+            {
+                "Key": "quarantined_file_id",
+                "ValueString": "ab1cde05567b455b93afbe2d3df352c9_328024a065630f897f09963d4b67b0c95d4054f540c2ca8014d5b012718bfa21"
+            },
+            {
+                "Key": "action_taken",
+                "ValueString": "quarantined"
+            }
+        ],
+        "UTCTimestamp": {{.timestamp_unix_s}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "12345a1bc2d34fghi56jk7890lmno12p",
+        "offset": 57217,
+        "eventType": "RemoteResponseSessionStartEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "SessionId": "330633db-1cda-4355-b0d8-2c2edc91fe3e",
+        "HostnameField": "TESTDEVICE01",
+        "UserName": "{{.Emails}}",
+        "StartTimestamp": {{.timestamp_unix_s}}
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "12345a1bc2d34fghi56jk7890lmno12p",
+        "offset": 57269,
+        "eventType": "RemoteResponseSessionEndEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "SessionId": "330633db-1cda-4355-b0d8-2c2edc91fe3e",
+        "HostnameField": "TESTDEVICE01",
+        "UserName": "{{.Emails}}",
+        "EndTimestamp": {{.timestamp_unix_s}},
+        "Commands": [
+            "cd \\Program Files (x86)\\Symantec",
+            "ls .",
+            "cd \\Program Files (x86)",
+            "ls .",
+            "reg query HKEY_LOCAL_MACHINE\\SYSTEM\\CrowdStrike\\{9b03c1d9-3138-44ed-9fae-d9f4c034b88d}\\{16e0423f-7058-48c9-a204-725362b67639}\\Default",
+            "reg set HKEY_LOCAL_MACHINE\\SYSTEM\\CrowdStrike\\{9b03c1d9-3138-44ed-9fae-d9f4c034b88d}\\{16e0423f-7058-48c9-a204-725362b67639}\\Default GroupingTags -ValueType=```REG_SZ``` -Value=```Protect```",
+            "reg query HKEY_LOCAL_MACHINE\\SYSTEM\\CrowdStrike\\{9b03c1d9-3138-44ed-9fae-d9f4c034b88d}\\{16e0423f-7058-48c9-a204-725362b67639}\\Default",
+            "restart",
+            "restart -Confirm"
+        ]
+    }
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "12345a1bc2d34fghi56jk7890lmno12p",
+        "offset": 57047,
+        "eventType": "DetectionSummaryEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "ProcessStartTime": {{.timestamp_unix_s}},
+        "ProcessEndTime": {{.timestamp_unix_s}},
+        "ProcessId": 663790158277,
+        "ParentProcessId": 627311656469,
+        "ComputerName": "TESTDEVICE01",
+        "UserName": "{{.Domains}}",
+        "DetectName": "NGAV",
+        "DetectDescription": "This file meets the machine learning-based on-sensor AV protection's low confidence threshold for malicious files.",
+        "Severity": 2,
+        "SeverityName": "Low",
+        "FileName": "{{.Domains}}",
+        "FilePath": "\\Device\\HarddiskVolume2\\ProgramData\\file\\path",
+        "CommandLine": "\"C:\\ProgramData\\file\\path\\{{.Domains}}\" ",
+        "SHA256String": "0a123b185f9a32fde1df59897089014c92e3d08a0533b54baa72ba2a93d64deb",
+        "MD5String": "0ab1235adca04aef6239f5496ef0a5df",
+        "SHA1String": "0000000000000000000000000000000000000000",
+        "MachineDomain": "NA",
+        "ExecutablesWritten": [
+            {
+                "Timestamp": {{.timestamp_unix_s}},
+                "FileName": "NEURO_200_{{.Domains}}64",
+                "FilePath": "\\Device\\HarddiskVolume2\\ProgramData\\file\\path\\is\\right\\here\\folder"
+            },
+            {
+                "Timestamp": {{.timestamp_unix_s}},
+                "FileName": "NEURO_200_{{.Domains}}64",
+                "FilePath": "\\Device\\HarddiskVolume2\\ProgramData\\file\\path\\is\\right\\here\\folder"
+            },
+            {
+                "Timestamp": {{.timestamp_unix_s}},
+                "FileName": "NEURO_200_{{.Domains}}64",
+                "FilePath": "\\Device\\HarddiskVolume2\\ProgramData\\file\\path\\is\\right\\here\\folder"
+            },
+            {
+                "Timestamp": {{.timestamp_unix_s}},
+                "FileName": "NEURO_200_{{.Domains}}64",
+                "FilePath": "\\Device\\HarddiskVolume2\\ProgramData\\file\\path\\is\\right\\here\\folder"
+            }
+        ],
+        "FalconHostLink": "https://{{.Domains}}/activity/detections/detail/1abcd2345b8c4151a0cb45dcfbe6d3d0/124559902719?_cid=12345a1bc2d34fghi56jk7890lmno12p",
+        "SensorId": "1abcd2345b8c4151a0cb45dcfbe6d3d0",
+        "IOCType": "hash_sha256",
+        "IOCValue": "0a123b185f9a32fde1df59897089014c92e3d08a0533b54baa72ba2a93d64deb",
+        "DetectId": "ldt:1abcd2345b8c4151a0cb45dcfbe6d3d0:124559902719",
+        "LocalIP": "{{.IPs}}",
+        "MACAddress": "54-ad-d4-d2-a8-0b",
+        "Tactic": "Machine Learning",
+        "Technique": "Sensor-based ML",
+        "Objective": "Falcon Detection Method",
+        "PatternDispositionDescription": "Detection, process would have been blocked if related prevention policy setting was enabled.",
+        "PatternDispositionValue": 2304,
+        "PatternDispositionFlags": {
+            "Indicator": false,
+            "Detect": false,
+            "InddetMask": false,
+            "SensorOnly": false,
+            "Rooting": false,
+            "KillProcess": false,
+            "KillSubProcess": false,
+            "QuarantineMachine": false,
+            "QuarantineFile": false,
+            "PolicyDisabled": true,
+            "KillParent": false,
+            "OperationBlocked": false,
+            "ProcessBlocked": true,
+            "RegistryOperationBlocked": false,
+            "CriticalProcessDisabled": false,
+            "BootupSafeguardEnabled": false,
+            "FsOperationBlocked": false
+        },
+        "ParentImageFileName": "\\Device\\HarddiskVolume2\\Windows\\{{.Domains}}",
+        "ParentCommandLine": "C:\\Windows\\{{.Domains}}",
+        "GrandparentImageFileName": "\\Device\\HarddiskVolume2\\Windows\\System32\\{{.Domains}}",
+        "GrandparentCommandLine": "C:\\Windows\\system32\\{{.Domains}}"
+    }
+}
+---EVENT_DELIMITER---
+{
+	"metadata": {
+
+		"customerIDString": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"offset": 54712611,
+		"eventType": "CSPMSearchStreamingEvent",
+		"eventCreationTime": {{.timestamp_unix_ms}},
+		"version": "1.0"
+	},
+	"event": {
+		"AccountId": "XXXXXXXXXXXX",
+		"Region": "us-west-2",
+		"ResourceId": "i-0108fce80eXXXXXXX",
+		"ResourceIdType": "Instance Id",
+		"ResourceName": "",
+		"ResourceCreateTime": 0,
+		"PolicyStatement": "EC2 NACL configured for global ingress",
+		"PolicyId": 26,
+		"Severity": 1,
+		"SeverityName": "High",
+		"CloudPlatform": "AWS",
+		"CloudService": "EC2",
+		"Disposition": "Failed",
+		"ResourceUrl": "https://{{.Domains}}/ec2/v2/home?region=us-west-2#InstanceDetails:instanceId=i-0108fce80eXXXXXXX",
+		"Finding": "Instance ID: i-0108fce80e5ab5129|VPC ID: vpc-0e886040c27d9f526|Network ACL ID: acl-005e6bb98e75ac17e|Rule Number: 100|CIDR Block: {{.IPs}}/0|Protocol: All",
+		"ResourceAttributes": "{\"ACL ID\": \"acl - 005e6 bb98e75ac17e\",\"VPC ID\": \"vpc - 0e886040 c27d9f526\",\"Platform\": \"Linux\",\"Instance ID\": \"i - 0108 fce80eXXXXXXX\",\"Launch Time\": \"2022 - 09 - 12 17: 11: 06 + 00\",\"Instance State\": \"running\"}",
+		"Tags": "SensorGroupingTags/TEACHER, SensorGroupingTags/XYZ, 321, 1111",
+		"ReportUrl": "https://{{.Domains}}/cloud-security/cspm/assessment-drilldown?event-type=cspm_policy_26\u0026policy_id=26\u0026scan_id=1a8adc1c36aa7d83e90e5c06\u0026service=EC2",
+		"Timestamp": {{.timestamp_unix_ms}}
+	}
+}
+---EVENT_DELIMITER---
+{
+	"metadata": {
+
+		"customerIDString": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		"offset": 54712611,
+		"eventType": "CSPMSearchStreamingEvent",
+		"eventCreationTime": {{.timestamp_unix_ms}},
+		"version": "1.0"
+	},
+	"event": {
+		"AccountId": "XXXXXXXXXXXX",
+		"Region": "us-west-2",
+		"ResourceId": "i-0108fce80eXXXXXXX",
+		"ResourceIdType": "Instance Id",
+		"ResourceName": "",
+		"ResourceCreateTime": 0,
+		"PolicyStatement": "EC2 NACL configured for global ingress",
+		"PolicyId": 26,
+		"Severity": 1,
+		"SeverityName": "High",
+		"CloudPlatform": "AWS",
+		"CloudService": "EC2",
+		"Disposition": "Failed",
+		"ResourceUrl": "https://{{.Domains}}/ec2/v2/home?region=us-west-2#InstanceDetails:instanceId=i-0108fce80eXXXXXXX",
+		"Finding": "Instance ID: i-0108fce80e5ab5129|VPC ID: vpc-0e886040c27d9f526|Network ACL ID: acl-005e6bb98e75ac17e|Rule Number: 100|CIDR Block: {{.IPs}}/0|Protocol: All",
+		"ResourceAttributes": "{\"ACL ID\": \"acl - 005e6 bb98e75ac17e\",\"VPC ID\": \"vpc - 0e886040 c27d9f526\",\"Platform\": \"Linux\",\"Instance ID\": \"i - 0108 fce80eXXXXXXX\",\"Launch Time\": \"2022 - 09 - 12 17: 11: 06 + 00\",\"Instance State\": \"running\"}",
+		"Tags": "SensorGroupingTags/TEACHER",
+		"ReportUrl": "https://{{.Domains}}/cloud-security/cspm/assessment-drilldown?event-type=cspm_policy_26\u0026policy_id=26\u0026scan_id=1a8adc1c36aa7d83e90e5c06\u0026service=EC2",
+		"Timestamp": {{.timestamp_unix_ms}}
+	}
+}
+---EVENT_DELIMITER---
+{
+    "metadata": {
+        "customerIDString": "123123abcd",
+        "offset": 3,
+        "eventType": "UserActivityAuditEvent",
+        "eventCreationTime": {{.timestamp_unix_ms}},
+        "version": "1.0"
+    },
+    "event": {
+        "UserId": "TESTUSERID",
+        "UserIp": "{{.IPs}}",
+        "OperationName": "detection_update",
+        "ServiceName": "detections",
+        "AuditKeyValues": [
+            {
+                "Key": "detection_id",
+                "ValueString": "TESTVALUE:ind:STRING123:456-123-654"
+            }
+        ],
+        "UTCTimestamp": {{.timestamp_unix_s}},
+        "Attributes": {
+            "detection_id": "DETECTID:ind:TESTID:456-123-654"
+        }
+    }
+}
+---EVENT_DELIMITER---
+{
+	"metadata": {
+		"customerIDString": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+		"eventCreationTime": {{.timestamp_unix_ms}},
+		"eventType": "XdrDetectionSummaryEvent",
+		"offset": 34280810,
+		"version": "1.0"
+	},
+	"event": {
+		"Author": "CrowdStrike",
+		"DataDomains": "Identity,Network,Endpoint",
+		"Description": "Encrypted Metasploit traffic and login activity indicative of a brute force attempt were observed from a common IP.",
+		"DetectId": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:ind:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:xdr|eee4a5c51106f0419184d0dd08fb05bc",
+		"EndTimeEpoch": 1643317927664000000,
+		"IPv4Addresses": "{{.IPs}},{{.IPs}}",
+		"HostNames": "XDR-WIN10",
+		"Name": "Metasploit and brute force login attempt",
+		"PatternId": 100011,
+		"Severity": 90,
+		"SourceProducts": "Falcon,Corelight",
+		"SourceVendors": "CrowdStrike,Corelight",
+		"StartTimeEpoch": 1643317697728000000,
+		"TacticIds": "TA0001,TA0002",
+		"Tactics": "Initial Access,Execution",
+		"TechniqueIds": "T1566.001,T1203",
+		"Techniques": "Spearphishing Attachment,Exploitation for Client Execution",
+		"XdrType": "xdr"
+	}
+}

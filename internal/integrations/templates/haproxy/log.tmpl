@@ -1,0 +1,27 @@
+{{.timestamp_syslog}} {{.IPs}} haproxy[24551]: Connect from {{.IPs}}:40780 to {{.IPs}}:5000 (main/HTTP)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} localhost haproxy[6103]: {{.IPs}}:56059 [{{.timestamp_common}}.380] frt/f1: Connection error during SSL handshake
+---EVENT_DELIMITER---
+Jul 30 09:03:52 localhost haproxy[32450]: 67.43.156.13:38862 [30/Jul/2018:09:03:52.726] incoming~ docs_microservice/docs 0/0/1/0/2 304 168 - - ---- 6/6/0/0/0 0/0 {docs.example.internal||} {|||} "GET /component---src-pages-index-js-4b15624544f97cf0bb8f.js HTTP/1.1"
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} server1 haproxy[5089]: -:22222 [{{.timestamp_common}}.222] www-https~ myapp/node2 {{.Domains}} 0/0/0/18/18 200 200 - - ---- 222/222/2/0/0 0/0 "OPTIONS /api/v2/app/ HTTP/1.1"
+---EVENT_DELIMITER---
+Feb  6 12:14:14 localhost haproxy[14389]: 10.0.1.2:33317 [06/Feb/2009:12:14:14.655] http-in static/srv1 10/0/30/69/109 200 2750 - - ---- 1/1/1/1/0 0/0 {1wt.eu} {} "GET /index.html HTTP/1.1"
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} voyager haproxy[19312]: {{.IPs}}:35982 [{{.timestamp_common}}.395] http-webservices http-webservices/<NOSRV> 0/-1/-1/-1/0 503 213 - - SC-- 1/1/0/0/0 0/0 "GET / HTTP/1.1"
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} voyager haproxy[29785]: {{.IPs}}:43738 [{{.timestamp_common}}.497] http-webservices http-webservices/<NOSRV> 0/-1/-1/-1/0 503 213 - - SC-- 1/1/0/0/0 0/0 {localhost:8888||} "GET /foo HTTP/1.1"
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} voyager haproxy[7873]: {{.IPs}}:44542 [{{.timestamp_common}}.017] http-webservices http-webservices/<NOSRV> 0/-1/-1/-1/0 503 213 - - SC-- 1/1/0/0/0 0/0 {localhost:8888||} {|} "GET /foo HTTP/1.1"
+---EVENT_DELIMITER---
+Feb  6 12:14:14 localhost haproxy[14389]: 10.0.1.2:33317 [06/Feb/2009:12:14:14.655] https-in static/srv1 10/0/30/69/109 200 2750 - - ---- 1/1/1/1/0 0/0 {1wt.eu} {} "GET /index.html HTTP/1.1" 0/0/0/0/1 1wt.eu/TLSv1.3/TLS_AES_256_GCM_SHA384
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} haproxy[25457]: {{.IPs}}:40962 [{{.timestamp_common}}.285] main app/<NOSRV> -1/-1/1 212 SC 1/1/0/0/0 0/0
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} localhost haproxy[14387]: {{.IPs}}:33313 [{{.timestamp_common}}.443] fnt bck/srv1 0/0/5007 212 -- 0/0/0/0/3 0/0
+---EVENT_DELIMITER---
+haproxy[14387]: {{.IPs}}:33313 [{{.timestamp_common}}.443] fnt bck/srv1 0/0/5007 212 -- 0/0/0/0/3 0/0
+---EVENT_DELIMITER---
+{{.IPs}}:63569 [{{.timestamp_common}}.574] public_ssl be_tcp:eck:elasticsearch-ingest/pod:elasticsearch-es-hot-data-nodes-2:elasticsearch-es-ingest-nodes:https:{{.IPs}}:9200 199/1/205 2635 -- 29/29/5/3/0 0/0
+---EVENT_DELIMITER---
+{{.IPs}}:52214 [{{.timestamp_common}}.796] myfrontend webservers/s2 1/0/18391 11462 cD 1/1/0/0/0 0/0

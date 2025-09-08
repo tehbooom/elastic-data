@@ -1,0 +1,1383 @@
+{{.Domains}}: fw-1 %ASA-4-106023: Deny udp src v1:outside:{{.IPs}}/54864 dst inside:{{.IPs}}/53 by access-group "outside_acl" [0x0, 0x0]
+---EVENT_DELIMITER---
+{{.Domains}}: fw-1 %ASA-4-106023: Deny udp src outside:{{.IPs}}/54864 dst v2:inside:{{.IPs}}/53 by access-group "outside_acl" [0x0, 0x0]
+---EVENT_DELIMITER---
+{{.Domains}}: fw-1 %ASA-4-106023: Deny udp src v1:outside:{{.IPs}}/54864 dst v2:inside:{{.IPs}}/53 by access-group "outside_acl" [0x0, 0x0]
+---EVENT_DELIMITER---
+{{.Domains}}: fw-1 %ASA-4-106023: Deny udp src v1:outside:{{.IPs}} dst inside:{{.IPs}}/53 by access-group "outside_acl" [0x0, 0x0]
+---EVENT_DELIMITER---
+{{.Domains}}: fw-1 %ASA-4-106023: Deny udp src outside:{{.IPs}} dst v2:inside:{{.IPs}}/53 by access-group "outside_acl" [0x0, 0x0]
+---EVENT_DELIMITER---
+{{.Domains}}: fw-1 %ASA-4-106023: Deny udp src v1:outside:{{.IPs}} dst v2:inside:{{.IPs}}/53 by access-group "outside_acl" [0x0, 0x0]
+---EVENT_DELIMITER---
+{{.Domains}}: fw-1 %ASA-4-106023: Deny udp src v1:outside:{{.IPs}}/54864 dst inside:{{.IPs}} by access-group "outside_acl" [0x0, 0x0]
+---EVENT_DELIMITER---
+{{.Domains}}: fw-1 %ASA-4-106023: Deny udp src outside:{{.IPs}}/54864 dst v2:inside:{{.IPs}} by access-group "outside_acl" [0x0, 0x0]
+---EVENT_DELIMITER---
+{{.Domains}}: fw-1 %ASA-4-106023: Deny udp src v1:outside:{{.IPs}}/54864 dst v2:inside:{{.IPs}} by access-group "outside_acl" [0x0, 0x0]
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-6-302013: Built inbound TCP connection 111111111 for net:{{.IPs}}/53500 ({{.IPs}}/53500) to fw111:{{.IPs}}/53500 ({{.IPs}}/53500)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-6-302015: Built inbound UDP connection 111111111 for net:{{.IPs}}/53500 ({{.IPs}}/53500) to fw111:{{.IPs}}/53500 ({{.IPs}}/53500)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-6-302020: Built inbound ICMP connection for faddr {{.IPs}}/0 gaddr {{.IPs}}/0 laddr {{.IPs}}/0 type 3 code 3
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-7-609002: Teardown local-host net:{{.IPs}} duration 0:00:00
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-7-609001: Built local-host net:{{.IPs}}
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-6-302020: Built inbound ICMP connection for faddr {{.IPs}}/0 gaddr {{.IPs}}/0 laddr {{.IPs}}/0 type 3 code 1
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-6-805001: Offloaded TCP Flow for connection 111111111 from fw111:{{.IPs}}/111 ({{.IPs}}/111) to fw111:{{.IPs}}/111 ({{.IPs}}/111)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-6-805002: TCP Flow is no longer offloaded for connection 941243214 from net:{{.IPs}}/51261 ({{.IPs}}/51261) to fw109:{{.IPs}}/443 ({{.IPs}}/443)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-7-710005: UDP request discarded from {{.IPs}}/68 to fw111:{{.IPs}}/67
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-6-303002: FTP connection from net:{{.IPs}}/63656 to fw111:{{.IPs}}/21, user testuser Stored file /export/home/sysm/ftproot/sdsdsds/{{.Domains}}
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-7-710006: VRRP request discarded from {{.IPs}} to fw111:192.18.4
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-4-313005: No matching connection for ICMP error message: icmp src srcif:{{.IPs}} dst dstif:{{.IPs}} (type 3, code 3) on myif interface. Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/10872.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-4-313005: No matching connection for ICMP error message: icmp src srcif:{{.IPs}}(LOCAL\testgroup\testuser) dst dstif:{{.IPs}} (type 3, code 3) on myif interface.  Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/10872.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-4-313005: No matching connection for ICMP error message: icmp src srcif:{{.IPs}}(LOCAL\testuser) dst dstif:{{.IPs}} (type 3, code 3) on myif interface.  Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/10872.
+---EVENT_DELIMITER---
+<188>{{.timestamp_syslog}}: %ASA-4-313005: No matching connection for ICMP error message: icmp src srcif:{{.IPs}} dst dstif:{{.IPs}} (type 3, code 2) on srcif interface. Original IP payload: icmp src {{.IPs}} dst {{.IPs}} (type 0, code 0).
+---EVENT_DELIMITER---
+<188>{{.timestamp_syslog}} dev01: %ASA-4-313005: No matching connection for ICMP error message: icmp src srcif:{{.IPs}} dst dstif:{{.IPs}} (type 3, code 2) on srcif interface. Original IP payload: protocol 51 src {{.IPs}} dst {{.IPs}}.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302021: Teardown ICMP connection for faddr {{.IPs}}/0 gaddr {{.IPs}}/2 laddr {{.IPs}}/2 type 8 code 0
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-7-609001: Built local-host net:{{.IPs}}
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-7-609002: Teardown local-host identity:{{.IPs}} duration 0:00:00
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302020: Built inbound ICMP connection for faddr {{.IPs}}/0 gaddr {{.IPs}}/0 laddr {{.IPs}}/0
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302020: Built outbound ICMP connection for faddr {{.IPs}}/0 gaddr {{.IPs}}/0 laddr {{.IPs}}/0 type 3 code 3
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302014: Teardown TCP connection 2960892904 for out111:{{.IPs}}/443 to fw111:{{.IPs}}/55225 duration 0:00:00 bytes 0 TCP Reset-I
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302013: Built outbound TCP connection 1588662 for intfacename:{{.IPs}}/80 ({{.IPs}}/80) to net:{{.IPs}}/54839 ({{.IPs}}/54839)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-305012: Teardown dynamic UDP translation from fw111:{{.IPs}}/54230 to out111:{{.IPs}}/54230 duration 0:00:00
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-4-313004: Denied ICMP type=0, from laddr {{.IPs}} on interface fw502 to {{.IPs}}: no matching session
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-305011: Built dynamic TCP translation from fw111:{{.IPs}}/57006 to out111:{{.IPs}}/57006
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-2-106001: Inbound TCP connection denied from {{.IPs}}/43803 to {{.IPs}}/14322 flags SYN  on interface out111
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-2-302016: Teardown UDP connection 1671727 for intfacename:{{.IPs}}/161 to net:1192.168.2.2/53356 duration 0:02:04 bytes 64585
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-2-302015: Built outbound UDP connection 1743372 for intfacename:{{.IPs}}/161 ({{.IPs}}/161) to net:{{.IPs}}/22638 ({{.IPs}}/22638)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-2-302015: Built outbound UDP connection 1743372 for intfacename:{{.IPs}}/161 ({{.IPs}}/161) to net:{{.IPs}}/22638 ({{.IPs}}/22638)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-4-106023: Deny tcp src fw111:{{.IPs}}/64388 dst out111:{{.IPs}}/443 by access-group "out1111_access_out" [0x47e21ef4, 0x47e21ef4]
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-4-106021: Deny TCP reverse path check from {{.IPs}} to {{.IPs}} on interface fw111
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-2-106006: Deny inbound UDP from {{.IPs}}/65020 to {{.IPs}}/65020 on interface fw111
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-106015: Deny TCP (no connection) from {{.IPs}}/53089 to {{.IPs}}/443 flags FIN PSH ACK  on interface out111
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-106015: Deny TCP (no connection) from {{.IPs}}/17127 to {{.IPs}}/443 flags PSH ACK  on interface out111
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-106015: Deny TCP (no connection) from {{.IPs}}/24223 to {{.IPs}}/443 flags RST  on interface fw111
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302022: Built director stub TCP connection for fw1111:{{.IPs}}/38540 ({{.IPs}}/38540) to net:{{.IPs}}/10051 ({{.IPs}}/10051)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302022: Built forwarder  stub TCP connection for fw111:{{.IPs}}/38540 ({{.IPs}}/38540) to net:{{.IPs}}/10051 ({{.IPs}}/10051)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302022: Built backup  stub TCP connection for fw111:{{.IPs}}/38540 ({{.IPs}}/38540) to net:192.1682.2.2/10051 ({{.IPs}}/10051)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302023: Teardown stub TCP connection for fw111:{{.IPs}}/39210 to net:{{.IPs}}/10051 duration 0:00:00 forwarded bytes 0 Cluster flow with CLU closed on owner
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302023: Teardown stub TCP connection for net:{{.IPs}}/10051 to unknown:{{.IPs}}/39222 duration 0:00:00 forwarded bytes 0 Forwarding or redirect flow removed to create director or backup flow
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-7-111009: User 'aaaa' executed cmd: show access-list fw211111_access_out brief
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-7-111009: User 'aaaa' executed cmd: show access-list aaa_out brief
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-106100: access-list fw111_out permitted tcp ptaaac/{{.IPs}}(62157) -> fw111/{{.IPs}}(3452) hit-cnt 1 first hit [0x38ff326b, 0x00000000]
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-106100: access-list fw111_out permitted tcp net/{{.IPs}}(49033) -> fw111/{{.IPs}}(6007) hit-cnt 2 300-second interval [0x38ff326b, 0x00000000]
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302027: Teardown stub ICMP connection for fw1111:{{.IPs}}/6426 to net:{{.IPs}}/0 duration 1:00:04 forwarded bytes 56 Cluster flow with CLU closed on owner
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302026: Built director stub ICMP connection for fw111:{{.IPs}}/32004 ({{.IPs}}) to net:{{.IPs}}/0 ({{.IPs}})
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-7-710005: UDP request discarded from {{.IPs}}/1985 to net:{{.IPs}}/1985
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302025: Teardown stub UDP connection for net:{{.IPs}}/123 to unknown:{{.IPs}}/123 duration 0:01:00 forwarded bytes 48 Cluster flow with CLU removed from due to idle timeout
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302024: Built backup stub UDP connection for net:{{.IPs}}/9051 ({{.IPs}}(19051) to fw111:{{.IPs}}/123 ({{.IPs}}/123)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-3-106014: Deny inbound icmp src fw111:{{.IPs}} dst fw111:{{.IPs}}(type 8, code 0)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-4-733100: [{{.IPs}}] drop rate-1 exceeded. Current burst rate is 0 per second, max configured rate is -4; Current average rate is 7 per second, max configured rate is -4; Cumulative total count is 9063
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-3-106010: Deny inbound sctp src fw111:{{.IPs}}/5114 dst fw111:{{.IPs}}/2
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-4-507003: tcp flow from fw111:{{.IPs}}/49574 to out111:{{.IPs}}/80 terminated by inspection engine, reason - disconnected, dropped packet.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-5-304001: {{.IPs}} Accessed URL {{.IPs}}:http://{{.IPs}}/
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-5-304001: {{.IPs}} Accessed URL someuser@{{.IPs}}:http://{{.IPs}}/IOFUHSIU98[0]
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-5-304001: {{.IPs}} Accessed JAVA URL {{.IPs}}:http://{{.IPs}}/some/longer/url-asd-er9789870[0]_=23
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-5-304001: {{.IPs}} Accessed JAVA URL someuser@{{.IPs}}:http://{{.IPs}}/
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-302304: Teardown TCP state-bypass connection 2751765169 from {{.Domains}}:{{.IPs}}/54242 to {{.Domains}}:{{.IPs}}/9101 duration 1:00:02 bytes 245 Connection timeout
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/56444 dst srv:{{.IPs}}/51635({{.Domains}}) by access-group "global_access_1"
+---EVENT_DELIMITER---
+Oct 20 2019 15:15:15 dev01: %ASA-5-106100: access-list testrulename denied tcp insideintf/{{.Domains}}(27218) -> OUTSIDE/{{.IPs}}(53) hit-cnt 1 first hit [0x16847359, 0x00000000]
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-5-111004: console end configuration: OK
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-5-111010: User 'enable_15', running 'CLI' from IP {{.IPs}}, executed 'clear'
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-5-502103: User priv level changed: Uname: enable_15 From: 1 To: 15
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-605004: Login denied from {{.IPs}}/51923 to FCD-FS-LAN:{{.IPs}}/https for user "*****"
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-611102: User authentication failed: IP address: {{.IPs}}, Uname: admin
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-605005: Login permitted from {{.IPs}}/6651 to FCD-FS-LAN:{{.IPs}}/ssh for user "admin"
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-611101: User authentication succeeded: IP address: {{.IPs}}, Uname: admin
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-5-713049: Group = {{.IPs}}, IP = {{.IPs}}, Security negotiation complete for LAN-to-LAN Group ({{.IPs}}) Responder, Inbound SPI = 0x276b1da2, Outbound SPI = 0x0e1a581d
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-4-113019: Group = {{.IPs}}, Username = {{.IPs}}, IP = {{.IPs}}, Session disconnected. Session Type: LAN-to-LAN, Duration: 0h:32m:16s, Bytes xmt: 297103, Bytes rcv: 1216163, Reason: User Requested
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-4-722051: Group <VPN5Policy> User <john> IP <{{.IPs}}> IPv4 Address <{{.IPs}}> IPv6 address <::> assigned to session
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-716002: Group another-policy User testuser IP {{.IPs}} WebVPN session terminated: User Requested.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-716002: Group another-policy User alice IP {{.IPs}} WebVPN session terminated: Idle timeout.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-3-710003: TCP access denied by ACL from {{.IPs}}/6370 to outside:{{.IPs}}/23
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-5-434004: SFR requested ASA to bypass further packet redirection and process TCP flow from sourceInterfaceName:{{.IPs}}/8888 to destinationInterfaceName:{{.IPs}}/123123 locally
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-4-434002: SFR requested to drop TCP packet from sourceInterfaceName:{{.IPs}}/8888 to destinationInterfaceName:{{.IPs}}/514514
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-6-110002: Failed to locate egress interface for TCP from sourceInterfaceName:{{.IPs}}/7777 to {{.IPs}}/123412
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-4-419002: Duplicate TCP SYN from sourceInterfaceName:{{.IPs}}/7777 to destinationInterfaceName:{{.IPs}}/514514 with different initial sequence number
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-6-602303: IPSEC: An outbound LAN-to-LAN SA (SPI= 0xF81283) between {{.IPs}} and {{.IPs}} (user= admin) has been created.
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-6-602304: IPSEC: An outbound LAN-to-LAN SA (SPI= 0xF81283) between {{.IPs}} and {{.IPs}} (user= admin) has been deleted.
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-5-750002: Local:{{.IPs}}:7777 Remote:{{.IPs}}:7777 Username:admin Received a IKE_INIT_SA request
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-4-750003: Local:{{.IPs}}:7777 Remote:{{.IPs}}:7777 Username:admin Negotiation aborted due to ERROR: Failed to locate an item in the database
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-5-713120: Group = {{.IPs}}, IP = {{.IPs}}, PHASE 2 COMPLETED (msgid=bbe383e88)
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-5-713202: IP = {{.IPs}}, Duplicate first packet detected. Ignoring packet.
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-6-713905: Group = {{.IPs}}, IP = {{.IPs}}, All IPSec SA proposals found unacceptable!
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-6-713904: All IPSec SA proposals found unacceptable!
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-6-713903: IP = {{.IPs}}, All IPSec SA proposals found unacceptable!
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-6-713902: Group = {{.IPs}}, All IPSec SA proposals found unacceptable!
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-6-713901: Group = {{.IPs}}, IP = {{.IPs}}, All IPSec SA proposals found unacceptable!
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-5-713049: Group = {{.IPs}}, Username = test_user, IP = {{.IPs}}, Security negotiation complete for User (test_user) Responder, Inbound SPI = 0x0000000, Outbound SPI = 0x0000000
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-4-106023: Deny protocol 47 src outside:{{.IPs}} dst inside:{{.IPs}} by access-group "inbound"
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-4-106023: Deny icmp src OUTSIDE:2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6 dst OUTSIDE:2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6 (type 128, code 0) by access-group "OUTSIDE_in"
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-4-302016: Teardown UDP connection 123364823 for OUTSIDE:{{.IPs}}/500 to identity:{{.IPs}}/500 duration 92:24:20 bytes 4671944
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-4-733100: [ Scanning] drop rate-2 exceeded. Current burst rate is 0 per second, max configured rate is 8; Current average rate is 5 per second, max configured rate is 4; Cumulative total count is 19269
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-4-733100: [   {{.IPs}}] drop rate-1 exceeded. Current burst rate is 0 per second, max configured rate is 10; Current average rate is 5 per second, max configured rate is 5; Cumulative total count is 6018
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-4-733100: [     Port-5432 5432] drop rate-1 exceeded. Current burst rate is 8 per second, max configured rate is 10; Current average rate is 20 per second, max configured rate is 5; Cumulative total count is 12466
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-4-733100: [           RDP 3389] drop rate-1 exceeded. Current burst rate is 63 per second, max configured rate is 10; Current average rate is 5 per second, max configured rate is 5; Cumulative total count is 3054
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-113004: AAA user authentication Successful: server = {{.IPs}} , User = alice
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-113004: AAA user authorization Successful: server = {{.IPs}} , User = alice
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-113005: AAA user authentication Rejected: reason = AAA failure: server = {{.IPs}} : user = alice: user IP = {{.IPs}}
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-113012: AAA user authentication Successful: local database: user = alice
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-3-113021: Attempted console login failed. User eve did NOT have appropriate Admin Rights.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-716039: Authentication: rejected, group = malcorp user = eve , Session Type: admin
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-716039: Authentication: rejected, group = malcorp user = malory , Session Type: WebVPN
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-716039: Group <malcorp> User <eve> IP <{{.IPs}}> Authentication: rejected, Session Type: Admin.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-716039: Group <malcorp> User <malory> IP <{{.IPs}}> Authentication: rejected, Session Type: WebVPN.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-6-716039: Group <malcorp group> User <malory> IP <{{.IPs}}> Authentication: rejected, Session Type: WebVPN.
+---EVENT_DELIMITER---
+<190>Mar 03 2023 09:01:16 sac-firewall : %ASA-6-113004: AAA user accounting Successful : server =  {{.IPs}} : user = sample-user
+---EVENT_DELIMITER---
+<190>Mar 03 2023 08:50:32 sac-firewall : %ASA-6-113012: AAA user authentication Successful : local database : user = {{.Domains}}
+---EVENT_DELIMITER---
+<190>Mar 03 2023 09:13:09 sac-firewall : %ASA-6-716039: Group <DfltGrpPolicy> User <*****> IP <{{.IPs}}> Authentication: rejected, Session Type: WebVPN.
+---EVENT_DELIMITER---
+<190>Jul 16 2024 15:37:27 ciscoasa : %ASA-6-721016: (WebVPN-Primary) WebVPN session for client user {{.Domains}}, IPv4 {{.IPs}} has been created.
+---EVENT_DELIMITER---
+<190>Jul 16 2024 15:37:39 ciscoasa : %ASA-6-721018: (WebVPN-Primary) WebVPN session for client user {{.Domains}}, IPv4 {{.IPs}} has been deleted.
+---EVENT_DELIMITER---
+<166>Aug 28 2023 15:35:00 fw123-vc456 : %ASA-6-113005: AAA user authentication Rejected : reason = Unspecified : server = {{.IPs}} : user = user : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+<166>Aug 28 2023 15:35:01 fw123-vc456 : %ASA-6-113005: AAA user authentication Rejected : reason = Invalid password : server = {{.IPs}} : user = a2bcde : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+<166>Aug 28 2023 15:35:02 fw123-vc456 : %ASA-6-113005: AAA user authentication Rejected : reason = Password is expiring : server = {{.IPs}} : user = a2bcde : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+<166>Aug 28 2023 15:35:03 fw123-vc456 : %ASA-6-113005: AAA user authentication Rejected : reason = Password malformed : server = {{.IPs}} : user = a2bcde : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+<166>Aug 28 2023 15:35:04 fw123-vc456 : %ASA-6-113005: AAA user authentication Rejected : reason = Password has expired : server = {{.IPs}} : user = a2bcde : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+<166>Oct 12 2023 16:00:00 fw123-vc456 : %ASA-6-113015: AAA user authentication Rejected : reason = Invalid password : local database : user = a2bcde : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+<166>Oct 12 2023 16:00:00 fw123-vc456 : %ASA-6-113015: AAA user authentication Rejected : reason = Invalid password : local database : user = ***** : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+<139>Oct 06 2023 11:12:20 myAsaHostname : %ASA-3-106010: Deny inbound protocol 103 src inside:{{.IPs}} dst inside:{{.IPs}}
+---EVENT_DELIMITER---
+<166>Oct 06 2023 09:46:34 myAsaHostname : %ASA-6-106015: Deny TCP (no connection) from {{.Domains}}/11946 to {{.Domains}}/389 flags FIN ACK  on interface inside
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-4-106023: Deny udp src outside:{{.IPs}}/0 dst myInterfaceName:{{.IPs}}/80 by access-group "outside" [0x24c36bb3, 0x0]
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-4-106012: Deny IP from {{.IPs}} to {{.IPs}}, IP options: "Router Alert"
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-113008: AAA transaction status ACCEPT: user = USER_1
+---EVENT_DELIMITER---
+<166>{{.timestamp_iso}}: %ASA-6-113008: AAA transaction status ACCEPT : user = USER_1
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-113009: AAA retrieved default group policy GROUP_POLICY_1 for user USER_1
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-302010: 12 in use, 10 most used
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-315011: SSH session from {{.IPs}} on interface inside for user USER_1 disconnected by SSH server, reason: Out of memory
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-315011: SSH session from {{.IPs}} on interface inside for user "user-test" terminated normally.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-315011: SSH session from {{.IPs}} on interface inside for user "*****" disconnected by SSH server, reason: "Time-out activated" (0x91)
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-721016: (DEVICE_1) WebVPN session for client user USER_1, IP {{.IPs}} has been created.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-721018: (DEVICE_1) WebVPN session for client user USER_1, IP {{.IPs}} has been deleted.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-5-722028: Group <GROUP 1> User <USER 1> IP <{{.IPs}}> Stale SVC connection closed.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-5-722028: Group GROUP_1 User USER_1 IP {{.IPs}} Stale SVC connection closed.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-5-722032: Group <GROUP 1> User <USER 1> IP <{{.IPs}}> New SVC connection replacing old connection.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-5-722032: Group GROUP_1 User USER_1 IP {{.IPs}} New SVC connection replacing old connection.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-725001: Starting SSL handshake with client inside:{{.IPs}}/1133 to {{.IPs}}/443 for TLSv1.2 session.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-725001: Starting SSL handshake with client inside:{{.IPs}}/1133 for TLSv1.2 session.
+---EVENT_DELIMITER---
+<166>{{.timestamp_iso}}: %ASA-6-725001: Starting SSL handshake with client outside:{{.IPs}}/57700 to {{.IPs}}/443 for TLS session
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-725002: Device completed SSL handshake with client inside:{{.IPs}}/1133 to {{.IPs}}/443 for TLSv1.2 session.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-725007: SSL session with client inside:{{.IPs}}/1133 to {{.IPs}}/443 terminated.
+---EVENT_DELIMITER---
+<166>{{.timestamp_iso}}: %ASA-6-725007: SSL session with client outside:{{.IPs}}/49243 to {{.IPs}}/443 terminated
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-725016: Device selects trust-point TRUSTPOINT_1 for client inside:{{.IPs}}/1133 to {{.IPs}}/443
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-5-737003: IPAA: Session=0x1122334455667788, DHCP configured, no viable servers found for tunnel-group TUNNEL_GROUP_1
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-5-737003: IPAA: DHCP configured, no viable servers found for tunnel-group TUNNEL_GROUP_1
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-737006: IPAA: Session=0x1122334455667788, Local pool request succeeded for tunnel-group TUNNEL_GROUP_1
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-737006: IPAA: Local pool request succeeded for tunnel-group TUNNEL_GROUP_1
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-737016: IPAA: Session=0x1122334455667788, Freeing local pool POOL_1 address {{.IPs}}
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-737016: IPAA: Freeing local pool POOL_1 address {{.IPs}}
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-737026: IPAA: Session=0x1122334455667788, Client assigned {{.IPs}} from local pool POOL_1
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-737026: IPAA: Client assigned {{.IPs}} from local pool POOL_1
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-5-737034: IPAA: Session=0x1122334455667788, IPv4 address: Error explanation.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-5-737034: IPAA: IPv4 address: Error explanation.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-716003: Group GROUP_1 User USER_1 IP {{.IPs}} WebVPN access GRANTED: "https://{{.Domains}}"
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-716003: Group GROUP_1 User USER_1 IP {{.IPs}} WebVPN access GRANTED: https://{{.Domains}}
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-716058: Group <GROUP 1> User <USER 1> IP <{{.IPs}}> AnyConnect session lost connection. Waiting to resume.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-716058: Group GROUP_1 User USER_1 IP {{.IPs}} AnyConnect session lost connection. Waiting to resume.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-716059: Group <GROUP 1> User <USER 1> IP <{{.IPs}}> AnyConnect session resumed. Connection from <{{.IPs}}>.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-716059: Group GROUP_1 User USER_1 IP {{.IPs}} AnyConnect session resumed. Connection from {{.IPs}}.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-716059: Group <Vendor_User> User IP <{{.IPs}}> AnyConnect session resumed connection from IP <{{.IPs}}>.
+---EVENT_DELIMITER---
+<166>{{.timestamp_iso}}: %ASA-6-716059: Group <Some_Random_User> User <user314> IP <{{.IPs}}> AnyConnect session resumed connection from IP <{{.IPs}}>.
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-722055: Group <GROUP 1> User <USER 1> IP <{{.IPs}}> Client Type: user-agent
+---EVENT_DELIMITER---
+<140>Oct 03 2023 16:40:40 myAsaHostname : %ASA-6-722055: Group GROUP_1 User USER_1 IP {{.IPs}} Client Type: user-agent
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %ASA-5-713049: Group = {{.IPs}}, IP = {{.IPs}}, Security negotiation complete for peer ({{.IPs}}) Initiator, Inbound SPI = 0x6fdb0644, Outbound SPI = 0x14dde27d
+---EVENT_DELIMITER---
+<166>Jul 12 2024 08:11:50 myAsaHostname : %ASA-6-605004: Login denied from {{.IPs}}/51215 to dmz-1000:{{.IPs}}/https for user ""
+---EVENT_DELIMITER---
+<166>Jul 12 2024 08:11:50 myAsaHostname : %ASA-6-113005: AAA user authentication Rejected : reason = Unspecified : server = {{.IPs}} : user = : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+<190>Aug 08 2024 06:28:26 ciscoasa : %ASA-6-113005: AAA user authentication Rejected : reason = Account has been locked out : server = {{.IPs}} : user = ***** : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.Domains}} : {{.timestamp_syslog}} EDT: %ASA-auth-4-113004: AAA user authentication Successful : server = myservername : user = myusername
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.Domains}} : {{.timestamp_syslog}} EDT: %ASA-auth-4-113005: AAA user authentication Rejected : reason = AAA failure : server = myservername : user = myusername : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.Domains}} : {{.timestamp_syslog}} UTC: %ASA-ip-4-313005: No matching connection for ICMP error message: icmp src inside:{{.IPs}} dst GWAN:{{.IPs}} (type 3, code 2) on inside interface. Original IP payload: <unknown>.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}}.340591: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49734) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+{{.timestamp_syslog}}.138: %ASA-6-302013: Built outbound TCP connection 89743277 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/4954 ({{.IPs}}/10879)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}}.138340591: %ASA-6-302013: Built outbound TCP connection 89765432 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/4954 ({{.IPs}}/10879)
+---EVENT_DELIMITER---
+<165>Mar 13 2025 09:37:52: %ASA-5-751025: Local:{{.IPs}}:4500 Remote:{{.IPs}}:53256 Username:anonyms IKEv2 Group:Remote-Power_Users IPv4 Address={{.IPs}} IPv6 address=fd29:849c:87c7:41bb::1 assigned to session
+---EVENT_DELIMITER---
+<166>Mar 13 2025 09:36:58: %ASA-6-717022: Certificate was successfully validated. serial number: 0123456789ABCDEF0123456789ABCDEF012345, subject name:  CN=CommonName,OU=Computers,OU=ENGINEERING,OU=BigBrother,OU=Corporate,DC=ITOps,DC=com.
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-113029: Group VPN_USERS User {{.Domains}} IP {{.IPs}} Session could not be established: session limit of 5 reached
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-113030: Group VPN_USERS User {{.Domains}} IP {{.IPs}} User ACL acl from AAA doesn't exist on the device, terminating connection.
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-113031: Group VPN_USERS User {{.Domains}} IP {{.IPs}} AnyConnect vpn-filter filter is an IPv6 ACL; ACL not applied.
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-113032: Group VPN_USERS User {{.Domains}} IP {{.IPs}} AnyConnect ipv6-vpn-filter filter is an IPv4 ACL; ACL not applied.
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-113033: Group VPN_USERS User {{.Domains}} IP {{.IPs}} AnyConnect session not allowed. ACL parse error.
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-113034: Group VPN_USERS User {{.Domains}} IP {{.IPs}} User ACL ACL123 from AAA ignored, AV-PAIR ACL used instead.
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-113035: Group VPN_USERS User {{.Domains}} IP {{.IPs}} Session terminated: AnyConnect not enabled or invalid AnyConnect image on the ASA.
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-113036: Group VPN_USERS User {{.Domains}} IP {{.IPs}} AAA parameter PARAM value invalid.
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-113037: Reboot pending, new sessions disabled. Denied user login.
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-113038: Group VPN_USERS User {{.Domains}} IP {{.IPs}} Unable to create AnyConnect parent session.
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-113039: Group VPN_USERS User {{.Domains}} IP {{.IPs}} AnyConnect parent session started.
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-113040: Terminating the VPN connection attempt from VPN_USERS. Reason: This connection is group locked to OTHER_VPN_USERS.
+---EVENT_DELIMITER---
+<166>Jun 22 2022 13:29:11 single : %ASA-6-113039: Group <GroupPolicy_Remote-VPN> User <user-1> IP <{{.IPs}}> AnyConnect parent session started.
+---EVENT_DELIMITER---
+<166>Jun 22 2022 13:29:11 single : %ASA-6-113039: Group <GroupPolicy_Remote-VPN> User <first.o'{{.Emails}}> IP <{{.IPs}}> AnyConnect parent session started.
+---EVENT_DELIMITER---
+<166>Jun 22 2022 13:29:11 single : %ASA-6-113039: Group <GroupPolicy Remote-VPN> User <first.o'{{.Emails}}> IP <{{.IPs}}> AnyConnect parent session started.
+---EVENT_DELIMITER---
+<164>Nov 18 2024 12:28:57 asa5525x-01 : %ASA-4-113040: Group <Tunnel-Group-Name> User <vpnusername> IP <{{.IPs}}> Terminating the VPN connection attempt from <Group-Attempted>. Reason: This connection is group locked to <Group-Locked>.
+---EVENT_DELIMITER---
+Apr 17 2020 14:08:08 SNL-ASA-VPN-A01 : %ASA-6-302016: Teardown UDP connection 110577675 for Outside:{{.IPs}}/53723(LOCAL\Elastic) to Inside:{{.IPs}}/53 duration 0:00:00 bytes 148 (zzzzzz)
+---EVENT_DELIMITER---
+Apr 17 2020 14:00:31 SNL-ASA-VPN-A01 : %ASA-4-106023: Deny icmp src Inside:{{.IPs}} dst Outside:{{.IPs}} (type 11, code 0) by access-group "Inside_access_in" [0x0, 0x0]
+---EVENT_DELIMITER---
+Apr 15 2013 09:36:50: %ASA-4-106023: Deny tcp src dmz:{{.IPs}}/6316 dst outside:{{.IPs}}/53 type 3, code 0, by access-group "acl_dmz" [0xe3afb522, 0x0]
+---EVENT_DELIMITER---
+Apr 17 2020 14:16:20 SNL-ASA-VPN-A01 : %ASA-4-106023: Deny udp src Inside:{{.IPs}}/57621(LOCAL\Elastic) dst Outside:{{.IPs}}/57621 by access-group "Inside_access_in" [0x0, 0x0]
+---EVENT_DELIMITER---
+Apr 17 2020 14:15:07 SNL-ASA-VPN-A01 : %ASA-2-106017: Deny IP due to Land Attack from {{.IPs}} to {{.IPs}}
+---EVENT_DELIMITER---
+Apr 17 2020 14:15:07 SNL-ASA-VPN-A01 : %ASA-3-313008: Denied IPv6-ICMP type=134, code=0 from fe80::1ff:fe23:4567:890a on interface ISP1
+---EVENT_DELIMITER---
+Jun 08 2020 12:59:57: %ASA-4-313009: Denied invalid ICMP code 9, for Inside:{{.IPs}}/8795 ({{.IPs}}/8795) to identity:{{.IPs}}/0 ({{.IPs}}/0), ICMP id 295, ICMP type 8
+---EVENT_DELIMITER---
+Oct 20 2019 15:42:53: %ASA-6-106100: access-list incoming permitted udp dmz2/{{.IPs}}(56575) -> inside/{{.IPs}}(53) hit-cnt 1 first hit [0x93d0e533, 0x578ef52f]
+---EVENT_DELIMITER---
+Oct 20 2019 15:42:54: %ASA-6-106100: access-list incoming permitted udp dmz2/{{.IPs}}(56575)(LOCAL\\username) -> inside/{{.IPs}}(53) hit-cnt 1 first hit [0x93d0e533, 0x578ef52f]
+---EVENT_DELIMITER---
+Aug  6 2020 11:01:37: %ASA-session-3-106102: access-list dev_inward_client permitted udp for user redacted outside/{{.IPs}}(49721) -> inside/{{.IPs}}(53) hit-cnt 1 first hit [0x3c8b88c1, 0xbee595c3]
+---EVENT_DELIMITER---
+Aug  6 2020 11:01:38: %ASA-1-106103: access-list filter denied icmp for user joe inside/{{.IPs}}(64321) -> outside/{{.IPs}}(8080) hit-cnt 1 first hit [0x3c8b88c1, 0xbee595c3]
+---EVENT_DELIMITER---
+Jun 21 2022 11:47:08: %ASA-6-302015: Built inbound UDP connection 7 for outside:{{.IPs}}/3424 ({{.IPs}}/3424)(LOCAL\alice, 123) to inside:{{.IPs}}/9803 ({{.IPs}}/9803) (bob)
+---EVENT_DELIMITER---
+Jun 21 2022 11:47:08: %ASA-6-302015: Built inbound UDP connection 7 for outside:{{.IPs}}/3424 ({{.IPs}}/3424)(LOCAL\alice) to inside:{{.IPs}}/9803 ({{.IPs}}/9803) (bob)
+---EVENT_DELIMITER---
+Jun 21 2022 11:47:09: %ASA-6-302015: Built inbound UDP connection 7 for outside:{{.IPs}}/3424 ({{.IPs}}/3424)(LOCAL\alice, 123) to inside:{{.IPs}}/9803 ({{.IPs}}/9803)(LOCAL\dave, 246) (bob)
+---EVENT_DELIMITER---
+Apr 27 2020 02:03:03 dev01: %ASA-5-434004: SFR requested device to bypass further packet redirection and process TCP flow from sourceInterfaceName:{{.IPs}}/8888 to destinationInterfaceName:{{.IPs}}/123123 locally
+---EVENT_DELIMITER---
+<140>Feb 02 2025 14:02:35: %ASA-4-106103: access-list TEST_ACL_LIST denied tcp for user 'username' outside/{{.IPs}}(51950) -> inside/{{.IPs}}(443) hit-cnt 1 first hit [0xd3e666fa, 0x0]
+---EVENT_DELIMITER---
+Aug 05 2025 11:47:09: %ASA-5-750002: Local:2a02:cf40::6:500 Remote:2a02:cf40:0000:0000:0000:0000:0000:0001:50329 Username:Unknown IKEv2 Received a IKE_INIT_SA request
+---EVENT_DELIMITER---
+Aug 05 2025 11:47:09: %ASA-5-750003: Local:2a02:cf40::6:500 Remote:2a02:cf40:0000:0000:0000:0000:0000:0001:50329 Username:Unknown IKEv2 Negotiation aborted due to ERROR: Auth exchange failed
+---EVENT_DELIMITER---
+Jun 08 2020 12:59:57: %ASA-4-113019: Group = TheBeatles, Username = Ringo, IP = {{.IPs}}, Session disconnected. Session Type: AnyConnect-Parent, Duration: 0h:01m:52s, Bytes xmt: 32452, Bytes rcv: 0, Reason: User Requested
+---EVENT_DELIMITER---
+Oct 20 2019 15:42:53: %ASA-4-113019: Group = TheBeatles, Username = John, IP = {{.IPs}}, Session disconnected. Session Type: SSL, Duration: 2h:27m:34s, Bytes xmt: 45323434, Bytes rcv: 43252324, Reason: Idle Timeout
+---EVENT_DELIMITER---
+Oct 20 2019 15:42:54: %ASA-4-722037: Group <GroupPolicy_TheBeatles> User <Paul> IP <{{.IPs}}> SVC closing connection: DPD failure.
+---EVENT_DELIMITER---
+Aug  6 2020 11:01:37: %ASA-4-722037: Group <GroupPolicy_TheBeatles> User <Brian> IP <{{.IPs}}> SVC closing connection: Transport closing.
+---EVENT_DELIMITER---
+Aug  6 2020 11:01:38: %ASA-4-722051: Group <GroupPolicy_TheBeatles> User <George> IP <{{.IPs}}> IPv4 Address <{{.IPs}}> IPv6 address <::> assigned to session
+---EVENT_DELIMITER---
+Aug  6 2020 11:01:38: %ASA-4-722051: Group <GroupPolicy TheBeatles> User <George> IP <{{.IPs}}> IPv4 Address <{{.IPs}}> IPv6 address <::> assigned to session
+---EVENT_DELIMITER---
+Oct 20 2021 16:41:52: %ASA-4-722011: Group <GroupPolicy_Employee> User <464_0273> IP <{{.IPs}}> SVC Message: 17/WARNING: Reconnecting the VPN tunnel..
+---EVENT_DELIMITER---
+Oct 20 2021 16:41:52: %ASA-4-722011: Group <GroupPolicy Employee> User <464_0273> IP <{{.IPs}}> SVC Message: 17/WARNING: Reconnecting the VPN tunnel..
+---EVENT_DELIMITER---
+<190>Jan 24 2024 15:24:40 XYZhost1 : %ASA-6-722022: Group <MY-MFA> User <{{.Emails}}> IP <{{.IPs}}> TCP SVC connection established without compression
+---EVENT_DELIMITER---
+<190>Jan 24 2024 15:25:23 XYZhost1 : %ASA-6-722023: Group <MGMT_Tunnel> User <{{.Emails}}> IP <{{.IPs}}> UDP SVC connection terminated without compression
+---EVENT_DELIMITER---
+<190>Feb 21 2024 09:53:46 xxxxxx : %ASA-6-722022: Group MY-MFA User {{.Emails}} IP {{.IPs}} UDP SVC connection established without compression
+---EVENT_DELIMITER---
+<190>Feb 21 2024 09:55:01 xxxxxx: %ASA-6-722023: Group MGMT_Tunnel User {{.Domains}} IP {{.IPs}} UDP SVC connection terminated without compression
+---EVENT_DELIMITER---
+Oct 20 2021 16:41:52: %ASA-4-722033: Group <GroupPolicy_Employee> User <464_0273> IP <{{.IPs}}> First UDP SVC connection established for SVC session.
+---EVENT_DELIMITER---
+Oct 20 2021 16:41:52: %ASA-5-722033: Group <GroupPolicy_Employee> User <464_0273> IP <{{.IPs}}> First TCP SVC connection established for SVC session.
+---EVENT_DELIMITER---
+Oct 20 2021 16:41:52: %ASA-5-722033: Group <GroupPolicy Employee> User <464_0273> IP <{{.IPs}}> First TCP SVC connection established for SVC session.
+---EVENT_DELIMITER---
+Oct 20 2021 16:41:52: %ASA-4-722034: Group <GroupPolicy_Employee> User <464_0273> IP <{{.IPs}}> New TCP SVC connection, no existing connection.
+---EVENT_DELIMITER---
+Oct 20 2021 16:41:52: %ASA-4-722037: Group <GroupPolicy_Employee> User <{{.Emails}}> IP <{{.IPs}}> SVC closing connection: DPD failure.
+---EVENT_DELIMITER---
+Oct 20 2021 16:41:52: %ASA-4-722037: Group <GroupPolicy Employee> User <{{.Emails}}> IP <{{.IPs}}> SVC closing connection: DPD failure.
+---EVENT_DELIMITER---
+Oct 20 2021 16:41:52: %ASA-4-722034: Group <GroupPolicy Employee> User <464_0273> IP <{{.IPs}}> New TCP SVC connection, no existing connection.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.Domains}} : {{.timestamp_syslog}} EDT: %ASA-auth-4-113004: AAA user authentication Successful : server = myservername : user = myusername
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.Domains}} : {{.timestamp_syslog}} PST: %ASA-svc-4-722051: Group <GroupPolicy_NAME> User <user_NAME> IP <{{.IPs}}> IPv4 Address <{{.IPs}}> IPv6 address <::> assigned to session
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1772 to outside:{{.IPs}}/8256
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11757 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1772 ({{.IPs}}/1772)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11749 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1758 duration 0:01:07 bytes 38110 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11748 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1757 duration 0:01:07 bytes 44010 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11745 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1755 duration 0:01:07 bytes 7652 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11744 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1754 duration 0:01:07 bytes 7062 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11742 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1752 duration 0:01:08 bytes 5738 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11738 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1749 duration 0:01:08 bytes 4176 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11739 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1750 duration 0:01:08 bytes 1715 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11731 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1747 duration 0:01:09 bytes 45595 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11723 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1742 duration 0:01:09 bytes 27359 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11715 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1741 duration 0:01:09 bytes 4457 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11711 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1739 duration 0:01:09 bytes 26709 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11712 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1740 duration 0:01:09 bytes 22097 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11708 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1738 duration 0:01:10 bytes 2209 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11746 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1756 duration 0:01:07 bytes 10404 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11706 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1737 duration 0:01:10 bytes 123694 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11702 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1736 duration 0:01:11 bytes 35835 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11753 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1765 duration 0:00:30 bytes 0 SYN Timeout
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic UDP translation from inside:{{.IPs}}/56132 to outside:{{.IPs}}/1188
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11758 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11758 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 148
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11759 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11759 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 164
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1773 to outside:{{.IPs}}/8257
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11760 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1773 ({{.IPs}}/1773)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1774 to outside:{{.IPs}}/8258
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11761 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1774 ({{.IPs}}/1774)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11762 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11763 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11762 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 111
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11763 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 237
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1775 to outside:{{.IPs}}/8259
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11764 for outside:{{.IPs}}/443 ({{.IPs}}/443) to inside:{{.IPs}}/1775 ({{.IPs}}/1775)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic UDP translation from inside:{{.IPs}}/56132 to outside:{{.IPs}}/1189
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11772 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11773 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11772 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 87
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11773 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 221
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1452 to outside:{{.IPs}}/8265
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11774 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1452 ({{.IPs}}/1452)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11775 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11776 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11775 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 101
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11776 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 126
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1453 to outside:{{.IPs}}/8266
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11777 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1453 ({{.IPs}}/1453)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11777 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1453 duration 0:00:00 bytes 862 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11779 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11778 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 104
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11779 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 176
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1454 to outside:{{.IPs}}/8267
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11780 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1454 ({{.IPs}}/1454)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1455 to outside:{{.IPs}}/8268
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11781 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1455 ({{.IPs}}/1455)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1456 to outside:{{.IPs}}/8269
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11782 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1456 ({{.IPs}}/1456)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11783 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11783 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 104
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1457 to outside:{{.IPs}}/8270
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11784 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1457 ({{.IPs}}/1457)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1458 to outside:{{.IPs}}/8271
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11785 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1458 ({{.IPs}}/1458)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11786 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11784 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1457 duration 0:00:00 bytes 593 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1459 to outside:{{.IPs}}/8272
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11787 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1459 ({{.IPs}}/1459)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11786 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 375
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1460 to outside:{{.IPs}}/8273
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11788 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1460 ({{.IPs}}/1460)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1454 to outside:{{.IPs}}/8267 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1385 to outside:{{.IPs}}/8277
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11797 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1385 ({{.IPs}}/1385)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1455 to outside:{{.IPs}}/8268 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1456 to outside:{{.IPs}}/8269 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1457 to outside:{{.IPs}}/8270 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1458 to outside:{{.IPs}}/8271 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1459 to outside:{{.IPs}}/8272 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1460 to outside:{{.IPs}}/8273 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11564 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1382 duration 0:05:25 bytes 575 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11797 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1385 duration 0:00:00 bytes 5391 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1386 to outside:{{.IPs}}/8278
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11798 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1386 ({{.IPs}}/1386)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1275 to outside:{{.IPs}}/8279
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11799 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1275 ({{.IPs}}/1275)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic UDP translation from inside:{{.IPs}}/56132 to outside:{{.IPs}}/1190
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11800 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11800 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 373
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11801 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11801 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 207
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1276 to outside:{{.IPs}}/8280
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11802 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1276 ({{.IPs}}/1276)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1277 to outside:{{.IPs}}/8281
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11803 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1277 ({{.IPs}}/1277)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11802 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1276 duration 0:00:00 bytes 12853 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1278 to outside:{{.IPs}}/8282
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11804 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1278 ({{.IPs}}/1278)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11803 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1277 duration 0:00:00 bytes 5291 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1279 to outside:{{.IPs}}/8283
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11805 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1279 ({{.IPs}}/1279)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11804 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1278 duration 0:00:00 bytes 965 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11805 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1279 duration 0:00:00 bytes 8605 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1280 to outside:{{.IPs}}/8284
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11806 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1280 ({{.IPs}}/1280)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11806 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1280 duration 0:00:00 bytes 3428 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1281 to outside:{{.IPs}}/8285
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11807 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1281 ({{.IPs}}/1281)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1282 to outside:{{.IPs}}/8286
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11808 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1282 ({{.IPs}}/1282)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1283 to outside:{{.IPs}}/8287
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11809 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1283 ({{.IPs}}/1283)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1284 to outside:{{.IPs}}/8288
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11810 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1284 ({{.IPs}}/1284)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11807 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1281 duration 0:00:00 bytes 2028 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11808 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1282 duration 0:00:00 bytes 1085 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11809 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1283 duration 0:00:00 bytes 868 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1285 to outside:{{.IPs}}/8289
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11811 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1285 ({{.IPs}}/1285)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1286 to outside:{{.IPs}}/8290
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11812 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1286 ({{.IPs}}/1286)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11810 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1284 duration 0:00:00 bytes 4439 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1287 to outside:{{.IPs}}/8291
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11813 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1287 ({{.IPs}}/1287)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11811 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1285 duration 0:00:00 bytes 914 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11812 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1286 duration 0:00:00 bytes 871 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11814 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1288 to outside:{{.IPs}}/8292
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11815 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1288 ({{.IPs}}/1288)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11814 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 384
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11816 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11816 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 94
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1289 to outside:{{.IPs}}/8293
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11817 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1289 ({{.IPs}}/1289)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11815 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1288 duration 0:00:00 bytes 945 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11813 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1287 duration 0:00:00 bytes 13284 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11818 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11818 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 104
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1290 to outside:{{.IPs}}/8294
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11819 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1290 ({{.IPs}}/1290)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 9828 for outside:{{.IPs}}/67 to NP Identity Ifc:{{.IPs}}/68 duration 0:58:46 bytes 58512
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1272 to outside:{{.IPs}}/8276 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11820 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11821 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11820 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 168
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11822 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11821 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 198
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11822 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 150
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11823 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11823 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 84
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1291 to outside:{{.IPs}}/8295
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11824 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1291 ({{.IPs}}/1291)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11825 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11825 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 188
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1292 to outside:{{.IPs}}/8296
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11826 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1292 ({{.IPs}}/1292)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1293 to outside:{{.IPs}}/8297
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11827 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1293 ({{.IPs}}/1293)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1294 to outside:{{.IPs}}/8298
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11828 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1294 ({{.IPs}}/1294)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11827 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1293 duration 0:00:00 bytes 5964 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1295 to outside:{{.IPs}}/8299
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11829 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1295 ({{.IPs}}/1295)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1296 to outside:{{.IPs}}/8300
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11830 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1296 ({{.IPs}}/1296)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11828 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1294 duration 0:00:00 bytes 6694 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11829 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1295 duration 0:00:00 bytes 1493 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11830 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1296 duration 0:00:00 bytes 893 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1297 to outside:{{.IPs}}/8301
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11831 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1297 ({{.IPs}}/1297)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1298 to outside:{{.IPs}}/8302
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11832 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1298 ({{.IPs}}/1298)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11833 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11833 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 150
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11831 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1297 duration 0:00:00 bytes 2750 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1299 to outside:{{.IPs}}/8303
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11834 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1299 ({{.IPs}}/1299)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1300 to outside:{{.IPs}}/8304
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11835 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1300 ({{.IPs}}/1300)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11832 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1298 duration 0:00:00 bytes 881 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11835 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1300 duration 0:00:00 bytes 2202 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1301 to outside:{{.IPs}}/8305
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11836 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1301 ({{.IPs}}/1301)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1302 to outside:{{.IPs}}/8306
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11837 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1302 ({{.IPs}}/1302)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1276 to outside:{{.IPs}}/8280 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1277 to outside:{{.IPs}}/8281 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1278 to outside:{{.IPs}}/8282 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1279 to outside:{{.IPs}}/8283 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1280 to outside:{{.IPs}}/8284 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1281 to outside:{{.IPs}}/8285 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1282 to outside:{{.IPs}}/8286 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1283 to outside:{{.IPs}}/8287 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1284 to outside:{{.IPs}}/8288 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1285 to outside:{{.IPs}}/8289 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1286 to outside:{{.IPs}}/8290 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1287 to outside:{{.IPs}}/8291 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1288 to outside:{{.IPs}}/8292 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1293 to outside:{{.IPs}}/8297 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1294 to outside:{{.IPs}}/8298 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1304 to outside:{{.IPs}}/8308
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11840 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1304 ({{.IPs}}/1304)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1295 to outside:{{.IPs}}/8299 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1296 to outside:{{.IPs}}/8300 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11841 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11842 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11841 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 318
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11842 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 104
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1305 to outside:{{.IPs}}/8309
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11843 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1305 ({{.IPs}}/1305)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1297 to outside:{{.IPs}}/8301 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1298 to outside:{{.IPs}}/8302 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1299 to outside:{{.IPs}}/8303 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1300 to outside:{{.IPs}}/8304 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1301 to outside:{{.IPs}}/8305 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1302 to outside:{{.IPs}}/8306 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1303 to outside:{{.IPs}}/8307 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11843 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1305 duration 0:00:04 bytes 410333 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1306 to outside:{{.IPs}}/8310
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11844 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1306 ({{.IPs}}/1306)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+<166>Jan 11 2023 13:34:06 localhost : %ASA-6-302013: Built outbound TCP connection 353540142 for outside-noanet:{{.IPs}}/443 ({{.IPs}}/443) to inside:{{.IPs}}/49234 ({{.IPs}}/49234)
+---EVENT_DELIMITER---
+<164>Jan 11 2023 13:34:06: %ASA-4-106023: Deny udp src MY_mgmt:{{.IPs}}/123 dst MPLS_Internet:{{.IPs}}/123 by access-group "MY_mgmt_access_in" [0x0, 0x0]
+---EVENT_DELIMITER---
+<165>Jan 11 2023 13:34:06: %ASA-5-111007: Begin configuration: {{.IPs}} reading from http [POST]
+---EVENT_DELIMITER---
+<162>Jan 11 2023 13:34:06: %ASA-2-113022: AAA Marking LDAP server {{.IPs}} in aaa-server group GROUP_NAME as FAILED
+---EVENT_DELIMITER---
+<162>Jan 11 2023 13:34:06: %ASA-2-113023: AAA Marking LDAP server {{.IPs}} in aaa-server group GROUP_NAME as ACTIVE
+---EVENT_DELIMITER---
+<165>Jan 11 2023 13:34:06: %ASA-5-425005: Interface GigabitEthernet0/1 become active in redundant interface Redundant1
+---EVENT_DELIMITER---
+<165>Jun 21 2024 09:07:00: %ASA-5-611103: User logged out: Uname: USER_NAME
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.Domains}} : {{.timestamp_syslog}} EST: %ASA-auth-4-113011: AAA retrieved user specific group policy (GroupPolicy_USER_SET) for user = {{.Emails}}
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.Domains}} : {{.timestamp_syslog}} EST: %ASA-svc-4-722041: TunnelGroup <MY_TUNGROUP> GroupPolicy <GroupPolicy_USER_SET> User <{{.Emails}}> IP <{{.IPs}}> No IPv6 address available for SVC connection
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.Domains}} : {{.timestamp_syslog}} EST: %ASA-svc-3-722035: Group <GroupPolicy_USER_SET> User <{{.Emails}}> IP <{{.IPs}}> Received large packet 1224 (threshold 1200).
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.Domains}} : {{.timestamp_syslog}} EST: %ASA-4-733100: [ LOCAL\{{.Emails}}#012 ] drop rate-1 exceeded. Current burst rate is 40 per second, max configured rate is 40; Current average rate is 2 per second, max configured rate is 20; Cumulative total count is 1486
+---EVENT_DELIMITER---
+Feb 20 2020 16:11:11: %ASA-6-734001: DAP: User {{.Emails}}, Addr {{.IPs}}, Connection AnyConnect: The following DAP records were selected for this connection: dap_1, dap_2
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} beats asa[1234]: %ASA-7-999999: This message is not filtered.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} beats asa[1234]: %ASA-8-999999: This phony message is dropped due to log level.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} beats asa[1234]: %ASA-2-106001: Inbound TCP connection denied from {{.IPs}}/45321 to {{.IPs}}/443 flags URG+SYN+RST on interface eth0
+---EVENT_DELIMITER---
+Oct 10 2019 10:21:36 localhost: %ASA-6-302021: Teardown ICMP connection for faddr {{.Domains}}/10005 gaddr {{.IPs}}/0 laddr {{.Domains}}/0
+---EVENT_DELIMITER---
+Jun 04 2011 21:59:52 MYHOSTNAME : %ASA-6-302021: Teardown ICMP connection for faddr {{.IPs}}/0 gaddr {{.IPs}}/57808 laddr {{.IPs}}/57808 type 8 code 0
+---EVENT_DELIMITER---
+ This is just a test message that has no colons in it for a specific reason.
+---EVENT_DELIMITER---
+<120>Jun  13  2013 12:12:45: 
+---EVENT_DELIMITER---
+<190>3132517: {{.timestamp_syslog}} {{.IPs}} sw01: 3132779: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>{{.timestamp_syslog}} {{.IPs}} sw01: 3132779: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>3132517: {{.IPs}} 3132513: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>3132783: 2a02:cf40::: 3132779: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>3132811: sw01: 3132807: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>3132517: 3132513: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>sw01: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>2361044: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>: sw01: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>*Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>3132517: sw01: 3132513: 2y10w: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>{{.timestamp_syslog}} {{.IPs}} 585917: Jul 14 2023 08:23:43 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 585917: Jul 14 2023 08:23:43 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} sw01 1663410: Jul 14 2023 08:23:43 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<171>250756222: FNZPRPE11: 328926563: {{.timestamp_syslog}}.139 MDT: %IOSXE-3-PLATFORM: R0/0: bcm_switch: SchanTimeOut:soc_schan_op operation timed out
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} : %ASA-6-302013: Built inbound TCP connection 3263493120 for DMZ:shule/5802 (shule/5802) to SERVERS:{{.IPs}}/80 ({{.IPs}}/80)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} : %ASA-6-302013: Built outbound TCP connection 3263492189 for MG:exp_srv/10050 (exp_srv/10050) to SERVERS:{{.IPs}}/46145 ({{.IPs}}/46145)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} %ASA-6-302015: Built outbound UDP connection 743108828 for outside:ns10/53 (ns10/53) to MND_sec:{{.IPs}}/48347 ({{.IPs}}/48347)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} %ASA-6-302015: Built outbound UDP connection 743108738 for outside:ns10/53 (ns10/53) to MND_sec:{{.IPs}}/55653 ({{.IPs}}/55653)
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} : %ASA-6-106015: Deny TCP (no connection) from {{.IPs}}/389 to exp-angle/54703 flags RST on interface SH_INFRA_MGT
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} : %ASA-6-106015: Deny TCP (no connection) from {{.IPs}}/56594 to sh-mailgw1/25 flags FIN ACK on interface outside
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} : %ASA-6-305012: Teardown dynamic UDP translation from SERVERS:exp-wait/62409 to outside:{{.IPs}}/62409 duration 0:00:41
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} : %ASA-6-305012: Teardown dynamic UDP translation from SERVERS:exp-wait/56421 to outside:{{.IPs}}/56421 duration 0:00:30
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} : %ASA-6-305011: Built dynamic TCP translation from SERVERS:exp-srv/50578 to outside:{{.IPs}}/50578
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} : %ASA-6-305011: Built dynamic UDP translation from SERVERS:exp-wait/56570 to outside:{{.IPs}}/56570
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} : %ASA-4-106023: Deny tcp src MG:exp_srv/64593 dst SH_OSS:{{.IPs}}/2511 by access-group "MGT_access_in" [0x0, 0x0]
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} : %ASA-4-106023: Deny tcp src MG:exp_srv/63513 dst SH_OSS:{{.IPs}}/2511 by access-group "MGT_access_in" [0x0, 0x0]
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} %ASA-6-302020: Built inbound ICMP connection for faddr eth0_fw/6553 gaddr {{.IPs}}/0 laddr {{.IPs}}/0 type 8 code 0
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} %ASA-6-302020: Built inbound ICMP connection for faddr eth0_fw/8396 gaddr {{.IPs}}/0 laddr {{.IPs}}/0 type 8 code 0
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} %ASA-6-302021: Teardown ICMP connection for faddr eth0_fw/6553 gaddr {{.IPs}}/0 laddr {{.IPs}}/0 type 8 code 0
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} %ASA-6-302021: Teardown ICMP connection for faddr eth0_fw/8396 gaddr {{.IPs}}/0 laddr {{.IPs}}/0 type 8 code 0
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} %ASA-6-113039: Group <novpn> User <nt\minsk> IP <{{.IPs}}> AnyConnect parent session started.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} : %ASA-6-113039: Group <Group_VPN> User <support\column> IP <{{.IPs}}> AnyConnect parent session started.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} %ASA-5-304001: {{.IPs}} Accessed URL mirror:http://{{.Domains}}/path/to/resource
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} : %ASA-6-113005: AAA user authentication Rejected : reason = AAA failure : server = {{.IPs}} : user = 123 : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} : %ASA-6-113005: AAA user authentication Rejected : reason = Account has been disabled : server = {{.IPs}} : user = alice : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+<165>Oct 04 2019 15:27:55: %ASA-5-106100: access-list AL-DMZ-LB-IN denied tcp LB-DMZ/WHAT-IS-THIS-A-HOSTNAME-{{.IPs}}(27218) -> OUTSIDE/{{.IPs}}(53) hit-cnt 1 first hit [0x16847359, 0x00000000]
+---EVENT_DELIMITER---
+Jan  1 2020 10:42:53 localhost : %ASA-6-302021: Teardown ICMP connection for faddr {{.IPs}}/0 gaddr {{.Domains}}/17233 laddr {{.IPs}}/17233
+---EVENT_DELIMITER---
+Jan  2 2020 11:33:20 localhost : %ASA-4-338204: Dynamic filter dropped greylisted TCP traffic from eth0:{{.IPs}}/1234 ({{.Domains}}/11234) to wan:{{.IPs}}/80 ({{.Domains}}/80), destination malicious address resolved from dynamic list: {{.Domains}}, threat-level: high, category: malware
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} %ASA-2-106006: message repeated 2 times: [ Deny inbound UDP from {{.IPs}}/137 to {{.IPs}}/137 on interface inside]
+---EVENT_DELIMITER---
+Apr 15 2013 09:36:50: %ASA-4-106023: Deny tcp src dmz:{{.IPs}}/63016 dst outside:{{.IPs}}/53 by access-group "acl_dmz" [0xe3aab522, 0x0]
+---EVENT_DELIMITER---
+Apr 15 2013 09:36:50: %ASA-4-106023: Deny tcp src dmz:{{.IPs}}/63016 dst outside:{{.IPs}}/53 type 3, code 0, by access-group "acl_dmz" [0xe3aab522, 0x0]
+---EVENT_DELIMITER---
+Apr 15 2014 09:34:34 EDT: %ASA-session-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2241) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 24 2013 16:00:28 INT-FW01 : %ASA-6-106100: access-list inside denied udp inside/{{.IPs}}(1039) -> outside/{{.IPs}}(53) hit-cnt 1 first hit [0xd820e56a, 0x0]
+---EVENT_DELIMITER---
+Apr 24 2013 16:00:27 INT-FW01 : %ASA-6-106100: access-list inside permitted udp inside/{{.IPs}}(1065) -> outside/{{.IPs}}(53) hit-cnt 144 300-second interval [0xe982c7a4, 0x0]
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %ASA-6-305011: Built dynamic TCP translation from outside:{{.IPs}}/4952 to outside:{{.IPs}}/12834
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %ASA-6-302013: Built outbound TCP connection 89743274 for outside:{{.IPs}}/443 ({{.IPs}}/443) to outside:{{.IPs}}/4952 ({{.IPs}}/12834)
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %ASA-6-305011: Built dynamic UDP translation from outside:{{.IPs}}/52925 to outside:{{.IPs}}/25882
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %ASA-6-302015: Built outbound UDP connection 89743275 for outside:{{.IPs}}/53 ({{.IPs}}/53) to outside:{{.IPs}}/52925 ({{.IPs}}/25882)
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %ASA-6-305011: Built dynamic TCP translation from outside:{{.IPs}}/4953 to outside:{{.IPs}}/45392
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %ASA-6-302013: Built outbound TCP connection 89743276 for outside:{{.IPs}}/80 ({{.IPs}}/80) to outside:{{.IPs}}/4953 ({{.IPs}}/45392)
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %ASA-6-302016: Teardown UDP connection 89743275 for outside:{{.IPs}}/53 to inside:{{.IPs}}/52925 duration 1:23:45 bytes 140
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %ASA-6-302016: Teardown UDP connection 666 for outside:{{.IPs}}/53 user1 to inside:{{.IPs}}/52925 user2 duration 10:00:00 bytes 9999999
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %ASA-6-302016: Teardown UDP connection 666 for outside:{{.IPs}}/53 Speciäl Ö1 to inside:{{.IPs}}/52925 Speciäl Ö2 duration 10:00:00 bytes 9999999
+---EVENT_DELIMITER---
+Jun 04 2011 21:59:52 FJSG2NRFW01 : %ASA-6-302021: Teardown ICMP connection for faddr {{.IPs}}/0 gaddr {{.IPs}}/17233 laddr {{.IPs}}/17233
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/4954 to outside:{{.IPs}}/10879
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %ASA-6-302013: Built outbound TCP connection 89743277 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/4954 ({{.IPs}}/10879)
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:33: %ASA-2-106007: Deny inbound UDP from {{.IPs}}/12981 to {{.IPs}}/53 due to DNS Query
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:38: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2006) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:38: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49734) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:39: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49735) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:39: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49736) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:39: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49737) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:40: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49738) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:41: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49746) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:47: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2007) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:48: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(43013) -> dmz/{{.IPs}}(25) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:56: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2008) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:02: %ASA-2-106006: Deny inbound UDP from {{.IPs}}/137 to {{.IPs}}/137 on interface inside
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:03: %ASA-2-106007: Deny inbound UDP from {{.IPs}}/12981 to {{.IPs}}/53 due to DNS Query
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:06: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2009) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:08: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49776) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:15: %ASA-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2010) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:24: %ASA-5-106100: access-list acl_in denied tcp inside/{{.IPs}}(2011) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:34: %ASA-5-106100: access-list acl_in denied tcp inside/{{.IPs}}(2012) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:40: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/53638 dst inside:{{.IPs}}/8111 by access-group "acl_out" [0x71761f18, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:41: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/53638 dst inside:{{.IPs}}/8111 by access-group "acl_out" [0x71761f18, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:43: %ASA-5-106100: access-list acl_in est-allowed tcp inside/{{.IPs}}(49840) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:43: %ASA-5-106100: access-list acl_in est-allowed tcp inside/{{.IPs}}(2013) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 15 2018 09:34:34 EDT: %ASA-session-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2241) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:24 <IP>: %ASA-6-302015: Built outbound UDP connection 447235 for outside:{{.IPs}}/11180 ({{.IPs}}/11180) to identity:{{.IPs}}/80 ({{.IPs}}/80)
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:24 <IP>: %ASA-4-106023: Deny udp src dmz:{{.IPs}}/5555 dst outside:{{.IPs}}/53 by access-group "dmz" [0x123a465e, 0x4c7bf613]
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:24 <IP>: %ASA-4-106023: Deny udp src dmz:{{.IPs}}/5555 dst outside:{{.IPs}}/53 by access-group "dmz" [0x123a465e, 0x4c7bf613]
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:31 <IP>: %ASA-6-302013: Built outbound TCP connection 447236 for outside:{{.IPs}}/1234 ({{.IPs}}/1234) to dmz:OCSP_Server/5678 (OCSP_Server/5678)
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:31 <IP>: %ASA-6-302013: Built outbound TCP connection 447236 for outside:{{.IPs}}/1234 ({{.IPs}}/1234) to dmz:OCSP_Server/5678 (OCSP_Server/5678)
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:31 <IP>: %ASA-6-302014: Teardown TCP connection 447236 for outside:{{.IPs}}/1234 to dmz:{{.IPs}}/5678 duration 0:00:00 bytes 14804 TCP FINs
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:38 <IP>: %ASA-6-302014: Teardown TCP connection 447234 for outside:{{.IPs}}/1234 to dmz:{{.IPs}}/5678 duration 0:01:08 bytes 134781 TCP FINs
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:38 <IP>: %ASA-6-302014: Teardown TCP connection 447234 for outside:{{.IPs}}/1234 to dmz:{{.IPs}}/5678 duration 0:01:08 bytes 134781 TCP FINs
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:38 <IP>: %ASA-6-106015: Deny TCP (no connection) from {{.IPs}}/1234 to {{.IPs}}/5679 flags RST  on interface outside
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:38 <IP>: %ASA-6-106015: Deny TCP (no connection) from {{.IPs}}/1234 to {{.IPs}}/5679 flags RST  on interface outside
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:39 <IP>: %ASA-4-106023: Deny udp src dmz:{{.IPs}}/5679 dst outside:{{.IPs}}/5000 by access-group "dmz" [0x123a465e, 0x8c20f21]
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:53 <IP>: %ASA-6-302013: Built outbound TCP connection 447237 for outside:{{.IPs}}/1234 ({{.IPs}}/1234) to dmz:{{.IPs}}/65000 ({{.IPs}}/65000)
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:53 <IP>: %ASA-6-302013: Built outbound TCP connection 447237 for outside:{{.IPs}}/1234 ({{.IPs}}/1234) to dmz:{{.IPs}}/65000 ({{.IPs}}/65000)
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:53 <IP>: %ASA-6-302014: Teardown TCP connection 447237 for outside:{{.IPs}}/1234 to dmz:{{.IPs}}/1235 duration 23:59:59 bytes 11420 TCP FINs
+---EVENT_DELIMITER---
+Aug 15 2012 23:30:09 : %ASA-6-302016 Teardown UDP connection 40 for outside:{{.IPs}}/500 to inside:{{.IPs}}/500 duration 0:02:02 bytes 1416
+---EVENT_DELIMITER---
+Sep 12 2014 06:50:53 GIFRCHN01 : %ASA-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:51:01 GIFRCHN01 : %ASA-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:51:05 GIFRCHN01 : %ASA-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:51:05 GIFRCHN01 : %ASA-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:51:06 GIFRCHN01 : %ASA-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:51:17 GIFRCHN01 : %ASA-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:52:48 GIFRCHN01 : %ASA-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:53:00 GIFRCHN01 : %ASA-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:53:01 GIFRCHN01 : %ASA-4-106023: Deny tcp src outside:{{.IPs}}/24069 dst inside:{{.IPs}}/25 by access-group "PERMIT_IN" [0x0, 0x0]"
+---EVENT_DELIMITER---
+Sep 12 2014 06:53:02 GIFRCHN01 : %ASA-3-313001: Denied ICMP type=3, code=3 from {{.IPs}} on interface Outside
+---EVENT_DELIMITER---
+Jan 14 2015 13:16:13: %ASA-4-313004: Denied ICMP type=0, from laddr {{.IPs}} on interface inside to {{.IPs}}: no matching session
+---EVENT_DELIMITER---
+Jan 14 2015 13:16:14: %ASA-4-338002: Dynamic Filter permitted black listed TCP traffic from inside:{{.IPs}}/6798 ({{.IPs}}/7890) to outside:{{.IPs}}/80 ({{.IPs}}/80), destination {{.IPs}} resolved from dynamic list: {{.Domains}}
+---EVENT_DELIMITER---
+Jan 14 2015 13:16:14: %ASA-4-338004: Dynamic Filter monitored blacklisted TCP traffic from inside:{{.IPs}}/33340 ({{.IPs}}/33340) to outsidet:{{.IPs}}/80 ({{.IPs}}/80), destination {{.IPs}} resolved from dynamic list: {{.IPs}}/{{.IPs}}, threat-level: very-high, category: Malware
+---EVENT_DELIMITER---
+Jan 14 2015 13:16:14: %ASA-4-338008: Dynamic Filter dropped blacklisted TCP traffic from inside:{{.IPs}}/33340 ({{.IPs}}/33340) to outsidet:{{.IPs}}/80 ({{.IPs}}/80), destination {{.IPs}} resolved from dynamic list: {{.IPs}}/{{.IPs}}, threat-level: very-high, category: Malware
+---EVENT_DELIMITER---
+Nov 16 2009 14:12:35: %ASA-5-304001: {{.IPs}} Accessed URL {{.IPs}}:/app
+---EVENT_DELIMITER---
+Nov 16 2009 14:12:36: %ASA-5-304001: {{.IPs}} Accessed URL {{.IPs}}:http://{{.Domains}}
+---EVENT_DELIMITER---
+Nov 16 2009 14:12:37: %ASA-5-304002: Access denied URL http://{{.Domains}}/images/{{.Domains}} SRC {{.IPs}} DEST {{.IPs}} on interface inside
+---EVENT_DELIMITER---
+Jan 13 2021 19:12:37: %ASA-6-302013: Built inbound TCP connection 27215708 for internet:{{.IPs}}/49926 ({{.IPs}}/49926)(LOCAL\username) to vlan-42:{{.IPs}}/80 ({{.IPs}}/80) (username)
+---EVENT_DELIMITER---
+Jan 13 2021 19:12:37: %ASA-5-304001: USER001@{{.IPs}}(LOCAL\USER001) Accessed URL {{.IPs}}:http://{{.Domains}}/{{.Domains}}
+---EVENT_DELIMITER---
+Jan 13 2021 19:12:37: %ASA-5-302013: Built inbound TCP connection 195207391 for OUTSIDE:{{.IPs}}/12312 ({{.IPs}}/34534)(LOCAL\USER001) to OUTSIDE:{{.IPs}}/443 ({{.IPs}}/443) (USER001)
+---EVENT_DELIMITER---
+Jan 13 2021 19:12:37: %ASA-5-302013: Built inbound TCP connection 195207391 for OUTSIDE:{{.IPs}}/12312 ({{.IPs}}/34534)(LOCAL\{{.Emails}}) to OUTSIDE:{{.IPs}}/443 ({{.IPs}}/443) ({{.Emails}})
+---EVENT_DELIMITER---
+Jan 13 2021 19:12:37: %ASA-5-302020: Built inbound ICMP connection for faddr {{.IPs}}/0(LOCAL\USER001) gaddr {{.IPs}}/0 laddr {{.IPs}}/0 (USER001) type 3 code 3
+---EVENT_DELIMITER---
+Jan 13 2021 19:12:37: %ASA-5-302020: Built inbound ICMP connection for faddr {{.IPs}}/0(LOCAL\{{.Emails}}) gaddr {{.IPs}}/0 laddr {{.IPs}}/0 ({{.Emails}}) type 3 code 3
+---EVENT_DELIMITER---
+Jan 13 2021 19:12:37: %ASA-5-302020: Built inbound ICMP connection for faddr {{.IPs}}/0(AD\USER002) gaddr {{.IPs}}/0 laddr {{.IPs}}/0 (USER002) type 3 code 3
+---EVENT_DELIMITER---
+Jan 15 2021 19:12:37: %ASA-6-305012: Teardown dynamic TCP translation from OUTSIDE:{{.IPs}}/59677(LOCAL\USER001) to OUTSIDE:{{.IPs}}/18449 duration 0:00:00
+---EVENT_DELIMITER---
+Jan 15 2021 19:12:37: %ASA-6-302021: Teardown ICMP connection for faddr ff02::1/0 gaddr fe80::2205:baff:fe9d:f637/0 laddr fe80::2205:baff:fe9d:f637/0 type 134 code 0
+---EVENT_DELIMITER---
+Jan 15 2021 19:12:37: %ASA-6-302013: Built inbound TCP connection 251933191 for OUTSIDE:2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6/62477 (2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6/62477) to OUTSIDE:2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6/443 (2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6/443) ({{.Emails}})
+---EVENT_DELIMITER---
+Jan 15 2021 19:12:37: %ASA-6-305012: Teardown dynamic TCP translation from OUTSIDE:{{.IPs}}/50120(LOCAL\domain\USER001) to OUTSIDE:{{.IPs}}/50120 duration 0:02:05
+---EVENT_DELIMITER---
+Jan 15 2021 19:12:37: %ASA-6-302014: Teardown TCP connection 261246338 for OUTSIDE:{{.IPs}}/50120(LOCAL\domain\USER001) to OUTSIDE:{{.IPs}}/443 duration 0:02:05 bytes 9610 TCP FINs from OUTSIDE (domain\USER001)
+---EVENT_DELIMITER---
+Jan 15 2021 19:12:37: %ASA-6-302015: Built inbound UDP connection 261311655 for OUTSIDE:{{.IPs}}/63790 ({{.IPs}}/63790)(LOCAL\domain\USER001) to INSIDE:{{.IPs}}/53 ({{.IPs}}/53) (domain\USER001)
+---EVENT_DELIMITER---
+Jan 15 2021 19:12:37: %ASA-6-302016: Teardown UDP connection 261311655 for OUTSIDE:{{.IPs}}/63790(LOCAL\domain\USER001) to INSIDE:{{.IPs}}/53 duration 0:00:00 bytes 139 (domain\USER001)
+---EVENT_DELIMITER---
+Jan 15 2021 19:12:37: %ASA-6-302013: Built inbound TCP connection 261246338 for OUTSIDE:{{.IPs}}/50120 ({{.IPs}}/50120)(LOCAL\domain\USER001) to OUTSIDE:{{.IPs}}/443 ({{.IPs}}/443) (domain\USER001)
+---EVENT_DELIMITER---
+Jul 29 2021 08:35:29: %ASA-6-602304: IPSEC: An outbound LAN-to-LAN SA (SPI= 0xABCXYZ) between {{.IPs}} and {{.IPs}} (user= {{.IPs}}) has been deleted.
+---EVENT_DELIMITER---
+Nov 17 2023 11:05:08: %ASA-6-302014: Teardown TCP connection 261246338 for outside:{{.IPs}}/63790(LOCAL\First Last) to inside:{{.IPs}}/53 duration 0:35:58 bytes 27451 TCP FINs from outside (First Last)
+---EVENT_DELIMITER---
+Nov 17 2023 11:05:08: %ASA-6-302014: Teardown TCP connection 261246338 for outside:{{.IPs}}/63790(LOCAL\Speciäl Ö01) to inside:{{.IPs}}/53 duration 0:35:58 bytes 27451 TCP FINs from outside (Speciäl Ö01)
+---EVENT_DELIMITER---
+Nov 17 2023 11:05:08: %ASA-6-302014: Teardown TCP connection 261246338 for outside:{{.IPs}}/63790(LOCAL\domain\Speciäl Ö1) to inside:{{.IPs}}/53 duration 0:35:58 bytes 27451 TCP FINs from outside (domain\Speciäl Ö1)
+---EVENT_DELIMITER---
+Nov 17 2023 11:05:08: %ASA-6-302014: Teardown TCP connection 261246338 for outside:{{.IPs}}/63790(LOCAL\First Middle Last) to inside:{{.IPs}}/53 duration 0:35:58 bytes 27451 TCP FINs from outside (First Middle Last)
+---EVENT_DELIMITER---
+Nov 17 2023 11:05:08: %ASA-6-302014: Teardown TCP connection 261246338 for outside:{{.IPs}}/63790(LOCAL\First-Middle Last) to inside:{{.IPs}}/53 duration 0:35:58 bytes 27451 TCP FINs from outside (domain\First-Middle Last)
+---EVENT_DELIMITER---
+<140>Oct 06 2023 09:22:19 myAsaHostname : %ASA-4-106023: Deny tcp src outside:{{.IPs}}/51982(9999:my_SgtName) dst inside:{{.IPs}}/443 by access-group "outside_access_in" [0x2a9e189a, 0x0]
+---EVENT_DELIMITER---
+<142>Oct 06 2023 09:22:19 myAsaHostname : %ASA-6-302013: Built inbound TCP connection 990568095 for outside:{{.IPs}}/61921 ({{.IPs}}/61921)(9999:my_SgtName) to inside:{{.IPs}}/443 ({{.IPs}}/443)
+---EVENT_DELIMITER---
+<142>Oct 06 2023 09:22:19 myAsaHostname : %ASA-6-302014: Teardown TCP connection 990458751 for outside:{{.IPs}}/55745(9999:my_SgtName) to inside:{{.IPs}}/443 duration 0:01:29 bytes 17859 TCP Reset-O from outside
+---EVENT_DELIMITER---
+<142>Oct 06 2023 09:22:19 myAsaHostname : %ASA-6-302015: Built inbound UDP connection 990568116 for outside:{{.IPs}}/61701 ({{.IPs}}/61701)(9999:my_SgtName) to inside:{{.IPs}}/53 ({{.IPs}}/53)
+---EVENT_DELIMITER---
+<142>Oct 06 2023 09:22:19 myAsaHostname : %ASA-6-302016: Teardown UDP connection 990568122 for outside:{{.IPs}}/63727(9999:my_SgtName) to inside:{{.IPs}}/53 duration 0:00:00 bytes 225
+---EVENT_DELIMITER---
+<142>Oct 06 2023 10:06:32 myAsaHostname : %ASA-6-302020: Built inbound ICMP connection for faddr {{.IPs}}/1(9999:my_SgtName) gaddr {{.IPs}}/0 laddr {{.IPs}}/0 type 8 code 0 
+---EVENT_DELIMITER---
+<142>Oct 06 2023 10:08:00 myAsaHostname : %ASA-6-302021: Teardown ICMP connection for faddr {{.IPs}}/1(9999:my_SgtName) gaddr {{.IPs}}/0 laddr {{.IPs}}/0 type 8 code 0 
+---EVENT_DELIMITER---
+<140>Oct 06 2023 10:11:00 myAsaHostname : %ASA-4-313005: No matching connection for ICMP error message: icmp src outside:{{.IPs}}(9999:my_SgtName) dst inside:{{.IPs}} (type 3, code 3) on outside interface.  Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/60919.
+---EVENT_DELIMITER---
+<140>Oct 06 2023 10:11:00 myAsaHostname : %ASA-4-313005: No matching connection for ICMP error message: icmp src outside:{{.IPs}}(9999:my_SgtNameSrc) dst inside:{{.IPs}}(8888:my_SgtNameDst) (type 3, code 3) on outside interface.  Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/60919.
+---EVENT_DELIMITER---
+<142>Oct 06 2023 10:33:52 myAsaHostname : %ASA-6-113005: AAA user authorization Rejected : reason = AAA failure : server = {{.IPs}} : user = myUser1234$ : user IP = None
+---EVENT_DELIMITER---
+<142>Oct 06 2023 10:37:59 myAsaHostname : %ASA-6-113039: Group <my_GroupName> User <myUser1234$> IP <{{.IPs}}> AnyConnect parent session started.
+---EVENT_DELIMITER---
+<142>Oct 06 2023 10:26:54 myAsaHostname : %ASA-6-302013: Built inbound TCP connection 79766144 for outside:{{.IPs}}/62848 ({{.IPs}}/62848)(LOCAL\myUser1234, 9999:my_SgtName) to inside:{{.IPs}}/443 ({{.IPs}}/443) (myUser1234)
+---EVENT_DELIMITER---
+<142>Oct 06 2023 10:17:54 myAsaHostname : %ASA-6-302014: Teardown TCP connection 79710069 for outside:{{.IPs}}/59774(LOCAL\myUser1234, 9999:my_SgtName) to inside:{{.IPs}}/443 duration 0:01:04 bytes 16874 TCP FINs from outside (myUser1234)
+---EVENT_DELIMITER---
+<142>Oct 06 2023 10:29:03 myAsaHostname : %ASA-6-302015: Built inbound UDP connection 79778185 for outside:{{.IPs}}/61881 ({{.IPs}}/61881)(LOCAL\myUser1234, 9999:my_SgtName) to inside:{{.IPs}}/53 ({{.IPs}}/53) (myUser1234)
+---EVENT_DELIMITER---
+<142>Oct 06 2023 10:30:18 myAsaHostname : %ASA-6-302016: Teardown UDP connection 79784719 for outside:{{.IPs}}/60556(9999:my_SgtName) to inside:{{.IPs}}/53 duration 0:00:00 bytes 221
+---EVENT_DELIMITER---
+<142>Oct 06 2023 10:34:45 myAsaHostname : %ASA-6-302020: Built outbound ICMP connection for faddr {{.IPs}}/0(9999:my_SgtName) gaddr {{.IPs}}/1 laddr {{.IPs}}/1 type 8 code 0 
+---EVENT_DELIMITER---
+<142>Oct 06 2023 10:32:10 myAsaHostname : %ASA-6-302021: Teardown ICMP connection for faddr {{.IPs}}/29(LOCAL\myUser1234, 9999:my_SgtName) gaddr {{.IPs}}/0 laddr {{.IPs}}/0 (myUser1234) type 8 code 0 
+---EVENT_DELIMITER---
+<140>Oct 06 2023 10:33:23 myAsaHostname : %ASA-4-313005: No matching connection for ICMP error message: icmp src outside:{{.IPs}}(LOCAL\myUser1234, 9999:my_SgtName) dst inside:{{.IPs}} (type 3, code 3) on outside interface.  Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/54860.
+---EVENT_DELIMITER---
+<142>Oct 25 2023 14:27:06 myAsaHostname : %ASA-6-302013: Built inbound TCP connection 101086093 for outside:{{.IPs}}/56824 ({{.IPs}}/56824)(LOCAL\myUser1234$, 9999:my_SgtName) to inside:{{.IPs}}/443 ({{.IPs}}/443) (myUser1234$)
+---EVENT_DELIMITER---
+<142>Oct 25 2023 14:22:19 myAsaHostname : %ASA-6-302014: Teardown TCP connection 63490259 for outside:{{.IPs}}/49786(LOCAL\myUser1234$, 9999:my_SgtName) to inside:{{.IPs}}/5985 duration 0:00:30 bytes 0 SYN Timeout (myUser1234$)
+---EVENT_DELIMITER---
+<142>Oct 25 2023 14:29:02 myAsaHostname : %ASA-6-302015: Built inbound UDP connection 101095490 for outside:{{.IPs}}/61219 ({{.IPs}}/61219)(LOCAL\myUser1234$, 9999:my_SgtName) to inside:{{.IPs}}/53 ({{.IPs}}/53) (myUser1234$)
+---EVENT_DELIMITER---
+<142>Oct 25 2023 14:30:31 myAsaHostname : %ASA-6-302016: Teardown UDP connection 101101684 for outside:{{.IPs}}/62253(LOCAL\myUser1234$, 9999:my_SgtName) to inside:{{.IPs}}/53 duration 0:00:00 bytes 216 (myUser1234$)
+---EVENT_DELIMITER---
+<142>Oct 25 2023 14:32:55 myAsaHostname : %ASA-6-302020: Built inbound ICMP connection for faddr {{.IPs}}/1(LOCAL\myUser1234$, 9999:my_SgtName) gaddr {{.IPs}}/0 laddr {{.IPs}}/0 (myUser1234$) type 8 code 0 
+---EVENT_DELIMITER---
+<142>Oct 25 2023 14:27:04 myAsaHostname : %ASA-6-302021: Teardown ICMP connection for faddr {{.IPs}}/1(LOCAL\myUser1234$, 9999:my_SgtName) gaddr {{.IPs}}/0 laddr {{.IPs}}/0 (myUser1234$) type 8 code 0 
+---EVENT_DELIMITER---
+<140>Oct 25 2023 06:53:06 myAsaHostname : %ASA-4-313005: No matching connection for ICMP error message: icmp src outside:{{.IPs}}(LOCAL\myUser1234$, 9999:my_SgtName) dst inside:{{.IPs}} (type 3, code 3) on outside interface.  Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/55735.
+---EVENT_DELIMITER---
+<142>Oct 25 2023 14:35:37 myAsaHostname : %ASA-6-113015: AAA user authentication Rejected : reason = User was not found : local database : user = ***** : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+<164>Oct 25 2023 14:40:42 myAsaHostname : %ASA-4-313005: No matching connection for ICMP error message: icmp src inside:{{.IPs}} dst outside:{{.Domains}} (type 3, code 3) on inside interface.  Original IP payload: udp src {{.Domains}}/53 dst {{.IPs}}/58164.
+---EVENT_DELIMITER---
+Oct 20 2019 15:42:54: %ASA-6-607001: Pre-allocate SIP Via UDP secondary channel for vrf53204:{{.IPs}}/5060 to ACI-App_VRF:{{.IPs}} from OPTIONS message
+---EVENT_DELIMITER---
+Jun 08 2020 12:59:57: %ASA-6-607001: Pre-allocate SIP SIGNALLING UDP secondary channel for vrf53204:{{.IPs}}/5060 to ACI-App_VRF:{{.IPs}} from OPTIONS message
+---EVENT_DELIMITER---
+Aug  6 2020 11:01:37: %ASA-6-607001: Pre-allocate SIP NOTIFY UDP secondary channel for vrf52304:{{.IPs}}/5060 to ACI-App_VRF:{{.IPs}} from 200 message
+---EVENT_DELIMITER---
+Aug  6 2020 11:01:38: %ASA-6-607001: Pre-allocate SIP Via UDP secondary channel for vrf52304:{{.IPs}}/5060 to ACI-App_VRF:{{.IPs}} from REGISTER message

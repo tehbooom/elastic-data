@@ -1,0 +1,247 @@
+<29>{{.timestamp_syslog}} {{.Domains}} httpd[]: 2022-03-18 13:24:41.705Z [admin]: Logout - - ip={{.IPs}} group=admin-group trigger_event=Session\040Expiration
+---EVENT_DELIMITER---
+<141>{{.timestamp_syslog}}  {{.Domains}} {{.IPs}} httpd: 2022-04-13 16:44:36.850Z [fefdn\040wdbj]: Login_Denied - - to=AdminConnector ip={{.IPs}} info=Local apparently_via=GUI
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.Domains}} {{.IPs}} httpd: 2022-03-21 08:53:51.087Z [service_account_test]: Login_Allowed - - to=AdminConnector ip={{.IPs}} auth=LOCAL group=some-Group apparently_via=API
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2011-10-19 19:48:37.299Z [admin]: Login_Allowed - - to=Serial\040Console apparently_via=Direct auth=Local group=admin-group
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2011-10-19 14:02:32.750Z [admin]: Login_Denied - - to=Serial\040Console apparently_via=Direct error=invalid\040login\040or\040password
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2011-10-19 12:43:47.375Z [user]: First_Login - - to=AdminConnector ip={{.IPs}} auth=LOCAL group=admin-group apparently_via=GUI\040first\040login
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2011-10-19 13:07:33.343Z [user]: Password_Reset_Error - - to=AdminConnector auth=LOCALgroup=admin-group apparently_via=GUI
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-21 17:19:02.204Z [admin]: Modified Network {{.IPs}}/24 network_view=default: Changed dhcp_members:[]->[[grid_member=Member:{{.Domains}}]]
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-24 09:37:29.261Z [admin]: Created Network {{.IPs}}/24 network_view=default: Set extensible_attributes=[],address="{{.IPs}}",auto_create_reversezone=False,cidr=24,comment="",common_properties=[domain_name_servers=[],routers=[]],dhcp_members=[[grid_member=Member:{{.Domains}}]],disabled=False,discovery_member=NULL,enable_discovery=False,enable_immediate_discovery=False,network_view=NetworkView:default,use_basic_polling_settings=False,use_member_enable_discovery=False,vlans=[]
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-18 11:46:38.877Z [admin]: Modified MemberDhcp {{.Domains}}: Changed enable_service:False->True
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-29 19:29:20.468Z [admin]: Called - RestartService: Args services=["ALL"],parents=[],force=True,mode="GROUPED"
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-29 18:30:58.656Z [admin]: Created Ruleset Block: Set comment="",disabled=True,name="Block",type="BLACKLIST"
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-24 09:28:24.476Z [admin]: Called - TransferTrafficCapture message=Download\040Traffic\040capture\040file: Args message="Download Traffic capture file",members=[Member:{{.Domains}}]
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-21 15:08:08.238Z [service_account_test]: Created HostAddress {{.IPs}} network_view=default: Set address="{{.IPs}}",configure_for_dhcp=False,match_option="MAC_ADDRESS",parent=HostRecord:._{{.Domains}}
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-21 15:08:08.239Z [service_account_test]: Created HostRecord {{.Domains}} DnsView=default alias={{.Domains}} address={{.IPs}}: Set extensible_attributes=[[name="NAC-Policy",value="Host"]],addresses=[address="{{.IPs}}"],aliases=[HostAlias:._{{.Domains}}.._{{.Domains}}],fqdn="{{.Domains}}"
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-21 15:08:48.455Z [service_account_test]: Deleted HostRecord {{.Domains}} DnsView=default address={{.IPs}}
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-22 13:26:54.596Z [some_admin_account]: Deleted CaaRecord {{.Domains}} DnsView=default 
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-22 13:26:54.596Z [some_admin_account]: Created HostAddress {{.IPs}} network_view=default: Set address="{{.IPs}}",configure_for_dhcp=True,mac_address="01:01:01:01:01:01",match_option="MAC_ADDRESS",network=Network:{{.IPs}}/24\054network_view\075default,parent=HostRecord:._{{.Domains}}3,reserved_interface=NULL,use_for_ea_inheritance=True
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-22 13:26:54.596Z [some_admin_account]: Modified Network {{.IPs}}/24 network_view=default: Changed dhcp_members:[]->[[grid_member=Member:{{.Domains}}]]
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-18 12:40:05.241Z [adminuser]: Modified Grid Unibe-DNS-Grid: Changed backup_setting:[password="******",restore_password="******"]->[password="******",restore_password="******"],csp_api_config:[password="******"]->[password="******"],csp_settings:[csp_join_token="******"]->[csp_join_token="******"],download_member_conf:[[interface="ANY",is_online=True,member="Member:Grid Master"]]->[[interface="ANY",is_online=True,member=NULL]],email_setting:[password="******"]->[password="******"],http_proxy_server_setting:NULL->[password="******"],snmp_setting:[snmpv3_queries_users=NULL]->[snmpv3_queries_users=[]],syslog_servers:[[address="{{.IPs}}"],[address="{{.IPs}}"]]->[[address="{{.IPs}}"]]
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} syslog: any random text
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-29 19:29:20.468Z [admin]: Called - RestartService
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-21 17:19:02.204Z [admin]: Modified Network
+---EVENT_DELIMITER---
+<29>{{.timestamp_syslog}} {{.IPs}} httpd: 2022-03-29 18:30:58.656Z [admin]: Created Ruleset
+---EVENT_DELIMITER---
+<11>{{.timestamp_syslog}}  {{.Domains}} {{.IPs}} httpd: {{.Domains}}: AD authentication for user myadminuser failed
+---EVENT_DELIMITER---
+<46>{{.timestamp_syslog}} {{.IPs}} -- MARK --
+---EVENT_DELIMITER---
+<11>{{.timestamp_syslog}}  {{.Domains}} {{.IPs}} httpd: 2025-04-22 06:17:22.110Z [adminUSER]: Login_Allowed - - to=AdminConnector ip=2a02\072cf40\072\072 auth=AD group=MySecureADGRroup apparently_via=GUI
+---EVENT_DELIMITER---
+<11>{{.timestamp_syslog}} {{.Domains}} {{.IPs}} httpd: 2025-04-22 06:17:22.110Z [adminUSER]: Login_Allowed - - to=AdminConnector ip=2a02\143f40\072\072 auth=AD group=MySecureADGRroup apparently_via=GUI
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpd[2301]: DHCPREQUEST for {{.IPs}} from 00:50:56:81:14:6c via eth3
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpd[2301]: DHCPREQUEST for {{.IPs}} from 00:50:56:81:14:6c via {{.IPs}}
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[1761]: DHCPDISCOVER from 00:50:56:83:6c:a0 (DESKTOP-ABCD) via eth3 TransID a76ecf84 uid 01:00:50:56:83:6c:a0
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} {{.IPs}} dhcpd[7024]: DHCPDISCOVER from 00:50:56:83:6c:a0 via eth3 TransID b5e92c59 uid 01:00:50:56:83:6c:a0
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpd[2750]: DHCPDISCOVER from 00:50:56:83:d0:f6 via eth1 TransID 6214ab45: network {{.IPs}}/20: no free leases
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[21114]: DHCPDISCOVER from 00:50:56:83:6c:a0 via eth3 TransID 748f30ab
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} infoblox_{{.Domains}} dhcpd[29258]: DHCPDISCOVER from 00:00:00:00:00:00 (h000000000000) via {{.IPs}} TransID 01000000
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[2567]: DHCPOFFER on {{.IPs}} to 00:50:56:83:6c:a0 (DESKTOP-ABCD) via eth3 relay eth3 lease-duration 119 offered-duration 1800 uid 01:00:50:56:83:6c:a0
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[21114]: DHCPOFFER on {{.IPs}} to 00:50:56:83:6c:a0 (DESKTOP-ABCD) via eth3 relay eth3 lease-duration 120 offered-duration 1800
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpd[15752]: DHCPOFFER on {{.IPs}} to 26:9a:76:87:8a:06 via eth2 relay {{.IPs}} lease-duration 1795 uid 01:26:9a:76:87:8a:06
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} infoblox_{{.Domains}} dhcpd[29258]: DHCPOFFER on {{.IPs}} to 00:00:00:00:00:00 via eth1 relay {{.IPs}} lease-duration 43137 offered-duration 43200
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[6939]: DHCPOFFER on {{.IPs}} to cc:bb:cc:dd:ee:ff via eth1 relay {{.IPs}} lease-duration 120
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[2567]: DHCPREQUEST for {{.IPs}} ({{.IPs}}) from 00:50:56:83:6c:a0 (DESKTOP-ABCD) via eth3 TransID 54737448 uid 01:00:50:56:83:6c:a0 (RENEW)
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[2567]: DHCPREQUEST for {{.IPs}} ({{.IPs}}) from 00:50:56:83:6c:a0 (DESKTOP-ABCD) via eth3 TransID 8767dc3c uid 01:00:50:56:83:6c:a0
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[4495]: DHCPREQUEST for {{.IPs}} from 00:50:56:83:6c:a0 (DESKTOP-ABCD) via eth3 TransID 54ade258 uid 01:00:50:56:83:6c:a0 (RENEW)
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[4495]: DHCPREQUEST for {{.IPs}} from 00:50:56:83:6c:a0 via eth3 TransID a18a70a0 uid 01:00:50:56:83:6c:a0
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[25637]: DHCPREQUEST for {{.IPs}} ({{.IPs}}) from 00:50:56:83:d3:83 via eth1 TransID 3ca1e0b7: unknown lease {{.IPs}}.
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[22730]: DHCPREQUEST for {{.IPs}} from 00:50:56:83:6c:a0 (DESKTOP-ABCD) via eth3 TransID 542900fa uid 01:00:50:56:83:6c:a0: database update failed
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[21114]: DHCPREQUEST for {{.IPs}} ({{.IPs}}) from 00:50:56:83:6c:a0 via eth3 TransID 748f30ab
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[30827]: DHCPREQUEST for {{.IPs}} from 00:50:56:83:96:03 via eth1 TransID 9cf7c9e9: ignored (not authoritative).
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[21114]: DHCPREQUEST for {{.IPs}} from 00:50:56:83:6c:a0 via eth3 TransID 2d422d0c
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpd[15752]: DHCPREQUEST for {{.IPs}} from 9a:df:6e:f6:1f:23 via {{.IPs}} TransID 15ca711f uid 01:9a:df:6e:f6:1f:23 (RENEW)
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} infoblox_{{.Domains}} dhcpd[29258]: DHCPREQUEST for {{.IPs}} ({{.IPs}}) from 00:00:00:00:00:00 via {{.IPs}} TransID 01000000 (RENEW)
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[17530]: DHCPACK on {{.IPs}} to 00:50:56:83:6c:a0 (DESKTOP-ABCD) via eth3 relay eth3 lease-duration 1800 (RENEW) uid 01:00:50:56:83:6c:a0
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[2567]: DHCPACK on {{.IPs}} to 00:50:56:83:6c:a0 (DESKTOP-ABCD) via eth3 relay eth3 lease-duration 1800 uid 01:00:50:56:83:6c:a0
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpd[8061]: DHCPOFFER on {{.IPs}} to 9a:df:6e:f6:1f:23 via eth2 relay {{.IPs}} lease-duration 40977 offered-duration 43200 uid 01:9a:df:6e:f6:1f:23
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[21114]: DHCPACK on {{.IPs}} to 00:50:56:83:6c:a0 (DESKTOP-ABCD) via eth3 relay eth3 lease-duration 1800
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpd[15752]: DHCPACK on {{.IPs}} to 9a:df:6e:f6:1f:23 via eth2 relay {{.IPs}} lease-duration 7257600 (RENEW) uid 01:9a:df:6e:f6:1f:23
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} infoblox_{{.Domains}} dhcpd[29258]: DHCPACK on {{.IPs}} to 00:00:00:00:00:00 (h000000000000) via eth1 relay {{.IPs}} lease-duration 43200 (RENEW)
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpd[13468]: DHCPACK on {{.IPs}} to 9a:df:6e:f6:1f:23 via eth2 relay {{.IPs}} lease-duration 7257600 (RENEW)
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[6939]: DHCPACK on {{.IPs}} to cc:bb:cc:dd:ee:ff via eth1 relay {{.IPs}} lease-duration 43200
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[1761]: DHCPRELEASE of {{.IPs}} from 00:50:56:83:6c:a0 (DESKTOP-ABCD) via eth3 (found) TransID 0286f3d0 uid 01:00:50:56:83:6c:a0
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[21114]: DHCPRELEASE of {{.IPs}} from 00:50:56:83:6c:a0 via eth3 (not found) TransID 665fd9f1
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[20397]: DHCPEXPIRE on {{.IPs}} to 00:50:56:83:6c:a0
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpd[18078]: DHCPINFORM from {{.IPs}} via {{.IPs}} TransID 5713b740
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpd[18078]: DHCPINFORM from {{.IPs}} via eth2 TransID 5713b740
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[6939]: DHCPINFORM from {{.IPs}} via {{.IPs}} TransID 78563412: not authoritative for subnet {{.IPs}}
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpd[32243]: DHCPDECLINE of {{.IPs}} from 34:29:8f:71:b8:99 via {{.IPs}} TransID 00000000: not found
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[20397]: DHCPDECLINE of {{.IPs}} from 00:c0:dd:07:18:e2 via {{.IPs}}: abandoned\n
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[20397]: DHCPNAK on {{.IPs}} to f4:30:b9:17:ab:0e via {{.IPs}}
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[6939]: DHCPLEASEQUERY from {{.IPs}}: LEASEQUERY not allowed, query ignored
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[1761]: DHCPDISCOVER some text
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[1761]: DHCPOFFER some text
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[1761]: DHCPREQUEST some text
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[1761]: DHCPACK some text
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[1761]: DHCPRELEASE some text
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[1761]: DHCPEXPIRE some text
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[1761]: DHCPINFORM some text
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[1761]: DHCPDECLINE some text
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[1761]: DHCPNAK some text
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[1761]: DHCPLEASEQUERY some text
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} dhcpd[1761]: some text
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpdv6[12271]: Encapsulated Solicit message from 2a02:cf40:: port 547 from client DUID 01:9a:df:6e:f6:1f:23:01:9a:df:6e:f6:1f:23, transaction ID 0x698AD400
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpdv6[12271]: Advertise NA: address 2a02:cf40:: to client with duid 01:9a:df:6e:f6:1f:23:01:9a:df:6e:f6:1f:23 iaid = -{{.timestamp_unix_s}} valid for 43200 seconds
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpdv6[12271]: Relay-forward message from 2a02:cf40:: port 547, link address 2a02:cf40::1, peer address 2a02:cf40::2
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpdv6[12271]: Encapsulating Advertise message to send to 2a02:cf40:: port 547
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} dhcpdv6[12271]: Sending Relay-reply message to 2a02:cf40:: port 547
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} {{.IPs}} dhcpd[25691]: DHCPACK on {{.IPs}} to 00:50:56:83:96:03 via eth2 relay {{.IPs}} lease-duration 3600 uid 01:9a:df:6e:f6:1f:23
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} {{.IPs}} dhcpd[11411]: RELEASE on {{.IPs}} to ce:93:30:8e:db:ac
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} {{.IPs}} dhcpd[11411]: DHCPACK to {{.IPs}} (9c:ad:97:7a:fd:33) via eth2
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} {{.IPs}} dhcpd[11411]: DHCPACK on {{.IPs}} to 4a:34:bf:d2:78:24 via eth2 relay {{.IPs}} lease-duration 900 uid 01:4a:34:bf:d2:78:24
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} {{.IPs}} dhcpd[11411]: DHCPACK on {{.IPs}} to 4a:34:bf:d2:78:24 (my-iPhone) via eth2 relay {{.IPs}} lease-duration 900 offered-duration 3600 (RENEW) uid 01:4a:34:bf:d2:78:24
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} {{.IPs}} dhcpd[11411]: DHCPACK on {{.IPs}} to 4a:34:bf:d2:78:24 via eth2 relay {{.IPs}} lease-duration 900 offered-duration 3600 (RENEW) uid 01:4a:34:bf:d2:78:24
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} {{.IPs}} dhcpd[11411]: DHCPACK on {{.IPs}} to 4a:34:bf:d2:78:24 (my-iPhone) via eth2 relay {{.IPs}} lease-duration 900 offered-duration 3600 (RENEW)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} {{.IPs}} dhcpd[1122]: Reverse map update for {{.IPs}} abandoned because of non-retryable failure: REFUSED
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} {{.IPs}} dhcpd[1122]: Unable to add forward map from {{.Domains}} to {{.IPs}} by server {{.IPs}}#53: REFUSED
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}}  {{.Domains}} {{.IPs}} dhcpd[25033]: DHCPACK on {{.IPs}} to 8e:cd:d9:ff:ff:ff via eth2 relay {{.IPs}} lease-duration 7257537 offered-duration 7257579 (RENEW)
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[11042]: 07-Apr-2022 08:08:10.043 client {{.IPs}}#57398 UDP: query: {{.Domains}} IN A response: NOERROR +ED {{.Domains}} 28800 IN A {{.Domains}}; {{.Domains}} 28800 IN A {{.IPs}};
+---EVENT_DELIMITER---
+<45>{{.timestamp_syslog}} {{.Domains}} named[17742]: 07-Apr-2022 08:08:10.043 client {{.IPs}}#50565 UDP: query: {{.Domains}} IN A response: REFUSED -
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[17742]: 07-Apr-2022 08:08:10.043 client {{.IPs}}#57398 UDP: query: {{.Domains}} IN A response: NOERROR +AED {{.Domains}} 28800 IN A {{.IPs}};
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[17742]: 07-Apr-2022 08:08:10.043 client {{.IPs}}#57398 UDP: query: {{.Domains}} IN A response: NXDOMAIN +ED
+---EVENT_DELIMITER---
+<45>{{.timestamp_syslog}} {{.Domains}} named[17742]: 07-Apr-2022 08:08:10.043 client {{.IPs}}#57398 UDP: query: {{.Domains}} IN A response: NOERROR +ED {{.Domains}} 28800 IN A {{.IPs}}; {{.Domains}} 28800 IN A {{.IPs}};
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[17742]: client @0x7f1dd4114af0 {{.IPs}}#59735 ({{.Domains}}): query failed (REFUSED) for {{.Domains}}/IN/TXT at query.c:10288
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[17742]: client @0x7f1dd4114af0 {{.IPs}}#59735 ({{.Domains}}): query: {{.Domains}} IN TXT + ({{.IPs}})
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[27014]: rpz: {{.Domains}}: reload start
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[29914]: client @0x7ff42c168b50 {{.IPs}}#50460 ({{.Domains}}): rewriting query name '{{.Domains}}' to '{{.Domains}}', type A
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[19204]: client @0x7fec7c11dab0 {{.IPs}}#36483: updating zone '{{.Domains}}/IN': adding an RR at '{{.Domains}}' A {{.IPs}}
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[28468]: CEF:0|Infoblox|NIOS|8.6.2-49634-e88e9df276a8|RPZ-QNAME|NXDOMAIN|7|app=DNS dst={{.IPs}} src={{.IPs}} spt=51424 view=_default qtype=A msg="rpz QNAME NXDOMAIN rewrite {{.Domains}} [A] via {{.Domains}}" CAT=RPZ
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[7741]: zone local_{{.Domains}}/IN: notify from {{.IPs}}#46982: zone is up to date
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[7741]: responses: client @0x7fb550117f90 {{.IPs}}#46982: received notify for zone 'local_{{.Domains}}'
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[15242]: transfer of '{{.Domains}}/IN' from {{.IPs}}#53: Transfer status: success
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[15242]: transfer of '{{.Domains}}/IN' from {{.IPs}}#53: Transfer completed: 1 messages, 9 records, 326 bytes, 0.001 secs (326000 bytes/sec)
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[56199]: client @0x7f7e6c2809f0 {{.IPs}}#57027 ({{.Domains}}): transfer of '{{.Domains}}/IN': AXFR started (serial 3)
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[56199]: client @0x7f7e6c2809f0 {{.IPs}}#57027 ({{.Domains}}): transfer of '{{.Domains}}/IN': AXFR ended
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[30325]: resolver priming query complete
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[1127]: validating {{.Domains}}/DNSKEY: unable to find a DNSKEY which verifies the DNSKEY RRset and also matches a trusted key for '{{.Domains}}'
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[1127]: validating {{.Domains}}/NSEC: bad cache hit ({{.Domains}}/DNSKEY)
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} named[1127]: validating {{.Domains}}/NSEC: bad cache hit ({{.Domains}}/DNSKEY)
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} named[2588]: infoblox-responses: 14-Apr-2022 16:17:20.046 client {{.IPs}}#57738: UDP: query: {{.Domains}} IN A response: REFUSED -
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} named[2588]: queries: client @0x7f97e40eb500 {{.IPs}}#64727 ({{.Domains}}): query: {{.Domains}} IN A + ({{.IPs}})
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} named[2588]: query-errors: client @0x7f97e40eb500 {{.IPs}}#64727 ({{.Domains}}): query failed (REFUSED) for {{.Domains}}/IN/A at query.c:10288
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} {{.IPs}} named[10750]: 04-Oct-2022 10:18:07.834 client {{.IPs}}#59605: UDP: query: {{.IPs}}{{.Domains}} IN PTR response: NOERROR + {{.IPs}}{{.Domains}}. 21801 IN PTR {{.IPs}}{{.Domains}}.;
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} {{.IPs}} named[12261]: 09-May-2023 11:54:36.185 client {{.IPs}}#59605: view 12: UDP: query: {{.Domains}} IN TXT response: NOERROR + {{.Domains}}. 3600 IN TXT "k=rsa; p=abc" "def" "ghi" "jkl" "AB";
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.Domains}} {{.IPs}} named[12261]: 03-Nov-2023 13:22:37.747 client {{.IPs}}#31645: view 1: TCP: query: {{.Domains}} IN A response: NOERROR + {{.Domains}}. 1826 IN CNAME {{.Domains}}.; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}}. 190 IN A {{.IPs}}; {{.Domains}} ...
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} named[27014]: client @0x7f1dd4114af0 {{.IPs}}#24602 ({{.Domains}}.p2.42): view 1: query: {{.Domains}}.p2.42 IN A + ({{.IPs}})
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} {{.IPs}} named[15242]: client @0x7fec7c11dab0 {{.IPs}}#40026 ({{.Domains}}): query: {{.Domains}} CH TXT +T ({{.IPs}})

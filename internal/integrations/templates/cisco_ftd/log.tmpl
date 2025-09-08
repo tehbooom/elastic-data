@@ -1,0 +1,1167 @@
+Apr 17 2020 14:08:08 SNL-ASA-VPN-A01 : %ASA-6-302016: Teardown UDP connection 110577675 for Outside:{{.IPs}}/53723(LOCAL\Elastic) to Inside:{{.IPs}}/53 duration 0:00:00 bytes 148 (zzzzzz)
+---EVENT_DELIMITER---
+Apr 17 2020 14:00:31 SNL-ASA-VPN-A01 : %ASA-4-106023: Deny icmp src Inside:{{.IPs}} dst Outside:{{.IPs}} (type 11, code 0) by access-group "Inside_access_in" [0x0, 0x0]
+---EVENT_DELIMITER---
+Apr 15 2013 09:36:50: %ASA-4-106023: Deny tcp src dmz:{{.IPs}}/6316 dst outside:{{.IPs}}/53 type 3, code 0, by access-group "acl_dmz" [0xe3afb522, 0x0]
+---EVENT_DELIMITER---
+Apr 17 2020 14:16:20 SNL-ASA-VPN-A01 : %ASA-4-106023: Deny udp src Inside:{{.IPs}}/57621(LOCAL\Elastic) dst Outside:{{.IPs}}/57621 by access-group "Inside_access_in" [0x0, 0x0]
+---EVENT_DELIMITER---
+Apr 17 2020 14:15:07 SNL-ASA-VPN-A01 : %ASA-2-106017: Deny IP due to Land Attack from {{.IPs}} to {{.IPs}}
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-6-302020: Built inbound ICMP connection for faddr {{.IPs}}/0 gaddr {{.IPs}}/0 laddr {{.IPs}}/0 type 3 code 1
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1772 to outside:{{.IPs}}/8256
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11757 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1772 ({{.IPs}}/1772)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11749 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1758 duration 0:01:07 bytes 38110 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11748 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1757 duration 0:01:07 bytes 44010 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11745 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1755 duration 0:01:07 bytes 7652 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11744 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1754 duration 0:01:07 bytes 7062 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11742 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1752 duration 0:01:08 bytes 5738 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11738 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1749 duration 0:01:08 bytes 4176 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11739 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1750 duration 0:01:08 bytes 1715 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11731 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1747 duration 0:01:09 bytes 45595 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11723 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1742 duration 0:01:09 bytes 27359 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11715 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1741 duration 0:01:09 bytes 4457 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11711 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1739 duration 0:01:09 bytes 26709 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11712 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1740 duration 0:01:09 bytes 22097 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11708 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1738 duration 0:01:10 bytes 2209 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11746 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1756 duration 0:01:07 bytes 10404 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11706 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1737 duration 0:01:10 bytes 123694 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11702 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1736 duration 0:01:11 bytes 35835 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11753 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1765 duration 0:00:30 bytes 0 SYN Timeout
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic UDP translation from inside:{{.IPs}}/56132 to outside:{{.IPs}}/1188
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11758 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11758 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 148
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11759 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11759 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 164
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1773 to outside:{{.IPs}}/8257
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11760 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1773 ({{.IPs}}/1773)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1774 to outside:{{.IPs}}/8258
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11761 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1774 ({{.IPs}}/1774)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11762 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11763 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11762 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 111
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11763 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 237
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1775 to outside:{{.IPs}}/8259
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11764 for outside:{{.IPs}}/443 ({{.IPs}}/443) to inside:{{.IPs}}/1775 ({{.IPs}}/1775)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic UDP translation from inside:{{.IPs}}/56132 to outside:{{.IPs}}/1189
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11772 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11773 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11772 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 87
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11773 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 221
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1452 to outside:{{.IPs}}/8265
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11774 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1452 ({{.IPs}}/1452)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11775 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11776 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11775 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 101
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11776 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 126
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1453 to outside:{{.IPs}}/8266
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11777 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1453 ({{.IPs}}/1453)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11777 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1453 duration 0:00:00 bytes 862 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11779 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11778 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 104
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11779 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 176
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1454 to outside:{{.IPs}}/8267
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11780 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1454 ({{.IPs}}/1454)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1455 to outside:{{.IPs}}/8268
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11781 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1455 ({{.IPs}}/1455)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1456 to outside:{{.IPs}}/8269
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11782 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1456 ({{.IPs}}/1456)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11783 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11783 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 104
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1457 to outside:{{.IPs}}/8270
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11784 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1457 ({{.IPs}}/1457)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1458 to outside:{{.IPs}}/8271
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11785 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1458 ({{.IPs}}/1458)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11786 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11784 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1457 duration 0:00:00 bytes 593 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1459 to outside:{{.IPs}}/8272
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11787 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1459 ({{.IPs}}/1459)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11786 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 375
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1460 to outside:{{.IPs}}/8273
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11788 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1460 ({{.IPs}}/1460)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1454 to outside:{{.IPs}}/8267 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1385 to outside:{{.IPs}}/8277
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11797 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1385 ({{.IPs}}/1385)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1455 to outside:{{.IPs}}/8268 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1456 to outside:{{.IPs}}/8269 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1457 to outside:{{.IPs}}/8270 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1458 to outside:{{.IPs}}/8271 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1459 to outside:{{.IPs}}/8272 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1460 to outside:{{.IPs}}/8273 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11564 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1382 duration 0:05:25 bytes 575 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11797 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1385 duration 0:00:00 bytes 5391 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1386 to outside:{{.IPs}}/8278
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11798 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1386 ({{.IPs}}/1386)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8277 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1275 to outside:{{.IPs}}/8279
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11799 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1275 ({{.IPs}}/1275)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic UDP translation from inside:{{.IPs}}/56132 to outside:{{.IPs}}/1190
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11800 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11800 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 373
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11801 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11801 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 207
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1276 to outside:{{.IPs}}/8280
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11802 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1276 ({{.IPs}}/1276)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1277 to outside:{{.IPs}}/8281
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11803 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1277 ({{.IPs}}/1277)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11802 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1276 duration 0:00:00 bytes 12853 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1278 to outside:{{.IPs}}/8282
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11804 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1278 ({{.IPs}}/1278)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11803 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1277 duration 0:00:00 bytes 5291 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1279 to outside:{{.IPs}}/8283
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11805 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1279 ({{.IPs}}/1279)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11804 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1278 duration 0:00:00 bytes 965 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11805 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1279 duration 0:00:00 bytes 8605 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1280 to outside:{{.IPs}}/8284
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11806 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1280 ({{.IPs}}/1280)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11806 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1280 duration 0:00:00 bytes 3428 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1281 to outside:{{.IPs}}/8285
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11807 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1281 ({{.IPs}}/1281)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1282 to outside:{{.IPs}}/8286
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11808 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1282 ({{.IPs}}/1282)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1283 to outside:{{.IPs}}/8287
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11809 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1283 ({{.IPs}}/1283)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1284 to outside:{{.IPs}}/8288
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11810 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1284 ({{.IPs}}/1284)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11807 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1281 duration 0:00:00 bytes 2028 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11808 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1282 duration 0:00:00 bytes 1085 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11809 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1283 duration 0:00:00 bytes 868 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1285 to outside:{{.IPs}}/8289
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11811 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1285 ({{.IPs}}/1285)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1286 to outside:{{.IPs}}/8290
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11812 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1286 ({{.IPs}}/1286)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11810 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1284 duration 0:00:00 bytes 4439 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1287 to outside:{{.IPs}}/8291
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11813 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1287 ({{.IPs}}/1287)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11811 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1285 duration 0:00:00 bytes 914 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11812 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1286 duration 0:00:00 bytes 871 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11814 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1288 to outside:{{.IPs}}/8292
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11815 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1288 ({{.IPs}}/1288)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11814 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 384
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11816 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11816 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 94
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1289 to outside:{{.IPs}}/8293
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11817 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1289 ({{.IPs}}/1289)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11815 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1288 duration 0:00:00 bytes 945 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11813 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1287 duration 0:00:00 bytes 13284 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11818 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11818 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 104
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1290 to outside:{{.IPs}}/8294
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11819 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1290 ({{.IPs}}/1290)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 9828 for outside:{{.IPs}}/67 to NP Identity Ifc:{{.IPs}}/68 duration 0:58:46 bytes 58512
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1272 to outside:{{.IPs}}/8276 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11820 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11821 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11820 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 168
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11822 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11821 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 198
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11822 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 150
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11823 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11823 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 84
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1291 to outside:{{.IPs}}/8295
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11824 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1291 ({{.IPs}}/1291)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11825 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11825 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 188
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1292 to outside:{{.IPs}}/8296
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11826 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1292 ({{.IPs}}/1292)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1293 to outside:{{.IPs}}/8297
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11827 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1293 ({{.IPs}}/1293)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1294 to outside:{{.IPs}}/8298
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11828 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1294 ({{.IPs}}/1294)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11827 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1293 duration 0:00:00 bytes 5964 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1295 to outside:{{.IPs}}/8299
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11829 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1295 ({{.IPs}}/1295)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1296 to outside:{{.IPs}}/8300
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11830 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1296 ({{.IPs}}/1296)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11828 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1294 duration 0:00:00 bytes 6694 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11829 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1295 duration 0:00:00 bytes 1493 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11830 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1296 duration 0:00:00 bytes 893 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1297 to outside:{{.IPs}}/8301
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11831 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1297 ({{.IPs}}/1297)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1298 to outside:{{.IPs}}/8302
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11832 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1298 ({{.IPs}}/1298)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11833 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11833 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 150
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11831 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1297 duration 0:00:00 bytes 2750 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1299 to outside:{{.IPs}}/8303
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11834 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1299 ({{.IPs}}/1299)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1300 to outside:{{.IPs}}/8304
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11835 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1300 ({{.IPs}}/1300)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11832 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1298 duration 0:00:00 bytes 881 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11835 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1300 duration 0:00:00 bytes 2202 TCP FINs
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1301 to outside:{{.IPs}}/8305
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11836 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1301 ({{.IPs}}/1301)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1302 to outside:{{.IPs}}/8306
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11837 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1302 ({{.IPs}}/1302)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1276 to outside:{{.IPs}}/8280 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1277 to outside:{{.IPs}}/8281 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1278 to outside:{{.IPs}}/8282 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1279 to outside:{{.IPs}}/8283 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1280 to outside:{{.IPs}}/8284 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1281 to outside:{{.IPs}}/8285 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1282 to outside:{{.IPs}}/8286 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1283 to outside:{{.IPs}}/8287 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1284 to outside:{{.IPs}}/8288 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1285 to outside:{{.IPs}}/8289 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1286 to outside:{{.IPs}}/8290 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1287 to outside:{{.IPs}}/8291 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1288 to outside:{{.IPs}}/8292 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1293 to outside:{{.IPs}}/8297 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1294 to outside:{{.IPs}}/8298 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1304 to outside:{{.IPs}}/8308
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11840 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1304 ({{.IPs}}/1304)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1295 to outside:{{.IPs}}/8299 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1296 to outside:{{.IPs}}/8300 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11841 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302015: Built outbound UDP connection 11842 for outside:{{.IPs}}/53 ({{.IPs}}/53) to inside:{{.IPs}}/56132 ({{.IPs}}/56132)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11841 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 318
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302016: Teardown UDP connection 11842 for outside:{{.IPs}}/53 to inside:{{.IPs}}/56132 duration 0:00:00 bytes 104
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1305 to outside:{{.IPs}}/8309
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11843 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1305 ({{.IPs}}/1305)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1297 to outside:{{.IPs}}/8301 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1298 to outside:{{.IPs}}/8302 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1299 to outside:{{.IPs}}/8303 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1300 to outside:{{.IPs}}/8304 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1301 to outside:{{.IPs}}/8305 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1302 to outside:{{.IPs}}/8306 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305012: Teardown dynamic TCP translation from inside:{{.IPs}}/1303 to outside:{{.IPs}}/8307 duration 0:00:30
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302014: Teardown TCP connection 11843 for outside:{{.IPs}}/80 to inside:{{.IPs}}/1305 duration 0:00:04 bytes 410333 TCP Reset-I
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/1306 to outside:{{.IPs}}/8310
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-6-302013: Built outbound TCP connection 11844 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/1306 ({{.IPs}}/1306)
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+Oct 10 2018 12:34:56 localhost CiscoASA[999]: %ASA-4-106023: Deny tcp src outside:{{.IPs}}/80 dst inside:{{.IPs}}/8309 by access-group "inbound" [0x0, 0x0]
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57379, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 145, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: a host address, DNS_TTL: 70
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, AccessControlRuleReason: Intrusion Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 51389, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, IPSCount: 1, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 193, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: IP6 Address, DNS_TTL: 299
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 53033, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 166, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: the canonical name for an alias, DNS_TTL: 899
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, AccessControlRuleReason: Intrusion Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 55371, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, IPSCount: 1, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 97, ResponderBytes: 200, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: a host address, DNS_TTL: 12
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 60441, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 193, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: IP6 Address, DNS_TTL: 299, DNSResponseType: No error
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 59714, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 166, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: the canonical name for an alias, DNS_TTL: 658
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, AccessControlRuleReason: Intrusion Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 55105, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, IPSCount: 1, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 199, NAPPolicy: Balanced Security and Connectivity, DNSResponseType: Non-Existent Domain, DNSQuery: {{.Domains}}, DNSRecordType: mail exchange, DNS_TTL: 299
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57141, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 221, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: an authoritative name server, DNS_TTL: 21599
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 47260, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 166, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSResponseType: Server Failure, DNSRecordType: marks the start of a zone of authority, DNS_TTL: 899
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, AccessControlRuleReason: Intrusion Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 58082, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, IPSCount: 1, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 722, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: text strings, DNS_TTL: 299
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 33973, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 98, ResponderBytes: 75, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: a host address, DNSResponseType: Query Refused
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 39541, DstPort: 53, Protocol: tcp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 6, ResponderPackets: 4, InitiatorBytes: 457, ResponderBytes: 313, NAPPolicy: Balanced Security and Connectivity, DNSResponseType: Server Failure
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 41672, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 107, ResponderBytes: 180, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: a host address, DNSResponseType: Non-Existent Domain, DNS_TTL: 900
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 59577, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 104, ResponderBytes: 108, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: a host address, DNS_TTL: 31694
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 35998, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 101, ResponderBytes: 162, NAPPolicy: Balanced Security and Connectivity, DNSQuery: _http._{{.Domains}}, DNSRecordType: Server Selection, DNSResponseType: Non-Existent Domain, DNS_TTL: 946
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, AccessControlRuleReason: Intrusion Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 55105, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, IPSCount: 1, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 199, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: mail exchange, DNS_TTL: 299
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 47260, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 166, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: marks the start of a zone of authority, DNS_TTL: 899
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 53033, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 166, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: the canonical name for an alias, DNS_TTL: 899
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57141, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 221, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: an authoritative name server, DNS_TTL: 21599
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 46093, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 131, NAPPolicy: Balanced Security and Connectivity, DNSRecordType: a domain name pointer, DNS_TTL: 59
+---EVENT_DELIMITER---
+{{.timestamp_iso}} siem-ftd  %FTD-1-430003: AccessControlRuleAction: Allow, AccessControlRuleReason: Intrusion Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 58082, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, IPSCount: 1, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 93, ResponderBytes: 722, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: text strings, DNS_TTL: 299
+---EVENT_DELIMITER---
+Jan  1 2019 01:00:27 beats asa[1234]: %FTD-7-999999: This message is not filtered.
+---EVENT_DELIMITER---
+Jan  1 2019 01:00:30 beats asa[1234]: %FTD-8-999999: This phony message is dropped due to log level.
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:56:30 {{.Domains}}: siem-management: admin@{{.IPs}}, System > Configuration > Configuration > /platinum/{{.Domains}}?type=AuditLog, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:57:19 {{.Domains}}: siem-management: admin@{{.IPs}}, System > Configuration > Configuration > /platinum/{{.Domains}}?type=Banner, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:57:26 {{.Domains}}: siem-management: admin@{{.IPs}}, System > Configuration > Configuration > /platinum/{{.Domains}}, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:57:34 {{.Domains}}: siem-management: admin@{{.IPs}}, System > Configuration > Configuration > /platinum/{{.Domains}}?type=IntrusionPolicyPrefs, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:57:43 lights_out_{{.Domains}}: siem-management: admin@{{.IPs}}, System > Configuration > Configuration > /admin/lights_out_{{.Domains}}, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:58:02 mojo_{{.Domains}}: siem-management: admin@{{.IPs}}, Cloud Services, View url filtering settings x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:58:02 mojo_{{.Domains}}: siem-management: admin@{{.IPs}}, Cloud Services, View amp settings x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:58:20 mojo_{{.Domains}}: siem-management: admin@{{.IPs}}, System > Monitoring > Syslog, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:58:41 mojo_{{.Domains}}: siem-management: admin@{{.IPs}}, Devices > Device Management, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:58:47 sfdccsm: siem-management: admin@{{.IPs}}, Devices > Device Management > NGFW Interfaces, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:58:52 mojo_{{.Domains}}: siem-management: admin@{{.IPs}}, Devices > Device Management > NGFW Device Summary, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:58:54 mojo_{{.Domains}}: siem-management: admin@{{.IPs}}, Devices > Device Management > NGFW Device Summary, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:59:10 sfdccsm: siem-management: admin@{{.IPs}}, Devices > Platform Settings, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 13:59:15 sfdccsm: siem-management: admin@{{.IPs}}, Devices > Platform Settings > Platform Settings Editor, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:00:37 sfdccsm: siem-management: admin@{{.IPs}}, Devices > Platform Settings > Platform Settings Editor, Save Policy ftd-policy x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:00:37 sfdccsm: siem-management: admin@{{.IPs}}, Devices > Platform Settings > Platform Settings Editor, Modified: Syslog x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:00:37 sfdccsm: siem-management: admin@{{.IPs}}, Devices > Platform Settings > Platform Settings Editor, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:01:12 sfdccsm: siem-management: admin@{{.IPs}}, Devices > Platform Settings > Platform Settings Editor, Save Policy ftd-policy x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:01:12 sfdccsm: siem-management: admin@{{.IPs}}, Devices > Platform Settings > Platform Settings Editor, Modified: Syslog x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:01:13 sfdccsm: siem-management: admin@{{.IPs}}, Devices > Platform Settings > Platform Settings Editor, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:01:20 sfdccsm: siem-management: csm_processes@Default User IP, Login, Login Success x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:01:31 {{.Domains}}: siem-management: csm_processes@Default User IP, Login, Login Success x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:01:31 {{.Domains}}: siem-management: admin@localhost, Task Queue, Successful task completion : Pre-deploy Global Configuration Generation x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:01:35 {{.Domains}}: siem-management: csm_processes@Default User IP, Login, Login Success x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:01:36 {{.Domains}}: siem-management: admin@localhost, Task Queue, Successful task completion : Pre-deploy Device Configuration for siem-ftd x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:01:55 mojo_{{.Domains}}: siem-management: admin@{{.IPs}}, System > Configuration > Configuration, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:01:56 sfdccsm: siem-management: admin@localhost, Task Queue, Policy Deployment to siem-ftd - SUCCESS x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:01:57 sfdccsm: siem-management: csm_processes@Default User IP, Login, Login Success x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:02:03 mojo_{{.Domains}}: siem-management: admin@{{.IPs}}, System > Monitoring > Syslog, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:02:11 {{.Domains}}: siem-management: admin@{{.IPs}}, System > Monitoring > Audit, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:02:19 mojo_{{.Domains}}: siem-management: admin@{{.IPs}}, System > Configuration > Configuration, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:02:31 {{.Domains}}: siem-management: admin@{{.IPs}}, System > Configuration > Configuration > /platinum/{{.Domains}}?type=AuditLog, Page View x0a x00
+---EVENT_DELIMITER---
+<14>Aug 14 2019 14:02:38 {{.Domains}}: siem-management: admin@{{.IPs}}, Devices > Platform Settings > Local System Configuration, Save Local System Configuration x0a x00
+---EVENT_DELIMITER---
+<14.2>Aug 14 2019 14:02:38 {{.Domains}}: siem-management: admin@{{.IPs}}, Devices > Platform Settings > Audit Log Settings >  Modified: Send Audit Log to Syslog enabled > Disabled
+---EVENT_DELIMITER---
+<163>%FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21 dst WAN-PROV:{{.IPs}} (type 3, code 0)
+---EVENT_DELIMITER---
+<163>%FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}} dst WAN-PROV:{{.IPs}}/9234 (type 3, code 0)
+---EVENT_DELIMITER---
+<163>%FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21 dst WAN-PROV:{{.IPs}}/9234 (type 3, code 0)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}(LOCAL\esurbey) dst Internet:{{.IPs}} (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}} (LOCAL\esurbey) dst Internet:{{.IPs}} (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}} dst Internet:{{.IPs}}(host1\foobar) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}} dst Internet:{{.IPs}} (host1\foobar) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}(host1\foobar) dst Internet:{{.IPs}}(LOCAL\esurbey) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}} (host1\foobar) dst Internet:{{.IPs}} (LOCAL\esurbey) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21(LOCAL\esurbey) dst Internet:{{.IPs}} (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21 (LOCAL\esurbey) dst Internet:{{.IPs}} (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21 dst Internet:{{.IPs}}(host1\foobar) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21 dst Internet:{{.IPs}} (host1\foobar) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21(host1\foobar) dst Internet:{{.IPs}}(LOCAL\esurbey) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21 (host1\foobar) dst Internet:{{.IPs}} (LOCAL\esurbey) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}(LOCAL\esurbey) dst Internet:{{.IPs}}/9234 (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}} (LOCAL\esurbey) dst Internet:{{.IPs}}/9234 (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}} dst Internet:{{.IPs}}/9234(host1\foobar) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}} dst Internet:{{.IPs}}/9234 (host1\foobar) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}(host1\foobar) dst Internet:{{.IPs}}/9234(LOCAL\esurbey) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}} (host1\foobar) dst Internet:{{.IPs}}/9234 (LOCAL\esurbey) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21(LOCAL\esurbey) dst Internet:{{.IPs}}/9234 (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21 (LOCAL\esurbey) dst Internet:{{.IPs}}/9234 (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21 dst Internet:{{.IPs}}/9234(host1\foobar) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21 dst Internet:{{.IPs}}/9234 (host1\foobar) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21(host1\foobar) dst Internet:{{.IPs}}/9234(LOCAL\esurbey) (type 3, code 3)
+---EVENT_DELIMITER---
+<131>{{.timestamp_syslog}} firepower : %FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}}/21 (host1\foobar) dst Internet:{{.IPs}}/9234 (LOCAL\esurbey) (type 3, code 3)
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation:Microsoft-Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation:Microsoft-Workstation:Windows10-Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation:Microsoft-Workstation:WindowsXP-Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation:Microsoft-Workstation:Windows8-Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation:Microsoft-Workstation:Windows7-Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation:Macintosh-Workstation:OS_X-Workstation:OS_X_Yosemite-Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation:Macintosh-Workstation:OS_X-Workstation:OS_X_Catalina-Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation:Macintosh-Workstation:OS_X-Workstation:OS_X_BigSur-Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation:Macintosh-Workstation:OS_X-Workstation:OS_X_Mavericks-Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation:Macintosh-Workstation:OS_X-Workstation:OS_X_High_Sierra-Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation:Macintosh-Workstation:OS_X-Workstation:OS_X_Mojave-Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Konica-Device:Konica-Minolta-Printer:Konica-Minolta-Bizhub-C360, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Konica-Device:Konica-Minolta-Printer, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Android, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Android:Android-Motorola, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Android:Android-LG, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Android:Android-Sony-Ericsson, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Android:Android-Samsung, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Android:Android-Samsung:Android-Samsung-Galaxy-Note, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Android:Android-Samsung:Android-Samsung-Galaxy-Phone, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Android:Android-Samsung:Android-Samsung-Galaxy-Phone:Android-Samsung-Galaxy-Phone-S7, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Android:Android-Samsung:Android-Samsung-Galaxy-Phone:Android-Samsung-Galaxy-Phone-S8, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Apple-Device, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Apple-Device:Apple-iPhone, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Apple-Device:Apple-iPad, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Apple-Device:Apple-TV, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Cisco-Device:Cisco-Access-Point:Cisco-AP-Aironet-2700, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Cisco-Device:Cisco-Access-Point:Cisco-AP-Aironet-2800, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Cisco-Device:Cisco-Router, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Cisco-Device:Cisco-Switch, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Cisco-Device:Cisco-Meraki-Device, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Sony-Device:Sony-PlayStation:SonyPS4, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Google-Device:Google-Chromecast, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: RaspberryPi-Device, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Intel-Device, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: HP-Device, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Nortel-Device, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Dell-Device, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation:ChromeBook-Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Cisco-Device:Cisco-IP-Phone:Cisco-IP-Phone-7941, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: American-Power-Conversion-Device, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Microsoft-Device:XBOXONE, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: HP-Device:HP-Printer:HP-LaserJet-Printer, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: RICOH-Device:RICOH-Aficio-MP-Series-Printer, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Invalid ID, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+<166>Sep 29 2022 15:00:15 hosty : %FTD-6-602303: IPSEC: An outbound LAN-to-LAN SA (SPI= 0xF0079F5A) between {{.IPs}} and {{.IPs}} (user= {{.IPs}}) has been created.
+---EVENT_DELIMITER---
+<166>Sep 29 2022 15:00:15 hosty : %FTD-6-602304: IPSEC: An inbound LAN-to-LAN SA (SPI= 0xEAEE970F) between {{.IPs}} and {{.IPs}} (user= {{.IPs}}) has been deleted.
+---EVENT_DELIMITER---
+<166>ACA1a-FW-FTDV01 %FTD-6-113005: AAA user authentication Rejected : reason = AAA failure : server = {{.IPs}} : user = scan : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+<166>%FTD-6-113005: AAA user authentication Rejected : reason = AAA failure : server = {{.IPs}} : user = ***** : user IP = {{.IPs}}
+---EVENT_DELIMITER---
+<166>:{{.timestamp_syslog}} UTC: %FTD--6-852002: Received Full Proxy to Lightweight event from application Snort for TCP flow {{.IPs}}/710 to {{.IPs}}/47873
+---EVENT_DELIMITER---
+<164>%FTD-4-313005: No matching connection for ICMP error message: icmp src LAN:{{.IPs}} dst New-Outside:{{.IPs}} (type 3, code 3) on LAN interface.  Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/41330.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-4-313005: No matching connection for ICMP error message: icmp src srcif:{{.IPs}} dst dstif:{{.IPs}} (type 3, code 3) on myif interface. Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/10872.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-4-313005: No matching connection for ICMP error message: icmp src srcif:{{.IPs}}(LOCAL\testgroup\testuser) dst dstif:{{.IPs}} (type 3, code 3) on myif interface.  Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/10872.
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} dev01: %FTD-4-313005: No matching connection for ICMP error message: icmp src srcif:{{.IPs}}(LOCAL\testuser) dst dstif:{{.IPs}} (type 3, code 3) on myif interface.  Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/10872.
+---EVENT_DELIMITER---
+<188>{{.timestamp_syslog}}: %FTD-4-313005: No matching connection for ICMP error message: icmp src srcif:{{.IPs}} dst dstif:{{.IPs}} (type 3, code 2) on srcif interface. Original IP payload: icmp src {{.IPs}} dst {{.IPs}} (type 0, code 0).
+---EVENT_DELIMITER---
+<188>{{.timestamp_syslog}} dev01: %FTD<Up>-4-313005: No matching connection for ICMP error message: icmp src srcif:{{.IPs}} dst dstif:{{.IPs}} (type 3, code 2) on srcif interface. Original IP payload: protocol 51 src {{.IPs}} dst {{.IPs}}.
+---EVENT_DELIMITER---
+<188>{{.timestamp_syslog}} dev01: %FTD<Up>-4-313005: No matching connection for ICMP error message: icmp src Processing:{{.IPs}} dst Office:{{.IPs}} (type 3, code 2) on Processing interface. Original IP payload: udp src {{.IPs}} dst {{.IPs}}.
+---EVENT_DELIMITER---
+<140>Oct 06 2023 10:11:00 myFtdHostname : %FTD-4-313005: No matching connection for ICMP error message: icmp src outside:{{.IPs}}(9999:my_SgtName) dst inside:{{.IPs}} (type 3, code 3) on outside interface.  Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/60919.
+---EVENT_DELIMITER---
+<140>Oct 06 2023 10:11:00 myFtdHostname : %FTD-4-313005: No matching connection for ICMP error message: icmp src outside:{{.IPs}}(9999:my_SgtNameSrc) dst inside:{{.IPs}}(8888:my_SgtNameDst) (type 3, code 3) on outside interface.  Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/60919.
+---EVENT_DELIMITER---
+<140>Oct 06 2023 10:33:23 myFtdHostname : %FTD-4-313005: No matching connection for ICMP error message: icmp src outside:{{.IPs}}(LOCAL\myUser1234, 9999:my_SgtName) dst inside:{{.IPs}} (type 3, code 3) on outside interface.  Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/54860.
+---EVENT_DELIMITER---
+<140>Oct 25 2023 06:53:06 myFtdHostname : %FTD-4-313005: No matching connection for ICMP error message: icmp src outside:{{.IPs}}(LOCAL\myUser1234$, 9999:my_SgtName) dst inside:{{.IPs}} (type 3, code 3) on outside interface.  Original IP payload: udp src {{.IPs}}/53 dst {{.IPs}}/55735.
+---EVENT_DELIMITER---
+<164>Oct 25 2023 14:40:42 myFtdHostname : %FTD-4-313005: No matching connection for ICMP error message: icmp src inside:{{.IPs}} dst outside:{{.Domains}} (type 3, code 3) on inside interface.  Original IP payload: udp src {{.Domains}}/53 dst {{.IPs}}/58164.
+---EVENT_DELIMITER---
+<172>Apr 25 2025 17:46:08 myFtdHostname : %FTD-4-313005: No matching connection for ICMP error message: icmp src outside:{{.IPs}}(9999:my_SgtName) dst inside:{{.IPs}} (type 3, code 3) on inside interface. Original IP payload: <unknown>.
+---EVENT_DELIMITER---
+<165>%FTD-5-305013: Asymmetric NAT rules matched for forward and reverse flows; Connection for tcp src WAN-PROV:{{.IPs}}/556(LOCAL\charlie) dst LAN:{{.IPs}}/7000 denied due to NAT reverse path failure
+---EVENT_DELIMITER---
+<163>%FTD-3-210007: LU allocate xlate failed for dynamic-nat ICMP translation from WAN-PROV:{{.IPs}}/0 ({{.IPs}}/0) to WAN-PROV:{{.IPs}}/0 ({{.IPs}}/137)
+---EVENT_DELIMITER---
+<164>%FTD-4-401004: Shunned packet: {{.IPs}} ==> {{.IPs}} on interface WAN
+---EVENT_DELIMITER---
+<164>%FTD-4-500004: Invalid transport field for protocol=TCP, from {{.IPs}}/44098 to {{.IPs}}/0
+---EVENT_DELIMITER---
+<163>%FTD-3-305006: regular translation creation failed for icmp src any:{{.IPs}} dst WAN-PROV:{{.IPs}} (type 3, code 0)
+---EVENT_DELIMITER---
+<164>%FTD-4-113042: Non-HTTP connection from WAN-PROV:{{.IPs}}/61002 to LAN:{{.IPs}}/444 denied by redirect filter; only HTTP connections are supported for redirection.
+---EVENT_DELIMITER---
+<164>Jul 16 2024 12:30:30: %FTD-4-722051: Group <ADM-AnyConnectGroup> User <Test User 1> IP <{{.IPs}}> IPv4 Address <{{.IPs}}> IPv6 address <::> assigned to session
+---EVENT_DELIMITER---
+<164>Jul 16 2024 12:30:30: %FTD-5-305013: Asymmetric NAT rules matched for forward and reverse flows; Connection for protocol 47 src {{.Domains}}:{{.IPs}} dst {{.Domains}}:{{.IPs}} denied due to NAT reverse path failure
+---EVENT_DELIMITER---
+<164>Jul 16 2024 12:30:30: %FTD-6-302023: Teardown director TCP connection for INSIDE:{{.IPs}}/49001 to OUTSIDE:{{.IPs}}/443 duration 0:00:30 forwarded bytes 0 Cluster flow with CLU closed on owner
+---EVENT_DELIMITER---
+<164>Jul 16 2024 12:30:30: %FTD-6-302023: Teardown backup TCP connection for INSIDE:{{.IPs}}/49001 to OUTSIDE:{{.IPs}}/443 duration 0:00:12 forwarded bytes 5282 Cluster flow with CLU closed on owner
+---EVENT_DELIMITER---
+{{.timestamp_iso}} myhost %FTD-1-103001: (Secondary) No response from other firewall (reason code = 4).
+---EVENT_DELIMITER---
+<166>Feb 01 2025 21:57:35 hit_count : %FTD-6-113008: AAA transaction status ACCEPT : user = nice_guy
+---EVENT_DELIMITER---
+<166>Feb 01 2025 21:57:35 hit_count : %FTD-6-113009: AAA retrieved default group policy (DEF_REMOTE_VPN_GROUP) for user = nice_guy
+---EVENT_DELIMITER---
+<166>Feb 01 2025 18:41:45 hit_count : %FTD-6-113014: AAA authentication server not accessible : server = {{.IPs}} : user = *****
+---EVENT_DELIMITER---
+<166>Feb 01 2025 18:43:42 hit_count : %FTD-6-113014: AAA authentication server not accessible : server =  {{.IPs}} : user = *****
+---EVENT_DELIMITER---
+<165>Feb 01 2025 21:57:37 hit_count : %FTD-5-109201: UAUTH: Session=0x07802000, User=abbie_normal, Assigned IP={{.IPs}}, Succeeded adding entry.
+---EVENT_DELIMITER---
+<165>Feb 01 2025 21:56:23 hit_count : %FTD-5-109207: UAUTH: Session=0x07676000, User=abbie, Assigned IP={{.IPs}}, Succeeded updating entry.
+---EVENT_DELIMITER---
+<165>Feb 01 2025 21:57:53 hit_count : %FTD-5-109210: UAUTH: Session=0x07800000, User=drew, Assigned IP={{.IPs}}, Succeeded removing entry.
+---EVENT_DELIMITER---
+<165>Feb 01 2025 12:00:51: %ASA-5-111008: User 'vold-sauron' executed the 'enable' command.
+---EVENT_DELIMITER---
+<166>Feb 01 2025 22:08:01 hit_count : %FTD-6-210022: LU missed 1 updates
+---EVENT_DELIMITER---
+<182>{{.timestamp_iso}} herndon : %FTD-6-305012: Teardown dynamic UDP translation from any:{{.IPs}}/23455(LOCAL\bowser) to WAN:{{.IPs}}/23455 duration 0:02:33
+---EVENT_DELIMITER---
+<182>{{.timestamp_iso}} herndon : %FTD-6-305012: Teardown dynamic UDP translation from any:{{.IPs}}/23455(LOCAL\\bowser) to WAN:{{.IPs}}/23455 duration 0:02:33
+---EVENT_DELIMITER---
+<166>Feb 01 2025 21:58:39 hit_count : %FTD-6-602101: PMTU-D packet 1480 bytes greater than effective mtu 1390, dest_addr={{.IPs}}, src_addr={{.IPs}}, prot=UDP
+---EVENT_DELIMITER---
+<166>Feb 01 2025 22:32:34 hit_count : %FTD-6-716002: Group <RA_VPN_GP> User <teddy> IP <{{.IPs}}> WebVPN session terminated: User Requested.
+---EVENT_DELIMITER---
+<166>Feb 01 2025 18:41:47 hit_count : %FTD-6-716058: Group <RA_VPN> User <teddy> IP <{{.IPs}}> AnyConnect session lost connection. Waiting to resume.
+---EVENT_DELIMITER---
+<166>Feb 01 2025 18:42:16 hit_count : %FTD-6-716059: Group <RA_VPN> User <otto> IP <{{.IPs}}> AnyConnect session resumed connection from IP <{{.IPs}}>.
+---EVENT_DELIMITER---
+<164>Feb 01 2025 18:42:03 hit_count : %FTD-4-722051: Group <RA_VPN_GP> User <otto> IP <{{.IPs}}> IPv4 Address <{{.IPs}}> IPv6 address <::> assigned to session
+---EVENT_DELIMITER---
+<166>Feb 01 2025 21:57:37 hit_count : %FTD-6-722055: Group <RA_VPN_GP> User <sisyphus> IP <{{.IPs}}> Client Type: Cisco AnyConnect VPN Agent for Windows {{.IPs}}
+---EVENT_DELIMITER---
+<167>Feb 01 2025 21:57:37 hit_count : %FTD-7-746012: user-identity: Add IP-User mapping {{.IPs}} - LOCAL\dreyfuss Succeeded - VPN user
+---EVENT_DELIMITER---
+<167>Feb 01 2025 21:57:37 hit_count : %FTD-7-746012: user-identity: Add IP-User mapping {{.IPs}} - LOCAL\dreyfuss Failure - VPN user
+---EVENT_DELIMITER---
+<167>Feb 01 2025 21:57:53 hit_count : %FTD-7-746013: user-identity: Delete IP-User mapping {{.IPs}} - LOCAL\stewart Succeeded - VPN user logout
+---EVENT_DELIMITER---
+<182>{{.timestamp_iso}} seattle : %FTD-6-302304: Teardown TCP state-bypass connection 123456789 from carpal-tunnel1:{{.IPs}}/38110 to EL_BOW2:{{.IPs}}/6379 duration  0:02:02 bytes 54 Connection timeout
+---EVENT_DELIMITER---
+<166>May 09 2023 15:50:47 fw-bld1-1 : %FTD-6-302013: Built inbound TCP connection 154498453 for Outside1:{{.IPs}}/5248 ({{.IPs}}/40846) to Outside2:{{.IPs}}/443 ({{.IPs}}/443)
+---EVENT_DELIMITER---
+<166>May 09 2023 15:50:47 fw-bld1-1 : %FTD-6-302013: Built inbound TCP connection 154498453 for Inside1:{{.IPs}}/5248 ({{.IPs}}/40846) to Outside1:{{.IPs}}/443 ({{.IPs}}/443)
+---EVENT_DELIMITER---
+<166>May 09 2023 15:50:47 fw-bld1-1 : %FTD-6-302013: Built inbound TCP connection 154498453 for Outside1:{{.IPs}}/5248 ({{.IPs}}/40846) to Inside1:{{.IPs}}/443 ({{.IPs}}/443)
+---EVENT_DELIMITER---
+<166>May 09 2023 15:50:47 fw-bld1-1 : %FTD-6-302013: Built inbound TCP connection 154498453 for Inside1:{{.IPs}}/5248 ({{.IPs}}/40846) to Inside2:{{.IPs}}/443 ({{.IPs}}/443)
+---EVENT_DELIMITER---
+<166>May 09 2023 15:50:47 fw-bld1-1 : %FTD-6-302013: Built inbound Probe TCP connection 154498453 for Outside1:{{.IPs}}/5248 ({{.IPs}}/40846) to Outside2:{{.IPs}}/443 ({{.IPs}}/443)
+---EVENT_DELIMITER---
+<166>May 09 2023 15:50:47 fw-bld1-1 : %FTD-6-302013: Built inbound Probe TCP connection 154498453 for Inside1:{{.IPs}}/5248 ({{.IPs}}/40846) to Outside1:{{.IPs}}/443 ({{.IPs}}/443)
+---EVENT_DELIMITER---
+<166>May 09 2023 15:50:47 fw-bld1-1 : %FTD-6-302013: Built inbound Probe TCP connection 154498453 for Outside1:{{.IPs}}/5248 ({{.IPs}}/40846) to Inside1:{{.IPs}}/443 ({{.IPs}}/443)
+---EVENT_DELIMITER---
+<166>May 09 2023 15:50:47 fw-bld1-1 : %FTD-6-302013: Built inbound Probe TCP connection 154498453 for Inside1:{{.IPs}}/5248 ({{.IPs}}/40846) to Inside2:{{.IPs}}/443 ({{.IPs}}/443)
+---EVENT_DELIMITER---
+<164>Feb 19 2024 16:29:38: %FTD-4-113019: Group = VPN, Username = abcd, IP = {{.IPs}}, Session disconnected. Session Type: SSL, Duration: 1h:24m:30s, Bytes xmt: 25292048, Bytes rcv: 12546398, Reason: User Requested
+---EVENT_DELIMITER---
+<166>: 2024 {{.timestamp_syslog}} UTC ccafa9b4-b48a-4156-b3af-de2d35e5f432 : %FTD-auth-6-113039: Group <GroupPolicy_XXX> User <MacBook Pro belonging to {{.Domains}}> IP <{{.IPs}}> AnyConnect parent session started.
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-0-430001: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 55644, DstPort: 80, Protocol: tcp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, Priority: 1, GID: 1, SID: 17279, Revision: 12, Message: SERVER-WEBAPP Ipswitch WhatsUp Small Business directory traversal attempt, Classification: Attempted User Privilege Gain, User: No Authentication Required, Client: Firefox, ApplicationProtocol: HTTP, IntrusionPolicy: intrusion-policy, ACPolicy: default, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-0-430001: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 55868, DstPort: 80, Protocol: tcp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, Priority: 1, GID: 1, SID: 17279, Revision: 12, Message: SERVER-WEBAPP Ipswitch WhatsUp Small Business directory traversal attempt, Classification: Attempted User Privilege Gain, User: No Authentication Required, Client: Firefox, ApplicationProtocol: HTTP, IntrusionPolicy: intrusion-policy, ACPolicy: default, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-0-430001: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 21, DstPort: 39114, Protocol: tcp, IngressInterface: outside, EgressInterface: inside, IngressZone: output-zone, EgressZone: input-zone, Priority: 3, GID: 1, SID: 13360, Revision: 6, Message: APP-DETECT failed FTP login attempt, Classification: Misc Activity, User: No Authentication Required, IntrusionPolicy: intrusion-policy, ACPolicy: default, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-0-430001: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 21, DstPort: 40740, Protocol: 6, IngressInterface: outside, EgressInterface: inside, IngressZone: output-zone, EgressZone: input-zone, Priority: 3, GID: 1, SID: 13360, Revision: 6, Message: APP-DETECT failed FTP login attempt, Classification: Misc Activity, User: No Authentication Required, IntrusionPolicy: intrusion-policy, ACPolicy: default, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+Jan 11 2018 01:00:27 beats ftd[1234]: ApplicationProtocol: http, Client: webserver, DstIP: {{.IPs}}, SrcIP: {{.IPs}}, Message: Intrusion attempt
+---EVENT_DELIMITER---
+Jan 11 2018 01:00:27 beats ftd[1234]: HTTPResponse: 404, Message: Some message here (1:36330:2).
+---EVENT_DELIMITER---
+Jan 11 2018 01:00:27 beats ftd[1234]: HTTPResponse: 404, Message: Some message here (1:36330:2), Empty: ,FileCount:, IngressZone:
+---EVENT_DELIMITER---
+Jan 11 2018 01:00:27 beats ftd[1234]: %ASA-3-430005 Message: This one has a type id, HTTPResponse: 404, Message: And two messages, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 512, DstPort: 64311
+---EVENT_DELIMITER---
+<165>Oct 04 2019 15:27:55: %ASA-5-106100: access-list AL-DMZ-LB-IN denied tcp LB-DMZ/WHAT-IS-THIS-A-HOSTNAME-{{.IPs}}(27218) -> OUTSIDE/{{.IPs}}(53) hit-cnt 1 first hit [0x16847359, 0x00000000]
+---EVENT_DELIMITER---
+Jan  1 2020 10:42:53 localhost : %ASA-6-302021: Teardown ICMP connection for faddr {{.IPs}}/0 gaddr {{.Domains}}/17233 laddr {{.IPs}}/17233
+---EVENT_DELIMITER---
+Jan  2 2020 11:33:20 localhost : %ASA-4-338204: Dynamic filter dropped greylisted TCP traffic from eth0:{{.IPs}}/1234 ({{.Domains}}/11234) to wan:{{.IPs}}/80 ({{.Domains}}/80), destination malicious address resolved from dynamic list: {{.Domains}}, threat-level: high, category: malware
+---EVENT_DELIMITER---
+Apr 15 2013 09:36:50: %FTD-4-106023: Deny tcp src dmz:{{.IPs}}/63016 dst outside:{{.IPs}}/53 by access-group "acl_dmz" [0xe3aab522, 0x0]
+---EVENT_DELIMITER---
+Apr 15 2013 09:36:50: %FTD-4-106023: Deny tcp src dmz:{{.IPs}}/63016 dst outside:{{.IPs}}/53 type 3, code 0, by access-group "acl_dmz" [0xe3aab522, 0x0]
+---EVENT_DELIMITER---
+Apr 15 2014 09:34:34 EDT: %FTD-session-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2241) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 24 2013 16:00:28 INT-FW01 : %FTD-6-106100: access-list inside denied udp inside/{{.IPs}}(1039) -> outside/{{.IPs}}(53) hit-cnt 1 first hit [0xd820e56a, 0x0]
+---EVENT_DELIMITER---
+Apr 24 2013 16:00:27 INT-FW01 : %FTD-6-106100: access-list inside permitted udp inside/{{.IPs}}(1065) -> outside/{{.IPs}}(53) hit-cnt 144 300-second interval [0xe982c7a4, 0x0]
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %FTD-6-305011: Built dynamic TCP translation from outside:{{.IPs}}/4952 to outside:{{.IPs}}/12834
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %FTD-6-302013: Built outbound TCP connection 89743274 for outside:{{.IPs}}/443 ({{.IPs}}/443) to outside:{{.IPs}}/4952 ({{.IPs}}/12834)
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %FTD-6-305011: Built dynamic UDP translation from outside:{{.IPs}}/52925 to outside:{{.IPs}}/25882
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %FTD-6-302015: Built outbound UDP connection 89743275 for outside:{{.IPs}}/53 ({{.IPs}}/53) to outside:{{.IPs}}/52925 ({{.IPs}}/25882)
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %FTD-6-305011: Built dynamic TCP translation from outside:{{.IPs}}/4953 to outside:{{.IPs}}/45392
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %FTD-6-302013: Built outbound TCP connection 89743276 for outside:{{.IPs}}/80 ({{.IPs}}/80) to outside:{{.IPs}}/4953 ({{.IPs}}/45392)
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %FTD-6-302016: Teardown UDP connection 89743275 for outside:{{.IPs}}/53 to inside:{{.IPs}}/52925 duration 1:23:45 bytes 140
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %FTD-6-302016: Teardown UDP connection 666 for outside:{{.IPs}}/53 user1 to inside:{{.IPs}}/52925 user2 duration 10:00:00 bytes 9999999
+---EVENT_DELIMITER---
+Jun 04 2011 21:59:52 FJSG2NRFW01 : %FTD-6-302021: Teardown ICMP connection for faddr {{.IPs}}/0 gaddr {{.IPs}}/17233 laddr {{.IPs}}/17233
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %FTD-6-305011: Built dynamic TCP translation from inside:{{.IPs}}/4954 to outside:{{.IPs}}/10879
+---EVENT_DELIMITER---
+Apr 29 2013 12:59:50: %FTD-6-302013: Built outbound TCP connection 89743277 for outside:{{.IPs}}/80 ({{.IPs}}/80) to inside:{{.IPs}}/4954 ({{.IPs}}/10879)
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:33: %FTD-2-106007: Deny inbound UDP from {{.IPs}}/12981 to {{.IPs}}/53 due to DNS Query
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:38: %FTD-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2006) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:38: %FTD-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49734) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:39: %FTD-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49735) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:39: %FTD-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49736) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:39: %FTD-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49737) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:40: %FTD-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49738) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:41: %FTD-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49746) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:47: %FTD-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2007) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:48: %FTD-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(43013) -> dmz/{{.IPs}}(25) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:22:56: %FTD-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2008) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:02: %FTD-2-106006: Deny inbound UDP from {{.IPs}}/137 to {{.IPs}}/137 on interface inside
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:03: %FTD-2-106007: Deny inbound UDP from {{.IPs}}/12981 to {{.IPs}}/53 due to DNS Query
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:06: %FTD-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2009) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:08: %FTD-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(49776) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:15: %FTD-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2010) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:24: %FTD-5-106100: access-list acl_in denied tcp inside/{{.IPs}}(2011) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:34: %FTD-5-106100: access-list acl_in denied tcp inside/{{.IPs}}(2012) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:40: %FTD-4-106023: Deny tcp src outside:{{.IPs}}/53638 dst inside:{{.IPs}}/8111 by access-group "acl_out" [0x71761f18, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:41: %FTD-4-106023: Deny tcp src outside:{{.IPs}}/53638 dst inside:{{.IPs}}/8111 by access-group "acl_out" [0x71761f18, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:43: %FTD-5-106100: access-list acl_in est-allowed tcp inside/{{.IPs}}(49840) -> outside/{{.IPs}}(40443) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 30 2013 09:23:43: %FTD-5-106100: access-list acl_in est-allowed tcp inside/{{.IPs}}(2013) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Apr 15 2018 09:34:34 EDT: %FTD-session-5-106100: access-list acl_in permitted tcp inside/{{.IPs}}(2241) -> outside/{{.IPs}}(2000) hit-cnt 1 first hit [0x71a87d94, 0x0]
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:24 {{.IPs}}: %FTD-6-302015: Built outbound UDP connection 447235 for outside:{{.IPs}}/11180 ({{.IPs}}/11180) to identity:{{.IPs}}/80 ({{.IPs}}/80)
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:24 {{.IPs}}: %FTD-4-106023: Deny udp src dmz:{{.IPs}}/5555 dst outside:{{.IPs}}/53 by access-group "dmz" [0x123a465e, 0x4c7bf613]
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:24 {{.IPs}}: %FTD-4-106023: Deny udp src dmz:{{.IPs}}/5555 dst outside:{{.IPs}}/53 by access-group "dmz" [0x123a465e, 0x4c7bf613]
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:31 {{.IPs}}: %FTD-6-302013: Built outbound TCP connection 447236 for outside:{{.IPs}}/1234 ({{.IPs}}/1234) to dmz:OCSP_Server/5678 (OCSP_Server/5678)
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:31 {{.IPs}}: %FTD-6-302013: Built outbound TCP connection 447236 for outside:{{.IPs}}/1234 ({{.IPs}}/1234) to dmz:OCSP_Server/5678 (OCSP_Server/5678)
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:31 {{.IPs}}: %FTD-6-302014: Teardown TCP connection 447236 for outside:{{.IPs}}/1234 to dmz:{{.IPs}}/5678 duration 0:00:00 bytes 14804 TCP FINs
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:38 {{.IPs}}: %FTD-6-302014: Teardown TCP connection 447234 for outside:{{.IPs}}/1234 to dmz:{{.IPs}}/5678 duration 0:01:08 bytes 134781 TCP FINs
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:38 {{.IPs}}: %FTD-6-302014: Teardown TCP connection 447234 for outside:{{.IPs}}/1234 to dmz:{{.IPs}}/5678 duration 0:01:08 bytes 134781 TCP FINs
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:31 {{.IPs}}: %FTD-6-302014: Teardown Probe TCP connection 447236 for outside:{{.IPs}}/1234 to dmz:{{.IPs}}/5678 duration 0:00:00 bytes 14804 TCP FINs
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:38 {{.IPs}}: %FTD-6-302014: Teardown Probe TCP connection 447234 for outside:{{.IPs}}/1234 to dmz:{{.IPs}}/5678 duration 0:01:08 bytes 134781 TCP FINs
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:38 {{.IPs}}: %FTD-6-302014: Teardown Probe TCP connection 447234 for outside:{{.IPs}}/1234 to dmz:{{.IPs}}/5678 duration 0:01:08 bytes 134781 TCP FINs
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:38 {{.IPs}}: %FTD-6-106015: Deny TCP (no connection) from {{.IPs}}/1234 to {{.IPs}}/5679 flags RST  on interface outside
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:38 {{.IPs}}: %FTD-6-106015: Deny TCP (no connection) from {{.IPs}}/1234 to {{.IPs}}/5679 flags RST  on interface outside
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:39 {{.IPs}}: %FTD-4-106023: Deny udp src dmz:{{.IPs}}/5679 dst outside:{{.IPs}}/5000 by access-group "dmz" [0x123a465e, 0x8c20f21]
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:53 {{.IPs}}: %FTD-6-302013: Built outbound TCP connection 447237 for outside:{{.IPs}}/1234 ({{.IPs}}/1234) to dmz:{{.IPs}}/65000 ({{.IPs}}/65000)
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:53 {{.IPs}}: %FTD-6-302013: Built outbound TCP connection 447237 for outside:{{.IPs}}/1234 ({{.IPs}}/1234) to dmz:{{.IPs}}/65000 ({{.IPs}}/65000)
+---EVENT_DELIMITER---
+Dec 11 2018 08:01:53 {{.IPs}}: %FTD-6-302014: Teardown TCP connection 447237 for outside:{{.IPs}}/1234 to dmz:{{.IPs}}/1235 duration 23:59:59 bytes 11420 TCP FINs
+---EVENT_DELIMITER---
+Aug 15 2012 23:30:09: %FTD-6-302016: Teardown UDP connection 40 for outside:{{.IPs}}/500 to inside:{{.IPs}}/500 duration 0:02:02 bytes 1416
+---EVENT_DELIMITER---
+Sep 12 2014 06:50:53 GIFRCHN01 : %FTD-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:51:01 GIFRCHN01 : %FTD-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:51:05 GIFRCHN01 : %FTD-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:51:05 GIFRCHN01 : %FTD-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:51:06 GIFRCHN01 : %FTD-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:51:17 GIFRCHN01 : %FTD-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:52:48 GIFRCHN01 : %FTD-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:53:00 GIFRCHN01 : %FTD-2-106016: Deny IP spoof from ({{.IPs}}) to {{.IPs}} on interface Mobile_Traffic
+---EVENT_DELIMITER---
+Sep 12 2014 06:53:01 GIFRCHN01 : %FTD-4-106023: Deny tcp src outside:{{.IPs}}/24069 dst inside:{{.IPs}}/25 by access-group "PERMIT_IN" [0x0, 0x0]"
+---EVENT_DELIMITER---
+Sep 12 2014 06:53:02 GIFRCHN01 : %FTD-3-313001: Denied ICMP type=3, code=3 from {{.IPs}} on interface Outside
+---EVENT_DELIMITER---
+Jan 14 2015 13:16:13: %FTD-4-313004: Denied ICMP type=0, from laddr {{.IPs}} on interface inside to {{.IPs}}: no matching session
+---EVENT_DELIMITER---
+Jan 14 2015 13:16:14: %FTD-4-338002: Dynamic Filter permitted black listed TCP traffic from inside:{{.IPs}}/6798 ({{.IPs}}/7890) to outside:{{.IPs}}/80 ({{.IPs}}/80), destination {{.IPs}} resolved from dynamic list: {{.Domains}}
+---EVENT_DELIMITER---
+Jan 14 2015 13:16:14: %FTD-4-338004: Dynamic Filter monitored blacklisted TCP traffic from inside:{{.IPs}}/33340 ({{.IPs}}/33340) to outsidet:{{.IPs}}/80 ({{.IPs}}/80), destination {{.IPs}} resolved from dynamic list: {{.IPs}}/{{.IPs}}, threat-level: very-high, category: Malware
+---EVENT_DELIMITER---
+Jan 14 2015 13:16:14: %FTD-4-338008: Dynamic Filter dropped blacklisted TCP traffic from inside:{{.IPs}}/33340 ({{.IPs}}/33340) to outsidet:{{.IPs}}/80 ({{.IPs}}/8080), destination {{.IPs}} resolved from dynamic list: {{.IPs}}/{{.IPs}}, threat-level: very-high, category: Malware
+---EVENT_DELIMITER---
+Nov 16 2009 14:12:35: %FTD-5-304001: {{.IPs}} Accessed URL {{.IPs}}:/app
+---EVENT_DELIMITER---
+Nov 16 2009 14:12:36: %FTD-5-304001: {{.IPs}} Accessed URL {{.IPs}}:http://{{.Domains}}
+---EVENT_DELIMITER---
+Nov 16 2009 14:12:37: %FTD-5-304002: Access denied URL http://{{.Domains}}/images/{{.Domains}} SRC {{.IPs}} DEST {{.IPs}} on interface inside
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} UTC: %FTD-session-6-302013: Built inbound TCP connection {{.timestamp_unix_s}} for intranet:{{.IPs}}/59864 ({{.IPs}}/59864) to internet:{{.IPs}}/1433 ({{.IPs}}/1433)
+---EVENT_DELIMITER---
+<190>Mar 03 2023 09:01:16 sac-firewall : %FDT-6-113004: AAA user accounting Successful : server =  {{.IPs}} : user = sample-user
+---EVENT_DELIMITER---
+<190>Mar 03 2023 08:50:32 sac-firewall : %FDT-6-113012: AAA user authentication Successful : local database : user = {{.Domains}}
+---EVENT_DELIMITER---
+<190>Mar 03 2023 09:13:09 sac-firewall : %FDT-6-716039: Group <DfltGrpPolicy> User <*****> IP <{{.IPs}}> Authentication: rejected, Session Type: WebVPN.
+---EVENT_DELIMITER---
+<167>Jul 04 2025 04:21:02 hit_count : %FTD-6-746013: user-identity: Delete IP-User mapping {{.IPs}} - LOCAL\\foo Succeeded - Inactive timeout \n
+---EVENT_DELIMITER---
+<167>Jul 04 2025 04:21:02 hit_count : %FTD-6-746013: user-identity: Delete IP-User mapping {{.IPs}} - LOCAL\\foo Failed - Inactive timeout
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430002: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, ICMPType: Echo Request, ICMPCode: No Code, Protocol: icmp, IngressInterface: output, EgressInterface: input, IngressZone: output-zone, EgressZone: input-zone, ACPolicy: default, AccessControlRuleName: Rule-1, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: ICMP client, ApplicationProtocol: ICMP, InitiatorPackets: 1, ResponderPackets: 0, InitiatorBytes: 98, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, ICMPType: Echo Request, ICMPCode: No Code, Protocol: icmp, IngressInterface: output, EgressInterface: input, IngressZone: output-zone, EgressZone: input-zone, ACPolicy: default, AccessControlRuleName: Rule-1, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: ICMP client, ApplicationProtocol: ICMP, ConnectionDuration: 0, InitiatorPackets: 1, ResponderPackets: 1, InitiatorBytes: 98, ResponderBytes: 98, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430002: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 50074, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Rule-1, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, InitiatorPackets: 1, ResponderPackets: 0, InitiatorBytes: 106, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity, DNSQuery: {{.Domains}}, DNSRecordType: a host address
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 49264, DstPort: 53, Protocol: udp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Rule-1, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, Client: DNS client, ApplicationProtocol: DNS, ConnectionDuration: 0, InitiatorPackets: 2, ResponderPackets: 2, InitiatorBytes: 164, ResponderBytes: 314, NAPPolicy: Balanced Security and Connectivity, DNSQuery: siem-inside, DNSRecordType: a host address, DNSResponseType: Non-Existent Domain, DNS_TTL: 86395
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430002: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 43228, DstPort: 80, Protocol: tcp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Rule-1, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, InitiatorPackets: 2, ResponderPackets: 1, InitiatorBytes: 140, ResponderBytes: 74, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 43228, DstPort: 80, Protocol: tcp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Rule-1, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, UserAgent: Debian APT-HTTP/1.3 (1.6.11), Client: Advanced Packaging Tool, ClientVersion: 1.3, ApplicationProtocol: HTTP, WebApplication: Ubuntu, ConnectionDuration: 1, InitiatorPackets: 1359, ResponderPackets: 29001, InitiatorBytes: 97454, ResponderBytes: 41319018, NAPPolicy: Balanced Security and Connectivity, HTTPResponse: 200, ReferencedHost: {{.Domains}}, URL: http://{{.Domains}}/ubuntu/pool/main/m/manpages/manpages-dev_4.15-1_{{.Domains}}
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430002: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 46000, DstPort: 80, Protocol: tcp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Rule-1, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, InitiatorPackets: 2, ResponderPackets: 1, InitiatorBytes: 140, ResponderBytes: 74, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 46000, DstPort: 80, Protocol: tcp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Rule-1, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, UserAgent: curl/7.58.0, Client: cURL, ClientVersion: 7.58.0, ApplicationProtocol: HTTP, ConnectionDuration: 0, InitiatorPackets: 6, ResponderPackets: 4, InitiatorBytes: 503, ResponderBytes: 690, NAPPolicy: Balanced Security and Connectivity, HTTPResponse: 200, ReferencedHost: {{.Domains}}, URL: http://{{.Domains}}/download/eicar_{{.Domains}}
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430002: AccessControlRuleAction: Block, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, ICMPType: Echo Request, ICMPCode: No Code, Protocol: icmp, IngressInterface: output, EgressInterface: input, IngressZone: output-zone, EgressZone: input-zone, ACPolicy: default, AccessControlRuleName: Block-inbound-ICMP, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, InitiatorPackets: 0, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+Aug 14 2019 15:09:41 siem-ftd  %FTD-1-430003: AccessControlRuleAction: Block, AccessControlRuleReason: File Block, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 41544, DstPort: 8000, Protocol: tcp, IngressInterface: input, EgressInterface: output, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Intrusion-Rule, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, UserAgent: curl/7.58.0, Client: cURL, ClientVersion: 7.58.0, ApplicationProtocol: HTTP, ConnectionDuration: 1, FileCount: 1, InitiatorPackets: 4, ResponderPackets: 7, InitiatorBytes: 365, ResponderBytes: 1927, NAPPolicy: Balanced Security and Connectivity, HTTPResponse: 200, ReferencedHost: {{.IPs}}:8000, URL: http://{{.IPs}}:8000/eicar_{{.Domains}}
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 48a00000-8e53-11ec-9a0c-d396ffaa0000, InstanceID: 2, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 48101, AccessControlRuleAction: Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 57176, DstPort: 631, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, Endpoint Profile: Workstation:Microsoft-Workstation:Windows10-Workstation, ACPolicy: ProductionPolicy, AccessControlRuleName: Monitor-Rule, Prefilter Policy: Default Prefilter Policy, User: Default-AD\user1, ConnectionDuration: 30, InitiatorPackets: 5, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 5c120000-ca5e-11e7-ab3c-ad268d8b0000, InstanceID: 5, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 56696, AccessControlRuleAction: Block with reset, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 50815, DstPort: 7680, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, IngressVRF: Global, EgressVRF: Global, ACPolicy: ProductionPolicy, AccessControlRuleName: BlockReset-Policy, Prefilter Policy: Default Prefilter Policy, User: Not Found, Client: Windows Update client, ApplicationProtocol: Windows Update, ConnectionDuration: 0, InitiatorPackets: 3, ResponderPackets: 1, InitiatorBytes: 261, ResponderBytes: 66, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}   %FTD-1-430003: EventPriority: Low, DeviceUUID: 5c120000-ca5e-11e7-ab3c-ad268d8b0000, InstanceID: 1, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 57475, AccessControlRuleAction: Trust, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 44998, DstPort: 8193, Protocol: tcp, IngressInterface: Outside, EgressInterface: Inside, IngressZone: Outside, EgressZone: Inside, IngressVRF: Global, EgressVRF: Global, ACPolicy: ProductionPolicy, AccessControlRuleName: Exposed-Server1, Prefilter Policy: Default Prefilter Policy, User: PassiveAuth\user2, ConnectionDuration: 30, InitiatorPackets: 4, ResponderPackets: 0, InitiatorBytes: 0, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+{{.timestamp_iso}}  : %FTD-1-430001: DeviceUUID: 00009fd0-de50-11ea-b566-e4821b710000, InstanceID: 8, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 1309, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 54967, DstPort: 80, Protocol: tcp, IngressInterface: Inside, EgressInterface: Outside, IngressZone: Inside, EgressZone: Outside, Priority: 3, GID: 119, SID: 6, Revision: 3, Message: (http_inspect) URI has two-byte or three-byte UTF-8 encoding, Classification: Not Suspicious Traffic, User: Not Found, IntrusionPolicy: Inline IPS Policy, ACPolicy: FTD-ACP, AccessControlRuleName: PassRule, NAPPolicy: Balanced Security and Connectivity, InlineResult: Pass, IngressVRF: Global, EgressVRF: Global
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430002: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 46000, DstPort: 80, Protocol: tcp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Rule-1, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, InitiatorPackets: 2, ResponderPackets: 1, InitiatorBytes: 3000000000, ResponderBytes: 3000000000, NAPPolicy: Balanced Security and Connectivity
+---EVENT_DELIMITER---
+<118>{{.timestamp_iso}}  : %FTD-6-430002: EventPriority: Low, DeviceUUID: abcd-1234-efgh-111-abcd1234, InstanceID: 7, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 53493, AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, ICMPType: Echo Request, ICMPCode: No Code, Protocol: icmp, IngressInterface: GRT, EgressInterface: Azure-S2S, IngressZone: GRT, EgressZone: Azure, IngressVRF: Global, EgressVRF: Global, ACPolicy: internet-access-policy, AccessControlRuleName: LOGI -> Azure TEST, Prefilter Policy: Default Prefilter Policy, InitiatorPackets: 1, ResponderPackets: 0, InitiatorBytes: 102, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity, ClientAppDetector: AppID, EncryptPeerIP: {{.IPs}}, VPN_Action: Encrypt
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430003: AccessControlRuleAction: Allow, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 43228, DstPort: 80, NAT_InitiatorIP: {{.IPs}}, NAT_InitiatorPort: 40000, NAT_ResponderIP: {{.IPs}}, NAT_ResponderPort: 50000, Protocol: tcp, IngressInterface: inside, EgressInterface: outside, IngressZone: input-zone, EgressZone: output-zone, ACPolicy: default, AccessControlRuleName: Rule-1, Prefilter Policy: Default Prefilter Policy, User: No Authentication Required, UserAgent: Debian APT-HTTP/1.3 (1.6.11), Client: Advanced Packaging Tool, ClientVersion: 1.3, ApplicationProtocol: HTTP, WebApplication: Ubuntu, ConnectionDuration: 1, InitiatorPackets: 1359, ResponderPackets: 29001, InitiatorBytes: 97454, ResponderBytes: 41319018, NAPPolicy: Balanced Security and Connectivity, HTTPResponse: 200, ReferencedHost: {{.Domains}}, URL: http://{{.Domains}}/ubuntu/pool/main/m/manpages/manpages-dev_4.15-1_{{.Domains}}
+---EVENT_DELIMITER---
+Aug 14 2019 14:54:25 siem-ftd  %FTD-1-430004: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 41522, DstPort: 8000, Protocol: tcp, FileDirection: Download, FileAction: Detect, FileName: {{.Domains}}, FileType: ELF, ApplicationProtocol: HTTP, Client: cURL, User: No Authentication Required, FirstPacketSecond: {{.timestamp_iso}}, FilePolicy: malware-and-file-policy, FileSandboxStatus: File Size Is Too Small, URI: http://{{.IPs}}:8000/{{.Domains}}
+---EVENT_DELIMITER---
+Aug 14 2019 14:55:02 siem-ftd  %FTD-1-430004: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 41526, DstPort: 8000, Protocol: tcp, FileDirection: Download, FileAction: Detect, FileName: {{.Domains}}, FileType: ELF, ApplicationProtocol: HTTP, Client: cURL, User: No Authentication Required, FirstPacketSecond: {{.timestamp_iso}}, FilePolicy: malware-and-file-policy, FileSandboxStatus: File Size Is Too Small, URI: http://{{.IPs}}:8000/{{.Domains}}
+---EVENT_DELIMITER---
+Aug 14 2019 15:00:29 siem-ftd  %FTD-1-430004: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 41530, DstPort: 8000, Protocol: tcp, FileDirection: Download, FileAction: Detect, FileName: {{.Domains}}, FileType: EICAR, ApplicationProtocol: HTTP, Client: cURL, User: No Authentication Required, FirstPacketSecond: {{.timestamp_iso}}, FilePolicy: malware-and-file-policy, FileSandboxStatus: File Size Is Too Small, URI: http://{{.IPs}}:8000/{{.Domains}}
+---EVENT_DELIMITER---
+Aug 14 2019 15:01:41 siem-ftd  %FTD-1-430004: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 41534, DstPort: 8000, Protocol: tcp, FileDirection: Download, FileAction: Detect, FileName: {{.Domains}}, FileType: EICAR, ApplicationProtocol: HTTP, Client: cURL, User: No Authentication Required, FirstPacketSecond: {{.timestamp_iso}}, FilePolicy: malware-and-file-policy, FileSandboxStatus: File Size Is Too Small, URI: http://{{.IPs}}:8000/{{.Domains}}
+---EVENT_DELIMITER---
+Aug 14 2019 15:03:28 siem-ftd  %FTD-1-430004: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 41540, DstPort: 8000, Protocol: tcp, FileDirection: Download, FileAction: Detect, FileSHA256: 2546dcffc5ad854d4ddc64fbf056871cd5a00f2471cb7a5bfd4ac23b6e9eedad, ThreatName: Unknown, FileName: eicar_{{.Domains}}, FileType: ZIP, FileSize: 184, ApplicationProtocol: HTTP, Client: cURL, User: No Authentication Required, FirstPacketSecond: {{.timestamp_iso}}, FilePolicy: malware-and-file-policy, FileSandboxStatus: File Size Is Too Small, URI: http://{{.IPs}}:8000/eicar_{{.Domains}}
+---EVENT_DELIMITER---
+Aug 14 2019 15:03:33 siem-ftd  %FTD-1-430004: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 41542, DstPort: 8000, Protocol: tcp, FileDirection: Download, FileAction: Detect, FileSHA256: 2546dcffc5ad854d4ddc64fbf056871cd5a00f2471cb7a5bfd4ac23b6e9eedad, ThreatName: Unknown, FileName: eicar_{{.Domains}}, FileType: ZIP, FileSize: 184, ApplicationProtocol: HTTP, Client: cURL, User: No Authentication Required, FirstPacketSecond: {{.timestamp_iso}}, FilePolicy: malware-and-file-policy, FileSandboxStatus: File Size Is Too Small, URI: http://{{.IPs}}:8000/eicar_{{.Domains}}
+---EVENT_DELIMITER---
+Aug 14 2019 15:09:43 siem-ftd  %FTD-1-430005: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 41544, DstPort: 8000, Protocol: tcp, FileDirection: Download, FileAction: Malware Block, FileSHA256: 2546dcffc5ad854d4ddc64fbf056871cd5a00f2471cb7a5bfd4ac23b6e9eedad, SHA_Disposition: Malware, SperoDisposition: Spero detection not performed on file, ThreatName: {{.Domains}}::{{.Domains}}, ThreatScore: 76, FileName: eicar_{{.Domains}}, FileType: ZIP, FileSize: 184, ApplicationProtocol: HTTP, Client: cURL, User: No Authentication Required, FirstPacketSecond: {{.timestamp_iso}}, FilePolicy: malware-and-file-policy, FileSandboxStatus: File Size Is Too Small, URI: http://{{.IPs}}:8000/eicar_{{.Domains}}
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430005: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 46004, DstPort: 80, Protocol: tcp, FileDirection: Download, FileAction: Malware Cloud Lookup, FileSHA256: 2546dcffc5ad854d4ddc64fbf056871cd5a00f2471cb7a5bfd4ac23b6e9eedad, SHA_Disposition: Unavailable, SperoDisposition: Spero detection not performed on file, ThreatName: {{.Domains}}::{{.Domains}}, FileName: eicar_{{.Domains}}, FileType: ZIP, FileSize: 184, ApplicationProtocol: HTTP, Client: cURL, User: No Authentication Required, FirstPacketSecond: {{.timestamp_iso}}, FilePolicy: malware-and-file-policy, FileStorageStatus: Not Stored (Disposition Was Pending), FileSandboxStatus: File Size Is Too Small, URI: http://{{.Domains}}/download/eicar_{{.Domains}}
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430005: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 55378, DstPort: 80, Protocol: tcp, FileDirection: Download, FileAction: Malware Cloud Lookup, FileSHA256: 9a04a82eb19ad382f9e9dbafa498c6b4291f93cfe98d9e8b2915af99c06ffcd7, SHA_Disposition: Unavailable, SperoDisposition: Spero detection not performed on file, ThreatName: Unknown, FileName: dd3dee576d0cb4abfed00f97f0c71c1d, FileType: PDF, FileSize: 278987, ApplicationProtocol: HTTP, Client: cURL, User: No Authentication Required, FirstPacketSecond: {{.timestamp_iso}}, FilePolicy: malware-and-file-policy, FileStorageStatus: Not Stored (Disposition Was Pending), FileSandboxStatus: Sent for Analysis, FileStaticAnalysisStatus: Failed to Send, URI: http://{{.IPs}}/public/infected/dd3dee576d0cb4abfed00f97f0c71c1d
+---EVENT_DELIMITER---
+{{.timestamp_iso}} firepower  %FTD-1-430005: SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 47926, DstPort: 80, Protocol: tcp, FileDirection: Download, FileAction: Malware Cloud Lookup, FileSHA256: 9a04a82eb19ad382f9e9dbafa498c6b4291f93cfe98d9e8b2915af99c06ffcd7, SHA_Disposition: Malware, SperoDisposition: Spero detection not performed on file, ThreatName: {{.Domains}}::{{.Domains}}, ThreatScore: 100, FileName: dd3dee576d0cb4abfed00f97f0c71c1d, FileType: PDF, FileSize: 278987, ApplicationProtocol: HTTP, Client: cURL, User: No Authentication Required, FirstPacketSecond: {{.timestamp_iso}}, FilePolicy: malware-and-file-policy, FileSandboxStatus: Failed to Send, URI: http://{{.IPs}}/public/infected/dd3dee576d0cb4abfed00f97f0c71c1d
+---EVENT_DELIMITER---
+<113>{{.timestamp_iso}}   %FTD-1-430005: DeviceUUID: c20ef000-c4f3-11e9-9b57-c6a90fda2892, InstanceID: 3, FirstPacketSecond: {{.timestamp_iso}}, ConnectionID: 44560, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 65000, DstPort: 80, Protocol: tcp, FileDirection: Download, FileAction: Malware Cloud Lookup, FileSHA256: 2e05c13906b7435e80b6128c2bf86ba0644b0e6205efb96f3c14e52afd75f1c9, SHA_Disposition: Unknown, SperoDisposition: Spero detection not performed on file, ThreatName: Invalid ID, FileName: 34990729_{{.Domains}}, FileType: MSCAB, FileSize: 7179, ApplicationProtocol: HTTP, Client: Windows Update, WebApplication: Microsoft Update, User: Not Found, FilePolicy: FILE POLICY, URI: http://{{.Domains}}/d/msdownload/update/others/2021/08/34990729_{{.Domains}}, IngressVRF: Global, EgressVRF: Global
+---EVENT_DELIMITER---
+{{.timestamp_iso}} CISCO-SENSOR-3D Alerts %NGIPS-0-430003: DeviceUUID: 1c8ff662-08f3-11e4-85c0-bc960372972f, AccessControlRuleAction: Allow, AccessControlRuleReason: IP Monitor, SrcIP: {{.IPs}}, DstIP: {{.IPs}}, SrcPort: 65090, DstPort: 80, Protocol: tcp, IngressInterface: s1p1, EgressInterface: s1p2, IngressZone: Inside-DMZ-Interface-Inline, EgressZone: Inside-DMZ-Interface-Inline, ACPolicy: COOL-POLICY-3D, AccessControlRuleName: Inside DMZ-Rule-Inline, Prefilter Policy: Unknown, User: No Authentication Required, UserAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36, Client: Chrome, ClientVersion: 80.0.3987.87, ApplicationProtocol: HTTP, ConnectionDuration: 20, InitiatorPackets: 4, ResponderPackets: 4, InitiatorBytes: 729, ResponderBytes: 246, NAPPolicy: State-Backbone, SecIntMatchingIP: Destination, IPReputationSICategory: Malware, HTTPReferer: http://{{.Domains}}/mk?c={{.timestamp_unix_ms}}, ReferencedHost: {{.Domains}}, URL: http://{{.Domains}}/{{.Domains}}

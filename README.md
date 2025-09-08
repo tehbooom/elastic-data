@@ -42,8 +42,6 @@ go install github.com/tehbooom/elastic-data@latest
 
 ## Usage
 
-> You must be authenticated with `git` before execution
-
 1. Ensure you have a configuration file in `~/.config/elastic-data/config.yaml`
 
 > If one does not exist on initial startup it will be created for you with some defaults

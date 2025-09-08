@@ -1,0 +1,69 @@
+::1 - - {{.timestamp_clf_timezone}} "GET /{{.Domains}} HTTP/1.1" 404 209
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET /hello HTTP/1.1" 404 499 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:50.0) Gecko/20100101 Firefox/50.0"
+---EVENT_DELIMITER---
+::1 - - {{.timestamp_clf_timezone}} "-" 408 -
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET /stringpatch HTTP/1.1" 404 612 "-" "Mozilla/5.0 (Windows NT 6.1; rv:15.0) Gecko/20120716 Firefox/15.0a2" "-"
+---EVENT_DELIMITER---
+monitoring-server - - {{.timestamp_clf_timezone}} "GET /status HTTP/1.1" 200 612 "-" "Mozilla/5.0 (Windows NT 6.1; rv:15.0) Gecko/20120716 Firefox/15.0a2" "-"
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "-" 408 152 "-" "-"
+---EVENT_DELIMITER---
+monitoring-server - - {{.timestamp_clf_timezone}} "GET /A%20Beka%20G1%20Howe/029_AND_30/15%20reading%{{.Domains}}4 HTTP/1.1" 200 612 "-" "Mozilla/5.0 (Windows NT 6.1; rv:15.0) Gecko/20120716 Firefox/15.0a2" X-Forwarded-For="-"
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET /A%20Beka%20G1%20Howe/029_AND_30/15%20reading%{{.Domains}}4 HTTP/1.1" 200 612 "-" "Mozilla/5.0 (Windows NT 6.1; rv:15.0) Gecko/20120716 Firefox/15.0a2" X-Forwarded-For="{{.IPs}},{{.IPs}}"
+---EVENT_DELIMITER---
+2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6 - - {{.timestamp_clf_timezone}} "GET /A%20Beka%20G1%20Howe/029_AND_30/15%20reading%{{.Domains}}4 HTTP/1.1" 200 612 "-" "Mozilla/5.0 (Windows NT 6.1; rv:15.0) Gecko/20120716 Firefox/15.0a2" X-Forwarded-For="{{.IPs}}, {{.IPs}}"
+---EVENT_DELIMITER---
+monitoring-server - - {{.timestamp_clf_timezone}} "GET / HTTP/1.1" 200 45 "-" "curl/7.79.1" X-Forwarded-For="{{.IPs}}"
+---EVENT_DELIMITER---
+2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6 - - {{.timestamp_clf_timezone}} "GET /A%20Beka%20G1%20Howe/029_AND_30/15%20reading%{{.Domains}}4 HTTP/1.1" 200 612 3413 "-" "Mozilla/5.0 (Windows NT 6.1; rv:15.0) Gecko/20120716 Firefox/15.0a2" X-Forwarded-For="{{.IPs}}, {{.IPs}}"
+---EVENT_DELIMITER---
+monitoring-server - - {{.timestamp_clf_timezone}} "GET / HTTP/1.1" 200 45 "-" "curl/7.79.1" X-Forwarded-For="{{.IPs}}"
+---EVENT_DELIMITER---
+{{.IPs}} user-identity frank {{.timestamp_clf_timezone}} "GET /apache_{{.Domains}} HTTP/1.0" 200 2326
+---EVENT_DELIMITER---
+{{.IPs}}:80 - - {{.timestamp_clf_timezone}} "<SCRIPT>NXSSTEST</SCRIPT> / HTTP/1.1" 400 3386 "-" "-"
+---EVENT_DELIMITER---
+{{.IPs}}:80 {{.IPs}} - - {{.timestamp_clf_timezone}} "\x16\x03\x03\x01\x8f\x01" 400 483 "-" "-"
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "- - HTTP/1.0" 400 226 "-" "-"
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "\n" 400 226 98
+---EVENT_DELIMITER---
+::1 - - {{.timestamp_clf_timezone}} "GET / HTTP/1.1" 200 45
+---EVENT_DELIMITER---
+::1 - - {{.timestamp_clf_timezone}} "GET /{{.Domains}} HTTP/1.1" 404 209
+---EVENT_DELIMITER---
+::1 - - {{.timestamp_clf_timezone}} "-" 408 -
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET / HTTP/1.1" 200 45
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET /notfound HTTP/1.1" 404 206
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET /hmm HTTP/1.1" 404 201
+---EVENT_DELIMITER---
+{{.timestamp_clf_timezone}} {{.IPs}} TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256 "GET /nagiosxi/{{.Domains}}?cmd=getxicoreajax&amp;opts=%7B%22func%22%3A%22get_admin_tasks_html%22%2C%22args%22%3A%22%22%7D&amp;nsp=b5c7d5d4b6f7d0cf0c92f9cbdf737f6a5c838218425e6ae21 HTTP/1.1" 1375
+---EVENT_DELIMITER---
+{{.timestamp_clf_timezone}} {{.IPs}} TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256 "GET /appl/{{.Domains}}?cmd=getxicoreajax&opts=%7B%22func%22%3A%22get_pagetop_alert_content_html%22%2C%22args%22%3A%22%22%7D&nsp=c2700eab9797eda8a9f65a3ab17a6adbceccd60a6cca7708650a5923950d HTTP/1.1" -
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET / HTTP/1.1" 200 491 "-" "Wget/1.13.4 (linux-gnu)"
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET / HTTP/1.1" 200 484 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36"
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET /{{.Domains}} HTTP/1.1" 404 504 "http://{{.IPs}}/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36"
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET / HTTP/1.1" 200 484 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:50.0) Gecko/20100101 Firefox/50.0"
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET /{{.Domains}} HTTP/1.1" 404 504 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:50.0) Gecko/20100101 Firefox/50.0"
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET /{{.Domains}} HTTP/1.1" 404 504 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:50.0) Gecko/20100101 Firefox/50.0"
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET /test HTTP/1.1" 404 498 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:50.0) Gecko/20100101 Firefox/50.0"
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET /hello HTTP/1.1" 404 499 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:50.0) Gecko/20100101 Firefox/50.0"
+---EVENT_DELIMITER---
+{{.IPs}} - - {{.timestamp_clf_timezone}} "GET /crap HTTP/1.1" 404 499 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:50.0) Gecko/20100101 Firefox/50.0"
+---EVENT_DELIMITER---
+{{.Domains}} {{.IPs}} - - {{.timestamp_clf_timezone}} "GET /hello HTTP/1.1" 404 499 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:50.0) Gecko/20100101 Firefox/50.0"

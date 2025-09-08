@@ -1,0 +1,23 @@
+{"@level":"error","@message":"failed to revoke lease","@module":"expiration","@timestamp":"{{.timestamp_iso}}192Z","error":"failed to revoke entry: resp: (*{{.Domains}})(nil) err: RequestError: send request failed\ncaused by: Post \"https://{{.Domains}}/\": dial tcp: lookup {{.Domains}} on {{.IPs}}:53: server misbehaving","lease_id":"aws/creds/ddns-updater/oS5t84TSPRoYF2gX8McPyw4u"}
+---EVENT_DELIMITER---
+{"@level":"info","@message":"revoked lease","@module":"expiration","@timestamp":"{{.timestamp_iso}}457Z","lease_id":"auth/token/create/nomad-cluster/h15d750323d62439265743da0f02537e763b1968ba586b27770bd5262c9891a47"}
+---EVENT_DELIMITER---
+{"@level":"info","@message":"serving cluster requests","@module":"{{.Domains}}-listener","@timestamp":"{{.timestamp_iso}}340Z","cluster_listen_address":{"IP":"::","Port":8201,"Zone":""}}
+---EVENT_DELIMITER---
+{"@level":"info","@message":"creating Raft","@module":"{{.Domains}}","@timestamp":"{{.timestamp_iso}}451Z","config":"\{{.Domains}}{ProtocolVersion:3, HeartbeatTimeout:5000000000, ElectionTimeout:5000000000, CommitTimeout:50000000, MaxAppendEntries:64, BatchApplyCh:false, ShutdownOnRemove:true, TrailingLogs:0x2800, SnapshotInterval:120000000000, SnapshotThreshold:0x2000, LeaderLeaseTimeout:2500000000, LocalID:\"compute03-example-com\", NotifyCh:(chan\u003c- bool)(0x4000324070), LogOutput:{{.Domains}}(nil), LogLevel:\"DEBUG\", Logger:(*{{.Domains}})(0x400057f2f0), NoSnapshotRestoreOnStart:true, skipStartup:false}"}
+---EVENT_DELIMITER---
+{"@level":"info","@message":"starting listener","@module":"{{.Domains}}","@timestamp":"{{.timestamp_iso}}327Z","listener_address":{"IP":"{{.IPs}}","Port":8201,"Zone":""}}
+---EVENT_DELIMITER---
+{"@level":"info","@message":"initial configuration","@module":"{{.Domains}}","@timestamp":"{{.timestamp_iso}}828Z","index":7788,"servers":"[{Suffrage:Voter ID:compute03-example-com Address:{{.IPs}}:8201} {Suffrage:Voter ID:compute02-example-com Address:{{.IPs}}:8201} {Suffrage:Voter ID:compute01-example-com Address:{{.IPs}}:8201}]"}
+---EVENT_DELIMITER---
+{"@level":"warn","@message":"failed to contact","@module":"{{.Domains}}","@timestamp":"{{.timestamp_iso}}541Z","server-id":"compute03-example-com","time":4959141198}
+---EVENT_DELIMITER---
+{"@level":"info","@message":"installed new raft TLS key","@module":"{{.Domains}}","@timestamp":"{{.timestamp_iso}}425Z","term":402}
+---EVENT_DELIMITER---
+{"@level":"info","@message":"proxy environment","@timestamp":"{{.timestamp_iso}}665Z","http_proxy":"","https_proxy":"","no_proxy":""}
+---EVENT_DELIMITER---
+{"@level":"debug","@message":"adding reload function","@module":"audit","@timestamp":"{{.timestamp_iso}}412Z","path":"file/"}
+---EVENT_DELIMITER---
+{"@level":"debug","@message":"file backend options","@module":"audit","@timestamp":"{{.timestamp_iso}}526Z","file_path":"/vault/logs/{{.Domains}}","path":"file/"}
+---EVENT_DELIMITER---
+{"@level":"info","@message":"enabled audit backend","@module":"core","@timestamp":"{{.timestamp_iso}}959Z","path":"file/","type":"file"}

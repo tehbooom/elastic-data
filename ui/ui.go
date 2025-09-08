@@ -3,7 +3,6 @@ package ui
 import (
 	"context"
 	"fmt"
-	"path/filepath"
 	"time"
 
 	"github.com/charmbracelet/bubbles/help"
@@ -27,8 +26,7 @@ import (
 type Screen int
 
 const (
-	LoadingScreen Screen = iota
-	TabsScreen
+	TabsScreen Screen = iota
 )
 
 type Model struct {
@@ -37,7 +35,6 @@ type Model struct {
 	help           help.Model
 	programContext *ProgramContext.ProgramContext
 	screen         Screen
-	loading        LoadingModel
 	tabs           tabs.TabsModel
 	saveController *ProgramContext.SaveController
 	error          *errors.ErrorOverlay
@@ -56,16 +53,26 @@ func NewModel() Model {
 	h := help.New()
 	h.ShowAll = false
 
+	// Load integrations immediately
+	integrationsList, err := integrations.GetIntegrationsFromTemplates()
+	if err != nil {
+		log.Debug("Failed to load integrations from templates:", err)
+		// Continue with empty list
+		integrationsList = []string{}
+	}
+
 	integrationsTab := integration.NewIntegrationsTabModel(programContext, saveController)
 	runTab := run.NewRunTabModel(programContext, saveController)
+
+	// Set integrations for the integration tab
+	integrationsTab.SetIntegrations(integrationsList)
 
 	initTabs := []tabs.TabModel{integrationsTab, runTab}
 	return Model{
 		help:           h,
 		programContext: programContext,
 		saveController: saveController,
-		screen:         LoadingScreen,
-		loading:        NewLoadingModel(),
+		screen:         TabsScreen, // Go directly to tabs
 		tabs:           tabs.NewTabsModel(initTabs, programContext),
 	}
 }
@@ -145,7 +152,20 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			Connected: false,
 		}
 
-		return m, m.loading.Init()
+		// Refresh integrations list to reflect enabled state from config
+		integrationsList, err := integrations.GetIntegrationsFromTemplates()
+		if err != nil {
+			log.Debug("Failed to reload integrations after config load:", err)
+		} else {
+			// Get the integrations tab (first tab) and refresh its state
+			if len(m.tabs.Tabs) > 0 {
+				if integrationsTab, ok := m.tabs.Tabs[0].(*integration.IntegrationsTabModel); ok {
+					integrationsTab.SetIntegrations(integrationsList)
+				}
+			}
+		}
+
+		return m, nil
 
 	case errors.ShowErrorMsg:
 		if msg.Fatal {
@@ -170,8 +190,6 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.height = msg.Height
 		m.help.Width = msg.Width
 
-		m.loading.SetSize(msg.Width, msg.Height)
-
 		m.tabs.SetSize(msg.Width, m.height)
 
 		return m, nil
@@ -185,28 +203,6 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	}
 
 	switch m.screen {
-	case LoadingScreen:
-		loadingModel, cmd := m.loading.Update(msg)
-		m.loading = loadingModel.(LoadingModel)
-		if m.loading.IsComplete() {
-			m.screen = TabsScreen
-			configDir, _ := getConfigDir()
-			repoDir := filepath.Join(configDir, "integrations")
-			integrations, _ := integrations.GetIntegrations(repoDir)
-			if m.programContext.SelectedIntegrations == nil {
-				m.programContext.SelectedIntegrations = make(map[string]bool)
-			}
-
-			for _, tab := range m.tabs.Tabs {
-				if intTab, ok := tab.(*integration.IntegrationsTabModel); ok {
-					intTab.SetIntegrations(integrations)
-					break
-				}
-			}
-			m.tabs.SetSize(m.width, m.height)
-			return m, nil
-		}
-		cmds = append(cmds, cmd)
 	case TabsScreen:
 		tabsModel, cmd := m.tabs.Update(msg)
 		m.tabs = tabsModel.(tabs.TabsModel)
@@ -220,11 +216,6 @@ func (m Model) View() string {
 	var content string
 
 	switch m.screen {
-	case LoadingScreen:
-		content = lipgloss.JoinVertical(
-			lipgloss.Left,
-			m.loading.View(),
-		)
 	case TabsScreen:
 		content = m.tabs.View()
 	}

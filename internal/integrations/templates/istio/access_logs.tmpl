@@ -1,0 +1,41 @@
+[{{.timestamp_iso}}] "GET /status/418 HTTP/1.1" 503 UH no_healthy_upstream - "-" 0 19 1 - "-" "curl/7.83.1-DEV" "5735b2d0-4949-9384-b082-9d4c368eb9dc" "httpbin:8000" "-" outbound|8000||{{.Domains}} - {{.IPs}}:8000 {{.IPs}}:44690 - default
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /status/418 HTTP/1.1" 418 - via_upstream - "-" 0 135 25 25 "-" "curl/7.83.1-DEV" "adc1465d-589f-9119-bdcf-2ea373ff7d7a" "httpbin:8000" "{{.IPs}}:80" outbound|8000||{{.Domains}} {{.IPs}}:57130 {{.IPs}}:8000 {{.IPs}}:50514 - default
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /{{.Domains}} HTTP/1.1" 404 NR route_not_found - "-" 0 0 0 - "{{.IPs}}" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36" "5169ae9d-b98e-9d3c-bf74-2fb5bc5102f3" "{{.IPs}}" "-" - - {{.IPs}}:8080 {{.IPs}}:51978 - -
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /portal/redlion HTTP/1.1" 404 NR route_not_found - "-" 0 0 0 - "{{.IPs}}" "Mozilla/5.0 zgrab/0.x" "ae9ca454-2d21-956c-9cf4-813929267bb5" "{{.IPs}}" "-" - - {{.IPs}}:8080 {{.IPs}}:46713 - -
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "- - HTTP/1.1" 400 DPE {{.Domains}}_error - "-" 0 11 46 - "-" "-" "-" "-" "-" - - {{.IPs}}:8080 {{.IPs}}:51643 - -
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /productpage HTTP/1.1" 503 UH no_healthy_upstream - "-" 0 19 0 - "{{.IPs}}" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36" "7c20db9a-f48b-9a68-a158-12ca79dfdd05" "{{.IPs}}" "-" outbound|9080||{{.Domains}} - {{.IPs}}:8080 {{.IPs}}:21742 - -
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /reviews/0 HTTP/1.1" 503 UF upstream_reset_before_response_started{connection_failure,delayed_connect_error:_111} - "-" 0 145 0 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36" "56446678-64f3-9fbf-9c4a-eca01fafba4d" "reviews:9080" "{{.IPs}}:9080" inbound|9080|| - {{.IPs}}:9080 {{.IPs}}:48816 outbound_.9080_._{{.Domains}} default
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /productpage HTTP/1.1" 0 DC downstream_remote_disconnect - "-" 0 0 746 - "{{.IPs}}" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36" "2dc64af2-bd13-9962-819e-0b72064e7909" "{{.IPs}}" "{{.IPs}}:9080" inbound|9080|| {{.IPs}}:38601 {{.IPs}}:9080 {{.IPs}}:0 outbound_.9080_._{{.Domains}} default
+---EVENT_DELIMITER---
+{"authority":"reviews:9080","bytes_received":0,"bytes_sent":358,"connection_termination_details":null,"downstream_local_address":"{{.IPs}}:9080","downstream_remote_address":"{{.IPs}}:43612","duration":15,"method":"GET","path":"/reviews/0","protocol":"HTTP/1.1","request_id":"9fcc7101-13bd-9753-98d6-820806088d9d","requested_server_name":"outbound_.9080_._{{.Domains}}","response_code":200,"response_code_details":"via_upstream","response_flags":"-","route_name":"default","start_time":"{{.timestamp_iso}}","upstream_cluster":"inbound|9080||","upstream_host":"{{.IPs}}:9080","upstream_local_address":"{{.IPs}}:37685","upstream_service_time":"14","upstream_transport_failure_reason":null,"user_agent":"curl/7.79.1","x_forwarded_for":null}
+---EVENT_DELIMITER---
+{"authority":"reviews:9080","bytes_received":0,"bytes_sent":358,"connection_termination_details":null,"downstream_local_address":"{{.IPs}}:9080","downstream_remote_address":"[2a02:cf40::4e36]:5000","duration":15,"method":"GET","path":"/reviews/0","protocol":"HTTP/1.1","request_id":"9fcc7101-13bd-9753-98d6-820806088d9d","requested_server_name":"outbound_.9080_._{{.Domains}}","response_code":200,"response_code_details":"via_upstream","response_flags":"-","route_name":"default","start_time":"{{.timestamp_iso}}","upstream_cluster":"inbound|9080||","upstream_host":"{{.IPs}}:9080","upstream_local_address":"{{.IPs}}:37685","upstream_service_time":"14","upstream_transport_failure_reason":null,"user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36","x_forwarded_for":null}
+---EVENT_DELIMITER---
+{"authority":"-","bytes_received":0,"bytes_sent":11,"connection_termination_details":null,"downstream_local_address":"{{.IPs}}:8080","downstream_remote_address":"{{.IPs}}:51643","duration":46,"method":"-","path":"-","protocol":"HTTP/1.1","request_id":"-","requested_server_name":"-","response_code":400,"response_code_details":"{{.Domains}}_error","response_flags":"DPE","route_name":"-","start_time":"{{.timestamp_iso}}","upstream_cluster":null,"upstream_host":"-","upstream_local_address":null,"upstream_service_time":null,"upstream_transport_failure_reason":"-","user_agent":"-","x_forwarded_for":null}
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /details/0 HTTP/1.1" 200 - via_upstream - "-" 0 178 2 1 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36" "785918d6-06b6-9312-bf77-6d9bd968dc21" "details:9080" "{{.IPs}}:9080" inbound|9080|| {{.IPs}}:47889 {{.IPs}}:9080 {{.IPs}}:39696 outbound_.9080_._{{.Domains}} default
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /static/bootstrap/fonts/{{.Domains}}2 HTTP/1.1" 200 - via_upstream - "-" 0 18028 3 3 "{{.IPs}}" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36" "96bf54e0-6dac-9c1f-8090-b4acd6f779ef" "{{.IPs}}" "{{.IPs}}:9080" inbound|9080|| {{.IPs}}:41929 {{.IPs}}:9080 {{.IPs}}:0 outbound_.9080_._{{.Domains}} default
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /reviews/0 HTTP/1.1" 200 - via_upstream - "-" 0 437 30 29 "-" "curl/7.79.1" "f5dd9a93-895b-9a0d-a830-44694ed10c4c" "reviews:9080" "{{.IPs}}:9080" inbound|9080|| {{.IPs}}:50151 {{.IPs}}:9080 {{.IPs}}:54438 outbound_.9080_._{{.Domains}} default
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /reviews/0 HTTP/1.1" 200 - via_upstream - "-" 0 442 12 12 "-" "curl/7.79.1" "00bcf1d7-12c4-93b9-b36a-bc0faac8e428" "reviews:9080" "{{.IPs}}:9080" outbound|9080||{{.Domains}} {{.IPs}}:50960 {{.IPs}}:9080 {{.IPs}}:52930 - default
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /productpage HTTP/1.1" 200 - via_upstream - "-" 0 5294 35 34 "{{.IPs}}" "curl/7.79.1" "00bcf1d7-12c4-93b9-b36a-bc0faac8e428" "{{.IPs}}" "{{.IPs}}:9080" inbound|9080|| {{.IPs}}:47203 {{.IPs}}:9080 {{.IPs}}:0 outbound_.9080_._{{.Domains}} default
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /details/0 HTTP/1.1" 200 - via_upstream - "-" 0 178 3 3 "-" "curl/7.79.1" "d3bbd98a-ab12-9e96-b539-a419c2c8091f" "details:9080" "{{.IPs}}:9080" outbound|9080||{{.Domains}} {{.IPs}}:58408 {{.IPs}}:9080 {{.IPs}}:49098 - default
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /ratings/0 HTTP/1.1" 200 - via_upstream - "-" 0 48 1 0 "-" "curl/7.79.1" "72f12c1b-8a44-9a62-b28e-2296da5b1118" "ratings:9080" "{{.IPs}}:9080" inbound|9080|| {{.IPs}}:38951 {{.IPs}}:9080 {{.IPs}}:58774 outbound_.9080_._{{.Domains}} default
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /ratings/0 HTTP/1.1" 200 - via_upstream - "-" 0 48 1 0 "-" "curl/7.79.1" "72f12c1b-8a44-9a62-b28e-2296da5b1118" "ratings:9080" "[2a02:cf40::7]:3000" inbound|9080|| {{.IPs}}:38951 {{.IPs}}:9080 [2a02:cf40::4e36]:5000 outbound_.9080_._{{.Domains}} default
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET /details/0 HTTP/1.1" 200 - via_upstream - "-" 0 178 2 1 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36" "785918d6-06b6-9312-bf77-6d9bd968dc21" "details:9080" "{{.IPs}}:9080" inbound|9080|| {{.IPs}}:47889 {{.IPs}}:9080 {{.IPs}}:39696 outbound_.9080_._{{.Domains}} default
+---EVENT_DELIMITER---
+[{{.timestamp_iso}}] "GET / HTTP/1.1" 200 - via_upstream - "-" 0 568 1 0 "{{.IPs}}" "curl/7.79.1" "f825485a-6c59-4eaf-b712-9a172662b355" "{{.Domains}}:9200" "[2a02:cf40::4e36]:9200" outbound|9200||{{.Domains}} [2a02:cf40::7]:33224 {{.IPs}}:9200 {{.IPs}}:60754 {{.Domains}} -

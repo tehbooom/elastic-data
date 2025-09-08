@@ -1,0 +1,25 @@
+2018-01-01 08:09:10 {{.IPs}} 2094 {{.IPs}} 80 HTTP/1.1 GET /qos/{{.Domains}} 503 - ConnLimit -
+---EVENT_DELIMITER---
+2018-01-01 09:10:11 {{.IPs}} 2780 {{.IPs}} 80 HTTP/1.1 GET /{{.Domains}} 400 - Hostname -
+---EVENT_DELIMITER---
+2018-01-01 10:11:12 {{.IPs}} 2894 {{.IPs}} 80 HTTP/2.0 GET / 505 - Version_N/S -
+---EVENT_DELIMITER---
+2018-01-01 11:12:13 {{.IPs}} 64388 {{.IPs}} 80 - - - - - Timer_MinBytesPerSecond -
+---EVENT_DELIMITER---
+2018-05-05 05:05:55 {{.IPs}} 12345 {{.IPs}} 443 HTTP/0.9 t3 12.2.1 400 - URL -
+---EVENT_DELIMITER---
+2018-05-05 05:05:55 {{.IPs}} 12345 {{.IPs}} 443 HTTP/1.1 GET ./././././../../../../../../../../ 400 - URL -
+---EVENT_DELIMITER---
+2018-05-05 05:05:55 {{.IPs}} 12345 {{.IPs}} 443 HTTP/1.1 GET /..\pixfir~1\how_to_{{.Domains}} 403 - Forbidden -
+---EVENT_DELIMITER---
+2018-05-05 05:05:55 {{.IPs}} 12345 {{.IPs}} 443 HTTP/1.1 GET ..\..\..\..\..\..\winnt\{{.Domains}} 400 - URL -
+---EVENT_DELIMITER---
+2018-05-05 05:05:55 {{.IPs}} 12345 {{.IPs}} 443 HTTP/1.1 GET /�.�./�.�./�.�./�.�./�.�./windows/{{.Domains}} 404 - NotFound -
+---EVENT_DELIMITER---
+2018-05-05 05:05:55 {{.IPs}} 12345 {{.IPs}} 443 HTTP/1.1 GET /nessus\..\..\..\..\..\..\winnt\{{.Domains}} 403 - Forbidden -
+---EVENT_DELIMITER---
+2018-05-05 05:05:55 {{.IPs}} 12345 {{.IPs}} 443 HTTP/1.1 OPTIONS * 404 - NotFound -
+---EVENT_DELIMITER---
+2018-05-05 05:05:55 {{.IPs}} 12345 {{.IPs}} 443 HTTP/1.1 GET /fee&fie=foe 400 - URL -
+---EVENT_DELIMITER---
+2018-12-30 14:22:07 ::1%0 49958 ::1%0 80 - - - - - - Timer_ConnectionIdle -

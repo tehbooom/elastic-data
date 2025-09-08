@@ -1,0 +1,609 @@
+{
+---EVENT_DELIMITER---
+    "timestamp": "{{.timestamp_iso}}",
+---EVENT_DELIMITER---
+    "level": "Information",
+---EVENT_DELIMITER---
+    "requestId": "8f711428-7e55-46f9-ae88-2a65d4f85fc5",
+---EVENT_DELIMITER---
+    "traceId": "1-6408af34-50f56f5b5677a7d763973804",
+---EVENT_DELIMITER---
+    "message": "{@users} have joined the group",
+---EVENT_DELIMITER---
+    "users": 
+---EVENT_DELIMITER---
+    [
+---EVENT_DELIMITER---
+        {
+---EVENT_DELIMITER---
+            "FirstName": "Alejandro",
+---EVENT_DELIMITER---
+            "LastName": "Rosalez"
+---EVENT_DELIMITER---
+        },
+---EVENT_DELIMITER---
+        {
+---EVENT_DELIMITER---
+            "FirstName": "John",
+---EVENT_DELIMITER---
+            "LastName": "Stiles"
+---EVENT_DELIMITER---
+        }        
+---EVENT_DELIMITER---
+    ] 
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+{
+---EVENT_DELIMITER---
+    "timestamp": "{{.timestamp_iso}}",
+---EVENT_DELIMITER---
+    "level": "Information",
+---EVENT_DELIMITER---
+    "requestId": "8f711428-7e55-46f9-ae88-2a65d4f85fc5",
+---EVENT_DELIMITER---
+    "traceId": "1-6408af34-50f56f5b5677a7d763973804",
+---EVENT_DELIMITER---
+    "message": "{users} have joined the group",
+---EVENT_DELIMITER---
+    "users": 
+---EVENT_DELIMITER---
+    [
+---EVENT_DELIMITER---
+        "Rosalez, Alejandro",
+---EVENT_DELIMITER---
+        "Stiles, John"       
+---EVENT_DELIMITER---
+    ] 
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+2023/02/20/[$LATEST]4eaf8445ba7a4a93b999cb17fbfbecd8 {{.timestamp_iso}}000 INIT_START Runtime Version: dotnet:6.v13        Runtime Version ARN: arn:aws:lambda:ap-southeast-2::runtime:699f346a05dae24c58c45790bc4089f252bf17dae3997e79b17d939a288aa1ec
+---EVENT_DELIMITER---
+2023/02/20/[$LATEST]4eaf8445ba7a4a93b999cb17fbfbecd8 {{.timestamp_iso}}000 START RequestId: bed25b38-d012-42e7-ba28-f272535fb80e Version: $LATEST
+---EVENT_DELIMITER---
+2023/02/20/[$LATEST]4eaf8445ba7a4a93b999cb17fbfbecd8 {{.timestamp_iso}}000 {{.timestamp_iso}}        bed25b38-d012-42e7-ba28-f272535fb80e    info   {"_aws":{"Timestamp":{{.timestamp_unix_ms}},"CloudWatchMetrics":[{"Namespace":"sam-app-logging","Metrics":[{"Name":"ColdStart","Unit":"Count"}],"Dimensions":[["FunctionName"],["Service"]]}]},"FunctionName":"sam-app-HelloWorldFunction-haKIoVeose2p","Service":"PowertoolsHelloWorld","ColdStart":1}
+---EVENT_DELIMITER---
+2023/02/20/[$LATEST]4eaf8445ba7a4a93b999cb17fbfbecd8 {{.timestamp_iso}}000 {{.timestamp_iso}}        bed25b38-d012-42e7-ba28-f272535fb80e    info   {"ColdStart":true,"XrayTraceId":"1-63f3807f-5dbcb9910c96f50742707542","CorrelationId":"d3d4de7f-4ccc-411a-a549-4d67b2fdc015","FunctionName":"sam-app-HelloWorldFunction-haKIoVeose2p","FunctionVersion":"$LATEST","FunctionMemorySize":256,"FunctionArn":"arn:aws:lambda:ap-southeast-2:123456789012:function:sam-app-HelloWorldFunction-haKIoVeose2p","FunctionRequestId":"bed25b38-d012-42e7-ba28-f272535fb80e","Timestamp":"{{.timestamp_iso}}2970Z","Level":"Information","Service":"PowertoolsHelloWorld","Name":"{{.Domains}}","Message":"Hello world API - HTTP 200"}
+---EVENT_DELIMITER---
+2023/02/20/[$LATEST]4eaf8445ba7a4a93b999cb17fbfbecd8 {{.timestamp_iso}}000 {{.timestamp_iso}}        bed25b38-d012-42e7-ba28-f272535fb80e    info   {"_aws":{"Timestamp":{{.timestamp_unix_ms}},"CloudWatchMetrics":[{"Namespace":"sam-app-logging","Metrics":[{"Name":"ApiRequestCount","Unit":"Count"}],"Dimensions":[["Service"]]}]},"Service":"PowertoolsHelloWorld","ApiRequestCount":1}
+---EVENT_DELIMITER---
+2023/02/20/[$LATEST]4eaf8445ba7a4a93b999cb17fbfbecd8 {{.timestamp_iso}}000 END RequestId: bed25b38-d012-42e7-ba28-f272535fb80e
+---EVENT_DELIMITER---
+2023/02/20/[$LATEST]4eaf8445ba7a4a93b999cb17fbfbecd8 {{.timestamp_iso}}000 REPORT RequestId: bed25b38-d012-42e7-ba28-f272535fb80e  Duration: 2450.99 ms   Billed Duration: 2451 ms Memory Size: 256 MB     Max Memory Used: 74 MB  Init Duration: 240.05 ms
+---EVENT_DELIMITER---
+XRAY TraceId: 1-63f3807f-5dbcb9910c96f50742707542       SegmentId: 16b362cd5f52cba0
+---EVENT_DELIMITER---
+START RequestId: dbda340c-xmpl-4031-8810-11bb609b4c71 Version: $LATEST
+---EVENT_DELIMITER---
+2020/03/27 03:40:05 EVENT: {
+---EVENT_DELIMITER---
+  "Records": [
+---EVENT_DELIMITER---
+    {
+---EVENT_DELIMITER---
+      "messageId": "19dd0b57-b21e-4ac1-bd88-01bbb068cb78",
+---EVENT_DELIMITER---
+      "receiptHandle": "MessageReceiptHandle",
+---EVENT_DELIMITER---
+      "body": "Hello from SQS!",
+---EVENT_DELIMITER---
+      "md5OfBody": "7b27xmplb47ff90a553787216d55d91d",
+---EVENT_DELIMITER---
+      "md5OfMessageAttributes": "",
+---EVENT_DELIMITER---
+      "attributes": {
+---EVENT_DELIMITER---
+        "ApproximateFirstReceiveTimestamp": "{{.timestamp_unix_ms}}",
+---EVENT_DELIMITER---
+        "ApproximateReceiveCount": "1",
+---EVENT_DELIMITER---
+        "SenderId": "123456789012",
+---EVENT_DELIMITER---
+        "SentTimestamp": "{{.timestamp_unix_ms}}"
+---EVENT_DELIMITER---
+      }
+---EVENT_DELIMITER---
+    }
+---EVENT_DELIMITER---
+  ]
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+2020/03/27 03:40:05 AWS_LAMBDA_LOG_STREAM_NAME=2020/03/27/[$LATEST]569cxmplc3c34c7489e6a97ad08b4419
+---EVENT_DELIMITER---
+2020/03/27 03:40:05 AWS_LAMBDA_FUNCTION_NAME=blank-go-function-9DV3XMPL6XBC
+---EVENT_DELIMITER---
+2020/03/27 03:40:05 AWS_LAMBDA_FUNCTION_MEMORY_SIZE=128
+---EVENT_DELIMITER---
+2020/03/27 03:40:05 AWS_LAMBDA_FUNCTION_VERSION=$LATEST
+---EVENT_DELIMITER---
+2020/03/27 03:40:05 AWS_EXECUTION_ENV=AWS_Lambda_go1.x
+---EVENT_DELIMITER---
+END RequestId: dbda340c-xmpl-4031-8810-11bb609b4c71
+---EVENT_DELIMITER---
+REPORT RequestId: dbda340c-xmpl-4031-8810-11bb609b4c71	Duration: 38.66 ms	Billed Duration: 39 ms	Memory Size: 128 MB	Max Memory Used: 54 MB	Init Duration: 203.69 ms	
+---EVENT_DELIMITER---
+XRAY TraceId: 1-5e7d7595-212fxmpl9ee07c4884191322	SegmentId: 42ffxmpl0645f474	Sampled: true
+---EVENT_DELIMITER---
+START RequestId: 6bc28136-xmpl-4365-b021-0ce6b2e64ab0 Version: $LATEST
+---EVENT_DELIMITER---
+ENVIRONMENT VARIABLES: 
+---EVENT_DELIMITER---
+{
+---EVENT_DELIMITER---
+    "_HANDLER": "{{.Domains}}",
+---EVENT_DELIMITER---
+    "AWS_EXECUTION_ENV": "AWS_Lambda_java8",
+---EVENT_DELIMITER---
+    "AWS_LAMBDA_FUNCTION_MEMORY_SIZE": "512",
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+CONTEXT: 
+---EVENT_DELIMITER---
+{
+---EVENT_DELIMITER---
+    "memoryLimit": 512,
+---EVENT_DELIMITER---
+    "awsRequestId": "6bc28136-xmpl-4365-b021-0ce6b2e64ab0",
+---EVENT_DELIMITER---
+    "functionName": "java-console",
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+EVENT:
+---EVENT_DELIMITER---
+{
+---EVENT_DELIMITER---
+  "records": [
+---EVENT_DELIMITER---
+    {
+---EVENT_DELIMITER---
+      "messageId": "19dd0b57-xmpl-4ac1-bd88-01bbb068cb78",
+---EVENT_DELIMITER---
+      "receiptHandle": "MessageReceiptHandle",
+---EVENT_DELIMITER---
+      "body": "Hello from SQS!",
+---EVENT_DELIMITER---
+    }
+---EVENT_DELIMITER---
+  ]
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+END RequestId: 6bc28136-xmpl-4365-b021-0ce6b2e64ab0
+---EVENT_DELIMITER---
+REPORT RequestId: 6bc28136-xmpl-4365-b021-0ce6b2e64ab0	Duration: 198.50 ms	Billed Duration: 200 ms	Memory Size: 512 MB	Max Memory Used: 90 MB	Init Duration: 524.75 ms
+---EVENT_DELIMITER---
+2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81 {{.timestamp_iso}}000 INIT_START Runtime Version: java:11.v15    Runtime Version ARN: arn:aws:lambda:eu-central-1::runtime:0a25e3e7a1cc9ce404bc435eeb2ad358d8fa64338e618d0c224fe509403583ca
+---EVENT_DELIMITER---
+2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81 {{.timestamp_iso}}000 Picked up JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+---EVENT_DELIMITER---
+2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81 {{.timestamp_iso}}000 Transforming org/apache/logging/log4j/core/lookup/JndiLookup ({{.Domains}}@1a6c5a9e)
+---EVENT_DELIMITER---
+2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81 {{.timestamp_iso}}000 START RequestId: 7fcf1548-d2d4-41cd-a9a8-6ae47c51f765 Version: $LATEST
+---EVENT_DELIMITER---
+2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81 {{.timestamp_iso}}000 {
+---EVENT_DELIMITER---
+  "_aws": {
+---EVENT_DELIMITER---
+    "Timestamp": {{.timestamp_unix_ms}},
+---EVENT_DELIMITER---
+    "CloudWatchMetrics": [
+---EVENT_DELIMITER---
+      {
+---EVENT_DELIMITER---
+        "Namespace": "sam-app-powerools-java",
+---EVENT_DELIMITER---
+        "Metrics": [
+---EVENT_DELIMITER---
+          {
+---EVENT_DELIMITER---
+            "Name": "ColdStart",
+---EVENT_DELIMITER---
+            "Unit": "Count"
+---EVENT_DELIMITER---
+          }
+---EVENT_DELIMITER---
+        ],
+---EVENT_DELIMITER---
+        "Dimensions": [
+---EVENT_DELIMITER---
+          [
+---EVENT_DELIMITER---
+            "Service",
+---EVENT_DELIMITER---
+            "FunctionName"
+---EVENT_DELIMITER---
+          ]
+---EVENT_DELIMITER---
+        ]
+---EVENT_DELIMITER---
+      }
+---EVENT_DELIMITER---
+    ]
+---EVENT_DELIMITER---
+  },
+---EVENT_DELIMITER---
+  "function_request_id": "7fcf1548-d2d4-41cd-a9a8-6ae47c51f765",
+---EVENT_DELIMITER---
+  "traceId": "Root=1-63dcd2d1-25f90b9d1c753a783547f4dd;Parent=e29684c1be352ce4;Sampled=1",
+---EVENT_DELIMITER---
+  "FunctionName": "sam-app-HelloWorldFunction-y9Iu1FLJJBGD",
+---EVENT_DELIMITER---
+  "functionVersion": "$LATEST",
+---EVENT_DELIMITER---
+  "ColdStart": 1.0,
+---EVENT_DELIMITER---
+  "Service": "service_undefined",
+---EVENT_DELIMITER---
+  "logStreamId": "2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81",
+---EVENT_DELIMITER---
+  "executionEnvironment": "AWS_Lambda_java11"
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81 {{.timestamp_iso}}000 Feb 03, 2023 9:24:36 AM {{.Domains}} <init>
+---EVENT_DELIMITER---
+2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81 {{.timestamp_iso}}000 Feb 03, 2023 9:24:36 AM {{.Domains}} <init>
+---EVENT_DELIMITER---
+2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81 {{.timestamp_iso}}000 INFO: Environment variable AWS_XRAY_DAEMON_ADDRESS is set. Emitting to daemon on address {{.Domains}}:2000.
+---EVENT_DELIMITER---
+2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81 {{.timestamp_iso}}000 09:24:37.294 [main] INFO  {{.Domains}} - {"version":null,"resource":"/hello","path":"/hello/","httpMethod":"GET","headers":{"Accept":"*/*","CloudFront-Forwarded-Proto":"https","CloudFront-Is-Desktop-Viewer":"true","CloudFront-Is-Mobile-Viewer":"false","CloudFront-Is-SmartTV-Viewer":"false","CloudFront-Is-Tablet-Viewer":"false","CloudFront-Viewer-ASN":"16509","CloudFront-Viewer-Country":"IE","Host":"{{.Domains}}","User-Agent":"curl/7.86.0","Via":"2.0 {{.Domains}} (CloudFront)","X-Amz-Cf-Id":"t9W5ByT11HaY33NM8YioKECn_4eMpNsOMPfEVRczD7T1RdhbtiwV1Q==","X-Amzn-Trace-Id":"Root=1-63dcd2d1-25f90b9d1c753a783547f4dd","X-Forwarded-For":"{{.Domains}}, {{.Domains}}","X-Forwarded-Port":"443","X-Forwarded-Proto":"https"},"multiValueHeaders":{"Accept":["*/*"],"CloudFront-Forwarded-Proto":["https"],"CloudFront-Is-Desktop-Viewer":["true"],"CloudFront-Is-Mobile-Viewer":["false"],"CloudFront-Is-SmartTV-Viewer":["false"],"CloudFront-Is-Tablet-Viewer":["false"],"CloudFront-Viewer-ASN":["16509"],"CloudFront-Viewer-Country":["IE"],"Host":["{{.Domains}}"],"User-Agent":["curl/7.86.0"],"Via":["2.0 {{.Domains}} (CloudFront)"],"X-Amz-Cf-Id":["t9W5ByT11HaY33NM8YioKECn_4eMpNsOMPfEVRczD7T1RdhbtiwV1Q=="],"X-Amzn-Trace-Id":["Root=1-63dcd2d1-25f90b9d1c753a783547f4dd"],"X-Forwarded-For":["XXX, XXX"],"X-Forwarded-Port":["443"],"X-Forwarded-Proto":["https"]},"queryStringParameters":null,"multiValueQueryStringParameters":null,"pathParameters":null,"stageVariables":null,"requestContext":{"accountId":"XXX","stage":"Prod","resourceId":"at73a1","requestId":"ba09ecd2-acf3-40f6-89af-fad32df67597","operationName":null,"identity":{"cognitoIdentityPoolId":null,"accountId":null,"cognitoIdentityId":null,"caller":null,"apiKey":null,"principalOrgId":null,"sourceIp":"{{.IPs}}","cognitoAuthenticationType":null,"cognitoAuthenticationProvider":null,"userArn":null,"userAgent":"curl/7.86.0","user":null,"accessKey":null},"resourcePath":"/hello","httpMethod":"GET","apiId":"XXX","path":"/Prod/hello/","authorizer":null},"body":null,"isBase64Encoded":false}
+---EVENT_DELIMITER---
+2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81 {{.timestamp_iso}}000 09:24:37.351 [main] INFO  {{.Domains}} - Retrieving https://{{.Domains}}
+---EVENT_DELIMITER---
+2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81 {{.timestamp_iso}}000 {
+---EVENT_DELIMITER---
+  "function_request_id": "7fcf1548-d2d4-41cd-a9a8-6ae47c51f765",
+---EVENT_DELIMITER---
+  "traceId": "Root=1-63dcd2d1-25f90b9d1c753a783547f4dd;Parent=e29684c1be352ce4;Sampled=1",
+---EVENT_DELIMITER---
+  "xray_trace_id": "1-63dcd2d1-25f90b9d1c753a783547f4dd",
+---EVENT_DELIMITER---
+  "functionVersion": "$LATEST",
+---EVENT_DELIMITER---
+  "Service": "service_undefined",
+---EVENT_DELIMITER---
+  "logStreamId": "2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81",
+---EVENT_DELIMITER---
+  "executionEnvironment": "AWS_Lambda_java11"
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81 {{.timestamp_iso}}000 END RequestId: 7fcf1548-d2d4-41cd-a9a8-6ae47c51f765
+---EVENT_DELIMITER---
+2023/02/03/[$LATEST]851411a899b545eea2cffeba4cfbec81 {{.timestamp_iso}}000 REPORT RequestId: 7fcf1548-d2d4-41cd-a9a8-6ae47c51f765    Duration: 4118.98 ms    Billed Duration: 4119 ms    Memory Size: 512 MB    Max Memory Used: 152 MB    Init Duration: 1155.47 ms    
+---EVENT_DELIMITER---
+XRAY TraceId: 1-63dcd2d1-25f90b9d1c753a783547f4dd    SegmentId: 3a028fee19b895cb    Sampled: true
+---EVENT_DELIMITER---
+INFO: Lambda invoked with input: {queryStringParameters: {mode=fail},}
+---EVENT_DELIMITER---
+DEBUG: Simulating some internal state before proceeding
+---EVENT_DELIMITER---
+WARN: Primary config not found, using fallback
+---EVENT_DELIMITER---
+ERROR: Exception while fetching IP
+---EVENT_DELIMITER---
+    at {{.Domains}}/{{.Domains}}.<init>(Unknown Source)
+---EVENT_DELIMITER---
+    at {{.Domains}}/{{.Domains}}.<init>(Unknown Source)
+---EVENT_DELIMITER---
+    at {{.Domains}}/{{.Domains}}.<init>(Unknown Source)
+---EVENT_DELIMITER---
+    at {{.Domains}}({{.Domains}}:72)
+---EVENT_DELIMITER---
+    at {{.Domains}}({{.Domains}}:39)
+---EVENT_DELIMITER---
+    at {{.Domains}}/{{.Domains}}0(Native Method)
+---EVENT_DELIMITER---
+    at {{.Domains}}/{{.Domains}}(Unknown Source)
+---EVENT_DELIMITER---
+    at {{.Domains}}/{{.Domains}}(Unknown Source)
+---EVENT_DELIMITER---
+    at {{.Domains}}${{.Domains}}({{.Domains}}:738)
+---EVENT_DELIMITER---
+    at {{.Domains}}${{.Domains}}({{.Domains}}:655)
+---EVENT_DELIMITER---
+    at {{.Domains}}${{.Domains}}({{.Domains}}:601)
+---EVENT_DELIMITER---
+    at {{.Domains}}({{.Domains}}:240)
+---EVENT_DELIMITER---
+    at {{.Domains}}({{.Domains}}:190)
+---EVENT_DELIMITER---
+    at {{.Domains}}({{.Domains}}:180)
+---EVENT_DELIMITER---
+{
+---EVENT_DELIMITER---
+    "timestamp": "{{.timestamp_iso}}",
+---EVENT_DELIMITER---
+    "level": "INFO",
+---EVENT_DELIMITER---
+    "requestId": "405a4537-9226-4216-ac59-64381ec8654a",
+---EVENT_DELIMITER---
+    "message": {
+---EVENT_DELIMITER---
+        "errorType": "ReferenceError",
+---EVENT_DELIMITER---
+        "errorMessage": "some reference error",
+---EVENT_DELIMITER---
+        "stackTrace": [
+---EVENT_DELIMITER---
+            "ReferenceError: some reference error",
+---EVENT_DELIMITER---
+            "    at {{.Domains}} (file:///var/task/{{.Domains}}:3:12)",
+---EVENT_DELIMITER---
+            "    at {{.Domains}} (file:///var/runtime/{{.Domains}}:1173:29)"
+---EVENT_DELIMITER---
+        ]
+---EVENT_DELIMITER---
+    }
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+{
+---EVENT_DELIMITER---
+    "timestamp":"{{.timestamp_iso}}",
+---EVENT_DELIMITER---
+    "level":"ERROR",
+---EVENT_DELIMITER---
+    "message":"This is a warning message",
+---EVENT_DELIMITER---
+    "requestId":"93f25699-2cbf-4976-8f94-336a0aa98c6f"
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+{
+---EVENT_DELIMITER---
+    "timestamp": "{{.timestamp_iso}}",
+---EVENT_DELIMITER---
+    "level": "INFO",
+---EVENT_DELIMITER---
+    "requestId": "405a4537-9226-4216-ac59-64381ec8654a",
+---EVENT_DELIMITER---
+    "message": {
+---EVENT_DELIMITER---
+        "data": 12.3,
+---EVENT_DELIMITER---
+        "flag": false
+---EVENT_DELIMITER---
+    }
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+{
+---EVENT_DELIMITER---
+    "timestamp": "{{.timestamp_iso}}",
+---EVENT_DELIMITER---
+    "level": "INFO",
+---EVENT_DELIMITER---
+    "requestId": "405a4537-9226-4216-ac59-64381ec8654a",
+---EVENT_DELIMITER---
+    "message": "errors logged -  ReferenceError: some reference error\n    at {{.Domains}} (file:///var/task/{{.Domains}}:3:12)\n    at {{.Domains}} (file:///var/runtime/{{.Domains}}:1173:29) SyntaxError: some syntax error\n    at {{.Domains}} (file:///var/task/{{.Domains}}:4:12)\n    at {{.Domains}} (file:///var/runtime/{{.Domains}}:1173:29)",
+---EVENT_DELIMITER---
+    "errorType": "ReferenceError",
+---EVENT_DELIMITER---
+    "errorMessage": "some reference error",
+---EVENT_DELIMITER---
+    "stackTrace": [
+---EVENT_DELIMITER---
+        "ReferenceError: some reference error",
+---EVENT_DELIMITER---
+        "    at {{.Domains}} (file:///var/task/{{.Domains}}:3:12)",
+---EVENT_DELIMITER---
+        "    at {{.Domains}} (file:///var/runtime/{{.Domains}}:1173:29)"
+---EVENT_DELIMITER---
+    ]
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+START RequestId: c793869b-ee49-115b-a5b6-4fd21e8dedac Version: $LATEST
+---EVENT_DELIMITER---
+{{.timestamp_iso}}	c793869b-ee49-115b-a5b6-4fd21e8dedac	INFO	ENVIRONMENT VARIABLES
+---EVENT_DELIMITER---
+{
+---EVENT_DELIMITER---
+    "AWS_LAMBDA_FUNCTION_VERSION": "$LATEST",
+---EVENT_DELIMITER---
+    "AWS_LAMBDA_LOG_GROUP_NAME": "/aws/lambda/my-function",
+---EVENT_DELIMITER---
+    "AWS_LAMBDA_LOG_STREAM_NAME": "2019/06/07/[$LATEST]e6f4a0c4241adcd70c262d34c0bbc85c",
+---EVENT_DELIMITER---
+    "AWS_EXECUTION_ENV": "AWS_Lambda_nodejs12.x",
+---EVENT_DELIMITER---
+    "AWS_LAMBDA_FUNCTION_NAME": "my-function",
+---EVENT_DELIMITER---
+    "PATH": "/var/lang/bin:/usr/local/bin:/usr/bin/:/bin:/opt/bin",
+---EVENT_DELIMITER---
+    "NODE_PATH": "/opt/nodejs/node10/node_modules:/opt/nodejs/node_modules:/var/runtime/node_modules"
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+{{.timestamp_iso}}	c793869b-ee49-115b-a5b6-4fd21e8dedac	INFO	EVENT
+---EVENT_DELIMITER---
+{
+---EVENT_DELIMITER---
+    "key": "value"
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+{{.timestamp_iso}}	c793869b-ee49-115b-a5b6-4fd21e8dedac	WARN	Event not processed.
+---EVENT_DELIMITER---
+END RequestId: c793869b-ee49-115b-a5b6-4fd21e8dedac
+---EVENT_DELIMITER---
+REPORT RequestId: c793869b-ee49-115b-a5b6-4fd21e8dedac	Duration: 128.83 ms	Billed Duration: 200 ms	Memory Size: 128 MB	Max Memory Used: 74 MB	Init Duration: 166.62 ms	XRAY TraceId: 1-5d9d007f-0a8c7fd02xmpl480aed55ef0	SegmentId: 3d752xmpl1bbe37e	Sampled: true
+---EVENT_DELIMITER---
+{"time":"{{.timestamp_iso}}","type":"{{.Domains}}","record":{"requestId":"01ad0e05-391e-4507-9233-ae7ad823dbc1","functionArn":"arn:aws:lambda:ap-south-1:11212121212112:function:sam-app-powertools-python-HelloWorldFunction-snAkfaCNYJjx","version":"$LATEST","tracing":{"spanId":"4a16401155d9ea8d","type":"X-Amzn-Trace-Id","value":"Root=1-68183818-4eab0e4002398a2f375bd11a;Parent=03c383535c3c289b;Sampled=1"}}}
+---EVENT_DELIMITER---
+{"time":"{{.timestamp_iso}}","type":"{{.Domains}}","record":{"requestId":"01ad0e05-391e-4507-9233-ae7ad823dbc1","metrics":{"durationMs":26.843,"billedDurationMs":27,"memorySizeMB":128,"maxMemoryUsedMB":77,"initDurationMs":772.443},"tracing":{"spanId":"4a16401155d9ea8d","type":"X-Amzn-Trace-Id","value":"Root=1-68183818-4eab0e4002398a2f375bd11a;Parent=03c383535c3c289b;Sampled=1"},"status":"success"}}
+---EVENT_DELIMITER---
+{"time":"{{.timestamp_iso}}","type":"{{.Domains}}","record":{"initializationType":"on-demand","phase":"init","runtimeVersion":"java:17.v42","runtimeVersionArn":"arn:aws:lambda:ap-south-1::runtime:07e1a019fe488fb718021df9129caf01fd13d22d401104a151e929a91a82af7b","functionName":"sam-app-java-application-logs-HelloWorldFunction-bjinEohupZ01","functionVersion":"$LATEST","instanceId":"2025/05/06/sam-app-java-application-logs-HelloWorldFunction-bjinEohupZ01[$LATEST]6163f46cd40046d0a97e9afdc7298e1f","instanceMaxMemory":536870912}}
+---EVENT_DELIMITER---
+{"time":"{{.timestamp_iso}}","type":"{{.Domains}}","record":{"initializationType":"on-demand","phase":"init","status":"success"}}
+---EVENT_DELIMITER---
+{"time":"{{.timestamp_iso}}","type":"{{.Domains}}","record":{"name":"cloudwatch_lambda_agent","state":"Ready","events":["INVOKE","SHUTDOWN"]}}
+---EVENT_DELIMITER---
+{"time":"{{.timestamp_iso}}","type":"{{.Domains}}","record":{"initializationType":"on-demand","phase":"init","status":"success","metrics":{"durationMs":548.578}}}
+---EVENT_DELIMITER---
+{"time":"{{.timestamp_iso}}","type":"{{.Domains}}","record":{"requestId":"aab10ce8-caba-481f-8524-11073604c9ba","functionArn":"arn:aws:lambda:ap-south-1:11212121212112:function:sam-app-java-application-logs-HelloWorldFunction-bjinEohupZ01","version":"$LATEST","tracing":{"spanId":"2bf8dcf8748bba9d","type":"X-Amzn-Trace-Id","value":"Root=1-6819ecef-522a9c7c65e3328b2d885596;Parent=55b508111b5b290a;Sampled=1;Lineage=1:457dbdd8:0"}}}
+---EVENT_DELIMITER---
+{"timestamp":"{{.timestamp_iso}}","message":"INFO: Lambda invoked with input: {queryStringParameters: {errorType=runtime},}","level":"UNDEFINED","AWSRequestId":"aab10ce8-caba-481f-8524-11073604c9ba"}
+---EVENT_DELIMITER---
+{"time":"{{.timestamp_iso}}","type":"{{.Domains}}","record":{"requestId":"aab10ce8-caba-481f-8524-11073604c9ba","status":"success","tracing":{"spanId":"2bf8dcf8748bba9d","type":"X-Amzn-Trace-Id","value":"Root=1-6819ecef-522a9c7c65e3328b2d885596;Parent=55b508111b5b290a;Sampled=1;Lineage=1:457dbdd8:0"},"spans":[{"name":"responseLatency","start":"{{.timestamp_iso}}","durationMs":2346.574},{"name":"responseDuration","start":"{{.timestamp_iso}}","durationMs":0.049},{"name":"runtimeOverhead","start":"{{.timestamp_iso}}","durationMs":0.278}],"metrics":{"durationMs":2347.027,"producedBytes":176}}}
+---EVENT_DELIMITER---
+{"time":"{{.timestamp_iso}}","type":"{{.Domains}}","record":"RequestId: d783b35e-a91d-4251-af17-035953428a2c Process exited before completing request"}
+---EVENT_DELIMITER---
+{"time":"{{.timestamp_iso}}","type":"{{.Domains}}","record":{"name":"{{.Domains}}","state":"Subscribed","types":["function","platform"]}}
+---EVENT_DELIMITER---
+{"time":"{{.timestamp_iso}}","type":"{{.Domains}}","record":{"reason":"Consumer seems to have fallen behind as it has not acknowledged receipt of logs.","droppedRecords":123,"droppedBytes":12345}}
+---EVENT_DELIMITER---
+{"time":"{{.timestamp_iso}}","type":"{{.Domains}}","record":{}}
+---EVENT_DELIMITER---
+{"time":"{{.timestamp_iso}}","type":"{{.Domains}}","record":{"status":"success"}}
+---EVENT_DELIMITER---
+START RequestId: 56639408-xmpl-435f-9041-ac47ae25ceed Version: $LATEST
+---EVENT_DELIMITER---
+Importing module ./Modules/{{.Domains}}/{{.IPs}}/{{.Domains}}1
+---EVENT_DELIMITER---
+[Information] - ## Environment variables
+---EVENT_DELIMITER---
+[Information] - AWS_LAMBDA_FUNCTION_VERSION=$LATEST
+---EVENT_DELIMITER---
+[Information] - AWS_LAMBDA_LOG_GROUP_NAME=/aws/lambda/blank-powershell-function-18CIXMPLHFAJJ
+---EVENT_DELIMITER---
+[Information] - AWS_LAMBDA_LOG_STREAM_NAME=2020/04/01/[$LATEST]53c5xmpl52d64ed3a744724d9c201089
+---EVENT_DELIMITER---
+[Information] - AWS_EXECUTION_ENV=AWS_Lambda_dotnet6_powershell_1.0.0
+---EVENT_DELIMITER---
+[Information] - AWS_LAMBDA_FUNCTION_NAME=blank-powershell-function-18CIXMPLHFAJJ
+---EVENT_DELIMITER---
+[Information] - PATH=/var/lang/bin:/usr/local/bin:/usr/bin/:/bin:/opt/bin
+---EVENT_DELIMITER---
+[Information] - ## Event
+---EVENT_DELIMITER---
+[Information] - 
+---EVENT_DELIMITER---
+{
+---EVENT_DELIMITER---
+  "Records": [
+---EVENT_DELIMITER---
+    {
+---EVENT_DELIMITER---
+      "messageId": "19dd0b57-b21e-4ac1-bd88-01bbb068cb78",
+---EVENT_DELIMITER---
+      "receiptHandle": "MessageReceiptHandle",
+---EVENT_DELIMITER---
+      "body": "Hello from SQS!",
+---EVENT_DELIMITER---
+      "attributes": {
+---EVENT_DELIMITER---
+        "ApproximateReceiveCount": "1",
+---EVENT_DELIMITER---
+        "SentTimestamp": "{{.timestamp_unix_ms}}",
+---EVENT_DELIMITER---
+        "SenderId": "123456789012",
+---EVENT_DELIMITER---
+        "ApproximateFirstReceiveTimestamp": "{{.timestamp_unix_ms}}"
+---EVENT_DELIMITER---
+      }
+---EVENT_DELIMITER---
+    }
+---EVENT_DELIMITER---
+  ]
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+END RequestId: 56639408-xmpl-435f-9041-ac47ae25ceed
+---EVENT_DELIMITER---
+REPORT RequestId: 56639408-xmpl-435f-9041-ac47ae25ceed	Duration: 3906.38 ms	Billed Duration: 4000 ms	Memory Size: 512 MB	Max Memory Used: 367 MB	Init Duration: 5960.19 ms	
+---EVENT_DELIMITER---
+XRAY TraceId: 1-5e843da6-733cxmple7d0c3c020510040	SegmentId: 3913xmpl20999446	Sampled: true
+---EVENT_DELIMITER---
+{"level":"INFO","location":"hello:32","message":"Hello world API - HTTP 200","timestamp":"2025-05-05 04:01:36,154+0000","service":"PowertoolsHelloWorld","cold_start":false,"function_name":"sam-app-powertools-python-HelloWorldFunction-snAkfaCNYJjx","function_memory_size":"128","function_arn":"arn:aws:lambda:ap-south-1:11212121212112:function:sam-app-powertools-python-HelloWorldFunction-snAkfaCNYJjx","function_request_id":"229394ef-0dd2-4753-a668-5186d8c14ad1","correlation_id":"61e04c88-2ffe-45f6-a4f4-a2d3b15c3066","xray_trace_id":"1-68183820-1a7106da2a0a87650e15c2d9"}
+---EVENT_DELIMITER---
+{"level":"INFO","location":"hello_name:19","message":"Request from user received","timestamp":"2025-05-08 14:28:33,173+0000","service":"PowertoolsHelloWorld","cold_start":false,"function_name":"sam-app-powertools-python-HelloWorldFunction-snAkfaCNYJjx","function_memory_size":"128","function_arn":"arn:aws:lambda:ap-south-1:11212121212112:function:sam-app-powertools-python-HelloWorldFunction-snAkfaCNYJjx","function_request_id":"e35b7a39-b9c9-4d5b-b79b-4c294cb3034a","correlation_id":"aa71551d-c6f5-46e4-a316-740fd7c447c1","xray_trace_id":"1-681cbf91-2f73e10615dd891f489d7b39"}
+---EVENT_DELIMITER---
+START RequestId: 8f507cfc-xmpl-4697-b07a-ac58fc914c95 Version: $LATEST
+---EVENT_DELIMITER---
+## ENVIRONMENT VARIABLES
+---EVENT_DELIMITER---
+/aws/lambda/my-function
+---EVENT_DELIMITER---
+2023/08/31/[$LATEST]3893xmpl7fac4485b47bb75b671a283c
+---EVENT_DELIMITER---
+## EVENT
+---EVENT_DELIMITER---
+{'key': 'value'}
+---EVENT_DELIMITER---
+END RequestId: 8f507cfc-xmpl-4697-b07a-ac58fc914c95
+---EVENT_DELIMITER---
+REPORT RequestId: 8f507cfc-xmpl-4697-b07a-ac58fc914c95  Duration: 15.74 ms  Billed Duration: 16 ms Memory Size: 128 MB Max Memory Used: 56 MB  Init Duration: 130.49 ms
+---EVENT_DELIMITER---
+XRAY TraceId: 1-5e34a614-10bdxmplf1fb44f07bc535a1   SegmentId: 07f5xmpl2d1f6f85 Sampled: true
+---EVENT_DELIMITER---
+START RequestId: 8f507cfc-xmpl-4697-b07a-ac58fc914c95 Version: $LATEST
+---EVENT_DELIMITER---
+## ENVIRONMENT VARIABLES
+---EVENT_DELIMITER---
+environ({'AWS_LAMBDA_LOG_GROUP_NAME': '/aws/lambda/my-function', 'AWS_LAMBDA_LOG_STREAM_NAME': '2020/01/31/[$LATEST]3893xmpl7fac4485b47bb75b671a283c', 'AWS_LAMBDA_FUNCTION_NAME': 'my-function'})
+---EVENT_DELIMITER---
+## EVENT
+---EVENT_DELIMITER---
+{'key': 'value'}
+---EVENT_DELIMITER---
+END RequestId: 8f507cfc-xmpl-4697-b07a-ac58fc914c95
+---EVENT_DELIMITER---
+REPORT RequestId: 8f507cfc-xmpl-4697-b07a-ac58fc914c95  Duration: 15.74 ms  Billed Duration: 16 ms Memory Size: 128 MB Max Memory Used: 56 MB  Init Duration: 130.49 ms
+---EVENT_DELIMITER---
+XRAY TraceId: 1-5e34a614-10bdxmplf1fb44f07bc535a1   SegmentId: 07f5xmpl2d1f6f85 Sampled: true   
+---EVENT_DELIMITER---
+START RequestId: 1c8df7d3-xmpl-46da-9778-518e6eca8125 Version: $LATEST
+---EVENT_DELIMITER---
+[INFO]  {{.timestamp_iso}}    1c8df7d3-xmpl-46da-9778-518e6eca8125    ## ENVIRONMENT VARIABLES
+---EVENT_DELIMITER---
+[INFO]  {{.timestamp_iso}}    1c8df7d3-xmpl-46da-9778-518e6eca8125    environ({'AWS_LAMBDA_LOG_GROUP_NAME': '/aws/lambda/my-function', 'AWS_LAMBDA_LOG_STREAM_NAME': '2020/01/31/[$LATEST]1bbe51xmplb34a2788dbaa7433b0aa4d', 'AWS_LAMBDA_FUNCTION_NAME': 'my-function', ...})
+---EVENT_DELIMITER---
+[INFO]  {{.timestamp_iso}}    1c8df7d3-xmpl-46da-9778-518e6eca8125    ## EVENT
+---EVENT_DELIMITER---
+[INFO]  {{.timestamp_iso}}    1c8df7d3-xmpl-46da-9778-518e6eca8125    {'key': 'value'}
+---EVENT_DELIMITER---
+END RequestId: 1c8df7d3-xmpl-46da-9778-518e6eca8125
+---EVENT_DELIMITER---
+REPORT RequestId: 1c8df7d3-xmpl-46da-9778-518e6eca8125  Duration: 2.75 ms   Billed Duration: 3 ms Memory Size: 128 MB Max Memory Used: 56 MB  Init Duration: 113.51 ms
+---EVENT_DELIMITER---
+XRAY TraceId: 1-5e34a66a-474xmpl7c2534a87870b4370   SegmentId: 073cxmpl3e442861 Sampled: true
+---EVENT_DELIMITER---
+2023/01/31/[$LATEST]2ca67f180dcd4d3e88b5d68576740c8e {{.timestamp_iso}}000 START RequestId: 19ad1007-ff67-40ce-9afe-0af0a9eb512c Version: $LATEST
+---EVENT_DELIMITER---
+2023/01/31/[$LATEST]2ca67f180dcd4d3e88b5d68576740c8e {{.timestamp_iso}}000 {
+---EVENT_DELIMITER---
+"level": "INFO",
+---EVENT_DELIMITER---
+"message": "This is an INFO log - sending HTTP 200 - hello world response",
+---EVENT_DELIMITER---
+"service": "helloWorld",
+---EVENT_DELIMITER---
+"timestamp": "{{.timestamp_iso}}",
+---EVENT_DELIMITER---
+"xray_trace_id": "1-630f74c4-2b080cf77680a04f2362bcf2"
+---EVENT_DELIMITER---
+}
+---EVENT_DELIMITER---
+2023/01/31/[$LATEST]2ca67f180dcd4d3e88b5d68576740c8e {{.timestamp_iso}}000 END RequestId: 19ad1007-ff67-40ce-9afe-0af0a9eb512c
+---EVENT_DELIMITER---
+2023/01/31/[$LATEST]2ca67f180dcd4d3e88b5d68576740c8e {{.timestamp_iso}}000 REPORT RequestId: 19ad1007-ff67-40ce-9afe-0af0a9eb512c Duration: 34.60 ms Billed Duration: 35 ms Memory Size: 128 MB Max Memory Used: 57 MB Init Duration: 173.48 ms
+---EVENT_DELIMITER---
+2023/01/31/[$LATEST]4d53e8d279824834a1ccd35511a4949c {{.timestamp_iso}}000 START RequestId: 70693159-7e94-4102-a2af-98a6343fb8fb Version: $LATEST
+---EVENT_DELIMITER---
+2023/01/31/[$LATEST]4d53e8d279824834a1ccd35511a4949c {{.timestamp_iso}}000 {{.timestamp_iso}} 70693159-7e94-4102-a2af-98a6343fb8fb INFO {"_aws":{"Timestamp":{{.timestamp_unix_ms}},"CloudWatchMetrics":[{"Namespace":"sam-app","Dimensions":[["service"]],"Metrics":[{"Name":"ColdStart","Unit":"Count"}]}]},"service":"helloWorld","ColdStart":1}
+---EVENT_DELIMITER---
+2023/01/31/[$LATEST]4d53e8d279824834a1ccd35511a4949c {{.timestamp_iso}}000 {{.timestamp_iso}} 70693159-7e94-4102-a2af-98a6343fb8fb INFO {"level":"INFO","message":"This is an INFO log - sending HTTP 200 - hello world response","service":"helloWorld","timestamp":"{{.timestamp_iso}}"}
+---EVENT_DELIMITER---
+2023/01/31/[$LATEST]4d53e8d279824834a1ccd35511a4949c {{.timestamp_iso}}000 {{.timestamp_iso}} 70693159-7e94-4102-a2af-98a6343fb8fb INFO {"_aws":{"Timestamp":{{.timestamp_unix_ms}},"CloudWatchMetrics":[{"Namespace":"sam-app","Dimensions":[["service"]],"Metrics":[]}]},"service":"helloWorld"}
+---EVENT_DELIMITER---
+2023/01/31/[$LATEST]4d53e8d279824834a1ccd35511a4949c {{.timestamp_iso}}000 END RequestId: 70693159-7e94-4102-a2af-98a6343fb8fb
+---EVENT_DELIMITER---
+2023/01/31/[$LATEST]4d53e8d279824834a1ccd35511a4949c {{.timestamp_iso}}000 REPORT RequestId: 70693159-7e94-4102-a2af-98a6343fb8fb Duration: 201.55 ms Billed Duration: 202 ms Memory Size: 128 MB Max Memory Used: 66 MB Init Duration: 252.42 ms
+---EVENT_DELIMITER---
+XRAY TraceId: 1-630f2ad5-1de22b6d29a658a466e7ecf5 SegmentId: 567c116658fbf11a Sampled: true

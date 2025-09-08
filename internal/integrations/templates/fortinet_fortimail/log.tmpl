@@ -1,0 +1,65 @@
+<190>date=2023-01-30,time=16:09:16.825,device_id=FEVM02TM23000064,log_id=0300003065,type=spam,subtype=default,pri=information,session_id="q6OL7fsQ018870-q6OL7fsR018870",client_name="",client_ip="{{.IPs}}",dst_ip="{{.IPs}}",from="{{.Emails}}",to="{{.Emails}}",subject="Test1516",msg="mailfilterd: Starting"
+---EVENT_DELIMITER---
+<190>date=2023-01-30,time=16:09:15.246,device_id=FEVM02TM23000064,log_id=0400003064,type=virus,subtype=infected,pri=information,from="{{.Emails}}",to="{{.Emails}}",src={{.IPs}},session_id="q6OL7fsQ018870-q6OL7fsR018870",msg="The file {{.Domains}} is infected with EICAR_TEST_FILE."
+---EVENT_DELIMITER---
+<190>date=2023-01-30,time=16:09:15.246,device_id=FEVM02TM23000064,log_id=0400003064,type=encrypt,pri=information,session_id="q6OL7fsQ018870-q6OL7fsR018870",msg="Starting cryptod"
+---EVENT_DELIMITER---
+<142>date=2023-01-30,time=16:09:15.246,device_id=FEVM02TM23000064,log_id=0400003064,type=encrypt,pri=information,session_id="q6OL7fsQ018870-q6OL7fsR018870",msg="User {{.Emails}} read secure message, id:'q79EiV8S007017-q79EiV8T0070170001474', sent from: '{{.Emails}}', subject: 'ppt file'"
+---EVENT_DELIMITER---
+<187>date=2013-02-25,time=07:01:34,device_id=FE100C3909600504,log_id=0200025843,type=statistics,pri=information,session_id="r1PF1YTh025836-r1PF1YTh025836",client_name="user",dst_ip="{{.IPs}}",endpoint="",from="{{.Emails}}",to="{{.Emails}}",polid="0:1:0",domain="{{.Domains}}",subject="Test12345",mailer="proxy",resolved="FAIL",direction="unknown",virus="",disposition="Delay",classifier="Session Limits",message_length="199986"
+---EVENT_DELIMITER---
+<187>date=2023-01-16,time=15:56:24.983,device_id=FEVM02TM22000650,log_id=0200007961,type=statistics,pri=information,session_id="30GBYxmi007660-30GBYxmk007660",client_name="{{.Domains}}",client_ip="{{.IPs}}",client_cc="DE",dst_ip="{{.IPs}}",from="{{.Emails}}",hfrom="{{.Emails}}",to="{{.Emails}}",polid="0:1:1:SYSTEM",domain="{{.Domains}}",mailer="mta",resolved="OK",src_type="ext",direction="in",virus="",disposition="System Quarantine;Notification;Defer Disposition",classifier="Attachment Filter",detail='Content',message_length="5384",subject="Test 2 BAT",message_id="1AWJEux58Mipu6R59d9pkk1KgEfGRxMRjueDQpXDlSCejzr-sROl0BZqXfu5V6-fyiNeH2ePEh5NAmFB3a8OezyXTsMQ5e3-omnNQBbNnIg=@{{.Domains}}",recv_time="",notif_delay="0",scan_time="0.644852",xfer_time="0.001047",srcfolder="",read_status=""
+---EVENT_DELIMITER---
+<191>date=2023-02-06,time=18:06:10.119,device_id=FEVM02TM23000064,log_id=0002002810,type=event,subtype=imap,pri=debug, user=mail,ui=mail,action=none,status=success,session_id='q6OL7fsQ018870-q6OL7fsR018870',msg="mailbox Inbox[/var/spool/home/{{.Domains}}/timesheet~{{.Domains}}/mail/Inbox] is updated"
+---EVENT_DELIMITER---
+<191>date=2023-02-06,time=18:28:49.954,device_id=FEVM02TM23000064,log_id=0002003307,type=event,subtype=imap,pri=debug, user=mail,ui=mail,action=none,status=success,session_id='q6OL7fsQ018870-q6OL7fsR018870',msg="mailbox {{.Domains}}[/var/spool/dead/{{.Domains}}] is updated"
+---EVENT_DELIMITER---
+<182>date=2023-02-01,time=14:42:35.521,device_id=FEVM02TM23000064,log_id=0000004943,type=event,subtype=webmail,pri=information, user=webmail,ui=webmail,action=unknown,status=failure,msg="WebMail: Login for '{{.Emails}}' from {{.IPs}} failed"
+---EVENT_DELIMITER---
+<190>date=2023-01-30,time=16:06:24.345,device_id=FEVM02TM23000064,log_id=0003002428,type=event,subtype=smtp,pri=information, user=mail,ui=mail,action=NONE,status=N/A,session_id='q6OL7fsQ018870-q6OL7fsR018870',msg="starting daemon: persistent-queueing@00:05:00"
+---EVENT_DELIMITER---
+<190>date=2023-03-02,time=12:55:12.771,device_id=FEVM02TM23000064,log_id=0000002634,type=event,subtype=webmail,pri=information, user=webmail,ui=webmail,action=unknown,status=success,msg="WebMail: User {{.Emails}} from {{.IPs}} logged in."
+---EVENT_DELIMITER---
+<190>date=2023-03-02,time=12:51:59.968,device_id=FEVM02TM23000064,log_id=0000002596,type=event,subtype=webmail,pri=information, user=webmail,ui=webmail,action=unknown,status=failure,msg="WebMail: Login for '{{.Emails}}' from {{.IPs}} failed"
+---EVENT_DELIMITER---
+<190>date=2023-02-06,time=19:10:00.391,device_id=FEVM02TM23000064,log_id=0700001767,type=kevent,subtype=config,pri=information, user=admin,ui=http({{.IPs}}),module=unknown,submodule=unknown,msg="Added 'Test_copy' to 'profile url-filter' : category[child-abuse drug-abuse adult-materials nudity-risque pornograph..] (user: admin, from: http({{.IPs}}))"
+---EVENT_DELIMITER---
+<190>date=2023-02-07,time=09:01:43.129,device_id=FEVM02TM23000064,log_id=0700001767,type=kevent,subtype=config,pri=information, user=admin,ui=http({{.IPs}}),module=unknown,submodule=unknown,msg="Deleted 'Test_copy' from 'profile url-filter' : category[child-abuse drug-abuse adult-materials nudity-risque pornograph..] (user: admin, from: http({{.IPs}}))"
+---EVENT_DELIMITER---
+<190>date=2023-02-07,time=09:05:02.414,device_id=FEVM02TM23000064,log_id=0700001767,type=kevent,subtype=config,pri=information, user=admin,ui=http({{.IPs}}),module=unknown,submodule=unknown,msg="Modified 'Test' on 'log setting remote' : port[9026->9589] (user: admin, from: http({{.IPs}}))"
+---EVENT_DELIMITER---
+<190>date=2023-02-07,time=09:08:21.402,device_id=FEVM02TM23000064,log_id=0700001767,type=kevent,subtype=config,pri=information, user=admin,ui=http({{.IPs}}),module=unknown,submodule=unknown,msg="Modified 'Test' on 'log setting remote' : comma-separated-value[enable->disable] (user: admin, from: http({{.IPs}}))"
+---EVENT_DELIMITER---
+<190>date=2023-02-07,time=09:09:17.129,device_id=FEVM02TM23000064,log_id=0700001767,type=kevent,subtype=config,pri=information, user=admin,ui=http({{.IPs}}),module=unknown,submodule=unknown,msg="Modified 'Test' on 'log setting remote' : syslog-mode[tcp->udp]port[9589->9590] (user: admin, from: http({{.IPs}}))"
+---EVENT_DELIMITER---
+<190>date=2023-02-14,time=10:54:07.089,device_id=FEVM02TM23000064,log_id=0700001766,type=kevent,subtype=config,pri=information, user=admin,ui=http({{.IPs}}),module=unknown,submodule=unknown,msg="Modified '2' on 'policy recipient' : status[disable->enable] (user: admin, from: http({{.IPs}}))"
+---EVENT_DELIMITER---
+<190>date=2023-02-14,time=10:55:31.392,device_id=FEVM02TM23000064,log_id=0700001766,type=kevent,subtype=config,pri=information, user=admin,ui=http({{.IPs}}),module=unknown,submodule=unknown,msg="Modified 'AV_OutBound' on 'profile antivirus-action' : subject-tagging-status[enable->disable]subject-tagging-text[Virus->]action[none ->discard ]replace-infected-status[enable->disable] (user: admin, from: http({{.IPs}}))"
+---EVENT_DELIMITER---
+<190>date=2023-02-08,time=15:20:16.506,device_id=FEVM02TM23000064,log_id=0700001767,type=kevent,subtype=config,pri=information, user=admin,ui=http({{.IPs}}),module=unknown,submodule=unknown,msg="Modified 'port1' on 'system interface' : ip[{{.IPs}}/20->{{.IPs}}/20] (user: admin, from: http({{.IPs}}))"
+---EVENT_DELIMITER---
+<190>date=2023-02-07,time=12:34:55.214,device_id=FEVM02TM23000064,log_id=0701002231,type=kevent,subtype=admin,pri=information, user=admin,ui=http({{.IPs}}),action=none,status=none,reason=unknown,msg="History logs accessed (user: admin, from: http({{.IPs}}))"
+---EVENT_DELIMITER---
+<190>date=2023-02-06,time=18:05:49.266,device_id=FEVM02TM23000064,log_id=0701002124,type=kevent,subtype=admin,pri=information, user=admin,ui=ssh({{.IPs}}),action=logout,status=success,reason=unknown,msg="User admin time out on ssh({{.IPs}})."
+---EVENT_DELIMITER---
+<190>date=2023-02-06,time=18:49:59.807,device_id=FEVM02TM23000064,log_id=0701002231,type=kevent,subtype=admin,pri=information, user=admin,ui=GUI({{.IPs}}),action=login,status=success,reason=none,msg="User admin login successfully from GUI({{.IPs}})"
+---EVENT_DELIMITER---
+<187>date=2023-02-06,time=19:00:25.566,device_id=FEVM02TM23000064,log_id=0702001987,type=kevent,subtype=system,pri=error, user=,ui=,action=none,status=none,msg="FortiSandbox server is not available at the moment. Connection block time: 300 seconds"
+---EVENT_DELIMITER---
+<191>date=2023-02-08,time=23:28:33.214,device_id=FEVM02TM23000064,log_id=0702001905,type=kevent,subtype=system,pri=debug, user=ntpd,ui=ntpd,action=none,status=none,msg="ntpd: system clock updated"
+---EVENT_DELIMITER---
+<187>date=2023-02-07,time=09:27:19.984,device_id=FEVM02TM23000064,log_id=0702002220,type=kevent,subtype=system,pri=error, user=ntpd,ui=ntpd,action=none,status=none,msg="ntpd: system clock updated with errors: Error resolving {{.Domains}}: No address associated with hostname (-5)  7 Feb 09:27:11 ntpdate[4584]: Can't find host {{.Domains}}: No address associated with hostname (-5)  7 Feb 09:27:19 ntpdate[4584]: adjust time server {{.IPs}} offset +0.0"
+---EVENT_DELIMITER---
+<191>date=2023-02-07,time=15:24:50.526,device_id=FEVM02TM23000064,log_id=0702001888,type=kevent,subtype=system,pri=debug, user=,ui=,action=none,status=none,msg="FTGD connection [{{.IPs}}:53] last 136 seconds; req sent: 2, resp rcvd: 1, 200: 1, 400: 0, 404: 0, xxx: 0, last error: failed to recv response: Connection timed out"
+---EVENT_DELIMITER---
+<191>date=2023-02-08,time=15:20:16.509,device_id=FEVM02TM23000064,log_id=0702001936,type=kevent,subtype=system,pri=debug, user=,ui=,action=none,status=none,msg="ldapcached: clear connections"
+---EVENT_DELIMITER---
+<190>date=2023-02-06,time=19:35:20.062,device_id=FEVM02TM23000064,log_id=0704003868,type=kevent,subtype=update,pri=information,,msg="Loaded avdb 91.00325(02/06/0023 05:39) using av engine 6.283"
+---EVENT_DELIMITER---
+<190>date=2023-02-06,time=19:35:20.068,device_id=FEVM02TM23000064,log_id=0704001887,type=kevent,subtype=update,pri=information,,msg="Update result: virus db:yes, virus engine:no, spam db:no, spam engine:no"
+---EVENT_DELIMITER---
+<190>date=2023-02-07,time=14:38:16.642,device_id=FEVM02TM23000064,log_id=0704001887,type=kevent,subtype=update,pri=information,,msg="Internet service DB update succeeded"
+---EVENT_DELIMITER---
+<191>date=2023-07-28,time=04:48:36.567,device_id=FEVM02xxnnnnnn,log_id=0702001939,type=kevent,subtype=system,pri=debug, user=,ui=,action=none,status=none,msg="authserver: removed block rule for {{.IPs}}"
+---EVENT_DELIMITER---
+<191>date=2023-07-28,time=03:58:41.726,device_id=FEVM02xxnnnnnn,log_id=0702001941,type=kevent,subtype=system,pri=debug, user=,ui=,action=none,status=none,msg="authserver: added block rule for {{.IPs}} until 2023-07-28 04:48 -0400"

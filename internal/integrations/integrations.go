@@ -9,111 +9,62 @@ import (
 	"github.com/charmbracelet/log"
 )
 
-func GetIntegrations(repoPath string) ([]string, error) {
-	basePath := filepath.Join(repoPath, "packages")
-	fileInfo, err := os.Stat(basePath)
-	if err != nil {
-		log.Debug(err)
-		return nil, fmt.Errorf("failed to access path %s: %w", basePath, err)
-	}
-	if !fileInfo.IsDir() {
-		log.Debug(err)
-		return nil, fmt.Errorf("%s is not a directory", basePath)
-	}
-	entries, err := os.ReadDir(basePath)
-	if err != nil {
-		log.Debug(err)
-		return nil, fmt.Errorf("failed to read directory %s: %w", basePath, err)
-	}
-	var directories []string
-	for _, entry := range entries {
-		if !entry.IsDir() {
-			continue
-		}
+// GetIntegrationsFromTemplates discovers integrations from pre-generated template files
+func GetIntegrationsFromTemplates() ([]string, error) {
+	templatesDir := "internal/integrations/templates"
 
-		if entry.Name() == "system" {
-			continue
-		}
-
-		if hasValidDatasets(repoPath, entry.Name()) {
-			directories = append(directories, entry.Name())
-		}
+	// Check if templates directory exists
+	if _, err := os.Stat(templatesDir); os.IsNotExist(err) {
+		return nil, fmt.Errorf("templates directory not found: %s", templatesDir)
 	}
-	return directories, nil
-}
 
-func GetDatasets(repoPath, integration string) ([]string, error) {
-	basePath := filepath.Join(repoPath, "packages", integration, "data_stream")
-	fileInfo, err := os.Stat(basePath)
+	entries, err := os.ReadDir(templatesDir)
 	if err != nil {
 		log.Debug(err)
-		return nil, fmt.Errorf("failed to access path %s: %w", basePath, err)
+		return nil, fmt.Errorf("failed to read templates directory %s: %w", templatesDir, err)
 	}
-	if !fileInfo.IsDir() {
-		log.Debug(err)
-		return nil, fmt.Errorf("%s is not a directory", basePath)
-	}
-	entries, err := os.ReadDir(basePath)
-	if err != nil {
-		log.Debug(err)
-		return nil, fmt.Errorf("failed to read directory %s: %w", basePath, err)
-	}
-	var directories []string
+
+	var integrations []string
 	for _, entry := range entries {
 		if entry.IsDir() {
-			if IsValidDataset(repoPath, integration, entry.Name()) {
-				directories = append(directories, entry.Name())
-			}
+			integrations = append(integrations, entry.Name())
 		}
 	}
-	return directories, nil
+
+	if len(integrations) == 0 {
+		return nil, fmt.Errorf("no integrations found in templates directory")
+	}
+
+	return integrations, nil
 }
 
-func hasValidDatasets(repoPath, integration string) bool {
-	basePath := filepath.Join(repoPath, "packages", integration, "data_stream")
-	entries, err := os.ReadDir(basePath)
+// GetDatasetsFromTemplates gets datasets for an integration from template files
+func GetDatasetsFromTemplates(integration string) ([]string, error) {
+	integrationDir := filepath.Join("internal/integrations/templates", integration)
+
+	// Check if integration directory exists
+	if _, err := os.Stat(integrationDir); os.IsNotExist(err) {
+		return nil, fmt.Errorf("integration directory not found: %s", integrationDir)
+	}
+
+	entries, err := os.ReadDir(integrationDir)
 	if err != nil {
-		return false
+		log.Debug(err)
+		return nil, fmt.Errorf("failed to read integration directory %s: %w", integrationDir, err)
 	}
 
+	var datasets []string
 	for _, entry := range entries {
-		if entry.IsDir() {
-			if IsValidDataset(repoPath, integration, entry.Name()) {
-				return true
-			}
-		}
-	}
-	return false
-}
-
-func IsValidDataset(repoPath, integration, dataset string) bool {
-	basePath := filepath.Join(repoPath, "packages", integration, "data_stream", dataset, "_dev", "test", "pipeline")
-
-	info, err := os.Stat(basePath)
-	if err != nil || !info.IsDir() {
-		return false
-	}
-
-	entries, err := os.ReadDir(basePath)
-	if err != nil {
-		return false
-	}
-
-	for _, entry := range entries {
-		if entry.IsDir() {
-			continue
-		}
-
-		fileName := entry.Name()
-		if strings.Contains(fileName, "-expected.json") {
-			continue
-		}
-
-		fileExt := strings.ToLower(filepath.Ext(fileName))
-		if fileExt == ".json" || fileExt == ".log" {
-			return true
+		if !entry.IsDir() && strings.HasSuffix(entry.Name(), ".tmpl") {
+			// Remove .tmpl extension to get dataset name
+			dataset := strings.TrimSuffix(entry.Name(), ".tmpl")
+			datasets = append(datasets, dataset)
 		}
 	}
 
-	return false
+	if len(datasets) == 0 {
+		return nil, fmt.Errorf("no datasets found for integration %s", integration)
+	}
+
+	return datasets, nil
 }

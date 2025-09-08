@@ -111,7 +111,7 @@ func (m *TabModel) StartGeneration() error {
 		integrationDatasets := m.programContext.DatasetConfigs[integrationName]
 
 		if dataset, ok := integrationDatasets[datasetName]; ok {
-			templates, err := generator.LoadTemplatesForDataset(m.programContext.ConfigPath, integrationName, datasetName, m.programContext.Config)
+			templates, err := generator.LoadPreGeneratedTemplatesForDataset(integrationName, datasetName, m.programContext.Config)
 			if err != nil {
 				log.Debug(err)
 				return err

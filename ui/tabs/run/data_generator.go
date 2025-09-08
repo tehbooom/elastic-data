@@ -104,17 +104,21 @@ func (dg *DataGenerator) sendEPS() error {
 		}
 
 		var event map[string]interface{}
-		if dg.config.PreserveEventOriginal {
-			event = map[string]interface{}{
-				"message":    message,
-				"@timestamp": time.Now().UTC().Format(time.RFC3339),
-				"tags":       []string{"preserve_original_event"},
+		if template.IsJSON {
+			if err := json.Unmarshal([]byte(message), &event); err != nil {
+				log.Debug("Failed to parse JSON message:", err)
+				return err
 			}
+			event["@timestamp"] = time.Now().UTC().Format(time.RFC3339)
 		} else {
 			event = map[string]interface{}{
 				"message":    message,
 				"@timestamp": time.Now().UTC().Format(time.RFC3339),
 			}
+		}
+
+		if dg.config.PreserveEventOriginal {
+			event["tags"] = []string{"preserve_original_event"}
 		}
 
 		log.Debug(fmt.Sprintf("Event %d: %v", i, event))
@@ -167,18 +171,21 @@ func (dg *DataGenerator) sendBytes() error {
 		}
 
 		var event map[string]interface{}
-		if dg.config.PreserveEventOriginal {
-			event = map[string]interface{}{
-				"message":    message,
-				"@timestamp": time.Now().UTC().Format(time.RFC3339),
-				"tags":       []string{"preserve_original_event"},
+		if template.IsJSON {
+			if err := json.Unmarshal([]byte(message), &event); err != nil {
+				log.Debug("Failed to parse JSON message:", err)
+				return err
 			}
+			event["@timestamp"] = time.Now().UTC().Format(time.RFC3339)
 		} else {
 			event = map[string]interface{}{
 				"message":    message,
 				"@timestamp": time.Now().UTC().Format(time.RFC3339),
-				"tags":       []string{"preserve_original_event"},
 			}
+		}
+
+		if dg.config.PreserveEventOriginal {
+			event["tags"] = []string{"preserve_original_event"}
 		}
 
 		eventBytes := dg.calculateEventSize(event)

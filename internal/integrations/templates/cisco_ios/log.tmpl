@@ -1,0 +1,225 @@
+<165>7433: ASR920: 007439: 2y10w: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: username] [Source: {{.IPs}}] [localport: 22] at 07:57:58 VIENNA Thu Jan 27 2022
+---EVENT_DELIMITER---
+<166>7432: ASR920: 007438: 2y10w: %SYS-6-LOGOUT: User username has exited tty session 3({{.IPs}})
+---EVENT_DELIMITER---
+<166>7431: ASR920: 007437: 2y10w: %SYS-6-LOGOUT: User CPI has exited tty session 1({{.IPs}})
+---EVENT_DELIMITER---
+<166>7424: ASR920: 007430: 2y10w: %SYS-6-TTY_EXPIRE_TIMER: (exec timer expired, tty 1 ({{.IPs}})), user username
+---EVENT_DELIMITER---
+<165>7422: ASR920: 007428: 2y10w: %SYS-5-CONFIG_I: Configured from console by username on vty1 ({{.IPs}})
+---EVENT_DELIMITER---
+<165>2029: ASR920: {{.timestamp_syslog}}.204: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/7, changed state to up
+---EVENT_DELIMITER---
+<166>352134: ASR920: {{.timestamp_syslog}}.142: %SEC-6-IPACCESSLOGP: list ACL_CE-SECURITY denied udp {{.IPs}}(0) -> {{.IPs}}(0), 1 packet
+---EVENT_DELIMITER---
+<166>352133: ASR920: {{.timestamp_syslog}}.140: %SEC-6-IPACCESSLOGNP: list ACL_CE-SECURITY denied 112 {{.IPs}} -> {{.IPs}}, 295 packets
+---EVENT_DELIMITER---
+<163>81681: CORE: {{.timestamp_syslog}}.769: %SNMP-SW1-3-RESPONSE_DELAYED: processing Get of cefcFRUPowerStatusEntry.1.2030 (4620 msecs)
+---EVENT_DELIMITER---
+<190>9004: {{.timestamp_syslog}}.081: %TCP-6-BADAUTH: No MD5 digest from {{.IPs}}(64999) to {{.IPs}}(15448) (RST) tableid - 0
+---EVENT_DELIMITER---
+<190>9004: {{.timestamp_syslog}}.081: %TCP-6-BADAUTH: No MD5 digest from {{.IPs}}:64999 to {{.IPs}}:15448 (RST) tableid - 0
+---EVENT_DELIMITER---
+<190>9004: {{.timestamp_syslog}}.081: %TCP-6-BADAUTH: No MD5 digest from {{.IPs}}(64999) to {{.IPs}}(15448)
+---EVENT_DELIMITER---
+<190>9004: {{.timestamp_syslog}}.081: %TCP-6-BADAUTH: No MD5 digest from {{.IPs}}:64999 to {{.IPs}}:15448
+---EVENT_DELIMITER---
+<190>9004: {{.timestamp_syslog}}.081: %TCP-6-BADAUTH: Invalid MD5 digest from {{.IPs}}(1234) to {{.IPs}}(1234)
+---EVENT_DELIMITER---
+<190>9004: {{.timestamp_syslog}}.081: %TCP-6-BADAUTH: Invalid MD5 digest from {{.IPs}}(1234) to {{.IPs}}(1234) tableid - 3
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 585917: {{.timestamp_syslog}}.272: %SEC-6-IPACCESSLOGRP: list 177 denied igmp {{.IPs}} -> {{.IPs}}, 1 packet
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 585918: {{.timestamp_syslog}}.272: %SEC-6-IPACCESSLOGSP: list INBOUND-ON-F11 denied igmp {{.IPs}} -> {{.IPs}} (20), 1 packet
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 585919: {{.timestamp_syslog}}.272: %SEC-6-IPACCESSLOGNP: list 171 denied 0 {{.IPs}} -> {{.IPs}}, 1 packet
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 585920: {{.timestamp_syslog}}.619: %IPV6-6-ACCESSLOGP: list ACL-IPv6-E0/0-IN/10 permitted tcp 2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6(1027) -> 2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6(22), 9 packets
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1663303: {{.timestamp_syslog}}.326: %SEC-6-IPACCESSLOGP: list 177 denied udp {{.IPs}}(55250) -> {{.IPs}}(15600), 1 packet
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1663304: {{.timestamp_syslog}}.921: %SEC-6-IPACCESSLOGDP: list 151 denied icmp {{.IPs}} -> {{.IPs}} (3/4), 1 packet
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1663312: {{.timestamp_syslog}}.342: %SEC-6-IPACCESSLOGP: list 177 denied udp {{.IPs}}(54309) -> {{.IPs}}(15600), 1 packet
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1663313: {{.timestamp_syslog}}.374: %SEC-6-IPACCESSLOGRL: access-list logging rate-limited or missed 18 packets
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1663314: {{.timestamp_syslog}}.340: %SEC-6-IPACCESSLOGP: list 177 denied udp {{.IPs}}(43989) -> {{.IPs}}(15600), 1 packet
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1663321: {{.timestamp_syslog}}.454: %SEC-6-IPACCESSLOGP: list 150 denied tcp {{.IPs}}(59832) -> {{.IPs}}(80), 1 packet
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1663325: {{.timestamp_syslog}}.403: %SEC-6-IPACCESSLOGRL: access-list logging rate-limited or missed 23 packets
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1663326: {{.timestamp_syslog}}.403: %SEC-6-IPACCESSLOGDP: list 150 denied icmp {{.IPs}} -> {{.IPs}} (3/3), 32 packets
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1663327: {{.timestamp_syslog}}.451: %SEC-6-IPACCESSLOGP: list 150 denied tcp {{.IPs}}(59834) -> {{.IPs}}(80), 1 packet
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1991219: {{.timestamp_syslog}}.424 UTC: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: {{.Domains}}] [Source: {{.IPs}}] [localport: 22] at 12:06:03 MST Wed Mar 24 2021
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1991220: {{.timestamp_syslog}}.364 UTC: %SYS-6-LOGOUT: User {{.Domains}} has exited tty session 5({{.IPs}})
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1991221: {{.timestamp_syslog}} UTC: %PIM-SW1-6-INVALID_RP_JOIN: Received (*, {{.IPs}}) Join from {{.IPs}} for invalid RP {{.IPs}}
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1991221: {{.timestamp_syslog}} UTC: %PIM-SW1-6-INVALID_RP_JOIN: Received ({{.IPs}}, {{.IPs}}) Join from {{.IPs}} for invalid RP {{.IPs}}
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1991217: {{.timestamp_syslog}}.367: %OSPF-4-NOVALIDKEY: No valid authentication send key is available on interface eth0
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1991218: {{.timestamp_syslog}}.099: %CCH323-6-CALL_PRESERVED: cch323_h225_handle_conn_loss: H.323 call preserved due to socket closure or error, Call Id = 6527, fd = 19
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} my-router-hostname 1663312: {{.timestamp_syslog}}.020: %FMANFP-6-IPACCESSLOGP: R0/0: fman_fp_image: list internet_in_gig0 permitted tcp {{.IPs}}(59144) -> {{.IPs}}(1103), 1 packet
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} my-router-hostname 1663410: {{.timestamp_syslog}}.762: %FMANFP-6-IPACCESSLOGP: R0/0: fman_fp_image: list 110 denied tcp {{.IPs}}(59120) -> {{.IPs}}(7774), 1 packet
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} my-router-hostname 1663469: {{.timestamp_syslog}}.334: %FMANFP-6-IPACCESSLOGP: R0/0: fman_fp_image: list internet_in_gig0 permitted udp {{.IPs}}(1985) -> {{.IPs}}(1985), 327 packets
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} my-router-hostname 1663511: {{.timestamp_syslog}}.209: %FMANFP-6-IPACCESSLOGP: R0/0: fman_fp_image: list internet_in_gig0 denied udp {{.IPs}}(1985) -> {{.IPs}}(1985), 342 packets
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1663511: {{.timestamp_syslog}}.206: %FMANFP-6-IPACCESSLOGP:  SIP0: fman_fp_image:  list ACL denied udp {{.IPs}}(52361) -> {{.IPs}}(10001), 1 packet
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1663511: {{.timestamp_syslog}}.206: %FMANFP-6-IPACCESSLOGDP: F0: fman_fp_image:  list ACL_TEST permitted icmp {{.IPs}} -> {{.IPs}} (8/0), 2 packets
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 1663511: {{.timestamp_syslog}}.207: %FMANFP-6-IPACCESSLOGDP: F0: fman_fp_image:  list ACL_TEST permitted icmp {{.IPs}} -> {{.IPs}} (8/0), 1 packet
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 585918: {{.timestamp_syslog}}.272: %IPV6_ACL-6-ACCESSLOGSP: list ACL_TEST-allowed/40 denied ipv6 :: -> 2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6, 6 packets
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan 16 2022 22:11:43: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan 16 2022 22:11:43 AEST: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan 16 2022 22:11:43 CST: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan 16 2022 22:11:43 METDST: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan  6 2022 22:11:43.398 AEST: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan  6 2022 22:11:43.398: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan  6 2022 22:11:43 ACDT: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan  6 2022 22:11:43: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan 16 2022 22:11:43.398 UTC: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan 16 2022 22:11:43.398: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan 16 2022 22:11:43 AWST: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan 16 2022 22:11:43: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan 16 2022 22:11:43 EDT: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: {{.timestamp_syslog}}.398 AEDT: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: {{.timestamp_syslog}}.398: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: {{.timestamp_syslog}} UTC: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: {{.timestamp_syslog}}: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: {{.timestamp_syslog}}.398 UTC: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: {{.timestamp_syslog}}.398: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: {{.timestamp_syslog}} UTC: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: {{.timestamp_syslog}}: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<190>2361044: sw01: {{.timestamp_syslog}} EDT: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<189>{{.timestamp_syslog}} {{.Domains}} 157475316: *Oct 16 2024 07:39:09.425 UTC: %AUTHMGR-5-SECURITY_VIOLATION: Security violation on the interface GigabitEthernet1/0/13, new MAC address (0015.5d9c.3d01) is {{.Domains}} Unassigned
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.Domains}} <189>942562724: Apr 2 2025 06:03:15.915 UTC: %AUTHMGR-6-MACREPLACE: MAC address (0000.a636.6867) on Interface GigabitEthernet1/0/4 is replaced by MAC (66aa.6636.6867) AuditSessionID 0A66666A1A3AC8899A66AA6A]"
+---EVENT_DELIMITER---
+<179>host-1: *Dot1x_NW_MsgTask_0: {{.timestamp_syslog}}.123: %DOT1X-3-INVALID_REPLAY_CTR: 1x_eapkey.c:458 Invalid replay counter from client ab:cd:ef:01:23:45 - got 00 00 00 00 00 00 00 1a, expected 00 00 00 00 00 00 00 1b
+---EVENT_DELIMITER---
+<190>Original Address={{.IPs}} 1 {{.timestamp_iso}} syslog-host-1 Kiwi_SyslogNet_Server 3356 MSGOUT TEST-HOST-1: *{{.timestamp_syslog}}.534: %SYS-6-LOGOUT: User test-user has exited tty session 1({{.IPs}})
+---EVENT_DELIMITER---
+<190>{{.timestamp_syslog}} {{.Domains}} %FOO-6-BAR: Hostname starting with digit
+---EVENT_DELIMITER---
+<190>{{.timestamp_syslog}} 2switch 3132779: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Another hostname starting with digit
+---EVENT_DELIMITER---
+<190>3132811: 3router 3132807: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Numeric hostname with sequence
+---EVENT_DELIMITER---
+<190>3132517: {{.Domains}} Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Hostname starting with digit and FQDN
+---EVENT_DELIMITER---
+<46>: 2023host {{.timestamp_syslog}} PDT: %SNMPD-6-INFO: SNMP log informational : Processing packet for non-MTS (sockets)
+---EVENT_DELIMITER---
+<190>3132517: {{.timestamp_syslog}} {{.IPs}} sw01: 3132779: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>{{.timestamp_syslog}} {{.IPs}} sw01: 3132779: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>3132517: {{.IPs}} 3132513: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>3132783: 2a02:cf40::: 3132779: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>3132811: sw01: 3132807: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>3132517: 3132513: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>sw01: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>2361044: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>: sw01: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>: Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>*Jul 14 2023 08:23:43.398 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>3132517: sw01: 3132513: 2y10w: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<190>{{.timestamp_syslog}} {{.IPs}} 585917: Jul 14 2023 08:23:43 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} {{.IPs}} 585917: Jul 14 2023 08:23:43 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+{{.timestamp_syslog}} sw01 1663410: Jul 14 2023 08:23:43 UTC: %FOO-6-BAR: Test header format
+---EVENT_DELIMITER---
+<171>250756222: FNZPRPE11: 328926563: {{.timestamp_syslog}}.139 MDT: %IOSXE-3-PLATFORM: R0/0: bcm_switch: SchanTimeOut:soc_schan_op operation timed out
+---EVENT_DELIMITER---
+<189>2360957: Jan  6 2022 20:52:12.861: %SYS-5-CONFIG_I: Configured from console by akroh on vty0 ({{.IPs}})
+---EVENT_DELIMITER---
+<189>: Jan  6 2022 20:54:26.961: %SYS-5-CONFIG_I: Configured from console by akroh on vty0 ({{.IPs}})
+---EVENT_DELIMITER---
+<190>: Jan  6 2022 20:55:50.671: %SEC-6-IPACCESSLOGDP: list 100 denied icmp {{.IPs}} -> {{.IPs}} (3/3), 20 packets
+---EVENT_DELIMITER---
+<189>: sw01: Jan  6 2022 21:01:34.964: %SYS-5-CONFIG_I: Configured from console by akroh on vty0 ({{.IPs}})
+---EVENT_DELIMITER---
+<189>387448: host-01: {{.timestamp_syslog}}.123 UTC+1: %DOT1X-5-FAIL: Authentication failed for client (001e.0b80.13b5) on Interface Gi1/0/16 AuditSessionID 000000000000011D51B826E5
+---EVENT_DELIMITER---
+<189>387448: host-01: {{.timestamp_syslog}}.123 UTC+07:30: %DOT1X-5-FAIL: Authentication failed for client (001e.0b80.13b5) on Interface Gi1/0/16 AuditSessionID 000000000000011D51B826E5
+---EVENT_DELIMITER---
+<191>2637085: rt401-rk30409: {{.timestamp_syslog}}.461 CEST: NTP Core (NOTICE): Clock synchronization lost.
+---EVENT_DELIMITER---
+<191>2637086: rt401-rk30409: {{.timestamp_syslog}}.461 CEST: NTP Core (INFO): {{.IPs}} 961A 8A sys_peer
+---EVENT_DELIMITER---
+<191>2637087: rt401-rk30409: {{.timestamp_syslog}}.461 CEST: NTP Core (NOTICE): Clock is synchronized.
+---EVENT_DELIMITER---
+<190>3352436: 3352457: Aug 12 2023 12:14:24.412 mdt: %IOSXE-6-PLATFORM: R0/0: cpp_cp: QFP:0.0 Thread:001 TS:00013807766185951588 %FW-6-SESS_AUDIT_TRAIL: (target:class) (ZP_PROCESS_TO_CORPORATE:CM_PROCESS_TO_CORPORATE):Stop dns session: initiator ({{.IPs}}:33207) sent 48 bytes -- responder ({{.IPs}}:53) sent 40 bytes, from GigabitEthernet10/0/2.6
+---EVENT_DELIMITER---
+<190>3352460: 3352481: Aug 12 2023 12:15:33.963 mdt: %IOSXE-6-PLATFORM: R0/0: cpp_cp: QFP:0.0 Thread:001 TS:00013807835737559120 %FW-6-DROP_PKT: Dropping tcp pkt from GigabitEthernet1/0/2.6 {{.IPs}}:53836 => {{.IPs}}:80(target:class)-(ZP_PROCESS_TO_CORPORATE:class-default) due to Policy drop:classify result with ip ident 13017 tcp flag 0x2, seq 4266642156, ack 0
+---EVENT_DELIMITER---
+<191>: rt401-rk30409: {{.timestamp_syslog}}.461 CEST: last message repeated 66 times
+---EVENT_DELIMITER---
+<189>1469087: chswitchm1: {{.timestamp_syslog}}.863 CDT: %ILPOWER-5-SENSE_POWER_INVALID: Interface Gi1/0/25: invalid power sense 78054 milliwatts current 515 mA voltage 151562 mV
+---EVENT_DELIMITER---
+<189>1469087: ch_switch_m-1: {{.timestamp_syslog}}.863 CDT: %ILPOWER-5-SENSE_POWER_INVALID: Interface Gi1/0/25: invalid power sense 78054 milliwatts current 515 mA voltage 151562 mV
+---EVENT_DELIMITER---
+<189>{{.timestamp_syslog}} {{.IPs}} %ILPOWER-5-IEEE_DISCONNECT: Interface Gi1/0/20: PD removed
+---EVENT_DELIMITER---
+<189>{{.timestamp_iso}}321-05:00 TestDevice %LINEPROTO-5-UPDOWN: Line protocol on Interface TenGigabitEthernet1/0/1, changed state to up
+---EVENT_DELIMITER---
+<182>: host-1: 115649616: {{.timestamp_syslog}}.511 CET: %FMANFP-6-IPV6ACCESSLOGP: R0/0: fman_fp_image: list ACL-IPv6-OUTSIDE-2-AS51871 denied udp 2a02:cf40::(38370) -> 2a02:cf41::(3370), 1 packet
+---EVENT_DELIMITER---
+<182>: host-1: 84526125: {{.timestamp_syslog}}.953 CET: %FMANFP-6-IPV6ACCESSLOGP: R0/0: fman_fp_image: list ACL-IPv6-OUTSIDE-2-AS51871 permitted tcp 2a02:cf40::(443) -> 2a02:cf41::(53652), 8 packets
+---EVENT_DELIMITER---
+<190>{{.timestamp_syslog}} internet-primary-mgmt RP/0/RP0/CPU0:{{.timestamp_syslog}}.630 UTC: ipv4_acl_mgr[310]: %ACL-IPV4_ACL-6-IPACCESSLOGP : access-list outgoing-to-VCS-GW deny tcp {{.IPs}}(39527) -> {{.IPs}}(1830), 1 packet
+---EVENT_DELIMITER---
+<190>{{.timestamp_syslog}} irgendwo12-mgmt LC/0/0/CPU0:{{.timestamp_syslog}}.041 UTC: nfsvr[244]: %MGBL-NETFLOW-6-INFO_CACHE_SIZE_EXCEEDED : Cache size of 10000 for monitor FM has been exceeded
+---EVENT_DELIMITER---
+<190>2361044: sw01: Jan 16 2022 22:11:43: %FOO-6-BAR: Test date format.
+---EVENT_DELIMITER---
+<46>: 2024 {{.timestamp_syslog}} PDT: %SNMPD-6-INFO: SNMP log informational : Processing packet for non-MTS (sockets)

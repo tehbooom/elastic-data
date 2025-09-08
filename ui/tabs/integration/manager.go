@@ -52,11 +52,7 @@ func (m *TabModel) loadDatasetsForIntegration(integration string) error {
 		m.context.DatasetConfigs[integration] = datasetMap
 	}
 
-	repoDir := filepath.Join(m.context.ConfigPath, "integrations")
-
-	log.Debug(fmt.Sprintf("path is %s", repoDir))
-
-	dataSets, err := integrations.GetDatasets(repoDir, integration)
+	dataSets, err := integrations.GetDatasetsFromTemplates(integration)
 	if err != nil {
 		return err
 	}

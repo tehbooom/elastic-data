@@ -1,0 +1,87 @@
+{{.timestamp_iso}}+0100 I CONTROL  [initandlisten] git version: 009580ad490190ba33d1c6253ebd8d91808923e4
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I CONTROL  [initandlisten] modules: none
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.2l  25 May 2017
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=8G,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/var/lib/mongodb/{{.Domains}}'
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [HostnameCanonicalizationWorker] Starting hostname canonicalization worker
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [initandlisten] waiting for connections on port 27017
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [conn1] end connection {{.IPs}}:55404 (0 connections now open)
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [initandlisten] connection accepted from {{.IPs}}:55406 #2 (1 connection now open)
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I CONTROL  [signalProcessingThread] now exiting
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [signalProcessingThread] closing listening socket: 7
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [signalProcessingThread] removing socket file: /run/mongodb/{{.Domains}}
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [signalProcessingThread] shutdown: going to flush diaglog...
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [signalProcessingThread] shutdown: going to close sockets...
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I CONTROL  [initandlisten] db version v3.2.11
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I CONTROL  [initandlisten] build environment:
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I CONTROL  [initandlisten]     distarch: x86_64
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I CONTROL  [initandlisten] options: { config: "/etc/{{.Domains}}", net: { bindIp: "{{.IPs}}", unixDomainSocket: { pathPrefix: "/run/mongodb" } }, storage: { dbPath: "/var/lib/mongodb", journal: { enabled: true } }, systemLog: { destination: "file", logAppend: true, path: "/var/log/mongodb/{{.Domains}}" } }
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [initandlisten] connection accepted from {{.IPs}}:55404 #1 (1 connection now open)
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [conn3] end connection {{.IPs}}:55414 (0 connections now open)
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [conn4] end connection {{.IPs}}:58336 (0 connections now open)
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I STORAGE  [signalProcessingThread] WiredTigerKVEngine shutting down
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I CONTROL  [signalProcessingThread] dbexit:  rc: 0
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I CONTROL  [initandlisten] MongoDB starting : pid=29803 port=27017 dbpath=/var/lib/mongodb 64-bit host=sleipnir
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I CONTROL  [initandlisten] allocator: tcmalloc
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I CONTROL  [initandlisten]     target_arch: x86_64
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [conn2] end connection {{.IPs}}:55406 (0 connections now open)
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [initandlisten] connection accepted from {{.IPs}}:55414 #3 (1 connection now open)
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [initandlisten] connection accepted from {{.IPs}}:58336 #4 (1 connection now open)
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I CONTROL  [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I FTDC     [signalProcessingThread] Shutting down full-time diagnostic data capture
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0100 I NETWORK  [signalProcessingThread] closing listening socket: 6
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0000 I ASIO [NetworkInterfaceASIO-Replication-0] Successfully connected to dbbox7:27017, took 10ms (1 connections now open to dbbox7:27017)
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0000 E WRITE  [initandlisten] ** ERROR: A write operation resulted in an error. E11000 duplicate key error index: {{.Domains}}.$_id_ dup key: { : 0 }
+---EVENT_DELIMITER---
+{{.timestamp_iso}}+0000 E NETWORK  [initandlisten] ** ERROR: No connection could be made because the target machine actively refused it {{.IPs}}:27017 at {{.Domains}}
+---EVENT_DELIMITER---
+{"t":{"$date":"{{.timestamp_iso}}+00:00"},"s":"I",  "c":"STORAGE",  "id":4615611, "ctx":"initandlisten","msg":"MongoDB starting","attr":{"pid":1,"port":27017,"dbPath":"/data/db","architecture":"64-bit","host":"6150fe65a89c"}}
+---EVENT_DELIMITER---
+{"t":{"$date":"{{.timestamp_iso}}+00:00"},"s":"I",  "c":"CONTROL",  "id":23403,   "ctx":"initandlisten","msg":"Build Info","attr":{"buildInfo":{"version":"4.4.4","gitVersion":"8db30a63db1a9d84bdcad0c83369623f708e0397","openSSLVersion":"OpenSSL 1.1.1  11 Sep 2018","modules":[],"allocator":"tcmalloc","environment":{"distmod":"ubuntu1804","distarch":"x86_64","target_arch":"x86_64"}}}}
+---EVENT_DELIMITER---
+{"t":{"$date":"{{.timestamp_iso}}+00:00"},"s":"I",  "c":"RECOVERY", "id":23987,   "ctx":"initandlisten","msg":"WiredTiger recoveryTimestamp","attr":{"recoveryTimestamp":{"$timestamp":{"t":0,"i":0}}}}
+---EVENT_DELIMITER---
+{"t":{"$date":"{{.timestamp_iso}}+00:00"},"s":"I",  "c":"STORAGE",  "id":20320,   "ctx":"initandlisten","msg":"createCollection","attr":{"namespace":"{{.Domains}}","uuidDisposition":"provided","uuid":{"uuid":{"$uuid":"b383f03c-b97c-4584-87ae-ab1b8ea399c3"}},"options":{"uuid":{"$uuid":"b383f03c-b97c-4584-87ae-ab1b8ea399c3"}}}}
+---EVENT_DELIMITER---
+{"t":{"$date":"{{.timestamp_iso}}+00:00"},"s":"I",  "c":"INDEX",    "id":20345,   "ctx":"initandlisten","msg":"Index build: done building","attr":{"buildUUID":null,"namespace":"{{.Domains}}","index":"_id_","commitTimestamp":{"$timestamp":{"t":0,"i":0}}}}
+---EVENT_DELIMITER---
+{"t":{"$date":"{{.timestamp_iso}}+00:00"},"s":"I",  "c":"COMMAND",  "id":20459,   "ctx":"initandlisten","msg":"Setting featureCompatibilityVersion","attr":{"newVersion":"4.4"}}
+---EVENT_DELIMITER---
+{"t":{"$date":"{{.timestamp_iso}}+00:00"},"s":"I",  "c":"FTDC",     "id":20625,   "ctx":"initandlisten","msg":"Initializing full-time diagnostic data capture","attr":{"dataDirectory":"/data/db/{{.Domains}}"}}

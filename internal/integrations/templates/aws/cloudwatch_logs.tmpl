@@ -1,0 +1,11 @@
+{{.timestamp_iso}} {{.timestamp_syslog}} ip-172-31-81-156 systemd: Stopping User Slice of root.
+---EVENT_DELIMITER---
+{{.timestamp_iso}} {{.timestamp_syslog}} ip-172-31-81-156 dhclient[3000]: XMT: Solicit on eth0, interval 125240ms.
+---EVENT_DELIMITER---
+{{.timestamp_iso}} {{.timestamp_syslog}} ip-172-31-81-156 dhclient[2898]: DHCPREQUEST on eth0 to {{.IPs}} port 67 (xid=0x4575af22)
+---EVENT_DELIMITER---
+{{.timestamp_iso}} {{.timestamp_syslog}} ip-172-31-81-156 dhclient[2898]: DHCPACK from {{.IPs}} (xid=0x4575af22)
+---EVENT_DELIMITER---
+{{.timestamp_iso}} {{.timestamp_syslog}} ip-172-31-81-156 dhclient[2898]: bound to {{.IPs}} -- renewal in 1599 seconds.
+---EVENT_DELIMITER---
+{{.timestamp_iso}} {{.timestamp_syslog}} ip-172-31-81-156 ec2net: [get_meta] Trying to get http://{{.IPs}}/latest/meta-data/network/interfaces/macs/12:e2:a9:95:8b:97/local-ipv4s

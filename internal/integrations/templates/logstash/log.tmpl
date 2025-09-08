@@ -1,0 +1,17 @@
+{"level":"WARN","loggerName":"{{.Domains}}","timeMillis":{{.timestamp_unix_ms}},"thread":"[pipeline-with-memory-queue]-pipeline-manager","logEvent":{"message":"Restored connection to ES instance","url":"https://elastic:xxxxxx@elasticsearch:9200/"}}
+---EVENT_DELIMITER---
+{"level":"INFO","loggerName":"{{.Domains}}","timeMillis":{{.timestamp_unix_ms}},"thread":"[pipeline-with-persisted-queue]-pipeline-manager","logEvent":{"message":"Elasticsearch version determined (8.5.0-SNAPSHOT)","es_version":8}}
+---EVENT_DELIMITER---
+{"level":"WARN","loggerName":"{{.Domains}}","timeMillis":{{.timestamp_unix_ms}},"thread":"[pipeline-with-persisted-queue]-pipeline-manager","logEvent":{"message":"Detected a 6.x and above cluster: the `type` event field won't be used to determine the document _type","es_version":8}}
+---EVENT_DELIMITER---
+{"level":"INFO","loggerName":"{{.Domains}}","timeMillis":{{.timestamp_unix_ms}},"thread":"[pipeline-with-memory-queue]-pipeline-manager","logEvent":{"message":"Elasticsearch version determined (8.5.0-SNAPSHOT)","es_version":8}}
+---EVENT_DELIMITER---
+[{{.timestamp_iso}},934][INFO ][{{.Domains}}    ][standalone-pipeline] Pipeline started {"{{.Domains}}"=>"standalone-pipeline"}
+---EVENT_DELIMITER---
+[{{.timestamp_iso}},934][INFO ][{{.Domains}}    ][pipeline-with-memory-queue] Pipeline started {"{{.Domains}}"=>"pipeline-with-memory-queue"}
+---EVENT_DELIMITER---
+[{{.timestamp_iso}},936][INFO ][{{.Domains}}    ][pipeline-with-persisted-queue] Pipeline started {"{{.Domains}}"=>"pipeline-with-persisted-queue"}
+---EVENT_DELIMITER---
+[{{.timestamp_iso}},946][INFO ][{{.Domains}}           ] Pipelines running {:count=>3, :running_pipelines=>[:"pipeline-with-memory-queue", :"standalone-pipeline", :"pipeline-with-persisted-queue"], :non_running_pipelines=>[]}
+---EVENT_DELIMITER---
+[{{.timestamp_iso}},573][DEBUG][{{.Domains}}   ][test][ab43b8634ef141ac114100ba36c195cbc17b83124bada1f8e7e4de5cfef180c4] Sleeping {:delay=>1}

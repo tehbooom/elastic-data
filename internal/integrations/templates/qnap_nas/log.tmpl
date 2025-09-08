@@ -1,0 +1,45 @@
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: conn log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: user-laptop, Connection type: Samba, Accessed resources: path/to/files/New folder, Action: Create Directory
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: conn log: Users: guest, Source IP: {{.IPs}}, Computer name: user-laptop, Connection type: Samba, Accessed resources: ---, Action: Login Fail
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: conn log: Users: guest, Source IP: {{.IPs}}, Computer name: user-laptop, Connection type: Samba, Accessed resources: ---, Action: Login Success
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14387]: conn log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: ---, Connection type: HTTP/HTTPS, Accessed resources: Administration, Action: Login Success
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: conn log: Users: guest, Source IP: {{.IPs}}, Computer name: user-laptop, Connection type: HTTP/HTTPS, Accessed resources: ---, Action: Logout
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: conn log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: ---, Connection type: HTTP/HTTPS, Accessed resources: [File Station] /Browser Station/admin, Action: Read
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: conn log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: user-laptop, Connection type: Samba, Accessed resources: path/to/files/New folder -> path/to/files/asdf, Action: Rename
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: conn log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: user-laptop, Connection type: Samba, Accessed resources: path/to/files/asdf, Action: Delete
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: conn log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: user-laptop, Connection type: Samba, Accessed resources: path/to/files/{{.Domains}}, Action: Read
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: conn log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: user-laptop, Connection type: Samba, Accessed resources: path/to/files/{{.Domains}}, Action: Add
+---EVENT_DELIMITER---
+<28>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: event log: Users: admin, Source IP: {{.IPs}}, Computer name: ---, Application: Network & Virtual Switch, Category: Infrastructure, Content: [Network & Virtual Switch] Interface "Adapter 2" disconnected.
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: event log: Users: admin, Source IP: {{.IPs}}, Computer name: ---, Application: Network & Virtual Switch, Category: Infrastructure, Content: [Network & Virtual Switch] Interface "Adapter 2" connected.
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: event log: Users: admin, Source IP: {{.IPs}}, Computer name: ---, Application: External Device, Category: UPS, Content: [External Device] UPS power restored. Canceled autoprotection mode..
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: event log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: ---, Application: Network & Virtual Switch, Category: Static Route, Content: [Network & Virtual Switch] Added static route. Interface:  , Destination: {{.IPs}}.
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14629]: event log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: ---, Application: Network & Virtual Switch, Category: Static Route, Content: [Network & Virtual Switch] Removed static route. Interface:  , Destination: {{.IPs}}.
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14387]: event log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: ---, Application: Shared Folders, Category: General, Content: [Shared Folders] Created shared folder "abcd".
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14387]: event log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: ---, Application: Shared Folders, Category: General, Content: [Shared Folders] Deleted shared folder "abcd".
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14387]: event log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: ---, Application: User Groups, Category: General, Content: [User Groups] Deleted user group "test1".
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14387]: event log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: ---, Application: User Groups, Category: General, Content: [User Groups] Created user group "test1".
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14387]: event log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: ---, Application: Users, Category: General, Content: [Users] Changed the password of user "test".
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14387]: event log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: ---, Application: Users, Category: General, Content: [Users] Edited the account profile of user "test".
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14387]: event log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: ---, Application: Users, Category: General, Content: [Users] Created user "test".
+---EVENT_DELIMITER---
+<30>{{.timestamp_syslog}} qnap-nas01 qulogd[14387]: event log: Users: {{.Domains}}, Source IP: {{.IPs}}, Computer name: ---, Application: Users, Category: General, Content: [Users] Deleted user "test".

@@ -1,0 +1,685 @@
+2020-04-15 12:02:55.244 CEST [23922] LOG:  database system was shut down at 2020-04-15 12:02:52 CEST
+---EVENT_DELIMITER---
+2020-04-15 12:02:55.247 CEST [23920] LOG:  database system is ready to accept connections
+---EVENT_DELIMITER---
+2020-04-15 12:04:45.416 CEST [24981] FATAL:  password authentication failed for user "root"
+---EVENT_DELIMITER---
+2020-04-15 12:04:45.416 CEST [24981] DETAIL:  Role "root" does not exist.
+	Connection matched pg_{{.Domains}} line 80: "local   all             all                                     md5"
+---EVENT_DELIMITER---
+2020-04-15 12:04:45.416 CEST [24981] LOG:  could not send data to client: Broken pipe
+---EVENT_DELIMITER---
+2020-04-15 12:06:36.719 CEST [25143] ERROR:  syntax error at or near "l" at character 1
+---EVENT_DELIMITER---
+2020-04-15 12:56:29.569 CEST [25143] STATEMENT:  SELECT {{.Domains}}, {{.Domains}}_id, {{.Domains}}_by_id, {{.Domains}}_ip, {{.Domains}}_date, {{.Domains}}_table, {{.Domains}}_id, {{.Domains}}_name, {{.Domains}}_for_change, {{.Domains}}_log_event_type_id,
+	        {{.Domains}}_code, {{.Domains}}_value, {{.Domains}}_value, {{.Domains}}_crf_id, {{.Domains}}_crf_version_id, {{.Domains}}_id, {{.Domains}}_site_id, {{.Domains}}_oid, {{.Domains}}_id, {{.Domains}}_identifier,
+	        {{.Domains}}_event_id, {{.Domains}} AS studyEventName, {{.Domains}}_id, {{.Domains}}_index, {{.Domains}}_version_id, {{.Domains}}_logs, {{.Domains}}_name, {{.Domains}} AS crfId, {{.Domains}} AS crfName
+	         FROM {{.Domains}}_audit_log_events AS al
+	        LEFT JOIN rc_crf_versions AS cv ON {{.Domains}}={{.Domains}}_version_id
+	            LEFT JOIN rc_crfs AS crf ON {{.Domains}}={{.Domains}}_id
+	            LEFT JOIN ad_lookup_codes AS aet ON {{.Domains}}={{.Domains}}_log_event_type_id
+	            LEFT JOIN rc_study_sites AS ss ON {{.Domains}}={{.Domains}}_site_id
+	            LEFT JOIN rc_subjects AS s ON {{.Domains}}={{.Domains}}_id
+	            LEFT JOIN rc_study_events AS se ON {{.Domains}}={{.Domains}}_event_id
+	            LEFT JOIN rc_study_event_definitions AS sed ON {{.Domains}}={{.Domains}}_event_definition_id
+	            WHERE {{.Domains}}_id=$1 AND {{.Domains}}_id=$2  AND {{.Domains}}_code IN ($3, $4, $5, $6) AND {{.Domains}}_date >= $7 ORDER BY {{.Domains}} DESC  limit $8
+	;
+---EVENT_DELIMITER---
+2019-09-22 06:28:24 UTC DETAIL:  parameters: $1 = '86', $2 = '575', $3 = 'Item Inserted', $4 = 'Item Updated', $5 = 'Subject Updated', $6 = 'Subject Created', $7 = '2019-01-22 00:00:00+00'
+---EVENT_DELIMITER---
+2019-09-22 06:28:24 UTC LOG:  duration: 112.337 ms  execute S_59: UPDATE qrtz_TRIGGERS SET TRIGGER_STATE = $1 WHERE SCHED_NAME = 'Scheduler_1' AND TRIGGER_NAME = $2 AND TRIGGER_GROUP = $3 AND TRIGGER_STATE = $4
+---EVENT_DELIMITER---
+2019-09-22 06:28:24 UTC DETAIL:  parameters: $1 = 'ACQUIRED', $2 = 'surveyInvitation_3Prbn85DiBWe8wHa_158802_77133_1260104', $3 = 'ExecutorsService', $4 = 'WAITING'
+---EVENT_DELIMITER---
+2019-09-22 06:28:24 UTC LOG:  duration: 2474.307 ms  execute S_30: SELECT * FROM qrtz_LOCKS WHERE SCHED_NAME = 'Scheduler_1' AND LOCK_NAME = $1 FOR UPDATE
+---EVENT_DELIMITER---
+2019-09-22 06:28:24 UTC DETAIL:  parameters: $1 = 'TRIGGER_ACCESS'
+---EVENT_DELIMITER---
+2019-09-22 06:28:24 UTC LOG:  duration: 18.327 ms  execute S_32: SELECT {{.Domains}}, {{.Domains}}_id, {{.Domains}}_by_id, {{.Domains}}_ip, {{.Domains}}_date, {{.Domains}}_table, {{.Domains}}_id, {{.Domains}}_name, {{.Domains}}_for_change, {{.Domains}}_log_event_type_id,
+        {{.Domains}}_code, {{.Domains}}_value, {{.Domains}}_value, {{.Domains}}_crf_id, {{.Domains}}_crf_version_id, {{.Domains}}_id, {{.Domains}}_site_id, {{.Domains}}_oid, {{.Domains}}_id, {{.Domains}}_identifier,
+        {{.Domains}}_event_id, {{.Domains}} AS studyEventName, {{.Domains}}_id, {{.Domains}}_index, {{.Domains}}_version_id, {{.Domains}}_logs, {{.Domains}}_name, {{.Domains}} AS crfId, {{.Domains}} AS crfName
+         FROM {{.Domains}}_audit_log_events AS al
+        LEFT JOIN rc_crf_versions AS cv ON {{.Domains}}={{.Domains}}_version_id
+            LEFT JOIN rc_crfs AS crf ON {{.Domains}}={{.Domains}}_id
+            LEFT JOIN ad_lookup_codes AS aet ON {{.Domains}}={{.Domains}}_log_event_type_id
+            LEFT JOIN rc_study_sites AS ss ON {{.Domains}}={{.Domains}}_site_id
+            LEFT JOIN rc_subjects AS s ON {{.Domains}}={{.Domains}}_id
+            LEFT JOIN rc_study_events AS se ON {{.Domains}}={{.Domains}}_event_id
+            LEFT JOIN rc_study_event_definitions AS sed ON {{.Domains}}={{.Domains}}_event_definition_id
+            WHERE {{.Domains}}_id=$1 AND {{.Domains}}_id=$2  AND {{.Domains}}_code IN ($3, $4, $5, $6) AND {{.Domains}}_date >= $7 ORDER BY {{.Domains}} DESC  limit $8
+---EVENT_DELIMITER---
+2019-07-23 12:06:24.406 UTC [25] LOG:  00000: database system was interrupted; last known up at 2019-07-23 12:03:20 UTC
+---EVENT_DELIMITER---
+2019-07-23 12:06:24.406 UTC [25] LOCATION:  StartupXLOG, xlog.c:6388
+---EVENT_DELIMITER---
+2019-07-23 12:06:24.478 UTC [25] LOG:  00000: database system was not properly shut down; automatic recovery in progress
+---EVENT_DELIMITER---
+2019-07-23 12:06:24.478 UTC [25] LOCATION:  StartupXLOG, xlog.c:6879
+---EVENT_DELIMITER---
+2019-07-23 12:06:24.485 UTC [25] LOG:  00000: redo starts at 0/1651398
+---EVENT_DELIMITER---
+2019-07-23 12:06:24.485 UTC [25] LOCATION:  StartupXLOG, xlog.c:7150
+---EVENT_DELIMITER---
+2019-07-23 12:06:24.485 UTC [25] LOG:  00000: invalid record length at 0/16513D0: wanted 24, got 0
+---EVENT_DELIMITER---
+2019-07-23 12:06:24.485 UTC [25] LOCATION:  ReadRecord, xlog.c:4233
+---EVENT_DELIMITER---
+2019-07-23 12:06:24.485 UTC [25] LOG:  00000: redo done at 0/1651398
+---EVENT_DELIMITER---
+2019-07-23 12:06:24.485 UTC [25] LOCATION:  StartupXLOG, xlog.c:7422
+---EVENT_DELIMITER---
+2019-07-23 12:06:24.507 UTC [1] LOG:  00000: database system is ready to accept connections
+---EVENT_DELIMITER---
+2019-07-23 12:06:24.507 UTC [1] LOCATION:  reaper, postmaster.c:2889
+---EVENT_DELIMITER---
+2019-07-23 12:06:30.536 UTC [44] LOG:  00000: connection received: host=[local]
+---EVENT_DELIMITER---
+2019-07-23 12:06:30.536 UTC [44] LOCATION:  BackendInitialize, postmaster.c:4206
+---EVENT_DELIMITER---
+2019-07-23 12:06:30.537 UTC [44] LOG:  00000: connection authorized: user=postgres database=postgres
+---EVENT_DELIMITER---
+2019-07-23 12:06:30.537 UTC [44] LOCATION:  PerformAuthentication, postinit.c:279
+---EVENT_DELIMITER---
+2019-07-23 12:06:33.732 UTC [44] LOG:  00000: statement: show config_filel;
+---EVENT_DELIMITER---
+2019-07-23 12:06:33.732 UTC [44] LOCATION:  exec_simple_query, postgres.c:975
+---EVENT_DELIMITER---
+2019-07-23 12:06:33.732 UTC [44] ERROR:  42704: unrecognized configuration parameter "config_filel"
+---EVENT_DELIMITER---
+2019-07-23 12:06:33.732 UTC [44] LOCATION:  GetConfigOptionByName, guc.c:8342
+---EVENT_DELIMITER---
+2019-07-23 12:06:33.732 UTC [44] STATEMENT:  show config_filel;
+---EVENT_DELIMITER---
+2019-07-23 12:06:34.877 UTC [44] LOG:  00000: statement: show config_file;
+---EVENT_DELIMITER---
+2019-07-23 12:06:34.877 UTC [44] LOCATION:  exec_simple_query, postgres.c:975
+---EVENT_DELIMITER---
+2019-07-23 12:06:34.878 UTC [44] LOG:  00000: duration: 0.524 ms
+---EVENT_DELIMITER---
+2019-07-23 12:06:34.878 UTC [44] LOCATION:  exec_simple_query, postgres.c:1219
+---EVENT_DELIMITER---
+2019-07-23 12:09:57.563 UTC [44] LOG:  00000: statement: SELECT * FROM pg_{{.Domains}}_tables;
+---EVENT_DELIMITER---
+2019-07-23 12:09:57.563 UTC [44] LOCATION:  exec_simple_query, postgres.c:975
+---EVENT_DELIMITER---
+2019-07-23 12:09:57.565 UTC [44] LOG:  00000: duration: 2.139 ms
+---EVENT_DELIMITER---
+2019-07-23 12:09:57.565 UTC [44] LOCATION:  exec_simple_query, postgres.c:1219
+---EVENT_DELIMITER---
+2021-01-04 00:37:32.862 UTC,,,87,,5ff2634c.57,1,,2021-01-04 00:37:32 UTC,4/43,0,LOG,00000,"automatic vacuum of table ""{{.Domains}}.t"": index scans: 1
+pages: 0 removed, 89 remain, 0 skipped due to pins, 0 skipped frozen
+tuples: 10000 removed, 10000 remain, 0 are dead but not yet removable, oldest xmin: 578
+buffer usage: 316 hits, 2 misses, 4 dirtied
+avg read rate: 0.569 MB/s, avg write rate: 1.138 MB/s
+system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.02 s",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:04:50.554 UTC,,,27,,5ff25ba2.1b,1,,2021-01-04 00:04:50 UTC,,0,LOG,00000,"database system was shut down at 2021-01-03 20:01:08 UTC",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:04:50.568 UTC,,,1,,5ff25ba2.1,1,,2021-01-04 00:04:50 UTC,,0,LOG,00000,"database system is ready to accept connections",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:05:06.011 UTC,,,34,"{{.IPs}}:42304",5ff25bb2.22,1,"",2021-01-04 00:05:06 UTC,,0,LOG,00000,"connection received: host={{.IPs}} port=42304",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:05:06.086 UTC,"postgres","postgres",34,"{{.IPs}}:42304",5ff25bb2.22,2,"authentication",2021-01-04 00:05:06 UTC,3/1,0,LOG,00000,"connection authorized: user=postgres database=postgres",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:05:12.999 UTC,"postgres","postgres",34,"{{.IPs}}:42304",5ff25bb2.22,3,"idle",2021-01-04 00:05:06 UTC,3/2,0,LOG,00000,"statement: SELECT name FROM  (SELECT pg_{{.Domains}}(name) AS name FROM pg_{{.Domains}}_settings   WHERE context != 'internal'   UNION ALL SELECT 'all') ss  WHERE substring(name,1,10)='log_connec'
+LIMIT 1000",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:05:17.146 UTC,"postgres","postgres",34,"{{.IPs}}:42304",5ff25bb2.22,4,"idle",2021-01-04 00:05:06 UTC,3/3,0,LOG,00000,"statement: ALTER SYSTEM SET log_connections = on;",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:05:23.242 UTC,"postgres","postgres",34,"{{.IPs}}:42304",5ff25bb2.22,5,"idle",2021-01-04 00:05:06 UTC,3/4,0,LOG,00000,"statement: ALTER SYSTEM SET log_disconnections = on;",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:05:28.166 UTC,"postgres","postgres",34,"{{.IPs}}:42304",5ff25bb2.22,6,"idle",2021-01-04 00:05:06 UTC,3/5,0,LOG,00000,"statement: SELECT name FROM  (SELECT pg_{{.Domains}}(name) AS name FROM pg_{{.Domains}}_settings   WHERE context != 'internal'   UNION ALL SELECT 'all') ss  WHERE substring(name,1,3)='log'
+LIMIT 1000",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:05:29.434 UTC,"postgres","postgres",34,"{{.IPs}}:42304",5ff25bb2.22,7,"idle",2021-01-04 00:05:06 UTC,3/6,0,LOG,00000,"statement: SELECT name FROM  (SELECT pg_{{.Domains}}(name) AS name FROM pg_{{.Domains}}_settings   WHERE context != 'internal'   UNION ALL SELECT 'all') ss  WHERE substring(name,1,6)='log_mi'
+LIMIT 1000",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:05:31.342 UTC,"postgres","postgres",34,"{{.IPs}}:42304",5ff25bb2.22,8,"idle",2021-01-04 00:05:06 UTC,3/7,0,LOG,00000,"statement: SELECT name FROM  (SELECT pg_{{.Domains}}(name) AS name FROM pg_{{.Domains}}_settings   WHERE context != 'internal'   UNION ALL SELECT 'all') ss  WHERE substring(name,1,12)='log_min_dura'
+LIMIT 1000",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:05:37.670 UTC,"postgres","postgres",34,"{{.IPs}}:42304",5ff25bb2.22,9,"idle",2021-01-04 00:05:06 UTC,3/8,0,LOG,00000,"statement: alter system set log_min_duration_statement = 0;",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:05:51.418 UTC,"postgres","postgres",34,"{{.IPs}}:42304",5ff25bb2.22,10,"idle",2021-01-04 00:05:06 UTC,,0,LOG,00000,"disconnection: session time: 0:00:45.407 user=postgres database=postgres host={{.IPs}} port=42304",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:05:58.207 UTC,,,36,"{{.IPs}}:42326",5ff25be6.24,1,"",2021-01-04 00:05:58 UTC,,0,LOG,00000,"connection received: host={{.IPs}} port=42326",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:05:58.232 UTC,"azlev","azlev",36,"{{.IPs}}:42326",5ff25be6.24,2,"authentication",2021-01-04 00:05:58 UTC,3/9,0,FATAL,28P01,"password authentication failed for user ""azlev""","Role ""azlev"" does not exist.
+Connection matched pg_{{.Domains}} line 95: ""host all all all md5""",,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:05:59.807 UTC,,,37,"{{.IPs}}:42330",5ff25be7.25,1,"",2021-01-04 00:05:59 UTC,,0,LOG,00000,"connection received: host={{.IPs}} port=42330",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:05:59.833 UTC,"azlev","azlev",37,"{{.IPs}}:42330",5ff25be7.25,2,"authentication",2021-01-04 00:05:59 UTC,3/10,0,FATAL,28P01,"password authentication failed for user ""azlev""","Role ""azlev"" does not exist.
+Connection matched pg_{{.Domains}} line 95: ""host all all all md5""",,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:06:03.347 UTC,,,38,"{{.IPs}}:42336",5ff25beb.26,1,"",2021-01-04 00:06:03 UTC,,0,LOG,00000,"connection received: host={{.IPs}} port=42336",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:06:03.370 UTC,"azlev","azlev",38,"{{.IPs}}:42336",5ff25beb.26,2,"authentication",2021-01-04 00:06:03 UTC,3/11,0,FATAL,28P01,"password authentication failed for user ""azlev""","Role ""azlev"" does not exist.
+Connection matched pg_{{.Domains}} line 95: ""host all all all md5""",,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:06:04.765 UTC,,,39,"{{.IPs}}:42340",5ff25bec.27,1,"",2021-01-04 00:06:04 UTC,,0,LOG,00000,"connection received: host={{.IPs}} port=42340",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:06:04.799 UTC,"azlev","azlev",39,"{{.IPs}}:42340",5ff25bec.27,2,"authentication",2021-01-04 00:06:04 UTC,3/12,0,FATAL,28P01,"password authentication failed for user ""azlev""","Role ""azlev"" does not exist.
+Connection matched pg_{{.Domains}} line 95: ""host all all all md5""",,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:17:53.742 UTC,"postgres","postgres",54,"{{.IPs}}:42608",5ff25ea4.36,6,"ALTER SYSTEM",2021-01-04 00:17:40 UTC,3/0,0,LOG,00000,"duration: 6.589 ms",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:18:01.055 UTC,"postgres","postgres",54,"{{.IPs}}:42608",5ff25ea4.36,7,"idle",2021-01-04 00:17:40 UTC,3/39,0,LOG,00000,"statement: select pg_reload_conf();",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:18:04.650 UTC,"postgres","postgres",54,"{{.IPs}}:42608",5ff25ea4.36,9,"SELECT",2021-01-04 00:17:40 UTC,3/0,0,LOG,00000,"duration: 148.472 ms  statement: select generate_series(1, 1000000);",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-03 17:45:17.612 UTC,"{{.Domains}}","postgres",20460,"::1:16790",5ff202ad.4fec,1,"startup",2021-01-03 17:45:17 UTC,3/15493200,0,FATAL,28000,"role ""{{.Domains}}"" does not exist",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:22:01.903 UTC,"postgres","postgres",59,"{{.IPs}}:42642",5ff25f96.3b,3,"SELECT",2021-01-04 00:21:42 UTC,3/0,0,LOG,00000,"duration: 0.658 ms  statement: SELECT 'multi',
+'line';",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:51:56.837 UTC,"postgres","postgres",105,"{{.IPs}}:44618",5ff26691.69,6,"PARSE",2021-01-04 00:51:29 UTC,3/135,0,LOG,00000,"duration: 7.775 ms  parse py:0x7fde12d61b80: SELECT * from information_{{.Domains}} WHERE table_name = $1",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:51:56.843 UTC,"postgres","postgres",105,"{{.IPs}}:44618",5ff26691.69,7,"BIND",2021-01-04 00:51:29 UTC,3/136,0,LOG,00000,"duration: 4.091 ms  bind py:0x7fde12d61b80: SELECT * from information_{{.Domains}} WHERE table_name = $1","parameters: $1 = 'tables'",,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:51:56.843 UTC,"postgres","postgres",105,"{{.IPs}}:44618",5ff26691.69,8,"SELECT",2021-01-04 00:51:29 UTC,3/136,0,LOG,00000,"duration: 0.455 ms  execute py:0x7fde12d61b80: SELECT * from information_{{.Domains}} WHERE table_name = $1","parameters: $1 = 'tables'",,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-03 20:00:46.695 UTC,,,28,,5ff2226e.1c,1,,2021-01-03 20:00:46 UTC,,0,LOG,00000,"database system was shut down at 2021-01-03 20:00:42 UTC",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-03 20:00:46.708 UTC,,,1,,5ff2226e.1,1,,2021-01-03 20:00:46 UTC,,0,LOG,00000,"database system is ready to accept connections",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-03 20:01:00.349 UTC,,,35,"{{.IPs}}:38352",5ff2227c.23,1,"",2021-01-03 20:01:00 UTC,,0,LOG,00000,"connection received: host={{.IPs}} port=38352",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-03 20:01:02.701 UTC,,,36,"{{.IPs}}:38356",5ff2227e.24,1,"",2021-01-03 20:01:02 UTC,,0,LOG,00000,"connection received: host={{.IPs}} port=38356",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-03 20:01:02.727 UTC,"postgres","postgres",36,"{{.IPs}}:38356",5ff2227e.24,2,"authentication",2021-01-03 20:01:02 UTC,3/2,0,LOG,00000,"connection authorized: user=postgres database=postgres",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-03 20:01:07.094 UTC,"postgres","postgres",36,"{{.IPs}}:38356",5ff2227e.24,3,"idle",2021-01-03 20:01:02 UTC,3/3,0,LOG,00000,"statement: SELECT 1;",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-03 20:01:07.724 UTC,"postgres","postgres",36,"{{.IPs}}:38356",5ff2227e.24,4,"idle",2021-01-03 20:01:02 UTC,,0,LOG,00000,"disconnection: session time: 0:00:05.023 user=postgres database=postgres host={{.IPs}} port=38356",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-03 20:01:08.894 UTC,,,1,,5ff2226e.1,2,,2021-01-03 20:00:46 UTC,,0,LOG,00000,"received smart shutdown request",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-03 20:01:08.899 UTC,,,1,,5ff2226e.1,3,,2021-01-03 20:00:46 UTC,,0,LOG,00000,"background worker ""logical replication launcher"" (PID 34) exited with exit code 1",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-03 20:01:08.899 UTC,,,29,,5ff2226e.1d,1,,2021-01-03 20:00:46 UTC,,0,LOG,00000,"shutting down",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-03 20:01:08.901 UTC,,,29,,5ff2226e.1d,2,,2021-01-03 20:00:46 UTC,,0,LOG,00000,"checkpoint starting: shutdown immediate",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-03 20:01:08.910 UTC,,,29,,5ff2226e.1d,3,,2021-01-03 20:00:46 UTC,,0,LOG,00000,"checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.000 s, sync=0.000 s, total=0.010 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-03 20:01:08.919 UTC,,,1,,5ff2226e.1,4,,2021-01-03 20:00:46 UTC,,0,LOG,00000,"database system is shut down",,,,,,,,,""
+---EVENT_DELIMITER---
+2021-01-04 00:33:05.565 UTC,"postgres","postgres",81,"{{.IPs}}:42798",5ff26239.51,5,"SET",2021-01-04 00:32:57 UTC,3/0,0,LOG,00000,"duration: 0.189 ms  statement: set log_temp_files = 0;",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:33:15.885 UTC,"postgres","postgres",81,"{{.IPs}}:42798",5ff26239.51,6,"SELECT",2021-01-04 00:32:57 UTC,3/81,0,LOG,00000,"temporary file: path ""base/pgsql_tmp/pgsql_tmp81.3"", size 162381824",,,,,,"select * from generate_series(1, 3000) as t1(a), generate_series(1, 3000) as t2(a) order by 1 desc, 2;",,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:33:15.885 UTC,"postgres","postgres",81,"{{.IPs}}:42798",5ff26239.51,7,"SELECT",2021-01-04 00:32:57 UTC,3/81,0,LOG,00000,"temporary file: path ""base/pgsql_tmp/pgsql_tmp81.1"", size 42000",,,,,,"select * from generate_series(1, 3000) as t1(a), generate_series(1, 3000) as t2(a) order by 1 desc, 2;",,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:33:15.885 UTC,"postgres","postgres",81,"{{.IPs}}:42798",5ff26239.51,8,"SELECT",2021-01-04 00:32:57 UTC,3/81,0,LOG,00000,"temporary file: path ""base/pgsql_tmp/pgsql_tmp81.2"", size 42000",,,,,,"select * from generate_series(1, 3000) as t1(a), generate_series(1, 3000) as t2(a) order by 1 desc, 2;",,,"psql"
+---EVENT_DELIMITER---
+2021-01-04 00:33:15.885 UTC,"postgres","postgres",81,"{{.IPs}}:42798",5ff26239.51,9,"SELECT",2021-01-04 00:32:57 UTC,3/0,0,LOG,00000,"duration: 6921.284 ms  statement: select * from generate_series(1, 3000) as t1(a), generate_series(1, 3000) as t2(a) order by 1 desc, 2;",,,,,,,,,"psql"
+---EVENT_DELIMITER---
+2020-04-16 11:45:11.844 CEST [26953] LOG:  starting PostgreSQL 12.2 on x86_64-pc-linux-gnu, compiled by gcc (Arch Linux 9.3.0-1) 9.3.0, 64-bit
+---EVENT_DELIMITER---
+2020-04-16 11:45:11.844 CEST [26953] LOG:  listening on IPv6 address "::1", port 5432
+---EVENT_DELIMITER---
+2020-04-16 11:45:11.844 CEST [26953] LOG:  listening on IPv4 address "{{.IPs}}", port 5432
+---EVENT_DELIMITER---
+2020-04-16 11:45:11.846 CEST [26953] LOG:  listening on Unix socket "/tmp/{{.Domains}}.5432"
+---EVENT_DELIMITER---
+2020-04-16 11:45:11.861 CEST [26954] LOG:  database system was shut down at 2020-04-16 11:45:01 CEST
+---EVENT_DELIMITER---
+2020-04-16 11:45:11.864 CEST [26953] LOG:  database system is ready to accept connections
+---EVENT_DELIMITER---
+2020-04-16 12:22:22.579 CEST [26953] LOG:  received smart shutdown request
+---EVENT_DELIMITER---
+2020-04-16 12:22:22.582 CEST [26953] LOG:  background worker "logical replication launcher" (PID 26960) exited with exit code 1
+---EVENT_DELIMITER---
+2020-04-16 12:22:22.582 CEST [26955] LOG:  shutting down
+---EVENT_DELIMITER---
+2020-04-16 12:22:22.596 CEST [26953] LOG:  database system is shut down
+---EVENT_DELIMITER---
+2020-04-16 12:48:36.677 CEST [34492] LOG:  duration: 0.327 ms  statement: select 1;
+---EVENT_DELIMITER---
+2020-04-16 12:48:40.316 CEST [34492] LOG:  duration: 0.320 ms  statement: select version();
+---EVENT_DELIMITER---
+2020-04-16 12:48:44.696 CEST [34492] ERROR:  column "name" does not exist at character 8
+---EVENT_DELIMITER---
+2020-04-16 12:48:44.696 CEST [34492] STATEMENT:  select name from user;
+---EVENT_DELIMITER---
+2020-04-16 12:49:16.871 CEST [34492] LOG:  duration: 3.431 ms  statement: CREATE TABLE weather (
+	    city            varchar(80),
+	    temp_lo         int,
+	    temp_hi         int,
+	    prcp            real,
+	    date            date
+	);
+---EVENT_DELIMITER---
+2020-04-16 12:49:19.866 CEST [34492] ERROR:  relation "weather" already exists
+---EVENT_DELIMITER---
+2020-04-16 12:49:54.907 CEST [34492] LOG:  duration: 3.039 ms  statement: SELECT pg_{{.Domains}}_ident({{.Domains}}) FROM pg_{{.Domains}}_class c WHERE {{.Domains}} IN ('r', 'S', 'v', 'm', 'f', 'p') AND substring(pg_{{.Domains}}_ident({{.Domains}}),1,2)='we' AND pg_{{.Domains}}_table_is_visible({{.Domains}}) AND {{.Domains}} <> (SELECT oid FROM pg_{{.Domains}}_namespace WHERE nspname = 'pg_catalog')
+	UNION
+	SELECT pg_{{.Domains}}_ident({{.Domains}}) || '.' FROM pg_{{.Domains}}_namespace n WHERE substring(pg_{{.Domains}}_ident({{.Domains}}) || '.',1,2)='we' AND (SELECT pg_{{.Domains}}(*) FROM pg_{{.Domains}}_namespace WHERE substring(pg_{{.Domains}}_ident(nspname) || '.',1,2) = substring('we',1,pg_{{.Domains}}(pg_{{.Domains}}_ident(nspname))+1)) > 1
+	UNION
+	SELECT pg_{{.Domains}}_ident({{.Domains}}) || '.' || pg_{{.Domains}}_ident({{.Domains}}) FROM pg_{{.Domains}}_class c, pg_{{.Domains}}_namespace n WHERE {{.Domains}} = {{.Domains}} AND {{.Domains}} IN ('r', 'S', 'v', 'm', 'f', 'p') AND substring(pg_{{.Domains}}_ident({{.Domains}}) || '.' || pg_{{.Domains}}_ident({{.Domains}}),1,2)='we' AND substring(pg_{{.Domains}}_ident({{.Domains}}) || '.',1,2) = substring('we',1,pg_{{.Domains}}(pg_{{.Domains}}_ident({{.Domains}}))+1) AND (SELECT pg_{{.Domains}}(*) FROM pg_{{.Domains}}_namespace WHERE substring(pg_{{.Domains}}_ident(nspname) || '.',1,2) = substring('we',1,pg_{{.Domains}}(pg_{{.Domains}}_ident(nspname))+1)) = 1
+	LIMIT 1000
+---EVENT_DELIMITER---
+2020-04-16 12:49:55.464 CEST [34492] LOG:  duration: 0.179 ms  statement: select * From weather ;
+---EVENT_DELIMITER---
+2020-04-16 12:50:05.322 CEST [34492] LOG:  duration: 1.661 ms  statement: INSERT INTO weather VALUES ('San Francisco', 46, 50, 0.25, '1994-11-27');
+---EVENT_DELIMITER---
+2020-04-16 12:50:06.741 CEST [34492] LOG:  duration: 0.144 ms  statement: select * From weather ;
+---EVENT_DELIMITER---
+2021-01-04 01:06:13.270 UTC,,,1,,5ff26a05.1,1,,2021-01-04 01:06:13 UTC,,0,LOG,00000,"starting PostgreSQL 13.1 (Debian {{.Domains}}100+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 8.3.0-6) 8.3.0, 64-bit",,,,,,,,,"","postmaster"
+---EVENT_DELIMITER---
+2021-01-04 01:06:13.270 UTC,,,1,,5ff26a05.1,2,,2021-01-04 01:06:13 UTC,,0,LOG,00000,"listening on IPv4 address ""{{.IPs}}"", port 5432",,,,,,,,,"","postmaster"
+---EVENT_DELIMITER---
+2021-01-04 01:06:13.270 UTC,,,1,,5ff26a05.1,3,,2021-01-04 01:06:13 UTC,,0,LOG,00000,"listening on IPv6 address ""::"", port 5432",,,,,,,,,"","postmaster"
+---EVENT_DELIMITER---
+2021-01-04 01:06:13.273 UTC,,,1,,5ff26a05.1,4,,2021-01-04 01:06:13 UTC,,0,LOG,00000,"listening on Unix socket ""/var/run/postgresql/{{.Domains}}.5432""",,,,,,,,,"","postmaster"
+---EVENT_DELIMITER---
+2021-01-04 01:06:13.281 UTC,,,79,,5ff26a05.4f,1,,2021-01-04 01:06:13 UTC,,0,LOG,00000,"database system was shut down at 2021-01-04 01:06:13 UTC",,,,,,,,,"","startup"
+---EVENT_DELIMITER---
+2021-01-04 01:06:13.289 UTC,,,1,,5ff26a05.1,5,,2021-01-04 01:06:13 UTC,,0,LOG,00000,"database system is ready to accept connections",,,,,,,,,"","postmaster"
+---EVENT_DELIMITER---
+2021-01-04 01:06:20.982 UTC,,,86,"{{.IPs}}:45126",5ff26a0c.56,1,"",2021-01-04 01:06:20 UTC,,0,LOG,00000,"connection received: host={{.IPs}} port=45126",,,,,,,,,"","not initialized"
+---EVENT_DELIMITER---
+2021-01-04 01:06:21.083 UTC,"postgres","postgres",86,"{{.IPs}}:45126",5ff26a0c.56,2,"authentication",2021-01-04 01:06:20 UTC,3/1,0,LOG,00000,"connection authorized: user=postgres database=postgres application_name=psql",,,,,,,,,"","client backend"
+---EVENT_DELIMITER---
+2021-01-04 01:06:25.161 UTC,"postgres","postgres",86,"{{.IPs}}:45126",5ff26a0c.56,3,"idle",2021-01-04 01:06:20 UTC,3/2,0,LOG,00000,"statement: select 1;",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-01-04 01:06:41.115 UTC,"postgres","postgres",86,"{{.IPs}}:45126",5ff26a0c.56,4,"idle",2021-01-04 01:06:20 UTC,3/3,0,LOG,00000,"statement: select name, setting from pg_settings where name like 'log%';",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-01-04 01:06:54.227 UTC,"postgres","postgres",86,"{{.IPs}}:45126",5ff26a0c.56,5,"idle",2021-01-04 01:06:20 UTC,3/4,0,LOG,00000,"statement: SELECT name FROM  (SELECT pg_{{.Domains}}(name) AS name FROM pg_{{.Domains}}_settings   WHERE context != 'internal'   UNION ALL SELECT 'all') ss  WHERE substring(name,1,7)='log_min'
+LIMIT 1000",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-01-04 01:06:55.502 UTC,"postgres","postgres",86,"{{.IPs}}:45126",5ff26a0c.56,6,"idle",2021-01-04 01:06:20 UTC,3/5,0,LOG,00000,"statement: SELECT name FROM  (SELECT pg_{{.Domains}}(name) AS name FROM pg_{{.Domains}}_settings   WHERE context != 'internal'   UNION ALL SELECT 'all') ss  WHERE substring(name,1,10)='log_min_du'
+LIMIT 1000",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-01-04 01:06:58.297 UTC,"postgres","postgres",86,"{{.IPs}}:45126",5ff26a0c.56,7,"idle",2021-01-04 01:06:20 UTC,3/6,0,LOG,00000,"statement: SELECT name FROM  (SELECT pg_{{.Domains}}(name) AS name FROM pg_{{.Domains}}_settings   WHERE context != 'internal'   UNION ALL SELECT 'all') ss  WHERE substring(name,1,19)='log_min_duration_st'
+LIMIT 1000",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-01-04 01:07:01.116 UTC,"postgres","postgres",86,"{{.IPs}}:45126",5ff26a0c.56,8,"idle",2021-01-04 01:06:20 UTC,3/7,0,LOG,00000,"statement: alter system set log_min_duration_statement = 0;",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-01-04 01:07:04.364 UTC,"postgres","postgres",86,"{{.IPs}}:45126",5ff26a0c.56,9,"idle",2021-01-04 01:06:20 UTC,3/8,0,LOG,00000,"statement: SELECT name FROM  (SELECT pg_{{.Domains}}(name) AS name FROM pg_{{.Domains}}_settings   WHERE context != 'internal'   UNION ALL SELECT 'all') ss  WHERE substring(name,1,3)='log'
+LIMIT 1000",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-01-04 01:07:07.070 UTC,"postgres","postgres",86,"{{.IPs}}:45126",5ff26a0c.56,10,"idle",2021-01-04 01:06:20 UTC,3/9,0,LOG,00000,"statement: SELECT name FROM  (SELECT pg_{{.Domains}}(name) AS name FROM pg_{{.Domains}}_settings   WHERE context != 'internal'   UNION ALL SELECT 'all') ss  WHERE substring(name,1,6)='log_st'
+LIMIT 1000",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-01-04 01:07:13.725 UTC,"postgres","postgres",86,"{{.IPs}}:45126",5ff26a0c.56,11,"idle",2021-01-04 01:06:20 UTC,3/10,0,LOG,00000,"statement: alter system set log_statement = 'none';",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-01-04 01:07:19.998 UTC,"postgres","postgres",86,"{{.IPs}}:45126",5ff26a0c.56,12,"idle",2021-01-04 01:06:20 UTC,3/11,0,LOG,00000,"statement: select pg_reload_conf();",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-01-04 01:07:19.999 UTC,,,1,,5ff26a05.1,6,,2021-01-04 01:06:13 UTC,,0,LOG,00000,"received SIGHUP, reloading configuration files",,,,,,,,,"","postmaster"
+---EVENT_DELIMITER---
+2021-01-04 01:07:20.001 UTC,,,1,,5ff26a05.1,7,,2021-01-04 01:06:13 UTC,,0,LOG,00000,"parameter ""log_min_duration_statement"" changed to ""0""",,,,,,,,,"","postmaster"
+---EVENT_DELIMITER---
+2021-01-04 01:07:20.001 UTC,,,1,,5ff26a05.1,8,,2021-01-04 01:06:13 UTC,,0,LOG,00000,"parameter ""log_statement"" changed to ""none""",,,,,,,,,"","postmaster"
+---EVENT_DELIMITER---
+2021-01-04 01:07:24.360 UTC,,,80,,5ff26a05.50,1,,2021-01-04 01:06:13 UTC,,0,LOG,00000,"checkpoint starting: immediate force wait",,,,,,,,,"","checkpointer"
+---EVENT_DELIMITER---
+2021-01-04 01:07:24.374 UTC,,,80,,5ff26a05.50,2,,2021-01-04 01:06:13 UTC,,0,LOG,00000,"checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.014 s; sync files=1, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB",,,,,,,,,"","checkpointer"
+---EVENT_DELIMITER---
+2021-01-04 01:07:24.374 UTC,"postgres","postgres",86,"{{.IPs}}:45126",5ff26a0c.56,13,"CHECKPOINT",2021-01-04 01:06:20 UTC,3/0,0,LOG,00000,"duration: 15.136 ms  statement: checkpoint;",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-01-04 01:07:25.950 UTC,"postgres","postgres",86,"{{.IPs}}:45126",5ff26a0c.56,14,"idle",2021-01-04 01:06:20 UTC,,0,LOG,00000,"disconnection: session time: 0:01:04.968 user=postgres database=postgres host={{.IPs}} port=45126",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-02-14 10:45:33.257 UTC,"postgres","postgres",86,"{{.IPs}}:48978",6028ff3a.56,4,"idle",2021-02-14 10:45:14 UTC,3/3,0,LOG,00000,"statement: SET idle_in_transaction_session_timeout = 50;",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-02-14 10:45:48.113 UTC,"postgres","postgres",86,"{{.IPs}}:48978",6028ff3a.56,5,"idle",2021-02-14 10:45:14 UTC,3/4,0,LOG,00000,"statement: BEGIN;",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-02-14 10:45:48.164 UTC,"postgres","postgres",86,"{{.IPs}}:48978",6028ff3a.56,6,"idle in transaction",2021-02-14 10:45:14 UTC,3/4,0,FATAL,25P03,"terminating connection due to idle-in-transaction timeout",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2021-02-14 10:45:48.164 UTC,"postgres","postgres",86,"{{.IPs}}:48978",6028ff3a.56,7,"idle in transaction",2021-02-14 10:45:14 UTC,,0,LOG,00000,"disconnection: session time: 0:00:33.289 user=postgres database=postgres host={{.IPs}} port=48978",,,,,,,,,"psql","client backend"
+---EVENT_DELIMITER---
+2025-04-21 03:27:12.388 EDT,,,40386,,6805f350.65ba,1,,2025-04-21 03:27:12 EDT,,0,LOG,00000,"ending log output to stderr",,"Future log output will go to log destination ""csvlog"".",,,,,,,"","postmaster",,0
+---EVENT_DELIMITER---
+2025-04-21 03:27:12.388 EDT,,,403386,,6805f350.627ba,2,,2025-04-21 03:27:12 EDT,,0,LOG,00000,"starting PostgreSQL 15.10 (Debian 15.10-0+deb12u1), compiled by gcc , 32-bit",,,,,,,,,"","postmaster",,0
+---EVENT_DELIMITER---
+2025-04-21 03:27:12.389 EDT,,,43386,,68350.627ba,3,,2025-04-21 03:27:12 EDT,,0,LOG,00000,"listening on IPv6 address ""::1"", port 542",,,,,,,,,"","postmaster",,0
+---EVENT_DELIMITER---
+2025-04-21 03:27:12.389 EDT,,,403386,,6f350.627ba,4,,2025-04-21 03:27:12 EDT,,0,LOG,00000,"listening on IPv4 address ""{{.IPs}}"", port 532",,,,,,,,,"","postmaster",,0
+---EVENT_DELIMITER---
+2025-04-21 03:27:12.391 EDT,,,403386,,6805f350.67ba,5,,2025-04-21 03:27:12 EDT,,0,LOG,00000,"listening on Unix socket ""/var/run/postgresql/{{.Domains}}.52""",,,,,,,,,"","postmaster",,0
+---EVENT_DELIMITER---
+2025-04-21 03:27:12.407 EDT,,,403390,,68f350.62be,1,,2025-04-21 03:27:12 EDT,,0,LOG,00000,"database system was shut down at 2025-04-21 03:27:12 EDT",,,,,,,,,"","startup",,0
+---EVENT_DELIMITER---
+2025-04-21 03:27:12.432 EDT,,,40386,,680550.627ba,6,,2025-04-21 03:27:12 EDT,,0,LOG,00000,"database system is ready to accept connections",,,,,,,,,"","postmaster",,0
+---EVENT_DELIMITER---
+2025-04-21 03:27:13.001 EDT,,,403394,"[local]",680551.627c2,1,"",2025-04-21 03:27:13 EDT,,0,LOG,00000,"connection received: host=[local]",,,,,,,,,"","not initialized",,0
+---EVENT_DELIMITER---
+2025-04-21 03:27:13.526 EDT,,,40397,"[local]",68f351.62c5,1,"",2025-04-21 03:27:13 EDT,,0,LOG,00000,"connection received: host=[local]",,,,,,,,,"","not initialized",,0
+---EVENT_DELIMITER---
+2025-04-21 03:27:13.529 EDT,"postgres","template1",40397,"[local]",6805f351.627c5,2,"authentication",2025-04-21 03:27:13 EDT,3/1,0,LOG,00000,"connection authorized: user=postgres database=template1 application_name=psql",,,,,,,,,"","client backend",,0
+---EVENT_DELIMITER---
+2025-04-21 03:27:13.543 EDT,"postgres","template1",403397,"[local]",6805f351.627c5,3,"idle",2025-04-21 03:27:13 EDT,3/0,0,LOG,00000,"duration: 0.225 ms",,,,,,,,,"psql","client backend",,0
+---EVENT_DELIMITER---
+2025-04-21 03:27:13.543 EDT,"postgres","template1",403397,"[local]",6805f351.627c5,4,"idle",2025-04-21 03:27:13 EDT,,0,LOG,00000,"disconnection: session time: 0:00:00.01 user=postgres database=template1 host=[local]",,,,,,,,,"psql","client backend",,0
+---EVENT_DELIMITER---
+2024-04-25 15:45:02.197 CEST [16685]: [1-1] db=my_database,user=elastic,app=[unknown],client=[local] FATAL:  password authentication failed for user "elastic"
+---EVENT_DELIMITER---
+2024-04-25 15:45:02.197 CEST [3192491]: [69864-1] db=,user=,app=,client= DETAIL:  The failed archive command was: /logiciel/pgsql-15/archive_{{.Domains}} "{{.IPs}}" pg_wal/00000001000018920000000D
+---EVENT_DELIMITER---
+2017-07-31 13:36:42.585 CEST [4974] LOG:  database system was shut down at 2017-06-17 16:58:04 CEST
+---EVENT_DELIMITER---
+2017-07-31 13:36:42.605 CEST [4974] LOG:  MultiXact member wraparound protections are now enabled
+---EVENT_DELIMITER---
+2017-07-31 13:36:42.615 CEST [4978] LOG:  autovacuum launcher started
+---EVENT_DELIMITER---
+2017-07-31 13:36:42.616 CEST [4973] LOG:  database system is ready to accept connections
+---EVENT_DELIMITER---
+2017-07-31 13:36:42.956 CEST [4980] [unknown]@[unknown] LOG:  incomplete startup packet
+---EVENT_DELIMITER---
+2017-07-31 13:36:43.557 CEST [4983] postgres@postgres LOG:  duration: 37.118 ms  statement: SELECT {{.Domains}} as "Name",
+	       pg_{{.Domains}}_get_userbyid({{.Domains}}) as "Owner",
+	       pg_{{.Domains}}_encoding_to_char({{.Domains}}) as "Encoding",
+	       {{.Domains}} as "Collate",
+	       {{.Domains}} as "Ctype",
+	       pg_{{.Domains}}_to_string({{.Domains}}, E'\n') AS "Access privileges"
+	FROM pg_{{.Domains}}_database d
+	ORDER BY 1;
+---EVENT_DELIMITER---
+2017-07-31 13:36:44.104 CEST [4986] postgres@postgres LOG:  duration: 2.895 ms  statement: SELECT {{.Domains}} as "Name",
+	       pg_{{.Domains}}_get_userbyid({{.Domains}}) as "Owner",
+	       pg_{{.Domains}}_encoding_to_char({{.Domains}}) as "Encoding",
+	       {{.Domains}} as "Collate",
+	       {{.Domains}} as "Ctype",
+	       pg_{{.Domains}}_to_string({{.Domains}}, E'\n') AS "Access privileges"
+	FROM pg_{{.Domains}}_database d
+	ORDER BY 1;
+---EVENT_DELIMITER---
+2017-07-31 13:36:44.642 CEST [4989] postgres@postgres LOG:  duration: 2.809 ms  statement: SELECT {{.Domains}} as "Name",
+	       pg_{{.Domains}}_get_userbyid({{.Domains}}) as "Owner",
+	       pg_{{.Domains}}_encoding_to_char({{.Domains}}) as "Encoding",
+	       {{.Domains}} as "Collate",
+	       {{.Domains}} as "Ctype",
+	       pg_{{.Domains}}_to_string({{.Domains}}, E'\n') AS "Access privileges"
+	FROM pg_{{.Domains}}_database d
+	ORDER BY 1;
+---EVENT_DELIMITER---
+2017-07-31 13:39:16.249 CEST [5407] postgres@users FATAL:  database "users" does not exist
+---EVENT_DELIMITER---
+2017-07-31 13:39:17.945 CEST [5500] postgres@user FATAL:  database "user" does not exist
+---EVENT_DELIMITER---
+2017-07-31 13:39:21.025 CEST [5404] postgres@postgres LOG:  duration: 37.598 ms  statement: SELECT {{.Domains}} as "Schema",
+	  {{.Domains}} as "Name",
+	  CASE {{.Domains}} WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 's' THEN 'special' WHEN 'f' THEN 'foreign table' END as "Type",
+	  pg_{{.Domains}}_get_userbyid({{.Domains}}) as "Owner"
+	FROM pg_{{.Domains}}_class c
+	     LEFT JOIN pg_{{.Domains}}_namespace n ON {{.Domains}} = {{.Domains}}
+	WHERE {{.Domains}} IN ('r','')
+	      AND {{.Domains}} <> 'pg_catalog'
+	      AND {{.Domains}} <> 'information_schema'
+	      AND {{.Domains}} !~ '^pg_toast'
+	  AND pg_{{.Domains}}_table_is_visible({{.Domains}})
+	ORDER BY 1,2;
+---EVENT_DELIMITER---
+2017-07-31 13:39:31.619 CEST [5502] postgres@clients LOG:  duration: 9.482 ms  statement: select * from clients;
+---EVENT_DELIMITER---
+2017-07-31 13:39:40.147 CEST [5502] postgres@clients LOG:  duration: 0.765 ms  statement: select id from clients;
+---EVENT_DELIMITER---
+2017-07-31 13:40:54.310 CEST [5502] postgres@clients LOG:  duration: 26.082 ms  statement: SELECT {{.Domains}} as "Schema",
+	  {{.Domains}} as "Name",
+	  CASE {{.Domains}} WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 's' THEN 'special' WHEN 'f' THEN 'foreign table' END as "Type",
+	  pg_{{.Domains}}_get_userbyid({{.Domains}}) as "Owner"
+	FROM pg_{{.Domains}}_class c
+	     LEFT JOIN pg_{{.Domains}}_namespace n ON {{.Domains}} = {{.Domains}}
+	WHERE {{.Domains}} IN ('r','')
+	      AND {{.Domains}} <> 'pg_catalog'
+	      AND {{.Domains}} <> 'information_schema'
+	      AND {{.Domains}} !~ '^pg_toast'
+	  AND pg_{{.Domains}}_table_is_visible({{.Domains}})
+	ORDER BY 1,2;
+---EVENT_DELIMITER---
+2017-07-31 13:43:22.645 CEST [5502] postgres@clients LOG:  duration: 36.162 ms  statement: create table cats(name varchar(50) primary key, toy varchar (50) not null, born timestamp not null);
+---EVENT_DELIMITER---
+2017-07-31 13:46:02.670 CEST [5502] postgres@c$lients LOG:  duration: 10.540 ms  statement: insert into cats(name, toy, born) values('kate', 'ball', now());
+---EVENT_DELIMITER---
+2017-07-31 13:46:23.016 CEST [5502] postgres@_clients$db LOG:  duration: 5.156 ms  statement: insert into cats(name, toy, born) values('frida', 'horse', now());
+---EVENT_DELIMITER---
+2017-07-31 13:46:55.637 CEST [5502] postgres@clients_db LOG:  duration: 25.871 ms  statement: create table dogs(name varchar(50) primary key, owner varchar (50) not null, born timestamp not null);
+---EVENT_DELIMITER---
+2019-05-06 19:00:04.511 UTC [913763] elastic@opbeans LOG:  duration: 0.753 ms  statement: SELECT {{.Domains}}, {{.Domains}}, {{.Domains}}, {{.Domains}}, {{.Domains}} AS type_name FROM products p LEFT JOIN product_types t ON {{.Domains}}_id={{.Domains}}
+    FROM orders JOIN customers ON {{.Domains}}_id={{.Domains}}
+    FROM products JOIN product_types ON type_id=product_{{.Domains}}
+---EVENT_DELIMITER---
+2024-08-11 00:00:00 +03 [4124669]: [2-1] user=ejar_root,db=ejar3_entities_prod,app=[unknown],client={{.IPs}} LOG: connection authorized: user=ejar_root database=ejar3_entities_prod SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256, compression=off)
+---EVENT_DELIMITER---
+2024-08-11 00:00:00 +02:30 [4124669]: [2-1] user=ejar_root,db=ejar3_entities_prod,app=[unknown],client={{.IPs}} LOG: connection authorized: user=ejar_root database=ejar3_entities_prod SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256, compression=off)2024-04-25 15:45:02.197 CEST [4124669]: [2-1] user=ejar_root,db=ejar3_entities_prod,app=[unknown],client={{.IPs}} LOG: connection authorized: user=ejar_root database=ejar3_entities_prod SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256, compression=off)
+---EVENT_DELIMITER---
+2024-04-25 15:45:02.197 CEST [16685]: [1-1] user=elastic,app=[unknown],db=my_database,client=[local] FATAL:  password authentication failed for user "elastic"
+---EVENT_DELIMITER---
+2017-04-03 22:32:14.322 CEST [12975-1] [unknown]@[unknown] LOG:  incomplete startup packet
+---EVENT_DELIMITER---
+2017-04-03 22:32:14.322 CEST [5404-1] postgres@user FATAL:  database "user" does not exist
+---EVENT_DELIMITER---
+2017-04-03 22:35:22.389 CEST [5404-2] postgres@postgres LOG:  duration: 37.598 ms  statement: SELECT {{.Domains}} as "Schema",
+	  {{.Domains}} as "Name",
+	  CASE {{.Domains}} WHEN 'r' THEN 'table' WHEN 'v' THEN 'view' WHEN 'm' THEN 'materialized view' WHEN 'i' THEN 'index' WHEN 'S' THEN 'sequence' WHEN 's' THEN 'special' WHEN 'f' THEN 'foreign table' END as "Type",
+	  pg_{{.Domains}}_get_userbyid({{.Domains}}) as "Owner"
+	FROM pg_{{.Domains}}_class c
+	     LEFT JOIN pg_{{.Domains}}_namespace n ON {{.Domains}} = {{.Domains}}
+	WHERE {{.Domains}} IN ('r','')
+	      AND {{.Domains}} <> 'pg_catalog'
+	      AND {{.Domains}} <> 'information_schema'
+	      AND {{.Domains}} !~ '^pg_toast'
+	  AND pg_{{.Domains}}_table_is_visible({{.Domains}})
+	ORDER BY 1,2;
+---EVENT_DELIMITER---
+2017-07-31 13:36:43.557 EST [835-1] LOG:  autovacuum launcher started
+---EVENT_DELIMITER---
+2017-07-31 13:36:44.227 EST [832-1] LOG:  checkpoints are occurring too frequently (25 seconds apart)
+---EVENT_DELIMITER---
+2017-07-31 13:46:02.670 EST [832-2] HINT:  Consider increasing the configuration parameter "max_wal_size".
+---EVENT_DELIMITER---
+2017-07-31 13:46:23.016 EST [768-1] postgres@postgres FATAL:  the database system is starting up
+---EVENT_DELIMITER---
+2017-07-31 13:46:55.637 EST [771-1] postgres@postgres FATAL:  the database system is starting up
+---EVENT_DELIMITER---
+2017-07-31 13:36:43 EST [835-1] LOG:  autovacuum launcher started
+---EVENT_DELIMITER---
+2017-07-31 13:36:44 EST [832-1] LOG:  checkpoints are occurring too frequently (25 seconds apart)
+---EVENT_DELIMITER---
+2017-07-31 13:46:02 EST [832-2] HINT:  Consider increasing the configuration parameter "max_wal_size".
+---EVENT_DELIMITER---
+2017-07-31 13:46:23 EST [768-1] postgres@postgres FATAL:  the database system is starting up
+---EVENT_DELIMITER---
+2017-07-31 13:46:55 EST [771-1] postgres@postgres FATAL:  the database system is starting up
+---EVENT_DELIMITER---
+2022-06-16 17:58:40 UTC::@:[7770]:LOG:  checkpoint starting: time
+---EVENT_DELIMITER---
+2019-03-10 03:54:59 UTC:{{.IPs}}(52834):postgres@tstdb:[20175]:ERROR: column "wrong" does not exist at character 8
+---EVENT_DELIMITER---
+2022-06-20 22:19:26 UTC:{{.IPs}}(33998):accounters@found:[20452]:LOG:  statement: INSERT INTO events (user_id, user_principal_id, organization_id, region, cluster_id, invoice_id, trial_id, type, unique_token, data) VALUES (NULL, NULL, NULL, 'aws-eu-west-1', NULL, NULL, NULL, 'accounting', NULL, '{\"hostname\": \"44058ed0088d\", \"pid\": 41441}') RETURNING {{.Domains}}_id
+---EVENT_DELIMITER---
+2013-11-05 16:51:10 UTC:[local]:master@postgres:[9193]:LOG:  statement: SELECT {{.Domains}}::pg_{{.Domains}} FROM pg_{{.Domains}}_class c, pg_{{.Domains}}_inherits i WHERE {{.Domains}}={{.Domains}} AND {{.Domains}} = '1255' ORDER BY inhseqno;
+---EVENT_DELIMITER---
+2013-11-05 16:45:14 UTC:[local]:master@postgres:[8839]:LOG:  statement: SELECT {{.Domains}} as "Name",
+	       pg_{{.Domains}}_get_userbyid({{.Domains}}) as "Owner",
+	       pg_{{.Domains}}_encoding_to_char({{.Domains}}) as "Encoding",
+	       {{.Domains}} as "Collate",
+	       {{.Domains}} as "Ctype",
+	       pg_{{.Domains}}_to_string({{.Domains}}, E'\n') AS "Access privileges"
+	FROM pg_{{.Domains}}_database d
+	ORDER BY 1;
+---EVENT_DELIMITER---
+2013-11-05 16:45:14 UTC:{{.IPs}}(59176):[unknown]@[unknown]:[9002]:FATAL:  unsupported frontend protocol 1234.5679: server supports 2.0 to 3.0
+---EVENT_DELIMITER---
+2019-09-04 15:52:38.004 CEST [31136] user@host LOG:  duration: 12.437 ms  parse <unnamed>: select * from table
+---EVENT_DELIMITER---
+2019-09-04 15:52:38.004 CEST [31136] user@host LOG:  duration: 12.437 ms  execute pdo_stmt_00000002: select * from table
+
+---EVENT_DELIMITER---
+2025-04-03 22:32:14.322 CEST [31225] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2025-04-03 22:32:14.322 AEST [31225] postgres@mydb LOG:  unexpected EOF on client connection with an open transaction
+---EVENT_DELIMITER---
+2025-04-03 22:35:22.389 EDT [3474] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2025-04-03 22:36:56.464 IST [3525] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2025-04-03 22:37:12.961 UTC [3570] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2025-04-07 21:05:28.549 EST [21483] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2025-04-07 21:09:41.345 PKT [21597] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2025-04-07 22:45:30.218 MST [22603] postgres@mydb ERROR:  operator does not exist: jsonb @> at character 49
+---EVENT_DELIMITER---
+2025-04-07 22:45:30.218 PDT [22603] postgres@mydb HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+---EVENT_DELIMITER---
+2025-04-07 22:45:30.218 WEST [22603] postgres@mydb STATEMENT:  SELECT id, user FROM users WHERE NOT user @> %s
+---EVENT_DELIMITER---
+2025-04-07 22:46:09.751 SST [22608] postgres@mydb ERROR:  column "%s" does not exist at character 52
+---EVENT_DELIMITER---
+2017-04-03 22:32:14.322 CEST [31225] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2017-04-03 22:32:14.322 CEST [31225] postgres@mydb LOG:  unexpected EOF on client connection with an open transaction
+---EVENT_DELIMITER---
+2017-04-03 22:35:22.389 CEST [3474] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2017-04-03 22:36:56.464 CEST [3525] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2017-04-03 22:37:12.961 CEST [3570] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2017-04-07 21:05:28.549 CEST [21483] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2017-04-07 21:09:41.345 CEST [21597] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2017-04-07 22:45:30.218 CEST [22603] postgres@mydb ERROR:  operator does not exist: jsonb @> at character 49
+---EVENT_DELIMITER---
+2017-04-07 22:45:30.218 CEST [22603] postgres@mydb HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+---EVENT_DELIMITER---
+2017-04-07 22:45:30.218 CEST [22603] postgres@mydb STATEMENT:  SELECT id, user FROM users WHERE NOT user @> %s
+---EVENT_DELIMITER---
+2017-04-07 22:46:09.751 CEST [22608] postgres@mydb ERROR:  column "%s" does not exist at character 52
+---EVENT_DELIMITER---
+2017-04-07 22:46:09.751 CEST [22608] postgres@mydb STATEMENT:  SELECT id, user FROM users WHERE NOT user @> "%s"
+---EVENT_DELIMITER---
+2017-04-07 23:02:51.199 CEST [24341] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2017-04-07 23:02:51.199 CEST [24341] postgres@mydb LOG:  unexpected EOF on client connection with an open transaction
+---EVENT_DELIMITER---
+2017-04-07 23:04:36.087 CEST [20730] postgres@mydb ERROR:  syntax error at or near "{" at character 49
+---EVENT_DELIMITER---
+2017-04-07 23:04:36.087 CEST [20730] postgres@mydb STATEMENT:  INSERT INTO users (id, user) VALUES (1, {"attr": "yes"});
+---EVENT_DELIMITER---
+2017-04-07 23:04:51.462 CEST [20730] postgres@mydb ERROR:  syntax error at or near "{" at character 49
+---EVENT_DELIMITER---
+2017-04-07 23:04:51.462 CEST [20730] postgres@mydb STATEMENT:  INSERT INTO users (id, user) VALUES (1, {attr: "yes"});
+---EVENT_DELIMITER---
+2017-04-07 23:05:06.217 CEST [20730] postgres@mydb ERROR:  column "a" does not exist at character 42
+---EVENT_DELIMITER---
+2017-04-07 23:05:06.217 CEST [20730] postgres@mydb STATEMENT:  INSERT INTO users (id, user) VALUES (1, '{"attr": "yes"}');
+---EVENT_DELIMITER---
+2017-04-07 23:05:18.295 CEST [20730] postgres@mydb ERROR:  column "attr" does not exist at character 42
+---EVENT_DELIMITER---
+2017-04-07 23:05:18.295 CEST [20730] postgres@mydb STATEMENT:  INSERT INTO users (id, user) VALUES ("1", '{"attr": "no"}');
+---EVENT_DELIMITER---
+2017-04-07 23:13:47.505 CEST [24489] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2017-04-07 23:13:47.505 CEST [24489] postgres@mydb LOG:  unexpected EOF on client connection with an open transaction
+---EVENT_DELIMITER---
+2017-04-08 12:32:51.056 CEST [20730] postgres@mydb ERROR:  duplicate key value violates unique constraint "users_pkey"
+---EVENT_DELIMITER---
+2017-04-08 12:32:51.056 CEST [20730] postgres@mydb DETAIL:  Key (id)=(1) already exists.
+---EVENT_DELIMITER---
+2017-04-08 12:32:51.056 CEST [20730] postgres@mydb STATEMENT:  INSERT INTO users (id, user) VALUES ('1', '{"attr": "yes"}');
+---EVENT_DELIMITER---
+2017-04-08 21:54:37.443 CEST [30630] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2017-04-08 21:54:37.468 CEST [30502] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2017-04-08 21:54:37.618 CEST [20769] LOG:  received fast shutdown request
+---EVENT_DELIMITER---
+2017-04-08 21:54:37.618 CEST [20769] LOG:  aborting any active transactions
+---EVENT_DELIMITER---
+2017-04-08 21:54:37.618 CEST [20774] LOG:  autovacuum launcher shutting down
+---EVENT_DELIMITER---
+2017-04-08 21:54:37.622 CEST [20771] LOG:  shutting down
+---EVENT_DELIMITER---
+2017-04-08 21:54:37.644 CEST [20769] LOG:  database system is shut down
+---EVENT_DELIMITER---
+2017-04-08 21:56:02.932 CEST [797] LOG:  database system was shut down at 2017-04-08 21:54:37 CEST
+---EVENT_DELIMITER---
+2017-04-08 21:56:02.944 CEST [797] LOG:  MultiXact member wraparound protections are now enabled
+---EVENT_DELIMITER---
+2017-04-08 21:56:02.946 CEST [780] LOG:  database system is ready to accept connections
+---EVENT_DELIMITER---
+2017-04-08 21:56:02.947 CEST [802] LOG:  autovacuum launcher started
+---EVENT_DELIMITER---
+2017-04-08 21:56:03.362 CEST [891] [unknown]@[unknown] LOG:  incomplete startup packet
+---EVENT_DELIMITER---
+2017-05-27 14:07:53.007 UTC [32567] LOG:  database system was shut down at 2017-05-27 14:07:52 UTC
+---EVENT_DELIMITER---
+2017-05-27 14:07:53.010 UTC [32567] LOG:  MultiXact member wraparound protections are now enabled
+---EVENT_DELIMITER---
+2017-05-27 14:07:53.015 UTC [32566] LOG:  database system is ready to accept connections
+---EVENT_DELIMITER---
+2017-05-27 14:07:53.016 UTC [32571] LOG:  autovacuum launcher started
+---EVENT_DELIMITER---
+2017-05-27 14:07:53.463 UTC [32573] [unknown]@[unknown] LOG:  incomplete startup packet
+---EVENT_DELIMITER---
+2017-05-27 14:08:13.661 UTC [1308] postgres@mydb FATAL:  database "mydb" does not exist
+---EVENT_DELIMITER---
+2017-05-27 14:59:26.553 UTC [1994] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2017-05-27 14:59:26.555 UTC [1989] postgres@mydb LOG:  could not receive data from client: Connection reset by peer
+---EVENT_DELIMITER---
+2017-06-06 07:54:13.753 CEST [9110] LOG:  received fast shutdown request
+---EVENT_DELIMITER---
+2017-06-06 07:54:13.753 CEST [9110] LOG:  aborting any active transactions
+---EVENT_DELIMITER---
+2017-06-06 07:54:13.753 CEST [9115] LOG:  autovacuum launcher shutting down
+---EVENT_DELIMITER---
+2017-06-06 07:54:13.755 CEST [9112] LOG:  shutting down
+---EVENT_DELIMITER---
+2017-06-06 07:54:13.816 CEST [9110] LOG:  database system is shut down
+---EVENT_DELIMITER---
+2017-06-06 07:55:39.725 CEST [12969] LOG:  database system was shut down at 2017-06-06 07:54:13 CEST
+---EVENT_DELIMITER---
+2017-06-06 07:55:39.736 CEST [12969] LOG:  MultiXact member wraparound protections are now enabled
+---EVENT_DELIMITER---
+2017-06-06 07:55:39.739 CEST [12968] LOG:  database system is ready to accept connections
+---EVENT_DELIMITER---
+2017-06-06 07:55:39.739 CEST [12973] LOG:  autovacuum launcher started
+---EVENT_DELIMITER---
+2017-06-06 07:55:40.155 CEST [12975] [unknown]@[unknown] LOG:  incomplete startup packet
+---EVENT_DELIMITER---
+2017-06-06 07:55:40.156 CEST [12975] [unknown]@[unknown] LOG:  incomplete startup packet
+---EVENT_DELIMITER---
+2017-06-10 19:37:30.681 CEST [17398] LOG:  database system was shut down at 2017-06-10 19:37:29 CEST
+---EVENT_DELIMITER---
+2017-06-10 19:37:30.695 CEST [17398] LOG:  MultiXact member wraparound protections are now enabled
+---EVENT_DELIMITER---
+2017-06-10 19:37:30.702 CEST [17397] LOG:  database system is ready to accept connections
+---EVENT_DELIMITER---
+2017-06-10 19:37:30.702 CEST [17402] LOG:  autovacuum launcher started
+---EVENT_DELIMITER---
+2017-06-10 19:37:31.104 CEST [17404] [unknown]@[unknown] LOG:  incomplete startup packet
+---EVENT_DELIMITER---
+2017-06-10 20:27:55.911 CEST [17397] LOG:  received fast shutdown request
+---EVENT_DELIMITER---
+2017-06-10 20:27:55.911 CEST [17397] LOG:  aborting any active transactions
+---EVENT_DELIMITER---
+2017-06-10 20:27:55.911 CEST [17402] LOG:  autovacuum launcher shutting down
+---EVENT_DELIMITER---
+2017-06-10 20:27:55.914 CEST [17399] LOG:  shutting down
+---EVENT_DELIMITER---
+2017-06-10 20:27:55.973 CEST [17397] LOG:  database system is shut down
+---EVENT_DELIMITER---
+2017-06-10 20:27:57.022 CEST [24490] LOG:  database system was shut down at 2017-06-10 20:27:55 CEST
+---EVENT_DELIMITER---
+2017-06-10 20:27:57.032 CEST [24490] LOG:  MultiXact member wraparound protections are now enabled
+---EVENT_DELIMITER---
+2017-06-10 20:27:57.035 CEST [24494] LOG:  autovacuum launcher started
+---EVENT_DELIMITER---
+2017-06-10 20:27:57.035 CEST [24489] LOG:  database system is ready to accept connections
+---EVENT_DELIMITER---
+2017-06-10 20:27:57.475 CEST [24496] [unknown]@[unknown] LOG:  incomplete startup packet
+---EVENT_DELIMITER---
+2017-06-17 16:58:03.937 CEST [24489] LOG:  received fast shutdown request
+---EVENT_DELIMITER---
+2017-06-17 16:58:03.937 CEST [24489] LOG:  aborting any active transactions
+---EVENT_DELIMITER---
+2017-06-17 16:58:03.938 CEST [24494] LOG:  autovacuum launcher shutting down
+---EVENT_DELIMITER---
+2017-06-17 16:58:03.940 CEST [24491] LOG:  shutting down
+---EVENT_DELIMITER---
+2017-06-17 16:58:04.040 CEST [24489] LOG:  database system is shut down

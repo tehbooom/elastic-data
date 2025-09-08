@@ -1,0 +1,65 @@
+3 000000000000 - {{.IPs}} 2a02:cf40:: 64072 22 17 46 14927 {{.timestamp_unix_s}} {{.timestamp_unix_s}} REJECT OK - - - - - - - - - - - - - ingress - arn:aws:ecs:us-east-1:000000000000:cluster/frontend-cluster frontend-cluster arn:aws:ecs:us-east-1:000000000000:container-instance/frontend-cluster/i-82bfd814a3c34e21a i-82bfd814a3c34e21a 574fc0af-908 816bc224-160 payments-service arn:aws:ecs:us-east-1:000000000000:task-definition/backend:3 arn:aws:ecs:us-east-1:000000000000:task/frontend-cluster/6adbd0d6-211 6adbd0d6-211
+---EVENT_DELIMITER---
+3 000000000000 - {{.IPs}} {{.IPs}} 63715 3306 6 6 1515 {{.timestamp_unix_s}} {{.timestamp_unix_s}} ACCEPT NODATA - - - - - - - - - - - - - egress - arn:aws:ecs:us-east-1:000000000000:cluster/orders-cluster orders-cluster arn:aws:ecs:us-east-1:000000000000:container-instance/orders-cluster/i-1cb81722735e4bcfa i-1cb81722735e4bcfa 7a93be1b-d3f b20d4561-ebb orders-service arn:aws:ecs:us-east-1:000000000000:task-definition/backend:3 arn:aws:ecs:us-east-1:000000000000:task/orders-cluster/b42ecfbe-17f b42ecfbe-17f
+---EVENT_DELIMITER---
+3 000000000000 - {{.IPs}} {{.IPs}} 29034 80 17 65 21349 {{.timestamp_unix_s}} {{.timestamp_unix_s}} ACCEPT SKIPDATA - - - - - - - - - - - - - ingress - arn:aws:ecs:us-east-1:000000000000:cluster/frontend-cluster frontend-cluster arn:aws:ecs:us-east-1:000000000000:container-instance/frontend-cluster/i-f3f7cae399904a028 i-f3f7cae399904a028 212459c4-064 cff1c25a-463 frontend-service arn:aws:ecs:us-east-1:000000000000:task-definition/payments:7 arn:aws:ecs:us-east-1:000000000000:task/frontend-cluster/ae629347-4b3 ae629347-4b3
+---EVENT_DELIMITER---
+3 000000000000 - {{.IPs}} {{.IPs}} 27556 80 17 97 48448 {{.timestamp_unix_s}} {{.timestamp_unix_s}} REJECT OK - - - - - - - - - - - - - egress - arn:aws:ecs:us-east-1:000000000000:cluster/payments-cluster payments-cluster arn:aws:ecs:us-east-1:000000000000:container-instance/payments-cluster/i-98621a74abda45c08 i-98621a74abda45c08 e1b0b179-c52 1bcc4b5f-aa5 backend-service arn:aws:ecs:us-east-1:000000000000:task-definition/payments:7 arn:aws:ecs:us-east-1:000000000000:task/payments-cluster/3e1593ad-498 3e1593ad-498
+---EVENT_DELIMITER---
+3 000000000000 - {{.IPs}} {{.IPs}} 63842 80 17 59 43499 {{.timestamp_unix_s}} {{.timestamp_unix_s}} ACCEPT OK - - - - - - - - - - - - - egress - arn:aws:ecs:us-east-1:000000000000:cluster/frontend-cluster frontend-cluster arn:aws:ecs:us-east-1:000000000000:container-instance/frontend-cluster/i-917b943179c94ed18 i-917b943179c94ed18 6b212e03-7f5 61717a95-f40 payments-service arn:aws:ecs:us-east-1:000000000000:task-definition/orders:12 arn:aws:ecs:us-east-1:000000000000:task/frontend-cluster/66afe9a3-36f 66afe9a3-36f
+---EVENT_DELIMITER---
+3 000000000000 - {{.IPs}} {{.IPs}} 14797 8080 6 35 28455 {{.timestamp_unix_s}} {{.timestamp_unix_s}} ACCEPT OK - - - - - - - - - - - - - ingress - arn:aws:ecs:us-east-1:000000000000:cluster/payments-cluster payments-cluster arn:aws:ecs:us-east-1:000000000000:container-instance/payments-cluster/i-74911fdc5ae144248 i-74911fdc5ae144248 f006614f-149 baa46763-445 backend-service arn:aws:ecs:us-east-1:000000000000:task-definition/frontend:19 arn:aws:ecs:us-east-1:000000000000:task/payments-cluster/546efe2c-008 546efe2c-008
+---EVENT_DELIMITER---
+3 000000000000 - {{.IPs}} {{.IPs}} 37855 443 6 35 22598 {{.timestamp_unix_s}} {{.timestamp_unix_s}} REJECT NODATA - - - - - - - - - - - - - egress - arn:aws:ecs:us-east-1:000000000000:cluster/orders-cluster orders-cluster arn:aws:ecs:us-east-1:000000000000:container-instance/orders-cluster/i-bbc31b27d85c4df6b i-bbc31b27d85c4df6b 6d193c93-3e6 f0a94533-dfa orders-service arn:aws:ecs:us-east-1:000000000000:task-definition/frontend:19 arn:aws:ecs:us-east-1:000000000000:task/orders-cluster/a55434f0-3ff a55434f0-3ff
+---EVENT_DELIMITER---
+3 000000000000 - {{.IPs}} {{.IPs}} 50702 22 17 12 43027 {{.timestamp_unix_s}} {{.timestamp_unix_s}} REJECT SKIPDATA - - - - - - - - - - - - - ingress - arn:aws:ecs:us-east-1:000000000000:cluster/orders-cluster orders-cluster arn:aws:ecs:us-east-1:000000000000:container-instance/orders-cluster/i-99bcaf339b1e48c9a i-99bcaf339b1e48c9a a68aa4bf-8af 3b4913a9-8ab frontend-service arn:aws:ecs:us-east-1:000000000000:task-definition/payments:7 arn:aws:ecs:us-east-1:000000000000:task/orders-cluster/a2a7bad8-0df a2a7bad8-0df
+---EVENT_DELIMITER---
+3 000000000000 - {{.IPs}} {{.IPs}} 10302 443 6 11 40977 {{.timestamp_unix_s}} {{.timestamp_unix_s}} REJECT NODATA - - - - - - - - - - - - - ingress - arn:aws:ecs:us-east-1:000000000000:cluster/frontend-cluster frontend-cluster arn:aws:ecs:us-east-1:000000000000:container-instance/frontend-cluster/i-d6a2499d931444a49 i-d6a2499d931444a49 4cd98d99-f22 443408a8-306 backend-service arn:aws:ecs:us-east-1:000000000000:task-definition/frontend:19 arn:aws:ecs:us-east-1:000000000000:task/frontend-cluster/28af8733-a61 28af8733-a61
+---EVENT_DELIMITER---
+3 000000000000 - 2a02:cf40:: {{.IPs}} 42910 80 17 51 33615 {{.timestamp_unix_s}} {{.timestamp_unix_s}} REJECT NODATA - - - - - - - - - - - - - ingress - arn:aws:ecs:us-east-1:000000000000:cluster/backend-cluster backend-cluster arn:aws:ecs:us-east-1:000000000000:container-instance/backend-cluster/i-18de3682c033431da i-18de3682c033431da 601a6500-efa dea79277-480 payments-service arn:aws:ecs:us-east-1:000000000000:task-definition/orders:12 arn:aws:ecs:us-east-1:000000000000:task/backend-cluster/e504f037-35c e504f037-35c
+---EVENT_DELIMITER---
+2 123456789010 eni-1235b8ca123456789 2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6 2a02:cf40:add:4002:91f2:a9b2:e09a:6fc6 34892 22 6 54 8855 {{.timestamp_unix_s}} {{.timestamp_unix_s}} ACCEPT OK
+---EVENT_DELIMITER---
+2 123456789010 eni-1235b8ca123456789 - - - - - - - {{.timestamp_unix_s}} {{.timestamp_unix_s}} - NODATA
+---EVENT_DELIMITER---
+2 123456789010 eni-89.160.20.1561aaaaaaaaa - - - - - - - {{.timestamp_unix_s}} {{.timestamp_unix_s}} - SKIPDATA
+---EVENT_DELIMITER---
+2 123456789010 eni-1235b8ca123456789 {{.IPs}} {{.IPs}} 20641 22 6 20 4249 {{.timestamp_unix_s}} {{.timestamp_unix_s}} ACCEPT OK
+---EVENT_DELIMITER---
+2 123456789010 eni-1235b8ca123456789 {{.IPs}} {{.IPs}} 49761 3389 6 20 4249 {{.timestamp_unix_s}} {{.timestamp_unix_s}} REJECT OK
+---EVENT_DELIMITER---
+2 123456789010 eni-1235b8ca123456789 {{.IPs}} {{.IPs}} 0 0 1 4 336 {{.timestamp_unix_s}} {{.timestamp_unix_s}} ACCEPT OK
+---EVENT_DELIMITER---
+2 123456789010 eni-1235b8ca123456789 {{.IPs}} {{.IPs}} 0 0 1 4 336 {{.timestamp_unix_s}} {{.timestamp_unix_s}} REJECT OK
+---EVENT_DELIMITER---
+3 vpc-abcdefab012345678 subnet-aaaaaaaa012345678 i-01234567890123456 eni-1235b8ca123456789 123456789010 IPv4 {{.IPs}} {{.IPs}} 43416 5001 {{.IPs}} {{.IPs}} 6 568 8 {{.timestamp_unix_s}} {{.timestamp_unix_s}} ACCEPT 2 OK
+---EVENT_DELIMITER---
+3 vpc-abcdefab012345678 subnet-aaaaaaaa012345678 i-01234567890123456 eni-1235b8ca123456789 123456789010 - - - - - - - - - - {{.timestamp_unix_s}} {{.timestamp_unix_s}} - - SKIPDATA
+---EVENT_DELIMITER---
+3 vpc-abcdefab012345678 subnet-aaaaaaaa012345678 i-01234567890123456 eni-1235b8ca123456789 123456789010 - - - - - - - - - - {{.timestamp_unix_s}} {{.timestamp_unix_s}} - - NODATA
+---EVENT_DELIMITER---
+3 - 748335378900 tgw-0a12bc34de56f7890 tgw-attach-0789ijkl - - vpc-0jkl5678 vpc-0ghi9012 - - eni-0cc3dd4ee5f66aa7b eni-0cc3dd4ee5f66aa7b - - - {{.IPs}} 2a02:cf40:: 39464 22 6 49 8947 {{.timestamp_unix_s}} {{.timestamp_unix_s}} SKIPDATA - - - - - - - ingress - -
+---EVENT_DELIMITER---
+3 - 748335378900 tgw-0a12bc34de56f7890 tgw-attach-0456efgh - - vpc-0abc1234 vpc-0ghi9012 - - eni-0ee5f66aa7bcc89d0 eni-0aa1bb2cc3dd4ee5f - - - {{.IPs}} {{.IPs}} 56846 80 17 45 9771 {{.timestamp_unix_s}} {{.timestamp_unix_s}} NODATA - - - - - - - ingress - -
+---EVENT_DELIMITER---
+3 - 748335378900 tgw-0a12bc34de56f7890 tgw-attach-0123abcd - - vpc-0abc1234 vpc-0def5678 - - eni-0ee5f66aa7bcc89d0 eni-0dd4ee5f66aa7bcc8 - - - {{.IPs}} {{.IPs}} 36721 8080 17 13 6842 {{.timestamp_unix_s}} {{.timestamp_unix_s}} OK - - - - - - - ingress - -
+---EVENT_DELIMITER---
+3 - 748335378900 tgw-0a12bc34de56f7890 tgw-attach-0789ijkl - - vpc-0ghi9012 vpc-0def5678 - - eni-0aa1bb2cc3dd4ee5f eni-0bb2cc3dd4ee5f66 - - - {{.IPs}} {{.IPs}} 3147 3389 17 48 5970 {{.timestamp_unix_s}} {{.timestamp_unix_s}} SKIPDATA - - - - - - - ingress - -
+---EVENT_DELIMITER---
+3 - 748335378900 tgw-0a12bc34de56f7890 tgw-attach-0123abcd - - vpc-0jkl5678 vpc-0jkl5678 - - eni-0bb2cc3dd4ee5f66 eni-0cc3dd4ee5f66aa7b - - - {{.IPs}} {{.IPs}} 59410 80 17 3 6949 {{.timestamp_unix_s}} {{.timestamp_unix_s}} SKIPDATA - - - - - - - ingress - -
+---EVENT_DELIMITER---
+3 - 748335378900 tgw-0a12bc34de56f7890 tgw-attach-0mno1234 - - vpc-0abc1234 vpc-0ghi9012 - - eni-0cc3dd4ee5f66aa7b eni-0cc3dd4ee5f66aa7b - - - {{.IPs}} {{.IPs}} 51593 80 6 42 3734 {{.timestamp_unix_s}} {{.timestamp_unix_s}} SKIPDATA - - - - - - - ingress - -
+---EVENT_DELIMITER---
+3 - 748335378900 tgw-0a12bc34de56f7890 tgw-attach-0789ijkl - - vpc-0def5678 vpc-0jkl5678 - - eni-0ee5f66aa7bcc89d0 eni-0cc3dd4ee5f66aa7b - - - {{.IPs}} {{.IPs}} 42450 443 6 3 5749 {{.timestamp_unix_s}} {{.timestamp_unix_s}} OK - - - - - - - ingress - -
+---EVENT_DELIMITER---
+3 - 748335378900 tgw-0a12bc34de56f7890 tgw-attach-0789ijkl - - vpc-0abc1234 vpc-0def5678 - - eni-0aa1bb2cc3dd4ee5f eni-0cc3dd4ee5f66aa7b - - - {{.IPs}} {{.IPs}} 40879 3389 17 43 3803 {{.timestamp_unix_s}} {{.timestamp_unix_s}} SKIPDATA - - - - - - - ingress - -
+---EVENT_DELIMITER---
+3 - 748335378900 tgw-0a12bc34de56f7890 tgw-attach-0mno1234 - - vpc-0ghi9012 vpc-0jkl5678 - - eni-0dd4ee5f66aa7bcc8 eni-0bb2cc3dd4ee5f66 - - - {{.IPs}} {{.IPs}} 47415 443 6 42 4534 {{.timestamp_unix_s}} {{.timestamp_unix_s}} OK - - - - - - - ingress - -
+---EVENT_DELIMITER---
+3 - 748335378900 tgw-0a12bc34de56f7890 tgw-attach-0456efgh - - vpc-0ghi9012 vpc-0abc1234 - - eni-0dd4ee5f66aa7bcc8 eni-0dd4ee5f66aa7bcc8 - - - 2a02:cf40:: {{.IPs}} 20385 3389 17 9 7659 {{.timestamp_unix_s}} {{.timestamp_unix_s}} SKIPDATA - - - - - - - ingress - -
+---EVENT_DELIMITER---
+5 64111117617 eni-069xxxxxb7a490 {{.IPs}} {{.IPs}} 50041 33004 17 52 1 164000066 {{.timestamp_unix_s}} REJECT OK vpc-09676f97xxxxxb8a7 subnet-02d645xxxxxxxdbc0 i-0axxxxxx1ad77 1 IPv4 {{.IPs}} {{.IPs}} us-east-1 use1-az5 - - AMAZON CLOUDFRONT ingress 1
+---EVENT_DELIMITER---
+3 000000000000 - 2a02:cf40:: {{.IPs}} 42910 80 17 51 33615 {{.timestamp_unix_s}} {{.timestamp_unix_s}} REJECT NODATA - - - - - - - - - - - - - ingress - arn:aws:ecs:us-east-1:000000000000:cluster/backend-cluster backend-cluster arn:aws:ecs:us-east-1:000000000000:container-instance/backend-cluster/i-18de3682c033431da i-18de3682c033431da 601a6500-efa dea79277-480 payments-service arn:aws:ecs:us-east-1:000000000000:task-definition/orders:12 arn:aws:ecs:us-east-1:000000000000:task/backend-cluster/e504f037-35c e504f037-35c BPA
+---EVENT_DELIMITER---
+{"message":"2 428961148399 eni-0e0bf7be352692297 - - - - - - - {{.timestamp_unix_s}} {{.timestamp_unix_s}} - NODATA"}
