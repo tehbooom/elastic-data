@@ -1,27 +1,23 @@
 package integrations
 
 import (
+	"embed"
 	"fmt"
-	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/charmbracelet/log"
 )
 
-// GetIntegrationsFromTemplates discovers integrations from pre-generated template files
+//go:embed templates
+var templatesFS embed.FS
+
+// GetIntegrationsFromTemplates discovers integrations from embedded template files
 func GetIntegrationsFromTemplates() ([]string, error) {
-	templatesDir := "internal/integrations/templates"
-
-	// Check if templates directory exists
-	if _, err := os.Stat(templatesDir); os.IsNotExist(err) {
-		return nil, fmt.Errorf("templates directory not found: %s", templatesDir)
-	}
-
-	entries, err := os.ReadDir(templatesDir)
+	entries, err := templatesFS.ReadDir("templates")
 	if err != nil {
 		log.Debug(err)
-		return nil, fmt.Errorf("failed to read templates directory %s: %w", templatesDir, err)
+		return nil, fmt.Errorf("failed to read embedded templates directory: %w", err)
 	}
 
 	var integrations []string
@@ -32,25 +28,20 @@ func GetIntegrationsFromTemplates() ([]string, error) {
 	}
 
 	if len(integrations) == 0 {
-		return nil, fmt.Errorf("no integrations found in templates directory")
+		return nil, fmt.Errorf("no integrations found in embedded templates")
 	}
 
 	return integrations, nil
 }
 
-// GetDatasetsFromTemplates gets datasets for an integration from template files
+// GetDatasetsFromTemplates gets datasets for an integration from embedded template files
 func GetDatasetsFromTemplates(integration string) ([]string, error) {
-	integrationDir := filepath.Join("internal/integrations/templates", integration)
-
-	// Check if integration directory exists
-	if _, err := os.Stat(integrationDir); os.IsNotExist(err) {
-		return nil, fmt.Errorf("integration directory not found: %s", integrationDir)
-	}
-
-	entries, err := os.ReadDir(integrationDir)
+	integrationDir := filepath.Join("templates", integration)
+	
+	entries, err := templatesFS.ReadDir(integrationDir)
 	if err != nil {
 		log.Debug(err)
-		return nil, fmt.Errorf("failed to read integration directory %s: %w", integrationDir, err)
+		return nil, fmt.Errorf("integration directory not found: %s", integrationDir)
 	}
 
 	var datasets []string
