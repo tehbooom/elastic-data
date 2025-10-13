@@ -21,7 +21,7 @@ Elastic-data can be installed by downloading the binary or installing from sourc
 
 ### Binary
 
-You can download the binary corresponding to your operating system from the releases page on GitHub.
+You can download the binary corresponding to your operating system from the [releases page](https://github.com/tehbooom/elastic-data/releases) on GitHub.
 
 Once downloaded you can run the binary from the command line:
 
