@@ -10,7 +10,6 @@ require (
 	github.com/charmbracelet/log v0.4.1
 	github.com/elastic/beats/v7 v7.17.28
 	github.com/elastic/go-elasticsearch/v8 v8.17.0
-	github.com/elastic/go-elasticsearch/v9 v9.0.0
 	github.com/muesli/termenv v0.16.0
 	github.com/spf13/cobra v1.9.1
 	github.com/tehbooom/go-kibana v0.0.0-20250527174538-7e41e0a08f4e
@@ -33,6 +32,7 @@ require (
 	github.com/elastic/elastic-agent-client/v7 v7.17.2 // indirect
 	github.com/elastic/elastic-agent-libs v0.20.0 // indirect
 	github.com/elastic/elastic-transport-go/v8 v8.7.0 // indirect
+	github.com/elastic/go-elasticsearch/v9 v9.0.0 // indirect
 	github.com/elastic/go-licenser v0.4.2 // indirect
 	github.com/elastic/go-sysinfo v1.15.3 // indirect
 	github.com/elastic/go-ucfg v0.8.8 // indirect
