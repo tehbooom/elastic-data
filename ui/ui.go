@@ -9,7 +9,7 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/log"
-	es "github.com/elastic/go-elasticsearch/v9"
+	es "github.com/elastic/go-elasticsearch/v8"
 	"github.com/tehbooom/elastic-data/internal/config"
 	"github.com/tehbooom/elastic-data/internal/elasticsearch"
 	"github.com/tehbooom/elastic-data/internal/integrations"
