@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"math/rand"
+	"strings"
 	"sync"
 	"time"
 
@@ -62,12 +63,18 @@ func (dg *DataGenerator) startEPS() {
 	batchSize := dg.calculateOptimalBatchSize()
 
 	batchInterval := time.Duration(batchSize) * time.Second / time.Duration(targetEPS)
-	log.Debug(fmt.Sprintf("Batch interval set to %d for %s", batchInterval, dg.config.Name))
+	log.Debug(fmt.Sprintf("Batch interval set to %v for %s", batchInterval, dg.config.Name))
 
 	ticker := time.NewTicker(batchInterval)
 	defer ticker.Stop()
 	log.Debug("Starting EPS generation for %s: %d EPS (batch size: %d, interval: %v)",
 		dg.config.Name, targetEPS, batchSize, batchInterval)
+
+	// Send first batch immediately instead of waiting for first tick
+	if err := dg.sendEPS(); err != nil {
+		log.Debug(err)
+		log.Debug("Error sending initial EPS batch for %s: %v", dg.config.Name, err)
+	}
 
 	for {
 		select {
@@ -84,14 +91,19 @@ func (dg *DataGenerator) startEPS() {
 }
 
 func (dg *DataGenerator) sendEPS() error {
-	dg.mu.Lock()
-	defer dg.mu.Unlock()
-
+	// Get batch configuration without holding lock
 	batchSize := dg.calculateOptimalBatchSize()
-	selectedTemplates := dg.selectTemplatesAdaptive(batchSize)
 
-	var events []map[string]interface{}
+	dg.mu.Lock()
+	selectedTemplates := dg.selectTemplatesAdaptive(batchSize)
+	preserveOriginal := dg.config.PreserveEventOriginal
+	dg.mu.Unlock()
+
+	// Generate events outside of lock
+	events := make([]map[string]interface{}, 0, batchSize)
 	var batchBytes int
+	timestamp := time.Now().UTC().Format(time.RFC3339)
+	timestampOverhead := 50 // Approximate overhead for @timestamp and other metadata
 
 	for i := 0; i < batchSize; i++ {
 		template := selectedTemplates[i%len(selectedTemplates)]
@@ -103,21 +115,24 @@ func (dg *DataGenerator) sendEPS() error {
 			return err
 		}
 
+		messageLen := len(message)
 		var event map[string]interface{}
+
 		if template.IsJSON {
-			if err := json.Unmarshal([]byte(message), &event); err != nil {
+			decoder := json.NewDecoder(strings.NewReader(message))
+			if err := decoder.Decode(&event); err != nil {
 				log.Debug("Failed to parse JSON message:", err)
 				return err
 			}
-			event["@timestamp"] = time.Now().UTC().Format(time.RFC3339)
+			event["@timestamp"] = timestamp
 		} else {
 			event = map[string]interface{}{
 				"message":    message,
-				"@timestamp": time.Now().UTC().Format(time.RFC3339),
+				"@timestamp": timestamp,
 			}
 		}
 
-		if dg.config.PreserveEventOriginal {
+		if preserveOriginal {
 			event["tags"] = []string{"preserve_original_event"}
 		}
 
@@ -125,7 +140,8 @@ func (dg *DataGenerator) sendEPS() error {
 
 		events = append(events, event)
 
-		eventBytes := dg.calculateEventSize(event)
+		// Approximate size without re-marshaling
+		eventBytes := messageLen + timestampOverhead
 		batchBytes += eventBytes
 	}
 
@@ -133,31 +149,42 @@ func (dg *DataGenerator) sendEPS() error {
 		return nil
 	}
 
+	// Send bulk request without lock
 	duration, err := dg.sendBulkRequest(events)
 	if err != nil {
 		log.Debug(err)
 		return err
 	}
 
+	// Only lock for updating stats
+	dg.mu.Lock()
 	dg.bytesSent += batchBytes
 	dg.updateStats(len(events), duration)
+	dg.mu.Unlock()
+
 	return nil
 }
 
 func (dg *DataGenerator) sendBytes() error {
+	// Get current state and batch configuration with minimal lock time
 	dg.mu.Lock()
-	defer dg.mu.Unlock()
-
 	batchSize := dg.calculateOptimalBatchSize()
+	currentBytesSent := dg.bytesSent
+	threshold := dg.config.Threshold
+	selectedTemplates := dg.selectTemplatesAdaptive(batchSize)
+	preserveOriginal := dg.config.PreserveEventOriginal
+	dg.mu.Unlock()
+
 	log.Debug(fmt.Sprintf("Batch size is %d for %s", batchSize, dg.config.Name))
 
-	selectedTemplates := dg.selectTemplatesAdaptive(batchSize)
-
-	var events []map[string]interface{}
+	// Generate events outside of lock
+	events := make([]map[string]interface{}, 0, batchSize)
 	var batchBytes int
+	timestamp := time.Now().UTC().Format(time.RFC3339)
+	timestampOverhead := 50 // Approximate overhead for @timestamp and other metadata
 
 	for i := 0; i < batchSize; i++ {
-		if dg.config.Unit == "bytes" && dg.bytesSent >= dg.config.Threshold {
+		if dg.config.Unit == "bytes" && currentBytesSent >= threshold {
 			log.Debug(fmt.Sprintf("Threshold %d met for %s", batchSize, dg.config.Name))
 			break
 		}
@@ -170,27 +197,31 @@ func (dg *DataGenerator) sendBytes() error {
 			return err
 		}
 
+		messageLen := len(message)
 		var event map[string]interface{}
+
 		if template.IsJSON {
-			if err := json.Unmarshal([]byte(message), &event); err != nil {
+			decoder := json.NewDecoder(strings.NewReader(message))
+			if err := decoder.Decode(&event); err != nil {
 				log.Debug("Failed to parse JSON message:", err)
 				return err
 			}
-			event["@timestamp"] = time.Now().UTC().Format(time.RFC3339)
+			event["@timestamp"] = timestamp
 		} else {
 			event = map[string]interface{}{
 				"message":    message,
-				"@timestamp": time.Now().UTC().Format(time.RFC3339),
+				"@timestamp": timestamp,
 			}
 		}
 
-		if dg.config.PreserveEventOriginal {
+		if preserveOriginal {
 			event["tags"] = []string{"preserve_original_event"}
 		}
 
-		eventBytes := dg.calculateEventSize(event)
+		// Approximate size without re-marshaling
+		eventBytes := messageLen + timestampOverhead
 
-		if dg.config.Unit == "bytes" && (dg.bytesSent+batchBytes+eventBytes) > dg.config.Threshold {
+		if dg.config.Unit == "bytes" && (currentBytesSent+batchBytes+eventBytes) > threshold {
 			break
 		}
 
@@ -202,14 +233,19 @@ func (dg *DataGenerator) sendBytes() error {
 		return nil
 	}
 
+	// Send bulk request without lock
 	duration, err := dg.sendBulkRequest(events)
 	if err != nil {
 		log.Debug(err)
 		return err
 	}
 
+	// Only lock for updating stats
+	dg.mu.Lock()
 	dg.bytesSent += batchBytes
 	dg.updateStats(len(events), duration)
+	dg.mu.Unlock()
+
 	return nil
 }
 
@@ -293,14 +329,19 @@ func (dg *DataGenerator) selectRandomTemplates(templates []*generator.LogTemplat
 func (dg *DataGenerator) calculateOptimalBatchSize() int {
 	if dg.config.Unit == "eps" {
 		target := dg.config.Threshold
+		// Larger batches for higher EPS to reduce overhead
 		if target <= 10 {
 			return 1
-		} else if target <= 100 {
+		} else if target <= 50 {
 			return 10
+		} else if target <= 200 {
+			return 50
 		} else if target <= 1000 {
-			return 100
+			return 200
+		} else if target <= 5000 {
+			return 1000
 		} else {
-			return 500
+			return 2000
 		}
 	} else {
 		remainingBytes := dg.config.Threshold - dg.bytesSent
@@ -317,8 +358,10 @@ func (dg *DataGenerator) calculateOptimalBatchSize() int {
 			return int(estimatedEvents)
 		} else if estimatedEvents <= 100 {
 			return 100
+		} else if estimatedEvents <= 1000 {
+			return 1000
 		} else {
-			return 500
+			return 2000
 		}
 	}
 }
