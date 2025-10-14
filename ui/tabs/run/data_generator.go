@@ -366,11 +366,6 @@ func (dg *DataGenerator) calculateOptimalBatchSize() int {
 	}
 }
 
-func (dg *DataGenerator) calculateEventSize(event map[string]interface{}) int {
-	jsonBytes, _ := json.Marshal(event)
-	return int(len(jsonBytes))
-}
-
 func (dg *DataGenerator) sendBulkRequest(events []map[string]interface{}) (time.Duration, error) {
 	index := "logs-" + dg.integrationName + "." + dg.config.Name + "-default"
 	duration, err := dg.client.BulkRequest(index, events)
