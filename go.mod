@@ -9,6 +9,7 @@ require (
 	github.com/charmbracelet/lipgloss v1.1.1-0.20250404203927-76690c660834
 	github.com/charmbracelet/log v0.4.1
 	github.com/elastic/beats/v7 v7.17.28
+	github.com/elastic/go-elasticsearch/v8 v8.17.0
 	github.com/elastic/go-elasticsearch/v9 v9.0.0
 	github.com/muesli/termenv v0.16.0
 	github.com/spf13/cobra v1.9.1

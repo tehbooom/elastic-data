@@ -80,6 +80,9 @@ func (c *Config) InstallPackage(pkgName string) error {
 		Params: kbapi.FleetEPMInstallPackageRegistryRequestParams{
 			Prerelease: kbapi.BoolPtr(true),
 		},
+		Body: kbapi.FleetEPMInstallPackageRegistryRequestBody{
+			Force: kbapi.BoolPtr(false),
+		},
 	})
 
 	if err != nil {
