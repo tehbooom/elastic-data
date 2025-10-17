@@ -12,7 +12,6 @@ builds:
       - linux
       - windows
       - darwin
-    parallelsim: 1
 
 archives:
   - formats: [tar.gz]
