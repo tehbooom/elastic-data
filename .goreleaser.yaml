@@ -1,9 +1,9 @@
 version: 2
 
-# before:
-#   hooks:
-#     - go mod tidy
-#     - go generate ./...
+before:
+  hooks:
+    - go mod tidy
+    - go generate ./...
 
 builds:
   - env:
@@ -12,15 +12,7 @@ builds:
       - linux
       - windows
       - darwin
-    goarch:
-      - amd64
-      - arm64
-    flags:
-      - -trimpath
-    ldflags:
-      - -s -w
-
-    gobinary: go
+    parallelsim: 1
 
 archives:
   - formats: [tar.gz]
