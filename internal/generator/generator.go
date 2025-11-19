@@ -4,8 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"math/rand"
-	"os"
-	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
@@ -15,6 +13,7 @@ import (
 	"github.com/charmbracelet/log"
 	"github.com/tehbooom/elastic-data/internal/common"
 	"github.com/tehbooom/elastic-data/internal/config"
+	"github.com/tehbooom/elastic-data/internal/integrations"
 )
 
 type LogTemplate struct {
@@ -121,17 +120,10 @@ func (l *LogTemplate) ExecuteTemplate() (string, error) {
 
 // LoadPreGeneratedTemplatesForDataset loads templates from pre-generated .tmpl files
 func LoadPreGeneratedTemplatesForDataset(integration, dataset string, cfg *config.Config) ([]*LogTemplate, error) {
-	templateFilePath := filepath.Join("internal", "integrations", "templates", integration, dataset+".tmpl")
-
-	// Check if template file exists
-	if _, err := os.Stat(templateFilePath); os.IsNotExist(err) {
-		return nil, fmt.Errorf("template file not found: %s", templateFilePath)
-	}
-
-	// Read the template file
-	templateFile, err := os.ReadFile(templateFilePath)
+	// Read the template file from embedded filesystem
+	templateFile, err := integrations.ReadTemplateFile(integration, dataset)
 	if err != nil {
-		return nil, fmt.Errorf("failed to read template file %s: %w", templateFilePath, err)
+		return nil, fmt.Errorf("failed to read template file: %w", err)
 	}
 
 	// Split into individual templates using delimiter
@@ -157,7 +149,7 @@ func LoadPreGeneratedTemplatesForDataset(integration, dataset string, cfg *confi
 	}
 
 	if len(templates) == 0 {
-		return nil, fmt.Errorf("no valid templates found in file %s", templateFilePath)
+		return nil, fmt.Errorf("no valid templates found for %s/%s", integration, dataset)
 	}
 
 	log.Debug(fmt.Sprintf("Loaded %d pre-generated templates for %s:%s", len(templates), integration, dataset))

@@ -37,7 +37,7 @@ func GetIntegrationsFromTemplates() ([]string, error) {
 // GetDatasetsFromTemplates gets datasets for an integration from embedded template files
 func GetDatasetsFromTemplates(integration string) ([]string, error) {
 	integrationDir := filepath.Join("templates", integration)
-	
+
 	entries, err := templatesFS.ReadDir(integrationDir)
 	if err != nil {
 		log.Debug(err)
@@ -58,4 +58,16 @@ func GetDatasetsFromTemplates(integration string) ([]string, error) {
 	}
 
 	return datasets, nil
+}
+
+// ReadTemplateFile reads a template file from the embedded filesystem
+func ReadTemplateFile(integration, dataset string) ([]byte, error) {
+	templatePath := filepath.Join("templates", integration, dataset+".tmpl")
+
+	data, err := templatesFS.ReadFile(templatePath)
+	if err != nil {
+		return nil, fmt.Errorf("template file not found: %s", templatePath)
+	}
+
+	return data, nil
 }
